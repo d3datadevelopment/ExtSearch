@@ -1,0 +1,46 @@
+.IAS_box {
+    .border-radius(3px);
+    .box-shadow(4px 4px 4px @d3_color_iasbox_shadow);
+    height:                70px;
+    width:                 200px;
+    background-color:      @d3_color_background_white;
+    position:              absolute;
+    left:                  50px;
+    top:                   50px;
+    display:               none;
+    z-index:               1000;
+    border:                2px solid @d3_color_iasbox;
+
+    input,
+    span {
+        margin: 3px;
+        width:  185px;
+    }
+
+    span {
+        float: right;
+        margin-top: 0;
+
+        input {
+            margin: 0;
+            width: 100px;
+            float: right;
+            text-align: center;
+        }
+    }
+
+    .headline {
+        background-color: @d3_color_iasbox;
+        color: @d3_color_text_white;
+        font-weight: bold;
+
+        .closebtn {
+            cursor: pointer;
+            float: right;
+            border: 1px outset @d3_color_border_black;
+            padding: 0 3px;
+            font-size: 8px;
+            line-height: 10px;
+        }
+    }
+}

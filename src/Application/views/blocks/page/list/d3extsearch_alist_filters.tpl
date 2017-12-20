@@ -1,0 +1,15 @@
+[{$smarty.block.parent}]
+
+[{d3modcfgcheck modid="d3_extsearch"}][{/d3modcfgcheck}]
+[{if $mod_d3_extsearch && $blD3ShowFilters && !$place}]
+    [{assign var="sTplName" value="d3_list_filters_"|cat:$oModCfg_d3_extsearch->getMappedThemeId()|cat:'.tpl'}]
+
+    [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('flow')}]
+        [{capture append="oxidBlock_sidebar"}]
+            [{include file=$sTplName sidebar_class="d3sidebar"}]
+        [{/capture}]
+    [{else}]
+        [{** display filter across articles **}]
+        [{include file=$sTplName sidebar_class="d3topbar"}]
+    [{/if}]
+[{/if}]
