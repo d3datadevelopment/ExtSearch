@@ -249,7 +249,7 @@ $aModule = array(
             'position'  => 1,
         ),
         array(
-            'template'  => 'category_main.tpl',
+            'template'  => 'include/category_main_form.tpl',
             'block'     => 'admin_category_main_form',
             'file'      => 'Application/views/admin/blocks/d3_extsearch_category_main.tpl',
             'position'  => 1,

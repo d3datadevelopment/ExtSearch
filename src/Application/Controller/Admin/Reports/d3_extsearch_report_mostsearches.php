@@ -17,6 +17,8 @@
 
 namespace D3\Extsearch\Application\Controller\Admin\Reports;
 
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\TableViewNameGenerator;
@@ -36,6 +38,8 @@ if (!class_exists(d3_extsearch_report_mostsearches::class)) {
 
         /**
          * @return string
+         * @throws DatabaseConnectionException
+         * @throws DatabaseErrorException
          */
         public function render()
         {
@@ -48,6 +52,10 @@ if (!class_exists(d3_extsearch_report_mostsearches::class)) {
             return parent::render();
         }
 
+        /**
+         * @throws DatabaseConnectionException
+         * @throws DatabaseErrorException
+         */
         public function mostsearchesgraphmonth()
         {
             $aDataX = array();
@@ -100,6 +108,10 @@ if (!class_exists(d3_extsearch_report_mostsearches::class)) {
             $oSmarty->assign("aStats", $aStats);
         }
 
+        /**
+         * @throws DatabaseConnectionException
+         * @throws DatabaseErrorException
+         */
         public function mostsearchesgraphyear()
         {
             $aDataX = array();

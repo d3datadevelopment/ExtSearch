@@ -24,7 +24,7 @@
     }
     function deleteThis(sID) {
         blCheck = confirm("[{oxmultilang ident="D3_EXTSEARCH_SYNED_DELETESYN"}]");
-        if (blCheck == true) {
+        if (blCheck === true) {
             var oSearch = document.getElementById("myedit2");
             oSearch.fnc.value = 'deletesynonym';
             oSearch.deloxid.value = sID;

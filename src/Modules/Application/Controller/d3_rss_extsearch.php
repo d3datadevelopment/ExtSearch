@@ -17,7 +17,13 @@ namespace D3\Extsearch\Modules\Application\Controller;
 
 use D3\Extsearch\Modules\Application\Model\d3_oxsearch_extsearch;
 use D3\Extsearch\Application\Model\d3_search;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
 use OxidEsales\Eshop\Application\Model\Search;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 
@@ -67,6 +73,9 @@ class d3_rss_extsearch extends d3_rss_extsearch_parent
 
     /**
      * @return array
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getAttributeFilters()
     {
@@ -84,12 +93,24 @@ class d3_rss_extsearch extends d3_rss_extsearch_parent
 
     /**
      * @return bool|string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getSearchCategory()
     {
         return $this->d3GetOwnSearchHandler()->getFilterList()->getCategoryFilter()->getUserSingleSelection();
     }
 
+    /**
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws StandardException
+     */
     public function d3CategoryFilterUseMultipleValues()
     {
         return $this->d3GetOwnSearchHandler()->getFilterList()->getCategoryFilter()->hasUserMultiSelection();
@@ -97,12 +118,24 @@ class d3_rss_extsearch extends d3_rss_extsearch_parent
 
     /**
      * @return bool|string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getSearchVendor()
     {
         return $this->d3GetOwnSearchHandler()->getFilterList()->getVendorFilter()->getUserSingleSelection();
     }
 
+    /**
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function d3VendorFilterUseMultipleValues()
     {
         return $this->d3GetOwnSearchHandler()->getFilterList()->getVendorFilter()->hasUserMultiSelection();
@@ -110,12 +143,24 @@ class d3_rss_extsearch extends d3_rss_extsearch_parent
 
     /**
      * @return bool|string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getSearchManufacturer()
     {
         return $this->d3GetOwnSearchHandler()->getFilterList()->getManufacturerFilter()->getUserSingleSelection();
     }
 
+    /**
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function d3ManufacturerFilterUseMultipleValues()
     {
         return $this->d3GetOwnSearchHandler()->getFilterList()->getManufacturerFilter()->hasUserMultiSelection();

@@ -17,6 +17,12 @@ namespace D3\Extsearch\Application\Controller\Admin;
 
 use D3\Extsearch\Core\d3_extsearch_conf;
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_main;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 
 class d3_cfg_extsearch_navigation extends d3_cfg_mod_main
 {
@@ -32,6 +38,12 @@ class d3_cfg_extsearch_navigation extends d3_cfg_mod_main
 
     /**
      * @return bool
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
      */
     public function d3UseAlistFilters()
     {

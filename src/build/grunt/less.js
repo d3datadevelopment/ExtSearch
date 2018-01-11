@@ -8,7 +8,7 @@ module.exports = {
                 browsers: [
                     "last 10 versions", 
                     "> 0.2%",
-                    "> 0.1% in DE", 
+                    "> 0.1% in DE"
                 ]
             })
         ]
@@ -18,14 +18,14 @@ module.exports = {
         options: {
             sourceMap: false,
             sourceMapFileInline: false,
-            compress: true,
+            compress: true
         },
         files: {
             "../out/src/css/d3extsearch_allthemes.min.css": "sources/less/styles_allthemes.less",
             "../out/src/css/d3extsearch_flow.min.css": "sources/less/styles_flow.less",
             "../out/src/css/d3extsearch_azure.min.css": "sources/less/styles_azure.less",
             "../out/src/css/d3extsearch_mobile.min.css": "sources/less/styles_mobile.less",
-            "../out/src/css/d3extsearch_slider.min.css": "sources/less/styles_slider.less",
+            "../out/src/css/d3extsearch_slider.min.css": "sources/less/styles_slider.less"
         }
     },
     
@@ -33,14 +33,14 @@ module.exports = {
         options: {
             sourceMap: true,
             sourceMapFileInline: true,
-            compress: true,
+            compress: true
         },
         files: {
             "../out/src/css/d3extsearch_allthemes.min.css": "sources/less/styles_allthemes.less",
             "../out/src/css/d3extsearch_flow.min.css": "sources/less/styles_flow.less",
             "../out/src/css/d3extsearch_azure.min.css": "sources/less/styles_azure.less",
             "../out/src/css/d3extsearch_mobile.min.css": "sources/less/styles_mobile.less",
-            "../out/src/css/d3extsearch_slider.min.css": "sources/less/styles_slider.less",
+            "../out/src/css/d3extsearch_slider.min.css": "sources/less/styles_slider.less"
         }
     },
     
@@ -48,11 +48,11 @@ module.exports = {
         options: {
             sourceMap: false,
             sourceMapFileInline: false,
-            compress: false,
+            compress: false
         },
         files: {
-            "../out/src/css/d3extsearch_allthemes.css": "sources/less/styles_allthemes.less",
+            "../out/src/css/d3extsearch_allthemes.css": "sources/less/styles_allthemes.less"
         }
-    },
+    }
 
 };

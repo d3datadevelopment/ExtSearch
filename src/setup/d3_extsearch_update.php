@@ -17,7 +17,15 @@
 
 namespace D3\Extsearch\setup;
 
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ParameterNotFoundException;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use D3\ModCfg\Application\Model\Install\d3install_updatebase;
+use Doctrine\DBAL\DBALException;
+use OxidEsales\Eshop\Core\Exception\ConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Application\Model\Shop;
 
@@ -205,6 +213,8 @@ Vk5SjFEQklHK1FvY1hXNVNCdTJyZU5oZnJXSktmclV3Z3lrVzlWWnkzTVZYV2hRPT0=';
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
      */
     public function checkContentNoArtItemExist()
     {
@@ -228,6 +238,10 @@ Vk5SjFEQklHK1FvY1hXNVNCdTJyZU5oZnJXSktmclV3Z3lrVzlWWnkzTVZYV2hRPT0=';
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws ConnectionException
+     * @throws DatabaseErrorException
      */
     public function updateContentNoArtItemExist()
     {
@@ -338,6 +352,9 @@ Vk5SjFEQklHK1FvY1hXNVNCdTJyZU5oZnJXSktmclV3Z3lrVzlWWnkzTVZYV2hRPT0=';
 
     /**
      * @return bool true, if table is missing
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function checkStatisticTablesExist()
     {
@@ -352,6 +369,10 @@ Vk5SjFEQklHK1FvY1hXNVNCdTJyZU5oZnJXSktmclV3Z3lrVzlWWnkzTVZYV2hRPT0=';
 
     /**
      * @return bool
+     * @throws ConnectionException
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function addStatisticTables()
     {
@@ -384,6 +405,9 @@ Vk5SjFEQklHK1FvY1hXNVNCdTJyZU5oZnJXSktmclV3Z3lrVzlWWnkzTVZYV2hRPT0=';
 
     /**
      * @return bool true, if table is missing
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function checkSynsetTablesExist()
     {
@@ -398,6 +422,10 @@ Vk5SjFEQklHK1FvY1hXNVNCdTJyZU5oZnJXSktmclV3Z3lrVzlWWnkzTVZYV2hRPT0=';
 
     /**
      * @return bool
+     * @throws ConnectionException
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function addSynsetTables()
     {
@@ -431,6 +459,13 @@ Vk5SjFEQklHK1FvY1hXNVNCdTJyZU5oZnJXSktmclV3Z3lrVzlWWnkzTVZYV2hRPT0=';
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws d3ParameterNotFoundException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws StandardException
      */
     public function hasUnregisteredFiles()
     {
@@ -439,6 +474,12 @@ Vk5SjFEQklHK1FvY1hXNVNCdTJyZU5oZnJXSktmclV3Z3lrVzlWWnkzTVZYV2hRPT0=';
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function showUnregisteredFiles()
     {

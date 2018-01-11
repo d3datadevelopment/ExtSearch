@@ -17,6 +17,8 @@
 
 namespace D3\Extsearch\Application\Controller\Admin\Reports;
 
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\DatabaseProvider;
 use OxidEsales\Eshop\Core\Request;
@@ -134,6 +136,8 @@ class d3_extsearch_report_base extends OeStatistics_Report_Base
      * @param $aParameters
      * @param $iLines
      * @return array
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     protected function _getDataArray($sSelect, $aParameters, $iLines)
     {

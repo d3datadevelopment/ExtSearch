@@ -17,6 +17,8 @@
 
 namespace D3\Extsearch\Application\Controller\Admin\Reports;
 
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\TableViewNameGenerator;
@@ -35,6 +37,8 @@ if (false == class_exists(d3_extsearch_report_hitless::class)) {
 
         /**
          * @return string
+         * @throws DatabaseConnectionException
+         * @throws DatabaseErrorException
          */
         public function render()
         {
@@ -47,6 +51,10 @@ if (false == class_exists(d3_extsearch_report_hitless::class)) {
             return parent::render();
         }
 
+        /**
+         * @throws DatabaseConnectionException
+         * @throws DatabaseErrorException
+         */
         public function hitlessmonth()
         {
             $aDataX = array();
@@ -98,6 +106,10 @@ if (false == class_exists(d3_extsearch_report_hitless::class)) {
             $oSmarty->assign("aStats", $aStats);
         }
 
+        /**
+         * @throws DatabaseConnectionException
+         * @throws DatabaseErrorException
+         */
         public function hitlessyear()
         {
             $aDataX = array();

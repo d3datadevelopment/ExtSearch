@@ -20,9 +20,16 @@ use D3\Extsearch\Modules\Application\Model\d3_oxsearch_extsearch;
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_main;
 use D3\ModCfg\Application\Model\d3utils;
 use D3\ModCfg\Application\Model\d3database;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
 use OxidEsales\Eshop\Application\Controller\Admin\LoginController;
 use OxidEsales\Eshop\Application\Model\Search;
 use OxidEsales\Eshop\Core\DatabaseProvider;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\FileException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\UtilsView;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
@@ -77,6 +84,9 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getIndexStatus()
     {
@@ -96,6 +106,12 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
 
     /**
      * @return string
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
      */
     public function render()
     {
@@ -124,6 +140,10 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
 
     /**
      * Generiert aus jedem Artikel auf Grundlage der zu verwendenden Felder den phonetischen Code
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
      */
     public function generatePhoneticStrings()
     {
@@ -177,6 +197,10 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
 
     /**
      * there is no ticker
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
      */
     public function generatePhoneticStringsExt()
     {
@@ -256,6 +280,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
 
     /**
      * @return string
+     * @throws DBALException
      */
     protected function getCheckOxartextendsQuery()
     {
@@ -274,6 +299,10 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
 
     /**
      * Generiert aus jedem Semantic-Lexikoneintrag den phonetischen Code
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
      */
     public function generatePhoneticSemantic()
     {
@@ -387,6 +416,14 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         die();
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function startSortAnalysis()
     {
         $aParams = array(
@@ -436,6 +473,14 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         die();
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function save()
     {
         startProfile(__METHOD__);
@@ -463,6 +508,9 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
 
     /**
      * @return int
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getArticleCountPerTick()
     {
@@ -471,6 +519,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
 
     /**
      * @return array
+     * @throws FileException
      */
     public function getPhoneticLanguages()
     {

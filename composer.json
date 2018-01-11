@@ -1,5 +1,5 @@
 {
-  "name": "D3/Extsearch",
+  "name": "d3/extsearch",
   "description": "Extended search module for OXID eShop.",
   "type": "oxideshop-module",
   "keywords": [
@@ -31,6 +31,16 @@
     "oxideshop": {
       "source-directory": "/src",
       "target-directory": "d3/extsearch"
+    },
+    "incenteev-parameters": {
+      "file": "test_config.yml",
+      "dist-file": "vendor/oxid-esales/testing-library/test_config.yml.dist",
+      "parameter-key": "mandatory_parameters",
+      "env-map": {
+        "shop_path": "SHOP_PATH",
+        "shop_tests_path": "SHOP_TESTS_PATH",
+        "partial_module_paths": "PARTIAL_MODULE_PATHS"
+      }
     }
   },
   "require": {

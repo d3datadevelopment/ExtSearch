@@ -23,6 +23,9 @@ use D3\Extsearch\Application\Model\Filters\d3Filter;
 use D3\Extsearch\Application\Model\d3_search;
 use D3\Extsearch\Core\d3_extsearch_conf;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
 use OxidEsales\Eshop\Application\Controller\ManufacturerListController;
 use OxidEsales\Eshop\Application\Controller\VendorListController;
 use OxidEsales\Eshop\Application\Controller\ArticleListController;
@@ -34,6 +37,9 @@ use OxidEsales\Eshop\Application\Model\ManufacturerList;
 use OxidEsales\Eshop\Application\Model\Category;
 use OxidEsales\Eshop\Application\Model\Manufacturer;
 use OxidEsales\Eshop\Application\Model\Vendor;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\FileException;
 use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
@@ -65,6 +71,14 @@ class d3_xlist_extsearch
         $this->_oaListController = $oListController;
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function render()
     {
         if ($this->_d3UseAlistFilters()) {
@@ -80,6 +94,12 @@ class d3_xlist_extsearch
 
     /**
      * @param Category|Manufacturer|Vendor $oCategory
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function addAListFilters($oCategory)
     {
@@ -149,6 +169,15 @@ class d3_xlist_extsearch
         }
     }
 
+    /**
+     * @param $iArticleCount
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function addSearchFilters($iArticleCount)
     {
         $oFilterList = $this->d3GetOwnSearchHandler()->getFilterList();
@@ -160,12 +189,28 @@ class d3_xlist_extsearch
         }
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function setTplParams()
     {
         $this->getaListController()->addTplParam('blD3ShowFilters', $this->d3CanShowFilters());
         $this->getaListController()->addTplParam('blD3HasSelectedFilters', $this->d3HasSelectedFilters());
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     protected function _d3AddAllTplParams()
     {
         $sSeparator = htmlspecialchars(ini_get('arg_separator.output'));
@@ -194,6 +239,12 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3HasSelectedFilters()
     {
@@ -210,6 +261,12 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3CanShowFilters()
     {
@@ -226,6 +283,9 @@ class d3_xlist_extsearch
 
     /**
      * @return d3_cfg_mod
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function d3GetSet()
     {
@@ -276,6 +336,12 @@ class d3_xlist_extsearch
      * Template variable getter. Returns hits related vendor list
      *
      * @return CategoryList
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetCategoryList()
     {
@@ -284,6 +350,12 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3HasCategoryList()
     {
@@ -293,6 +365,12 @@ class d3_xlist_extsearch
     /**
      * Template variable getter. Returns hits related vendor list
      * @return Vendorlist
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetVendorList()
     {
@@ -301,6 +379,12 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3HasVendorList()
     {
@@ -310,6 +394,12 @@ class d3_xlist_extsearch
     /**
      * Template variable getter.  Returns hits related manufacturer list
      * @return Manufacturerlist
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetManufacturerList()
     {
@@ -318,6 +408,12 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3HasManufacturerList()
     {
@@ -328,6 +424,12 @@ class d3_xlist_extsearch
      * Template variable getter. Returns hits related attribute list (generating in $this->_d3GetAttributeList())
      *
      * @return array
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetAttributeList()
     {
@@ -336,6 +438,12 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3HasAttributeList()
     {
@@ -346,6 +454,13 @@ class d3_xlist_extsearch
      * Template variable getter. Returns price selector list
      *
      * @return array
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws FileException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3getPriceSteps()
     {
@@ -354,6 +469,12 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3HasjQuerySlider()
     {
@@ -363,6 +484,12 @@ class d3_xlist_extsearch
     /**
      * @param string $sBase
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3AddBaseUrlParams($sBase = '')
     {
@@ -448,6 +575,15 @@ class d3_xlist_extsearch
         return sprintf(Registry::getLang()->translateString('D3_EXTSEARCH_EXT_MULTIPLESELECT'), $sOptionTitle);
     }
 
+    /**
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function d3HasFilters()
     {
         $oFilterList = $this->d3GetOwnSearchHandler()->getFilterList();
@@ -464,6 +600,12 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3HasPriceFilter()
     {
@@ -472,6 +614,13 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3CanShowPriceFilterSlider()
     {
@@ -480,6 +629,13 @@ class d3_xlist_extsearch
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetPriceSliderInfoMinValue()
     {
@@ -488,6 +644,13 @@ class d3_xlist_extsearch
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetPriceSliderInfoMaxValue()
     {
@@ -496,6 +659,13 @@ class d3_xlist_extsearch
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetPriceSliderInputMinValue()
     {
@@ -504,6 +674,13 @@ class d3_xlist_extsearch
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetPriceSliderInputMaxValue()
     {
@@ -512,6 +689,12 @@ class d3_xlist_extsearch
 
     /**
      * @return array
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3getPriceLimits()
     {
@@ -520,6 +703,13 @@ class d3_xlist_extsearch
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetPriceSliderOriginalMinValue()
     {
@@ -528,12 +718,24 @@ class d3_xlist_extsearch
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3GetPriceSliderOriginalMaxValue()
     {
         return $this->d3GetOwnSearchHandler()->getFilterList()->getPriceFilter()->getPriceSliderOriginalMaxValue();
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     */
     public function d3ClearFilter()
     {
         $this->d3GetSearchHandler()->d3ClearFilters();
@@ -541,6 +743,16 @@ class d3_xlist_extsearch
         $oView->setFncName(null);
     }
 
+    /**
+     * @param $aParams
+     * @return array
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function addNavigationParams($aParams)
     {
         $aAddParams = array();
@@ -573,6 +785,12 @@ class d3_xlist_extsearch
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     private function _d3UseAlistFilters()
     {

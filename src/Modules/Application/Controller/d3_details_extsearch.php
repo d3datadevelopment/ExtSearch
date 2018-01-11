@@ -16,13 +16,15 @@
 
 namespace D3\Extsearch\Modules\Application\Controller;
 
-use D3\Extsearch\Modules\Application\Controller\d3_vendorlist_extsearch;
-use D3\Extsearch\Modules\Application\Controller\d3_manufacturerlist_extsearch;
-use D3\Extsearch\Modules\Application\Controller\d3_alist_extsearch;
-use D3\Extsearch\Modules\Application\Controller\d3_ext_search;
 use D3\Extsearch\Modules\Application\Model\d3_oxsearch_extsearch;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
 use OxidEsales\Eshop\Application\Model\Search;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Application\Controller\SearchController;
@@ -56,6 +58,9 @@ class d3_details_extsearch extends d3_details_extsearch_parent
 
     /**
      * @return array
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getAttributeFilters()
     {
@@ -111,6 +116,12 @@ class d3_details_extsearch extends d3_details_extsearch_parent
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function getDynUrlParams()
     {
@@ -152,6 +163,12 @@ class d3_details_extsearch extends d3_details_extsearch_parent
      * Returns page sort identificator. It is used as identificator in session variable aSorting[ident]
      *
      * @return string
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
      */
     public function getSortIdent()
     {
@@ -168,6 +185,9 @@ class d3_details_extsearch extends d3_details_extsearch_parent
 
     /**
      * @return d3_cfg_mod
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function d3GetSet()
     {

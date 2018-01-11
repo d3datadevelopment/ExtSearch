@@ -19,6 +19,7 @@ namespace D3\Extsearch\Application\Controller\Admin;
 
 use D3\Extsearch\Application\Model\d3_extsearch_term;
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_list;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 
 
 class d3_cfg_extsearchsyneditor_list extends d3_cfg_mod_list
@@ -43,9 +44,10 @@ class d3_cfg_extsearchsyneditor_list extends d3_cfg_mod_list
     }
 
     /**
-     * @param array  $aWhere
+     * @param array $aWhere
      * @param string $sSql
      * @return string
+     * @throws DatabaseConnectionException
      */
     protected function _prepareWhereQuery($aWhere, $sSql)
     {

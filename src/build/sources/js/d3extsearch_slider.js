@@ -20,7 +20,7 @@
             fieldMaxId: "d3extsearch_PriceFilterfieldMaxId",
             infoMinId:  "d3extsearch_PriceFilterPriceInfoMinId",
             infoMaxId:  "d3extsearch_PriceFilterPriceInfoMaxId",
-            formId:     "d3searchfilterform",
+            formId:     "d3searchfilterform"
         },
 
         _create: function ()
