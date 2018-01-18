@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ## 6.1.0.0 (2017-12-15)
 ### Added
 - Installation via Composer
+- Neueinträge bei Synonymen verwenden die Admin-Anmeldesprache
 
 ## [6.0.0.0] (2017-11-24)
 ### Added
