@@ -130,6 +130,7 @@ $aModule = array(
     ),
     'events'      => [
         'onActivate'    => '\D3\Extsearch\setup\Events::onActivate',
+        'onDeactivate'  => '\D3\Extsearch\setup\Events::onDeactivate',
     ],
     'settings' => array(
         array(
