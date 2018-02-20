@@ -73,15 +73,10 @@ class d3_alist_extsearch extends d3_alist_extsearch_parent
         $oArtList = parent::_loadArticles($oCategory);
 
         /** @var ArticleList $oArtList */
-        if ($oArtList && $oArtList->count()) {
+        if ($this->_iCntPages || ($oArtList && $oArtList->count())) {
             $this->d3GetXListController()->addAListFilters($oCategory);
+            $this->d3GetXListController()->setTplParams();
         }
-
-        if ($this->_iCntPages) {
-            $this->d3GetXListController()->addAListFilters($oCategory);
-        }
-
-        $this->d3GetXListController()->setTplParams();
 
         return $oArtList;
     }

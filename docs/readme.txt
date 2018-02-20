@@ -1,5 +1,5 @@
 == Title ==
-Erweiterte Suche für OXID eShop 6.0
+Erweiterte Suche für OXID eShop 6.x
 
 == Author ==
 D3 Data Development - Daniel Seifert
@@ -8,7 +8,7 @@ D3 Data Development - Daniel Seifert
 d3
 
 == Version ==
-6.1.0.0
+6.1.1.0
 
 == Link ==
 http://www.oxidmodule.com/
