@@ -23,6 +23,12 @@ use D3\Extsearch\Modules\Application\Controller\d3_manufacturerlist_extsearch;
 use D3\Extsearch\Modules\Application\Controller\d3_vendorlist_extsearch;
 use D3\Extsearch\Application\Model\d3_search;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\Registry;
 use \OxidEsales\Eshop\Application\Model\Search;
@@ -69,6 +75,9 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
 
     /**
      * @return array
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getAttributeFilters()
     {
@@ -136,6 +145,9 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getSearchCategory()
     {
@@ -144,6 +156,12 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3CategoryFilterUseMultipleValues()
     {
@@ -152,6 +170,9 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getSearchVendor()
     {
@@ -160,6 +181,12 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3VendorFilterUseMultipleValues()
     {
@@ -168,6 +195,9 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function getSearchManufacturer()
     {
@@ -176,6 +206,12 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3ManufacturerFilterUseMultipleValues()
     {
@@ -200,6 +236,12 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
      * Returns page sort identificator. It is used as identificator in session variable aSorting[ident]
      *
      * @return string
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
      */
     public function getSortIdent()
     {
@@ -216,6 +258,9 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
 
     /**
      * @return d3_cfg_mod
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function d3GetSet()
     {

@@ -17,6 +17,12 @@ namespace D3\Extsearch\Application\Controller;
 
 use D3\Extsearch\Application\Model\d3_search;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Controller\BaseController;
 use OxidEsales\Eshop\Core\Output;
@@ -27,6 +33,11 @@ class d3_extsearch_response extends BaseController
 
     public $oD3SearchHandler;
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     */
     public function init()
     {
         startProfile(__METHOD__);
@@ -45,6 +56,15 @@ class d3_extsearch_response extends BaseController
         stopProfile(__METHOD__);
     }
 
+    /**
+     * @param $aParams
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws StandardException
+     */
     public function getSuggestContent($aParams)
     {
         startProfile(__METHOD__);
@@ -73,6 +93,11 @@ class d3_extsearch_response extends BaseController
         return $this->oD3SearchHandler;
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     */
     protected function _addProfiling()
     {
         startProfile(__METHOD__);

@@ -20,6 +20,12 @@ use D3\Extsearch\Application\Model\d3_search;
 use D3\Extsearch\Application\Model\Filters\d3Filter;
 use D3\Extsearch\Core\d3_extsearch_conf;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Application\Model\Article;
@@ -60,8 +66,12 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
     /**
      * @param d3_ext_search $oLocatorTarget
      * @param Article $oCurrArticle
-     *
-     * @return null|void
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     protected function _setListLocatorData($oLocatorTarget, $oCurrArticle)
     {
@@ -141,8 +151,14 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
     }
 
     /**
-     * @param FrontendController   $oLocatorTarget
+     * @param FrontendController $oLocatorTarget
      * @param Article $oCurrArticle
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     protected function _setVendorLocatorData($oLocatorTarget, $oCurrArticle)
     {
@@ -183,8 +199,14 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
     }
 
     /**
-     * @param FrontendController   $oLocatorTarget
+     * @param FrontendController $oLocatorTarget
      * @param Article $oCurrArticle
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     protected function _setManufacturerLocatorData($oLocatorTarget, $oCurrArticle)
     {
@@ -228,8 +250,12 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
     /**
      * @param d3_ext_search $oLocatorTarget
      * @param Article $oCurrArticle
-     *
-     * @return null|void
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     protected function _setSearchLocatorData($oLocatorTarget, $oCurrArticle)
     {
@@ -350,6 +376,12 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     protected function _d3GetSearchUrlAdd()
     {
@@ -384,6 +416,9 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
 
     /**
      * @return d3_cfg_mod
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     protected function _d3GetSet()
     {
@@ -392,6 +427,12 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws StandardException
      */
     private function _d3UseAlistFilters()
     {
@@ -401,6 +442,12 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     protected function _d3ExtSearchNeedExtensionForCurrentLocator ()
     {

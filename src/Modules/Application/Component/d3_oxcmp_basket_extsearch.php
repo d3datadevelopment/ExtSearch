@@ -17,14 +17,21 @@ namespace D3\Extsearch\Modules\Application\Component;
 
 use D3\Extsearch\Application\Model\d3_search;
 use D3\Extsearch\Application\Model\Filters\d3Filter;
+use Doctrine\DBAL\DBALException;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 
 class d3_oxcmp_basket_extsearch extends d3_oxcmp_basket_extsearch_parent
 {
     protected $_oOwnSearchHandler;
+
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     protected function _getRedirectUrl()
     {

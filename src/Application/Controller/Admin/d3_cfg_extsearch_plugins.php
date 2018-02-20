@@ -17,6 +17,12 @@ namespace D3\Extsearch\Application\Controller\Admin;
 
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_main;
 use D3\ModCfg\Application\Model\d3filesystem;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\UtilsView;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Output;
@@ -37,6 +43,12 @@ class d3_cfg_extsearch_plugins extends d3_cfg_mod_main
 
     /**
      * ruft oxutils-Funktion auf, die vom Template aus nicht verfuegbar ist
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
      */
     public function save()
     {
@@ -82,6 +94,14 @@ class d3_cfg_extsearch_plugins extends d3_cfg_mod_main
         return $sFileName;
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
     public function generatePluginFile()
     {
         $oShop = Registry::getConfig()->getActiveShop();

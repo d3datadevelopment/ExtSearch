@@ -17,7 +17,13 @@ namespace D3\Extsearch\Modules\Application\Controller\Admin;
 
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
 use D3\ModCfg\Application\Model\d3utils;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
 use \OxidEsales\Eshop\Application\Model\Article;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\DatabaseProvider;
@@ -30,6 +36,9 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
 
     /**
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     public function render()
     {
@@ -48,6 +57,9 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
 
     /**
      * @return d3_cfg_mod
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     protected function _d3GetSet()
     {
@@ -66,6 +78,12 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
      * @param Article $oListObject
      *
      * @return mixed|string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws StandardException
      */
     protected function _buildSelectString($oListObject = null)
     {
@@ -140,10 +158,16 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
     /**
      * Adding empty parent check
      *
-     * @param array  $aWhere SQL condition array
-     * @param string $sQ     SQL query string
+     * @param array $aWhere SQL condition array
+     * @param string $sQ SQL query string
      *
      * @return mixed|string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     protected function _prepareWhereQuery($aWhere, $sQ)
     {
@@ -184,9 +208,15 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
     /**
      * Sets articles sorting by category.
      *
-     * @param string $sSql  sql string
+     * @param string $sSql sql string
      *
      * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     protected function _changeselect($sSql)
     {
@@ -248,6 +278,9 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
 
     /**
      * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     protected function _d3IsSearch()
     {

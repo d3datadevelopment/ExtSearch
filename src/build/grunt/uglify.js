@@ -6,7 +6,7 @@ module.exports = {
     
     module: {
         options: {
-            sourceMap: false,
+            sourceMap: false
         },
         files: [
             {
@@ -18,5 +18,5 @@ module.exports = {
                 extDot: "last"
             }
         ]
-    },
+    }
 };

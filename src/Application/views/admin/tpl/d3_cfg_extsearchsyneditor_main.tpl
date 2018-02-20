@@ -108,7 +108,7 @@
                         <td class="edittext">
                             <select class="editinput" name="editval[d3_extsearch_term__language_id]" id="term__language_id" [{$readonly}]>
                                 [{foreach from=$oView->getLanguageList() item="oLanguage"}]
-                                    <option value="[{$oLanguage->id}]"[{if $edit->getFieldData('language_id') == $oLanguage->id}] selected[{/if}]>[{$oLanguage->name}] [{if $oView->convertBin2Int($oLanguage->active) == 0}][{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_LANGUAGE_DISABLED"}][{/if}]</option>
+                                    <option value="[{$oLanguage->id}]"[{if $oLanguage->selected && $oxid == '-1' || $edit->getFieldData('language_id') == $oLanguage->id}] selected[{/if}]>[{$oLanguage->name}] [{if $oView->convertBin2Int($oLanguage->active) == 0}][{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_LANGUAGE_DISABLED"}][{/if}]</option>
                                 [{/foreach}]
                             </select>
                             [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_LANGUAGE_DESC"}]

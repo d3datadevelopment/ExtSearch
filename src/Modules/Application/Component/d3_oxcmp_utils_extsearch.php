@@ -19,6 +19,13 @@ use D3\Extsearch\Application\Model\d3_search;
 use D3\ModCfg\Application\Model\d3utils;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
 use D3\ModCfg\Application\Model\d3filesystem;
+use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
+use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
+use Doctrine\DBAL\DBALException;
+use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
+use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\FileException;
+use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use \OxidEsales\Eshop\Application\Model\Search;
@@ -58,6 +65,14 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
         }
     }
 
+    /**
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     */
     public function init()
     {
         parent::init();
@@ -78,6 +93,12 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
 
     /**
      * @return mixed
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function render()
     {
@@ -123,6 +144,9 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
 
     /**
      * @return d3_cfg_mod
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     private function _d3GetSet()
     {
@@ -153,6 +177,13 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
 
     /**
      * generates article list for browsers search engines
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws FileException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function d3_browser_suggest()
     {
