@@ -98,16 +98,20 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
             $oD3Utils = Registry::get(d3utils::class);
             $aReplSearch = array(
                 'from ' . $sViewName,
-                ", `" . $sViewName . '`.`' . $oD3Utils->getMultiLangFieldName(
-                    'oxtitle',
-                    '',
-                    $oListObject
-                )."`",
-                ", `" . $sViewName . '`.`' . $oD3Utils->getMultiLangFieldName(
-                    'oxvarselect',
-                    '',
-                    $oListObject
-                )."`"
+                ", " . DatabaseProvider::getDb()->quoteIdentifier(
+                    "{$sViewName}." . $oD3Utils->getMultiLangFieldName(
+                        'oxtitle',
+                        '',
+                        $oListObject
+                    )
+                ),
+                ", " . DatabaseProvider::getDb()->quoteIdentifier(
+                    "{$sViewName}." . $oD3Utils->getMultiLangFieldName(
+                        'oxvarselect',
+                        '',
+                        $oListObject
+                    )
+                )
             );
 
             $aReplReplacement = array(
@@ -190,13 +194,15 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
             $aOrgKeys      = array_keys($aWhere);
             $sIdent        = array_search($sSearchKey, $aKeys);
             $sOrgSearchKey = $aOrgKeys[$sIdent];
-            $sQuotedOrgSearchKey = DatabaseProvider::getDb(DatabaseProvider::FETCH_MODE_ASSOC)->quoteIdentifier($sOrgSearchKey);
+            $sQuotedOrgSearchKey = DatabaseProvider::getDb()->quoteIdentifier($sOrgSearchKey);
 
             if (in_array($sSearchKey, $aKeys)) {
                 $aReplSearch[]      = '( ' . $sQuotedOrgSearchKey . "  like '" . $aWhere[$sOrgSearchKey] . "'  )";
-                $aReplReplacement[] = '( ' . $sQuotedOrgSearchKey . " like '" . $aWhere[$sOrgSearchKey] . "' OR `oxp`.`" .
-                    Registry::get(d3utils::class)->getMultiLangFieldName('oxtitle', '', $oArticle) .
-                    "` LIKE '" . $aWhere[$sOrgSearchKey] . "' )";
+                $aReplReplacement[] = '( ' . $sQuotedOrgSearchKey . " like '" . $aWhere[$sOrgSearchKey] . "' OR ".
+                    DatabaseProvider::getDb()->quoteIdentifier(
+                        "oxp." .
+                        Registry::get(d3utils::class)->getMultiLangFieldName('oxtitle', '', $oArticle)
+                    ) . " LIKE '" . $aWhere[$sOrgSearchKey] . "' )";
             }
 
             $sQ = str_replace($aReplSearch, $aReplReplacement, $sQ);
@@ -256,9 +262,10 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
                         $sO2CView
                     ) ? '' : " LEFT JOIN $sO2CView ON $sTable.oxid = $sO2CView.oxobjectid ";
                     // 2012-07-04 changed to lowercase, because OXID regexp doesn't match uppercase :(
-                    $sInsert = "from $sTable \\1 $sLJAdd where $sO2CView.oxcatnid = " . DatabaseProvider::getDb(DatabaseProvider::FETCH_MODE_ASSOC)->quote(
-                        $sValue
-                    ) . " AND ";
+                    $sInsert = "from $sTable \\1 $sLJAdd where ".DatabaseProvider::getDb()->quoteIdentifier("{$sO2CView}.oxcatnid")." = " .
+                        DatabaseProvider::getDb(DatabaseProvider::FETCH_MODE_ASSOC)->quote(
+                            $sValue
+                        ) . " AND ";
                     // D3 pattern changed
                     $sSql = $oStr->preg_replace("/$sPattern/i", $sInsert, $sSql);
                     break;

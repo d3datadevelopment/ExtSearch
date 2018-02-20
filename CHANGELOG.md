@@ -3,6 +3,16 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 6.1.1.0 (2018-02-20)
+### Added
+- installierbar in OXID 6.1
+- Query-Cache-Prüfung integriert
+### Changed
+- Syntaxgenerierung der Datenbank-Queries optimiert
+### Fixed
+- auf leeren Artikellistenseiten werden Filter nicht generiert
+- Datenbank-Abfragen für CMS-Texte korrigiert
+
 ## 6.1.0.0 (2017-12-15)
 ### Added
 - Installation via Composer

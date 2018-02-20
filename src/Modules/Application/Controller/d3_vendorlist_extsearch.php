@@ -74,11 +74,10 @@ class d3_vendorlist_extsearch extends d3_vendorlist_extsearch_parent
 
         $iArtCnt  = $aRet[$aKeys[1]];
 
-        if ($iArtCnt) {
+        if ($this->_iCntPages || $iArtCnt) {
             $this->d3GetXListController()->addAListFilters($oCategory);
+            $this->d3GetXListController()->setTplParams();
         }
-
-        $this->d3GetXListController()->setTplParams();
 
         return $aRet;
     }
