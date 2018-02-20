@@ -1,2609 +1,1245 @@
-<?php
-/**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
- * http://www.shopmodule.com
- *
- * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author        D3 Data Development - <support@shopmodule.com>
- * @link          http://www.oxidmodule.com
- */
-
-/**
- * Alle Anforderungen sind über $this->_aCheck konfigurierbar. Manche Anforderungen haben dazu noch weitergehende
- * Informationen. Die Struktur dieser Requirementbeschreibungen:
- *
- * array(
- *      'blExec'    => 1,           // obligatorisch: 0 = keine Prüfung, 1 = Püfung wird ausgeführt
- *      'aParams'   => array(...),  // optional, Inhalt ist von jeweiliger Prüfung abhängig
- * )
- *
- * "Desc1": Diese Struktur kann allein eine Bedingung beschreiben. Wenn mehrere dieser Bedingungen
- * nötig sind (z.B. bei unterschiedlichen Bibliotheksanforderungen), kann diese Struktur als
- * Arrayelemente auch mehrfach genannt werden (kaskadierbar). Grundsätzlich sind alle Requirements
- * kaskadierbar, jedoch ergibt dies nicht bei allen Sinn. :) Eine Kaskadierung sieht so aus:
- *
- * array(
- *      array(
- *          'blExec'    => 1,
- *          ...
- *      ),
- *      array(
- *          'blExec'    => 1,
- *          ...
- *      )
- * )
- *
- * Unbedingt zu vermeiden sind Änderungen in der Scriptlogik, da diese bei Updates nur schwer zu übernehmen sind.
- */
-
-class requConfig
-{
-    public $sModName = 'D&sup3; erweiterte Suche / extended search';
-
-    public $sModId   = 'd3extsearch';
-
-    public $sModVersion = '6.1.0.0';
-
-    /********************** check configuration section ************************/
-
-    public $aCheck = array(
-        // kleinste erlaubte PHP-Version
-        'hasMinPhpVersion'       => array(
-            'blExec'  => 0,
-            'aParams' => array(
-                'version' => '5.2.0'
-            )
-        ),
-
-        // größte erlaubte PHP-Version
-        'hasMaxPhpVersion'       => array(
-            'blExec'  => 0,
-            'aParams' => array(
-                'version' => '5.6.200'
-            )
-        ),
-
-        // PHP-Version zwischen 'from' und 'to'
-        'hasFromToPhpVersion'    => array(
-            'blExec'  => 1,
-            'aParams' => array(
-                'from' => '5.6.0',
-                'to'   => '7.0.200',
-            )
-        ),
-
-        // benötigt Zend Optimizer (PHP 5.2) bzw. Zend Guard Loader (> PHP 5.2)
-        'hasZendLoaderOptimizer' => array(
-            'blExec' => 0,
-        ),
-
-        // benötigt IonCubeLoader
-        'hasIonCubeLoader'       => array(
-            'blExec' => 1,
-        ),
-
-        // benötigt Zend Decoder oder IonCubeLoader
-        'hasIonCubeOrZendLoader'       => array(
-            'blExec' => 0,
-        ),
-
-        // benötigte PHP-Extension (kaskadierbar (siehe "Desc1"))
-        'hasExtension'           => array(
-            array(
-                'blExec'  => 0,
-                'aParams' => array(
-                    'type' => 'curl',
-                ),
-            ),
-            array(
-                'blExec'  => 0,
-                'aParams' => array(
-                    'type' => 'soap'
-                ),
-            ),
-        ),
-
-        // benötigte cURL-Version
-        'hasMinCurlVersion'           => array(
-            'blExec'  => 0,
-            'aParams' => array(
-                'version' => '7.26.0',
-            ),
-        ),
-
-        // benötigte OpenSSL-Version (Angabe in Versionsformat)
-        'hasMinOpenSSLVersion'           => array(
-            'blExec'  => 0,
-            'aParams' => array(
-                'version' => '1.0.1.5',
-            ),
-        ),
-
-        // minimal benötigte Shopversion (editionsgetrennt), wird (sofern möglich) Remote aktualisiert
-        'hasMinShopVersion'      => array(
-            'blExec'  => 1,
-            'aParams' => array(
-                'PE' => '6.0.0',
-                'CE' => '6.0.0',
-                'EE' => '6.0.0'
-            ),
-        ),
-
-        // maximal verwendbare Shopversion (editionsgetrennt), wird (sofern möglich) Remote aktualisiert
-        'hasMaxShopVersion'      => array(
-            'blExec'  => 1,
-            'aParams' => array(
-                'PE' => '6.0.200',
-                'CE' => '6.0.200',
-                'EE' => '6.0.200'
-            ),
-        ),
-
-        // verfügbar für diese Shopeditionen, wird (sofern möglich) Remote aktualisiert
-        'isShopEdition'          => array(
-            'blExec'  => 0,
-            'aParams' => array(
-                array(
-                    'PE',
-                    'EE',
-                    'CE',
-                ),
-            ),
-        ),
-
-        // benötigt Modul-Connector
-        'hasModCfg'              => array(
-            'blExec' => 1
-        ),
-
-        // benötigt mindestens diese Erweiterungen / Version lt. d3_cfg_mod (kaskadierbar (siehe "Desc1"))
-        'hasMinModCfgVersion'    => array(
-            array(
-                'blExec'  => 1,
-                'aParams' => array(
-                    'id'      => 'd3modcfg_lib',
-                    'name'    => 'Modul-Connector',
-                    'version' => '5.1.0.0',
-                ),
-            ),
-        ),
-
-        // verwendbar bis zu diesen Erweiterungen / Version lt. d3_cfg_mod (kaskadierbar (siehe "Desc1"))
-        'hasMaxModCfgVersion'    => array(
-            array(
-                'blExec'  => 0,
-                'aParams' => array(
-                    'id'      => 'd3modcfg_lib',
-                    'name'    => 'Modul-Connector',
-                    'version' => '6.0.0.0',
-                ),
-            ),
-        ),
-
-        // benötigt neuen Lizenzschlüssel
-        'requireNewLicence'    => array(
-            array(
-                'blExec'  => 0,
-                'aParams' => array(
-                    'checkVersion' => true, // soll Versionsnummer des installierten Moduls gegengeprüft werden?
-                    'remainingDigits' => 2, // zu prüfende Stellen für neue Lizenz
-                ),
-            ),
-        ),
-    );
-}
-
-/********* don't change content from here **********************/
-
-date_default_timezone_set('Europe/Berlin');
-
-/**
- * Class requcheck
- */
-class requCheck
-{
-    public $sVersion = '4.10.2';
-
-    protected $_db = false;
-
-    public $dbHost;
-
-    public $dbUser;
-
-    public $dbPwd;
-
-    public $dbName;
-
-    /** @var requConfig */
-    public $oConfig;
-
-    /** @var requLayout */
-    public $oLayout;
-
-    protected $_sInFolderFileName = 'd3precheckinfolder.php';
-
-    public $sVersionTag = '@@version@@';
-
-    /********************** functional section ************************/
-
-    public $blGlobalResult = true;
-
-    /**
-     *
-     */
-    public function __construct()
-    {
-        $this->oConfig = new requConfig();
-        $this->oLayout = new requLayout($this, $this->oConfig);
-        $this->oRemote = new requRemote();
-    }
-
-    /**
-     * @param string $sName
-     * @param array $aArguments
-     */
-    public function __call ($sName, $aArguments)
-    {
-        $this->oLayout->{$sName}($aArguments);
-    }
-
-    public function startCheck()
-    {
-        $this->oLayout->getHTMLHeader();
-
-        $oCheckTransformation = new requTransformation($this);
-        $this->oConfig->aCheck = $oCheckTransformation->transformCheckList($this->oConfig->aCheck);
-
-        $this->_runThroughChecks($this->oConfig->aCheck);
-
-        $this->oLayout->getHTMLFooter();
-    }
-
-    /**
-     * traversable requirement check
-     *
-     * @param        $aCheckList
-     * @param string $sForceCheckType
-     */
-    protected function _runThroughChecks($aCheckList, $sForceCheckType = '')
-    {
-        foreach ($aCheckList as $sCheckType => $aConf) {
-            if (array_key_exists('blExec', $aConf)) {
-                if ($aConf['blExec']) {
-                    if (strlen($sForceCheckType)) {
-                        $sCheckType = $sForceCheckType;
-                    }
-                    $this->displayCheck($sCheckType, $aConf);
-                }
-            } else {
-                $this->_runThroughChecks($aConf, $sCheckType);
-            }
-        }
-    }
-
-    /**
-     * @param      $sMethodName
-     * @param null $aArguments
-     *
-     * @return array
-     */
-    public function checkInSubDirs($sMethodName, $aArguments = null)
-    {
-        $sFolder = '.';
-
-        $aCheckScripts = $this->_walkThroughDirs($sFolder);
-        $aReturn       = $this->_checkScripts($aCheckScripts, $sMethodName, $aArguments);
-
-        return $aReturn;
-    }
-
-    /**
-     * @param $sFolder
-     *
-     * @return array
-     */
-    protected function _walkThroughDirs($sFolder)
-    {
-        $aIgnoreDirItems = array('.', '..');
-        $aCheckScripts = array();
-
-        try {
-            /** @var SplFileInfo $oFileInfo */
-            $oIterator = new RecursiveDirectoryIterator($sFolder);
-        
-            foreach ($oIterator as $oFileInfo) {
-                if (in_array($oFileInfo->getFileName(), $aIgnoreDirItems)) {
-                    continue;
-                }
-                if ($oFileInfo->isDir()) {
-                    $aCheckScripts = array_merge($aCheckScripts, $this->_walkThroughDirs($oFileInfo->getRealPath()));
-                } elseif ($oFileInfo->isFile()) {
-                    if (strtolower($oFileInfo->getFilename()) == $this->_sInFolderFileName) {
-                        $aCheckScripts[] = str_replace('\\', '/', $oFileInfo->getRealPath());
-                    }
-                }
-            }
-        } catch (UnexpectedValueException $oEx) {
-            sprintf($this->oLayout->translate('unableExecuteDirectoryIterator'), $oEx->getMessage());
-            $this->addMessage(
-                sprintf($this->oLayout->translate('unableExecuteDirectoryIterator'), $oEx->getMessage())
-            );
-        }
-
-        return $aCheckScripts;
-    }
-    
-    public function addMessage($sMessage)
-    {
-        $this->aMessages[md5($sMessage)] = $sMessage;
-    }
-    
-    public function getMessages()
-    {
-        return $this->aMessages;
-    }
-
-    /**
-     * @param $aScriptList
-     * @param $sMethodName
-     * @param $aArguments
-     *
-     * @return array
-     */
-    protected function _checkScripts($aScriptList, $sMethodName, $aArguments)
-    {
-        $aReturn = array();
-
-        foreach ($aScriptList as $sScriptPath) {
-            $sUrl                                       = $this->_getFolderCheckUrl(
-                $sScriptPath,
-                $sMethodName,
-                $aArguments
-            );
-
-            $sVersionUrl = $this->_getFolderCheckUrl(
-                $sScriptPath,
-                'getVersion',
-                array()
-            );
-
-            $sContent = serialize(null);
-            $sVersion = serialize(null);
-
-            if ($this->_hasCurl()) {
-                $sContent = $this->_getContentByCurl($sUrl);
-                $sVersion = $this->_getContentByCurl($sVersionUrl);
-            } elseif ($this->_hasAllowUrlFopen()) {
-                $sContent = file_get_contents($sUrl);
-                $sVersion = file_get_contents($sVersionUrl);
-            }
-
-            $sBasePath = $this->getBasePath($sScriptPath);
-            $aReturn[$sBasePath] = unserialize($sContent);
-            $aReturn[$this->sVersionTag][$sBasePath] = unserialize($sVersion);
-        }
-
-        return $aReturn;
-    }
-
-    /**
-     * @return bool
-     */
-    protected function _hasCurl()
-    {
-        if (extension_loaded('curl') && function_exists('curl_init')) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @return bool
-     */
-    protected function _hasAllowUrlFopen()
-    {
-        if (ini_get('allow_url_fopen')) {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $sUrl
-     *
-     * @return bool|mixed
-     */
-    protected function _getContentByCurl($sUrl)
-    {
-        $iTimeOut = 5;
-        $ch = curl_init();
-        $sCurl_URL = preg_replace('@^((http|https)://)@', '', $sUrl);
-
-        curl_setopt($ch, CURLOPT_URL, $sCurl_URL);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $iTimeOut);
-        curl_setopt($ch, CURLOPT_TIMEOUT, $iTimeOut);
-        curl_setopt($ch, CURLOPT_POST, 0);
-        $sContent = curl_exec($ch);
-        curl_close($ch);
-
-        if (false == $sContent ||
-            strstr(strtolower($sContent), strtolower('Request Entity Too Large')) ||
-            strstr(strtolower($sContent), strtolower('not allow request data with POST requests'))
-        ) {
-            return false;
-        }
-
-        return $sContent;
-    }
-
-    /**
-     * @param $sScriptPath
-     * @param $sMethodName
-     * @param $aArguments
-     *
-     * @return string
-     */
-    protected function _getFolderCheckUrl($sScriptPath, $sMethodName, $aArguments)
-    {
-        $sBaseDir = str_replace(
-            array(basename($_SERVER['SCRIPT_FILENAME']), '\\'),
-            array('', '/'),
-            realpath($_SERVER['SCRIPT_FILENAME'])
-        );
-        $sUrlAdd  = str_replace($sBaseDir, '', $sScriptPath);
-        $sBaseUrl = 'http://' . $_SERVER['HTTP_HOST'] . str_replace(
-            basename($_SERVER['SCRIPT_NAME']),
-            '',
-            $_SERVER['SCRIPT_NAME']
-        );
-
-        $sUrl = $sBaseUrl . $sUrlAdd . '?fnc=' . $sMethodName . '&params=' . urlencode(serialize($aArguments));
-
-        return $sUrl;
-    }
-
-    /**
-     * @param null $sFolder
-     *
-     * @return mixed
-     */
-    public function getBasePath($sFolder = null)
-    {
-        if (!$sFolder) {
-            $sFolder = $_SERVER['SCRIPT_FILENAME'];
-        }
-
-        $sScriptFileName = str_replace('\\', '/', realpath($_SERVER['SCRIPT_FILENAME']));
-        $sSearch         = substr(str_replace(basename($sScriptFileName), '', $sScriptFileName), 0, -1);
-
-        $sFolder = str_replace('\\', '/', realpath($sFolder));
-
-        return str_replace(array(basename($sFolder), $sSearch), '', $sFolder);
-    }
-
-    /**
-     * @return string
-     */
-    public function getVersion()
-    {
-        return $this->sVersion;
-    }
-
-    /**
-     * @param $mResult
-     *
-     * @return bool
-     */
-    protected function _hasFalseInResult($mResult)
-    {
-        if (is_array($mResult)) {
-            foreach ($mResult as $blResult) {
-                if (false === $blResult) {
-                    $this->blGlobalResult = false;
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        if (false === $mResult) {
-            $this->blGlobalResult = false;
-
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $mResult
-     *
-     * @return bool
-     */
-    protected function _hasNullInResult($mResult)
-    {
-        if (is_array($mResult)) {
-            foreach ($mResult as $blResult) {
-                if ($blResult === null) {
-                    $this->blGlobalResult = false;
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        if ($mResult === null) {
-            $this->blGlobalResult = false;
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $mResult
-     *
-     * @return bool
-     */
-    protected function _hasNoticeInResult($mResult)
-    {
-        if (is_array($mResult)) {
-            foreach ($mResult as $blResult) {
-                if ($blResult === 'notice') {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        if ($mResult === 'notice') {
-            return true;
-        }
-
-        return false;
-    }
-
-    /********************** conversion function section ************************/
-
-    /**
-     * @param $mParam
-     */
-    public function aTos(&$mParam)
-    {
-        if (is_array($mParam)) {
-            $mParam = implode($this->oLayout->translate('or'), $mParam);
-        }
-    }
-
-    /**
-     * @return string
-     */
-    public function getLang()
-    {
-        if (isset($_REQUEST['lang'])) {
-            return strtolower($_REQUEST['lang']);
-        }
-
-        return 'de';
-    }
-
-    /**
-     * @return bool|resource
-     */
-    public function getDb()
-    {
-        if (!$this->_db) {
-            if (file_exists('config.inc.php')) {
-                require_once('config.inc.php');
-                ini_set('error_reporting', E_ALL^E_NOTICE);
-                $this->_db = mysqli_connect($this->dbHost, $this->dbUser, $this->dbPwd, $this->dbName);
-            }
-        }
-
-        return $this->_db;
-    }
-
-    /**
-     * @param     $version
-     * @param int $iUnsetPart
-     *
-     * @return string
-     */
-    public function versionToInt($version, $iUnsetPart = 0)
-    {
-        $match = explode('.', $version);
-
-        return sprintf(
-            '%d%03d%03d%03d',
-            $this->_getVersionDigit($match[0], $iUnsetPart),
-            $this->_getVersionDigit($match[1], $iUnsetPart),
-            $this->_getVersionDigit($match[2], $iUnsetPart),
-            $this->_getVersionDigit($match[3], $iUnsetPart)
-        );
-    }
-
-    /**
-     * @param $sMatch
-     * @param $iUnsetPart
-     *
-     * @return int
-     */
-    protected function _getVersionDigit($sMatch, $iUnsetPart)
-    {
-        return intval($sMatch !== null ? $sMatch : $iUnsetPart);
-    }
-
-    /********************** layout function section ************************/
-
-    public function deleteme()
-    {
-        $sFolder = '.';
-
-        $this->_checkDelFilesInDir($sFolder);
-        $this->_delFile($_SERVER['SCRIPT_FILENAME']);
-
-        if (is_file($_SERVER['SCRIPT_FILENAME'])) {
-            exit($this->oLayout->translate('unableDeleteFile'));
-        } else {
-            exit($this->oLayout->translate('goodBye'));
-        }
-    }
-
-    /**
-     * @param $sFolder
-     */
-    protected function _checkDelFilesInDir($sFolder)
-    {
-        $aIgnoreDirItems = array('.', '..');
-
-        /** @var SplFileInfo $oFileInfo */
-        foreach (new RecursiveDirectoryIterator($sFolder) as $oFileInfo) {
-            if (!in_array($oFileInfo->getFileName(), $aIgnoreDirItems) && $oFileInfo->isDir()) {
-                $this->_checkDelFilesInDir($oFileInfo->getRealPath());
-            } elseif ($oFileInfo->isFile()) {
-                if (strtolower($oFileInfo->getFilename()) == $this->_sInFolderFileName) {
-                    $this->_delFile(str_replace('\\', '/', $oFileInfo->getRealPath()));
-                }
-            }
-        }
-    }
-
-    /**
-     * @param $sPath
-     */
-    protected function _delFile($sPath)
-    {
-        unlink($sPath);
-    }
-
-    /**
-     * @param $sCheckType
-     * @param $aConfiguration
-     */
-    public function displayCheck($sCheckType, &$aConfiguration)
-    {
-        $sGenCheckType = preg_replace("@(\_[0-9]$)@", "", $sCheckType);
-        $oTests = new requTests($this, $this->oConfig, $this->getDb(), $this->oRemote);
-        if (method_exists($oTests, $sGenCheckType)) {
-            $this->_checkResult($oTests, $sGenCheckType, $sCheckType, $aConfiguration);
-        } else {
-            $this->oLayout->getUncheckableItem($sCheckType, $aConfiguration);
-            $this->blGlobalResult = false;
-        }
-    }
-
-    /**
-     * @param $oTests
-     * @param $sGenCheckType
-     * @param $sCheckType
-     * @param $aConfiguration
-     */
-    protected function _checkResult($oTests, $sGenCheckType, $sCheckType, $aConfiguration)
-    {
-            $mResult = $oTests->{$sGenCheckType}($aConfiguration);
-            $sElementId = (md5($sGenCheckType . serialize($aConfiguration)));
-
-            if ($this->_hasNoticeInResult($mResult)) {
-                $this->oLayout->getUnknownItem($mResult, $sElementId, $sCheckType, $aConfiguration);
-            } elseif ($this->_hasNullInResult($mResult)) {
-                $this->oLayout->getUnknownItem($mResult, $sElementId, $sCheckType, $aConfiguration);
-            } elseif ($this->_hasFalseInResult($mResult)) {
-                $this->oLayout->getNoSuccessItem($mResult, $sElementId, $sCheckType, $aConfiguration);
-            } else {
-                $this->oLayout->getSuccessItem($mResult, $sElementId, $sCheckType, $aConfiguration);
-            }
-    }
-
-    public function showinfo()
-    {
-        phpinfo();
-    }
-}
-
-/**
- * Class requLayout
- */
-class requLayout
-{
-    public $oBase;
-    public $oConfig;
-
-    /**
-     * @param requCheck  $oBase
-     * @param requConfig $oConfig
-     */
-    public function __construct(requCheck $oBase, requConfig $oConfig)
-    {
-        $this->oBase = $oBase;
-        $this->oConfig = $oConfig;
-    }
-
-    public function getHTMLHeader()
-    {
-        $sScriptName      = $_SERVER['SCRIPT_NAME'];
-        $sTranslRequCheck = $this->translate('RequCheck');
-        $sModName         = $this->oConfig->sModName;
-        $sModVersion      = $this->oConfig->sModVersion;
-
-        echo <<< EOT
-            <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-            <html>
-                <head>
-                    <title>
-                        $sTranslRequCheck "$sModName" $sModVersion
-                    </title>
-                    <meta http-equiv="Content-Type" content="text/html;charset=ISO8859-15">
-                    <style type="text/css">
-                        <!--
-                        body {
-                            background: #FFF url($sScriptName?fnc=getGifBg) repeat-x;
-                            font: 13px Trebuchet MS,Tahoma,Verdana,Arial,Helvetica,sans-serif;
-                        }
-                        div.langswitch {
-                            clear: both;
-                            float: none;
-                            height: 13px;
-                            margin: 10px 0 25px;
-                        }
-                        .langswitch a {
-                            text-decoration: none;
-                            margin-right: 5px;
-                            width: 18px;
-                            height: 13px;
-                            display: block;
-                            float: left;
-                        }
-                        .btn_1 {
-                            background: url($sScriptName?fnc=getPngButton) no-repeat scroll right 0;
-                            height: 22px; padding: 0 3px 0 0; float: left; margin-bottom: 10px;
-                        }
-                        .btn_2 {
-                            background: url($sScriptName?fnc=getPngButton) no-repeat;
-                            height: 22px; color: white; font-weight: bold; line-height: 1;
-                            display: block; padding: 4px 5px 0px; text-decoration: none;
-                            font-family: Verdana; font-size: 12px;
-                        }
-                        #logo {position: absolute; top: 10px; right: 30px;}
-                        .box_warning {
-                            text-align: center; background-color: DarkRed; border: 1px solid black;
-                            color: white; font-weight: normal; padding: 1px;
-                        }
-                        .box_ok {
-                            text-align: center; background-color: DarkGreen; border: 1px solid black;
-                            color: white; font-weight: normal; padding: 1px;
-                        }
-                        .box_warning a, .box_ok a {font-weight: bold; color: white;}
-                        .squ_bullet {
-                            float: left;
-                            height: 10px;
-                            width: 5px;
-                            border: 1px solid black;
-                            margin: 0 5px 0 50px;
-                            display: inline-block;
-                            font-size: 11px;
-                            color: white;
-                            padding: 0 3px;
-                            line-height: 10px;
-                            cursor: pointer;
-                        }
-                        .squ_toggle {
-                            font-size: 15px; line-height: 0.5; cursor: pointer; float: left;
-                            height: 10px; width: 9px; padding-left: 1px; border: 1px solid black;
-                            margin: 0 5px 0 3px;  display: inline-block;
-                        }
-                        .squ_desc {
-                            position: relative;
-                            font-size: 11px;
-                            line-height: 10px;
-                            cursor: help;
-                            height: 10px;
-                            width: 5px;
-                            padding: 0 3px;
-                            border: 1px solid black;
-                            margin: 0 5px 0 3px;
-                            display: inline-block;
-                        }
-                        .squ_desc div {
-                            font-size: 13px;
-                            background-color: white;
-                            border: 1px solid black;
-                            box-shadow: 4px 3px 7px #c9c9c9;
-                            display: none;
-                            left: 0;
-                            padding: 20px;
-                            position: absolute;
-                            top: -25px;
-                            width: 400px;
-                            z-index: 2500;
-                        }
-                        .squ_desc li {
-                            line-height: normal;
-                        }
-                        .squ_desc:hover div,
-                        .squ_desc div:hover {
-                            display: block;
-                            margin-left: 30px;
-                        }
-                        .squ_desc div.hoverhelper {
-                            background: transparent none repeat scroll 0 0;
-                            border: medium none;
-                            box-shadow: none;
-                            margin-left: 0;
-                            width: 0;
-                            padding: 0 0 150px 30px;
-                        }
-                        .squ_desc:hover div div {
-                            display: inline-block;
-                            position: unset;
-                            border: none;
-                            box-shadow: none;
-                            padding: 0;
-                            margin: 5px 0;
-                            line-height: normal;
-                        }
-                        .squ_desc:hover div div.squ_bullet {
-                            border: 1px solid black; display: inline-block; padding: 0; position: unset; width: 10px;
-                            margin: 0 5px; box-shadow: none;
-                        }
-                        .desc_box {
-                            width: 400px;
-                            position: absolute;
-                            left: 400px;
-                        }
-                        .note {
-                            color: gray;
-                            font-size: 10px;
-                        }
-                        .messages {
-                            display: block; 
-                            margin: 13px 0; 
-                            text-align: center; 
-                            background-color: orange; 
-                            border: 1px solid black; 
-                            color: black; 
-                            font-weight: normal; 
-                            padding: 1px;
-                        }
-                        -->
-                    </style>
-                </head>
-                <body>
-                    <a id="logo" href="http://www.oxidmodule.com/">
-                        <img src="$sScriptName?fnc=getPngLogo">
-                    </a>
-                    <div class="langswitch">
-                        <a href="$sScriptName?lang=de">
-                            <img src="$sScriptName?fnc=getGifDe">
-                        </a>
-                        <a href="$sScriptName?lang=en">
-                            <img src="$sScriptName?fnc=getGifEn">
-                        </a>
-                    </div>
-EOT;
-        echo "<h3>" . $this->translate('RequCheck') . ' "' . $this->oConfig->sModName . ' ' . $sModVersion . '"</h3>';
-        echo '<p>' . $this->translate('ExecNotice') . '</p>' . PHP_EOL;
-
-        return;
-    }
-
-    public function getHTMLFooter()
-    {
-        $sScriptName        = $_SERVER['SCRIPT_NAME'];
-        $sTranslShopPhpInfo = $this->translate('showPhpInfo');
-        $sTranslDependent   = $this->translate('dependentoffurther');
-        
-        if (count($this->oBase->getMessages())) {
-            echo '<span class="messages"><ul>';
-            foreach ($this->oBase->getMessages() as $sMessage) {
-                echo '<li>'.$sMessage.'</li>';
-            }
-            echo '</ul></span>';
-        }
-
-        if ($this->oBase->blGlobalResult) {
-            echo '<p class="box_ok"><b>' . $this->translate('globalSuccess') . '</b>' .
-                $this->translate('deleteFile1') . $sScriptName . $this->translate('deleteFile2') . '</p>';
-        } else {
-            echo '<p class="box_warning"><b>' . $this->translate('globalNotSuccess') . '</b>' .
-                $this->translate('deleteFile1') . $sScriptName . $this->translate('deleteFile2') . '</p>';
-        }
-
-        echo <<< EOT
-            <sub>$sTranslDependent</sub><br>
-            <p>
-                <span class="btn_1">
-                    <a href="#" class="btn_2"
-                        onClick="document.getElementById('phpinfo').style.display =
-                        document.getElementById('phpinfo').style.display == 'none' ? 'block' : 'none';">
-                        $sTranslShopPhpInfo
-                    </a>
-                </span>
-            </p>
-            <iframe id="phpinfo" src="$sScriptName?fnc=showinfo" style="display:none; width: 100%; height: 700px;">
-            </iframe>
-              </body>
-              </html>
-EOT;
-
-        return;
-    }
-
-    /**
-     * @param $aResult
-     *
-     * @return bool
-     */
-    protected function hasRemoteVersionDiff($aResult)
-    {
-        $blDiff = false;
-
-        if (is_array($aResult)
-            && isset($aResult[$this->oBase->sVersionTag])
-            && is_array($aResult[$this->oBase->sVersionTag])
-        ) {
-            foreach ($aResult[$this->oBase->sVersionTag] as $sRemoteVersion) {
-                if (version_compare($sRemoteVersion, $this->oBase->getVersion(), '!=')) {
-                    $blDiff = true;
-                }
-            }
-        }
-
-        return $blDiff;
-    }
-
-    /**
-     * @param $aResult
-     * @param $sElementId
-     * @param $sCheckType
-     * @param $aConfiguration
-     */
-    public function getNoSuccessItem($aResult, $sElementId, $sCheckType, $aConfiguration)
-    {
-        $sText = '';
-        $sDesc = '';
-        if ($this->hasRemoteVersionDiff($aResult)) {
-            $sText = '!';
-            $sDesc = strip_tags($this->translate('RemoteVersionDiff'));
-        }
-
-        echo '<div class="squ_bullet" style="background-color: red;" title="' .
-            $this->translate('RequNotSucc') . $sDesc . '">'.$sText.'</div>' .
-            $this->_addToggleScript($aResult, $sElementId) .
-            $this->translate($sCheckType, $aConfiguration) .
-            $this->_addDescBox($sCheckType.'_DESC', $aConfiguration) .
-            '<br>' . PHP_EOL;
-
-        $this->getSubDirItems($aResult, $sElementId);
-    }
-
-    /**
-     * @param $aResult
-     * @param $sElementId
-     * @param $sCheckType
-     * @param $aConfiguration
-     */
-    public function getSuccessItem($aResult, $sElementId, $sCheckType, $aConfiguration)
-    {
-        $sText = '';
-        $sDesc = '';
-        if ($this->hasRemoteVersionDiff($aResult)) {
-            $sText = '!';
-            $sDesc = strip_tags($this->translate('RemoteVersionDiff'));
-        }
-
-        echo '<div class="squ_bullet" style="background-color: green;" title="' .
-            $this->translate('RequSucc') . $sDesc . '">'.$sText.'</div>' .
-            $this->_addToggleScript($aResult, $sElementId) .
-            $this->translate($sCheckType, $aConfiguration) .
-            $this->_addDescBox($sCheckType.'_DESC', $aConfiguration) .
-            '<br>' . PHP_EOL;
-
-        $this->getSubDirItems($aResult, $sElementId);
-    }
-
-    /**
-     * @param $aResult
-     * @param $sElementId
-     * @param $sCheckType
-     * @param $aConfiguration
-     */
-    public function getUnknownItem($aResult, $sElementId, $sCheckType, $aConfiguration)
-    {
-        $sText = '';
-        $sDesc = '';
-        if ($this->hasRemoteVersionDiff($aResult)) {
-            $sText = '!';
-            $sDesc = strip_tags($this->translate('RemoteVersionDiff'));
-        }
-
-        echo '<div class="squ_bullet" style="background-color: orange;" title="' .
-            $this->translate('RequUnknown') . $sDesc . '">'.$sText.'</div>' .
-            $this->_addToggleScript($aResult, $sElementId) .
-            $this->translate($sCheckType, $aConfiguration) .
-            $this->_addDescBox($sCheckType.'_DESC', $aConfiguration) .
-            '<br>' . PHP_EOL;
-
-        $this->getSubDirItems($aResult, $sElementId);
-    }
-
-    /**
-     * @param $sCheckType
-     * @param $aConfiguration
-     */
-    public function getUncheckableItem($sCheckType, $aConfiguration)
-    {
-        echo '<div class="squ_bullet" style="background-color: orange;" title="' .
-            $this->translate('RequNotCheckable') . '"></div>' .
-            $this->translate($sCheckType, $aConfiguration) . ' (' . $this->translate('RequNotCheckable') . ')' .
-            $this->_addDescBox($sCheckType.'_DESC', $aConfiguration) .
-            '<br>' . PHP_EOL;
-    }
-
-    /**
-     * @param $aResult
-     * @param $sElementId
-     */
-    public function getSubDirItems($aResult, $sElementId)
-    {
-        if (is_array($aResult) && count($aResult)) {
-            echo '<div style="margin-left: 20px; display: none;" id="' . $sElementId . '">';
-            foreach ($aResult as $sPath => $blResult) {
-                if ($sPath != $this->oBase->sVersionTag) {
-                    $sText = '';
-                    $sDesc = '';
-                    if (is_array($aResult[$this->oBase->sVersionTag]) && isset($aResult[$this->oBase->sVersionTag][$sPath])) {
-                        $blDiff = version_compare($aResult[$this->oBase->sVersionTag][$sPath], $this->oBase->getVersion(), '!=');
-                        $sText = $blDiff ? '!' : '';
-                        $sDesc = $blDiff ? $this->translate('RemoteVersionDiff') : '';
-                    }
-
-                    if (false === $blResult) {
-                        echo '<div class="squ_bullet" style="background-color: red;" title="' .
-                            $this->translate('RequNotSucc') . strip_tags($sDesc) . '">'.
-                            $sText.'</div>' . $sPath . $sDesc . '<br>';
-                    } elseif (null === $blResult) {
-                        echo '<div class="squ_bullet" style="background-color: orange;" title="' .
-                            $this->translate('RequUnknown') . strip_tags($sDesc) . '">'.
-                            $sText.'</div>' . $sPath . $sDesc . '<br>';
-                    } else {
-                        echo '<div class="squ_bullet" style="background-color: green;" title="' .
-                            $this->translate('RequSucc') . strip_tags($sDesc) . '">'.
-                            $sText.'</div>' . $sPath . $sDesc . '<br>';
-                    }
-                }
-            }
-            echo '</div>' . PHP_EOL;
-        }
-    }
-
-    /**
-     * @param $aResult
-     * @param $sElementId
-     *
-     * @return string
-     */
-    protected function _addToggleScript($aResult, $sElementId)
-    {
-        if (is_array($aResult) && count($aResult)) {
-            $sScript = "<div class='squ_toggle' title='" .
-                $this->translate('toggleswitch') .
-                "' onClick='document.getElementById(\"" . $sElementId . "\").style.display =
-                document.getElementById(\"" . $sElementId . "\").style.display == \"none\" ?
-                \"block\" : \"none\"; this.innerHTML =
-                document.getElementById(\"" . $sElementId . "\").style.display == \"none\" ?
-                \"+\" : \"&minus;\";'>+</div>";
-        } else {
-            $sScript = "";
-        }
-
-        return $sScript;
-    }
-
-    /**
-     * @param $sTextIdent
-     * @param $aConfiguration
-     *
-     * @return string
-     */
-    protected function _addDescBox($sTextIdent, $aConfiguration)
-    {
-        $sContent = "<div class='squ_desc'>?".
-                "<div class='hoverhelper'></div>".
-                "<div>".$this->translate($sTextIdent, $aConfiguration)."</div>".
-            "</div>";
-
-        return $sContent;
-    }
-
-    /**
-     * @param       $sIdent
-     * @param array $aConfiguration
-     *
-     * @return mixed|string
-     */
-    public function translate($sIdent, $aConfiguration = array())
-    {
-        $sGenIdent = preg_replace("@(\_[0-9]$)@", "", $sIdent);
-        $oTranslations = new requTranslations();
-        $aTransl   = $oTranslations->getTranslations();
-
-        if (isset($aConfiguration['aParams']) && is_array($aConfiguration['aParams'])) {
-            array_walk($aConfiguration['aParams'], array($this->oBase, 'aTos'), $sIdent);
-        }
-
-        if (isset($aTransl[$this->oBase->getLang()][$sGenIdent])
-            && ($sTranslation = $aTransl[$this->oBase->getLang()][$sGenIdent])
-        ) {
-            if (isset($aConfiguration['aParams'])) {
-                return vsprintf($sTranslation, $aConfiguration['aParams']);
-            } else {
-                return $sTranslation;
-            }
-        } else {
-            return $sGenIdent;
-        }
-    }
-
-    public function getPngButton()
-    {
-        $sImg = "iVBORw0KGgoAAAANSUhEUgAABDgAAAAWCAYAAAAl+SzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAB".
-            "MpJREFUeNrs3Y1O4zgUhuFY4hbb2ZthRjtczOz0Ght7cZwfQ5u2E4K0a55XiNDUXyWcT+ZwfGyHw+HQvZI6AACAT+J0OgW9AAAAtn".
-            "A8Hh/JWYSnbkxuvAYeeg0AAAAAAPynuJevOB6P+ZKe6sYvLy96DgAA7M7z87NOAAAAm7iVq8gxRs5p5CTH03Tz758/uzAUc7x+Hy4".
-            "pf71ex9fDj2leyxLG1vnNELpmdJPqo21a7afy+/MIj/AIj7zVhS/seWPD4zoAAIAtxJhW44+cy/jx/ftw/2kRxDEQSd0Uraah/RKV".
-            "lLfK+/kDS0T7eieGZnTdA33QfeF+CpFHeIRHeORSF1Lw3I0Nd3UAAACbEhwprscfadnma05wpL7v8v0Sh4QiLimREqWEt7mSmK9xn".
-            "LlrSBe6fdq02k9D1oxHeIRHeORCFz13Y8NtHQAAwNYER+zX44+q3Zzg6GOcbw6haqhmXG5MvuQPiw3q9mrTaj/xCI/wCI9c13juxo".
-            "Y/0wEAANxNcPTxbvzxLsHRd7mEo8y+pJIFCWEupy2XMTcSxjKQUMqSl1mb/79urzbN9hOP8AiP8MgV3Zf2vLHhIR0AAMBWcr5iNf6".
-            "o4owlwdGPCY68hiUsZbRh2DGsWkz7/mUaVl83oxu3R/xwm1b7KfEIj/AIj1zRDfc9d2PDTR0AAMA2hgqOtfijWqOybDKaExzj6pVp".
-            "zWyYG04zdGn5vByohVC924ou7NSm3X7iER7hER55r/P3w9jw6NgAAADwp+SCjPX442oFR5URWeaY5pKPsmNpmI+SnctN5zKRVnR7t".
-            "Wm1nwKP8AiP8MiKznM3NqzrAAAANic4zuf1+ONaBce576dQZAhMplPepvWzYdn6vSoBCUNJSCkPaUS3V5tm+4lHeIRHeORS97U9b2".
-            "x4RAcAALA5wZEPRVmJP1K4ckxsPJ/H9SzjOvpuEc11INP805gtWQ6Ka0gXdmrTaD8NGTMe4REe4ZFrOs/d2HBLBwAAsJHzuV+PP6q".
-            "JlKqCI3ZdvaZliVGm3MiYKZm3EJuvXera0aW0T5tG+2kKYHmER3iER2pdU8/Pc/+0sQEAAGALec/Q9fjjSgVH358v/zFZJNXy6ukY".
-            "uFQqREZBK7q0U5tm+4lHeIRHeOSqLnnuxoa7YwMAAMAWzvF8M/64THDEOB+xEsYIJlV7d5R1tdNGHsMnlvW2I63opirrj7Zptp86H".
-            "uERHuGRS92X9ryx4cGxAQAAYBv5mNi1+OP6HhzDMbEVad5JrKoxrdbfzlFa155urzYt9lPgER7hER658bt47saGVR0AAMA28ikqj8".
-            "QfVQVH3705ceU1KEm5qmM+0y7N8crwOqY5a5Ja0sWd2jTaTykmHuERHuGRS52/H8aGuzoAAIBtxCGIWok/riU4Yl8EZVOwEpSUG9X".
-            "62XmRS1w+oV5z24RurzaN9tO0QR6P8AiP8MgbnedubLitAwAA2EqfExo34o+LBMevX7+6b9/+KkFItYZlmI0tP1XBS3UE3LhNeju6".
-            "vdq02k8dj/AIj/DIhW48W8NzNzbcHBsAAAC2MGypsRJ//P7n9/J/yOFwGO6fTie9BgAAPgvrVAAAwFZuzpgcj8fh+jQGHGm6AQAAs".
-            "DcmUgAAwFYezFeEfwUYAAoCUXB0RZrTAAAAAElFTkSuQmCC";
-        header("Content-type: image/png");
-        echo base64_decode($sImg);
-        exit;
-    }
-
-    public function getPngLogo()
-    {
-        $sImg = "iVBORw0KGgoAAAANSUhEUgAAADMAAAA0CAYAAAAnpACSAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAE".
-            "IxJREFUeNq8Wgl4VNXZfu+dLZkkk5BA9kACYQlB2aIga6myuIEtFX+kLW1BJVT/akVrRds+rVqRX2lLRSsal5/nUaCgtmhi8BeaUh".
-            "Al7EYTIWyGQPZlMsnM3Lnn/865dzJ3biaLVnsfDpk59yzf++3fOSMxxvANPlZqUdQs1FRqXmq+Ac7NpbaI2jxqQ6nZqDVR+z9qr1H".
-            "71DxB+nfBPHYYSHUCK8fATl+HUZtK7Wpqo1SGeZ0BQCEYFolQETSrhDJ6d4rax9Q+pFa18SQ8HX6aHAcszUUS9T3U0IU1710ASqid".
-            "dwNuBciMARbSDjcQtDQnnnj7HNYuGvY1gqHnW9RWBBi+f7kT+LwVKG8AjlDj38+0AR1EiJ1kk0XEZFAbO4gQJwOj44F0+m6TsYvWK".
-            "KKWQOQUvVwFPHCAxNBlZDs1psk30wXsv4XWi8VvqefXXwcYWg6FRPy8racBzsXjjQxtXim4sra5bKCG6X3QCLOR4lxBwGakS1g+Ch".
-            "hORN5FcttWpSumpCunZADEH5L2iATa71bAaUUW9XzxVcEs4yCq2zD9qaMML1QQXQGdaMmwYW8PM41RQxwvmgu0+yU8Qap7uUMbN59".
-            "UykUKXF4P0J5hgD4gi5qTjuW6DQkDHehDfMNvLnbgvp/vV7GdpKEGdA5aTMRiAIAQDj6HJHR7rgyHBc+T/a16jaQzNFbYB0FDXa0H".
-            "C0a+QSrrD82J1qj3G73NQJ6buTT+eppdf+cehuauCCCCLDeDkcwAWM8xjA+T8JcKxp3FKu4oFGLUOZJEpyJNIqKfpP4F/kBI9bLIW".
-            "UxIErPLvozNFLb5sOmRgwwbj6kaMbIUrjJMJzIIRooAUOpNzwzdAcMX+hfvlFC6UEaCQ8K0N4FGrzbVQuM+InuZNBjruOcLzpL7Ab".
-            "LSr2LT0lIVG8tpBZnpxDOtwfgX4X2snz5z4y8swaYRfWM2+fhkaS/3gotyqE/RVGnrAgHkz6daQ0D6A8Mlsvm24gDerSYgNhaZiP4".
-            "avvq4giFCgkdJzZa+MAv442zCQxby9hmgK4C7c+MxZCBgZtJam24tVvBmlS4RhoERaH6nRhpvkg4FKfipKXrj32nPjy+p+NsZ9d4W".
-            "L16noPvTu/OBuSSt/z1BaUCNoPN2c7phfhJoqbLfk1qVconwEUw3DEm3L1Xq3W0x9Ix0TDLnHTpwzZ5W5MsYP1gCqTSsxN5jFK+KT".
-            "gbweiW1ChXzhksoXmh7lkx11Vvz8fxsCsaXOsVKI/sD84t3z6pYu5fkaZdCXJUkLSbQd56aWCQz5ZLJ57Juwn3csFV9jaDDCeoEfX".
-            "+owIbceGmT3qseqmOri44oWjam8vmWoMt4iYJk/Pb5WPdpi/h+vC8wszwKHrpzt08zRE4Ql4LEwqL39httGJckD8in8yleUhs7sfV".
-            "sG8MFN0PJ2QB2nAp0A/RrXmzrU+VK2YOTrWlXJEmr7y2w4C0ac90wGQ8UWPmwe1+pCCg/GmvZnO7EOovmPZ19gSn8w2E/LraomlRU".
-            "g6fSmc0lMi1NRopTmjCAeB+UFN80YfQgiUeGoSvzLXMrm9nsxw76sOWYQvmbirxEy3i3j5Vtr1Jqbx1lXbBhtq3wd9Nsi2JteIfmP".
-            "Per/b53HCKuWZafa2dYuduLD74XtYHo2UKdDeY4c2t1K9s2qsgj7E8I3Kw11AZFEYdXRlOKIZEp4tzsHT4Rdny6vrtINdq8DA76nE".
-            "BjaygtSaIi4Hu5FhSfU9FFBs6Xeusm+xKyka1PH/LjUJ2KN25w8PlLlhd3bR8WL2Goy4qV4yxxtxd72/laL893pNK0R4/Vq6t/VOL".
-            "F0Ysqdi6OwndyLb+i/t+ZwXxw127vnBdIMkJXI5kAETwxRcZHy5x8Y/L+8NyyywdKNZBNEfm2kTJON6nYVulHTryMKekyTjWrpGYS".
-            "8pOtKK9jcJPX4uBHJkhYP8M2nta4Z8Nh/4r9NQG8OM+BeIf0Z+qjZAluPceglBJ5LV62nIeIHxZ3IaDncwUZRMtSJ1dBXn74g2AyP".
-            "H72Re5LHtS2q707bNLtFRNstGnUe/RtAe96eJ8PWS4Z01IlJJIEslwWzsEMPWequ39P16Wq5gAmJVuQ6LTgIAFqpkienyhhIsWRZW".
-            "Oskzv87FD28x1IiqHsOd+GkYNkwYxOkmJFYwDnyda2fKrgXLMalkJxs65cGUMZtHw9fS0J2sxtB2oDqG0OaFLpLcOhtaani9WOBrs".
-            "mEEH5SZoRE5ApRNiHfHOeBA6mdOTpOVH/omGbHz/Q9Wqak+HaDF5sSeRAJMTSmLdPKeWLcq3/s+E6x5of7PTg4fqApgnBPCyo7rJJ".
-            "9fkQkvLm4z48OSuqkIORdYBPFx33adT2E6XzNS92LLhgLXmnd6sV7D6naA6k3IsrX2xHXlE7xtDfJX/zTP/7aeWVtddEbeK2aJd5c".
-            "cZQ5w5QUAzgRL1wZe9clWKBhTNS1uOZVU9tJC2ARgzUtNZrn/hBWrWQawOnLLexk2FnpU+P9KrWVL0xHSB9jqINsuPlcP9O72Ta6I".
-            "GrHXz28rLzCmW8ZOjkEWrIS23/xIuFW9txsFYpXJpnX9alcAdBCkBuKI8YMzpRrFeV5ZIwhNRMeB/VkD2YswlVDX0moLXNCg5fFgy".
-            "5lq805RSpV1eXakozQh5MW4QhJ0HmBsonng9iibNrHo6e5E4S+4l6xRDhma4aDH85Is4xttwx3i4pKhMSaupUcdktInGHhazYaWEh".
-            "5jHdylUWYm7QWQXfiX6GDy8KrZjFt5q274ISmsQMC+iDxV/i2NQ0UTy9T3Pag2AoNqDdKzbJqyHCLrUEQioRlC6BO3rJL9IVeuzbK".
-            "rzYd8GHzFgJmXGCEVHcEfkUfT+oBimo4RIS/dDX1hi274Koz/K5Axj+aYMSLo1IyRZNLEgT/uKk8e2JOiVY3ow7SfrPWITii/ClkA".
-            "pZtXHKt4dZyVMBu075hI3fMsqeQK6X1C8oDUOKFFbMRfBMNKShQ0xwceoyq5uVUKTv45mcIsB8ZOzjbjR4znW+lajmQUAyJQYEMI3".
-            "AUHfxmvfdAU5ffLQMa7SkxQyiodFDYDyqyWP1TxN/39wpbIY7R8R+wYmQ+phIxEhESZJTEHnW+CrZKWvSJuY3dhhUwpjpUN+0DMGI".
-            "E7F2SbzxikyABaU66bNGJZwRPQrSCBWqTm9rl+CIg+9gc3sD4VxgekWJUJYbbZMQL7JoLQ8KPpfd3bXu0MpGv67v4SUCp2/BCB6ks".
-            "WtyqlW84XbmJ5A6eXNLT3t1G5HCj6UkYwkSQdXoq0870pA5GCWaK7MaiFCHsO4Jg0klXJonazKudY4MftONLhflXNccqfUb0iCdEi".
-            "L427kOpMeJYHuwneyCM2bEIC2UT820pdPcubsqO00luYEh3bWP2rPaoC82jSMqB+PmXuVMAzOkMSaVI0/GOWrXLLjZCGZ6lk2YTks".
-            "Xw1kuGWbkHmcbw9oZMVydVq/bx30f6bWdZwxM0EhgZleQO7/YpIiz25DxM5PNs8jaRovEOwThPv5/3XDOpUAf0Z+4Oz5VFEgvw7Cd".
-            "iHYNQsbjqgiI32+I1Dz4UeBcPT0Gs7MdfMyr1w53YA595mVEdVNASJWeG3dUdA7gnEANxa4wV60iMVqg6+CSqbwy2TpLGxDpiEjrv".
-            "zpD6Pwhs29QNOv/1t5q0nmeoAU0I3GRY1g3LwF3XhXLpbL4klv1pMVS8kiAp2TYxHYFGfZC8oDLNvyjLfycofusTYrgBGAoxTU3nq".
-            "w5plYO5vDkdLsehCTzyZwYzA147BBbjxgjDpzH8BsLfD5miBX/PTMOIxKtGE2fx6fakRpneYberW/wqJeaPAGUVXfiDIWBRfkxmDb".
-            "UMZyEt+mON5vQyYshrviqGgIhzEENnTWHqZehwCKveGWKoO0MB1PGCXGS3/fwRU14eEuLt5BbFnrZ404kWTPs55aMc4LaOPrcoo8r".
-            "XfxGY+WDM1y42OrDsYteECjUk/smIHzfNa8dcaP0kw5DVduLvZj/Gg2aNGdOjlDjUr7oZ8mxFszKtqOkwoNgmDZG7/GpNsRoLqPRD".
-            "GZLeTsWXxnbvPGA+4nPyYhvGBklJMklQCUvPr7QiaM1XRgcQw6EjGXr7ckjaNr9JVWdhT/ZWq/t91VvImhabJSM8WnCBMqs+sHR2n".
-            "uuiXu85AQVdxZTZUa6MGuYgxP4qtn4+fPI2/XYdqwdflKNFkocm1u9WDIhFh2Ur2TGyGij6Gwho+FG/8xNSYXkhje9Wu7Gqh31+jF".
-            "vX1Ge9X3MQPZ3x4w4Ks/lYl6dBouz12dmRz3u4pt7TekIcW1iukB+JOKC5BaPX/B2B7RaovGmPCc2Lx7CjYnfnUzmHpxaweEa79Sf".
-            "72rEP6o6Q0cprD+6+5Aa0baiIE4cQRlPZ87EOeR/fndczMxXPmwVV1lBjsmkBukihcN8vYWv91RupN1jKY7MaqE0o5pc9p7TnaRuX".
-            "uw82aHZRlCVVaPn6hFA+pYKacyEoVEYM0QwusR81PTcfTPjZ76yv8WwicaV1TvqqG6hOtvSvxZwT+4iPa5u8uOzOj/aOgIhB8TVSt".
-            "bT9+50KZzT3QeO/YmMnFXhVBe3ij/xGGM+neGlkbK2uBG/L2nQ6lvzxVAk8RuPXoMMUAz1u3lymJs1EGrsY4aBkhR+tyOCG9VWOdH".
-            "YuzqLskspjzsx88F5gKZd//C1gxDH3XBADVV0YOFltKqGru/CxhjuMSVT9A5O6C7F1fCC0Fh4ITzCh0V+vRX9VyoH8mAQSKRbgJJY".
-            "u/yHjd9NoRw9SDALJ5gZozALVw9jqmGu9LqBm3I/4x1ON1NgcJyGdflDdK2aOQh5yfb3j9d61/d3pfHsD69y4Z7rEvkhsYGDhvMAY".
-            "3ltrtG736H3iyUjk4xSCkoNxvMIA1hfAFdkReGZRcnCxr1KeKSIBOYUqdt31t+cjGtyozUJhXE/Aje7uWzipvlkxaiW5kOTsLXR82".
-            "SGCOfZxnuFWbyEeKS6wbeTHyoO5LLpLdLHNcWFw5Cf6dAlFEG/zX2RiOhxCYWBXVIhHAgv6fb8LBtpLutTlXW+x/nhiBLAgMDw5+n".
-            "4KPnRsp/lYPrIGHHvFvn2DF/t2m+gjVxwOuWGx9fmYmyK49mqOt8veiO4v0uWx0iU979LElo+fZAmIfVrJraPGorvN2loNPbdNxx5".
-            "KY4n/3nac3dfxA7kxugZCoJLX1qWgUdvTtESTkWNcIJi0vkw2zGU0oz19GbmrEXRwPxgWiL23puDnCT7w6WfuX/Z7y3Ql/i5Cc+vC".
-            "mta/Mt+vOUCdp9s1wKaBaHAJvXyK4w+k0jDxIBWoU7KceLF72diYmb0Xu61XtjftC070U6GLyMlzhqGe3Sy/d/6VdMqX4A9V/xJO/".
-            "60pwF7PneD+fXfYMkSvvTDdBA0dSKp1E9IGsunJCIuSv7liwean+QXWLQfvikw4oiZ2l2kCetP13vx+qEWvHygUTvQ0AnrBiYhdDF".
-            "rVCk9/0uItWJpQYIAcUV6NI/qfxTS+FdTJT+rs1m+eTDBx6ar353tXnXpR2c94O3QeQ9qWv3ooBjVTIkmJ8ZG4FxUzbqiLUgmABMy".
-            "ojBleAymZDsxJNZayu9wqO3+bfHl1iQq5PgtwX8ajPFJ039IN4faWP36Llb/WaOs5yc+PcNt1a/6+I94PuBnCF8HAf8vwADS7GaT0".
-            "D4fMwAAAABJRU5ErkJggg==";
-        header("Content-type: image/png");
-        echo base64_decode($sImg);
-        exit;
-    }
-
-    public function getGifBg()
-    {
-        $sImg = "R0lGODlhCgAyANUAANHo+pfK85rM8/X6/vb6/v///5jL85bJ8+Hv/KbS9dzt+87m+qTR9fH4/er1/b7e+MTh+P3+/63V9u/3/".
-            "dfq+rnc97fa96DP9Nns+53N9LLY9tTp+sHg+Mzl+cfi+OPx/Pv9/7DX9p/O9Oz2/bTZ9uXy/KLQ9Pj7/ujz/bzd9/7+//r8//P5/s".
-            "nj+ZvM897u+6nT9avU9qvU9QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAAAAAAALAAAAAAKADIAAAb".
-            "FwINwSAwYj0iDcskUOJ9Ql3RKzVivWJF2y714v2CTeExmmM/ohHrNhrnf8Jh8PpdJ7vh8aM/va/6AgSSDhIUWh4iJFYuMjSmPkJEP".
-            "k5SVHJeYmRCbnJ0en6ChLaOkpR2nqKkLq6ytAK+wsRuztLUUt7i5GLu8vQq/wMEvw8TFCMfIyR/LzM0lz9DRKNPU1Q7X2Nkj29zdE".
-            "9/g4Q3j5OUs5+jpA+vs7QTv8PEn8/T1K/f4+SD7/P0R/wADqhhIsGCBgwgTBgEAOw==";
-        header("Content-type: image/Gif");
-        echo base64_decode($sImg);
-        exit;
-    }
-
-    public function getGifDe()
-    {
-        $sImg = "R0lGODlhEgANAIQZAAAAABAFBhEGBhIGBhQHBxUHCCYNDZQqH5QrI9c4M+M4M9w9M+g/MuNDM/BFM99tI+t3H+CyDerIB+zIB".
-            "uzKBurLCPfcAPfgAPjlAP///////////////////////////ywAAAAAEgANAAAFVaARCGRpmoExAGzrvsBAwHRLFHVdIEfv/8ADou".
-            "EoGo9IR2PBaDqfUMYioahar1hF4gHper9gyKOCKZvPaExFcmm73/CLZGKp2+94yyRCmfj/gIAUESEAOw==";
-        header("Content-type: image/Gif");
-        echo base64_decode($sImg);
-        exit;
-    }
-
-    public function getGifEn()
-    {
-        $sImg = "R0lGODlhEgANAOfRANzd6P9LQP7//93e6ba32v8HB/J4ef//+/85Of8fFVddwP8aFq+13P8aFPr////f3f8XE/n//62s3fQuL".
-            "AIDj6ys3uHZ5P8uLOjp793f6dbX6uvBxsyasurCx/9fXcadtS88r+Da5EZHr+Hi7A0NlUVGqcjR9MKaunh5x/8REQAAkv9IP/9BPn".
-            "h6wi4/td3c5uLl7P8PD7vO9aGSw7bM9uDh6UpLsf8hFv/f3PPx9/Dx9DFCuMDE4cHF4/sAANPU3ufp8JSDvuVocf8ODvz8+/xRTPQ".
-            "gG+PM0ZSWzs/R476+4ujp8v8/PurO0uPZ3//u5fQCAOPj6nFxxf8UE8rM4P/w5YGM18PH4/79/ExUuP3//4CAxqmo3KaZxv7+/Rcs".
-            "tO3v89XW6fS8waOj2snM7Nra7Ccon+no9v03OFJZvuK2xBEipP89Ov8dE+be4u3u8/w3OOVocv8sKv8EBOjo9+/u+Kap15SFvgwRl".
-            "ba327uXteHh7tvc5yo3q9XX5SQ4uU5MrtjW5qaVxvDS2f8DA+Tj6vr6/j1FtVlgvL+euvHw9v+rqe7u+XKJ1ebn7p2x7CUmnvb2+d".
-            "PW8P8cEc/P4efn8/38/5Ws66mYx/ccGNfY5vh0d927zSUlov96ev88OgAAjmmA09rb5v+xsPF5eMnR8i0upuuAgvEyLx0rq97f6cu".
-            "nwEBIuO/Aw/9/fuTm6vn5+vTEyM7P5rq63BESlf+Fgv8fF8SWsOfp7+2rrvX1+La23RgmqLe43PPV2vdydhcnqIWQ2BEgoube4wAS".
-            "n82atOHj6uTT2f97etKjuf9dWsSduZyb08fJ4fn5+/z8/f+ZAP///////////////////////////////////////////////////".
-            "/////////////////////////////////////////////////////////////////////////////////////////////////////".
-            "///////////////////////////////////ywAAAAAEgANAAAI/gB/YHCkig+AAVGGuSmUAYCoEbpgGXsFY8kWM7T6JEI14QMIEpB".
-            "aVNIBRBOSOtEqmAK27EabYqk6jYl2hpksKnjSmIgmqdEqWw2ShSITrZQCFXb8IDpkRdGBCLGmpBDj4ECOYKyyXHFyyoCQX8hceShQ".
-            "QFktT5viGCDV5AgUaHDjypXrI9exIgHYwEHA5MIcQnJYIEDzKcCKVi+63BE0CMeTUTGGLKrywBemIDMCJVnz5ZIWATI4LYCghoaAa".
-            "I/+EGNAqQQXQ4xQuDiRYBKHHVLoWJIAaFaNZkSU2KAgTI+RTLd4gRKxC0uZPQPAvAnTiwCPEB02WOiRh4CGZ15wAgUEADs=";
-        header("Content-type: image/Gif");
-        echo base64_decode($sImg);
-        exit;
-    }
-}
-
-/**
- * Class requTranslations
- */
-class requTranslations
-{
-    /**
-     * @return array
-     */
-    public function getTranslations()
-    {
-        return array(
-            'de' => array(
-                'RequCheck'              => 'Mindestanforderungspr&uuml;fung',
-                'ExecNotice'             => 'F&uuml;hren Sie diese Pr&uuml;fung immer aus dem Stammverzeichnis '.
-                    'Ihres Shops aus. Nur dann k&ouml;nnen die Pr&uuml;fungen erfolgreich durchgef&uuml;hrt werden.',
-                'RequSucc'               => 'Bedingung erf&uuml;llt',
-                'RequNotSucc'            => 'Bedingung nicht erf&uuml;llt',
-                'RequUnknown'            => 'Bedingung unklar, siehe Hinweise im Hilfetext',
-                'RequNotCheckable'       => 'Bedingung nicht pr&uuml;fbar',
-                'hasMinPhpVersion'       => 'mindestens PHP Version %1$s',
-                'hasMinPhpVersion_DESC'  => '<div>Das Modul erfordert eine PHP-Version die nicht kleiner ist '.
-                    'als %1$s.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Die passende PHP-Version '.
-                    'ist auf Ihrem Server aktiv.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann in '.
-                    'PHP-Versionen kleiner als %1$s nicht ausgef&uuml;hrt werden. Fragen Sie Ihren Serverprovider '.
-                    'nach der Anpassung der PHP-Installation oder kontaktieren Sie uns f&uuml;r eine alternative '.
-                    'Modulversion.</div>'.
-                    '<div>&Uuml;ber den [+]-Button k&ouml;nnen Sie Ergebnisse zu den getesteten Verzeichnissen '.
-                    'abrufen. Je nach Servereinstellung k&ouml;nnen die Ergebnisse abweichen. Nur die rot markierten '.
-                    'Verzeichnisse erfordern eine Anpassung.</div>'.
-                    '<div>Details zu Ihrer Serverinstallation sehen Sie durch Klick auf den Button "PHPInfo anzeigen". '.
-                    'Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMaxPhpVersion'       => 'maximal PHP Version %1$s',
-                'hasMaxPhpVersion_DESC'  => '<div>Das Modul erfordert eine PHP-Version die nicht h&ouml;her ist '.
-                    'als %1$s.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Die passende PHP-Version '.
-                    'ist auf Ihrem Server aktiv.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann in '.
-                    'PHP-Versionen h&ouml;her als %1$s nicht ausgef&uuml;hrt werden. Fragen Sie Ihren Serverprovider '.
-                    'nach der Anpassung der PHP-Installation oder kontaktieren Sie uns f&uuml;r eine alternative '.
-                    'Modulversion.</div>'.
-                    '<div>&Uuml;ber den [+]-Button k&ouml;nnen Sie Ergebnisse zu den getesteten Verzeichnissen '.
-                    'abrufen. Je nach Servereinstellung k&ouml;nnen die Ergebnisse abweichen. Nur die rot markierten '.
-                    'Verzeichnisse erfordern eine Anpassung.</div>'.
-                    '<div>Details zu Ihrer Serverinstallation sehen Sie durch Klick auf den Button "PHPInfo anzeigen". '.
-                    'Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasFromToPhpVersion'    => 'Server verwendet PHP Version zwischen %1$s und %2$s',
-                'hasFromToPhpVersion_DESC' => '<div>Das Modul erfordert eine PHP-Version zwischen %1$s und %2$s.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Die passende PHP-Version '.
-                    'ist auf Ihrem Server aktiv.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann '.
-                    'au&szlig;erhalb der PHP-Versionen nicht ausgef&uuml;hrt werden. Fragen Sie Ihren Serverprovider '.
-                    'nach der Anpassung der PHP-Installation oder kontaktieren Sie uns f&uuml;r eine alternative '.
-                    'Modulversion.</div>'.
-                    '<div>&Uuml;ber den [+]-Button k&ouml;nnen Sie Ergebnisse zu den getesteten Verzeichnissen '.
-                    'abrufen. Je nach Servereinstellung k&ouml;nnen die Ergebnisse abweichen. Nur die rot markierten '.
-                    'Verzeichnisse erfordern eine Anpassung.</div>'.
-                    '<div>Details zu Ihrer Serverinstallation sehen Sie durch Klick auf den Button "PHPInfo anzeigen". '.
-                    'Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasExtension'           => '%1$s-Erweiterung verf&uuml;gbar',
-                'hasExtension_DESC'      => '<div>Das Modul erfordert die %1$s-Servererweiterung.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Die %1$s-Erweiterung ist '.
-                    'auf Ihrem Server vorhanden.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann ohne die '.
-                    '%1$s-Erweiterung nicht ausgef&uuml;hrt werden. Fragen Sie bei Ihrem Serverprovider nach der '.
-                    'Installation dieser Erweiterung.</div>'.
-                    '<div>&Uuml;ber den [+]-Button k&ouml;nnen Sie Ergebnisse zu den getesteten Verzeichnissen '.
-                    'abrufen. Je nach Servereinstellung k&ouml;nnen die Ergebnisse abweichen. Nur die rot markierten '.
-                    'Verzeichnisse erfordern eine Anpassung.</div>'.
-                    '<div>Details zu Ihrer Serverinstallation sehen Sie durch Klick auf den Button "PHPInfo anzeigen". '.
-                    'Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMinCurlVersion'      => 'mindestens cURL Version %1$s',
-                'hasMinCurlVersion_DESC' => '<div>Das Modul ben&ouml;tigt cURL ab der Version %1$s.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> cURL ist in '.
-                    'passender Version installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> cURL ist nicht oder in einer '.
-                    '&auml;lteren Version installiert. Fragen Sie Ihren Serverprovider nach einer passenden '.
-                    'cURL-Version.</div>'.
-                    '<div>&Uuml;ber den [+]-Button k&ouml;nnen Sie Ergebnisse zu den getesteten Verzeichnissen '.
-                    'abrufen. Je nach Servereinstellung k&ouml;nnen die Ergebnisse abweichen. Nur die rot markierten '.
-                    'Verzeichnisse erfordern eine Anpassung.</div>'.
-                    '<div>Details zu Ihrer Serverinstallation sehen Sie durch Klick auf den Button "PHPInfo anzeigen". '.
-                    'Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMinOpenSSLVersion'   => 'mindestens OpenSSL Version %1$s',
-                'hasMinOpenSSLVersion_DESC' => '<div>Das Modul ben&ouml;tigt OpenSSL ab der Version %1$s.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> OpenSSL ist in '.
-                    'passender Version installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> OpenSSL ist nicht oder in '.
-                    'einer &auml;lteren Version installiert. Fragen Sie Ihren Serverprovider nach einer passenden '.
-                    'OpenSSL-Version.</div>'.
-                    '<div>&Uuml;ber den [+]-Button k&ouml;nnen Sie Ergebnisse zu den getesteten Verzeichnissen '.
-                    'abrufen. Je nach Servereinstellung k&ouml;nnen die Ergebnisse abweichen. Nur die rot markierten '.
-                    'Verzeichnisse erfordern eine Anpassung.</div>'.
-                    '<div>Details zu Ihrer Serverinstallation sehen Sie durch Klick auf den Button "PHPInfo anzeigen". '.
-                    'Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMinShopVersion'      => 'mindestens Shop Version %1$s',
-                'hasMinShopVersion_DESC' => '<div>Das Modul ist ab Shopversion %1$s freigegeben.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Die Shopsoftware ist in '.
-                    'passender Version installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann in dieser '.
-                    'Version der Shopsoftware nicht installiert werden. Fragen Sie nach einer fr&uuml;heren '.
-                    'Modulversion, die f&uuml;r Ihre Shopversion getestet wurde.</div>'.
-                    '<div>Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMaxShopVersion'      => 'maximal Shop Version %1$s',
-                'hasMaxShopVersion_DESC' => '<div>Das Modul ist bis zur Shopversion %1$s freigegeben.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Die Shopsoftware ist in '.
-                    'passender Version installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: orange;"></div> Wir k&ouml;nnen nicht '.
-                    'garantieren, dass das Modul in Ihrer Shopversion funktioniert. Fragen Sie nach einer aktuelleren '.
-                    'Modulversion, die f&uuml;r Ihren Shop passt.</div>'.
-                    '<div>Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMinModCfgVersion'    => '%2$s (ModCfg-Eintrag "%1$s") mindestens in Version %3$s',
-                'hasMinModCfgVersion_DESC' => '<div>Das Modul ben&ouml;tigt die Zusatzsoftware "%2$s" mindestens in '.
-                    'Version %3$s </div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Die Software ist in '.
-                    'passender Version installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Die Zusatzsoftware ist '.
-                    'm&ouml;glicherweise gar nicht oder in falscher Version installiert. Bitte installieren Sie die '.
-                    'Zusatzsoftware, bevor Sie diese Installation fortsetzen.</div>'.
-                    '<div>Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMaxModCfgVersion'    => '%2$s (ModCfg-Eintrag "%1$s") maximal in Version %3$s',
-                'hasMaxModCfgVersion_DESC' => '<div>Das Modul ben&ouml;tigt die Zusatzsoftware "%2$s" h&ouml;chstens '.
-                    'in Version %3$s </div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Die Software ist in '.
-                    'passender Version installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Die Zusatzsoftware ist '.
-                    'm&ouml;glicherweise gar nicht oder in falscher Version installiert. Bitte installieren Sie die '.
-                    'Zusatzsoftware, bevor Sie diese Installation fortsetzen.</div>'.
-                    '<div>Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'requireNewLicence'      => 'bisheriger Lizenzschl&uuml;ssel kann verwendet werden',
-                'requireNewLicence_DESC' => '<div>Diese Pr&uuml;fung versucht zu ermitteln, ob Sie f&uuml;r den '.
-                    'Einsatz dieses Moduls einen aktuellen Lizenzschl&uuml;ssel ben&ouml;tigen:</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Sie haben f&uuml;r dieses '.
-                    'Modul einen Lizenzschl&uuml;ssel hinterlegt, der wahrscheinlich auch f&uuml;r die neue '.
-                    'Modulversion geeignet ist.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: orange;"></div> Sie ben&ouml;tigen '.
-                    'f&uuml;r dieses Modul wahrscheinlich einen neuen Lizenzschl&uuml;ssel. Haben Sie diesen schon '.
-                    'vorliegen, f&uuml;hren Sie die Installation aus und tragen den Lizenzschl&uuml;ssel dann im '.
-                    'Adminbereich Ihres Shops ein. Ansonsten k&ouml;nnen Sie den Lizenzschl&uuml;ssel in unserem Shop '.
-                    '<a href="http://www.oxidmodule.com" target="oxidmodule.com">www.oxidmodule.com</a> erwerben oder '.
-                    'sich ebenfalls im Adminbereich Ihres Shops einen kostenfreien Test-Lizenzschl&uuml;ssel '.
-                    'erstellen.</div>'.
-                    '<div>F&uuml;r Details wenden Sie sich bitte an <a href="mailto:buchhaltung@shopmodule.com">'.
-                    'buchhaltung@shopmodule.com</a>.</div>',
-                'hasModCfg'              => '<a href="http://www.oxidmodule.com/Connector" target="Connector">Modul-'.
-                    'Connector</a> installiert',
-                'hasModCfg_DESC' => '<div>Das Modul erfordert zwingend den D<sup>3</sup> Modul-Connector.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Der Modul-Connector ist '.
-                    'installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann ohne den Modul-'.
-                    'Connector nicht ausgef&uuml;hrt werden. Bitte laden Sie sich diesen kostenfrei aus unserem Shop '.
-                    'unter <a href="http://www.oxidmodule.com/connector/" target="connector">www.oxidmodule.com/'.
-                    'connector/</a> und installieren diesen vorab.</div>'.
-                    '<div>Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'isShopEdition'          => 'ist Shopedition %1$s',
-                'isShopEdition_DESC' => '<div>Das Modul erfordert eine dieser Shopeditionen: %1$s</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Der Shop ist in der '.
-                    'passenden Edition installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann in Ihrer '.
-                    'Shopedition nicht ausgef&uuml;hrt werden. Bitte fragen Sie nach einer Modulversion f&uuml;r Ihre '.
-                    'Shopedition.</div>'.
-                    '<div>Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasZendLoaderOptimizer' => 'Zend Optimizer (PHP 5.2) oder Zend Guard Loader (PHP 5.3, 5.4, 5.5, 5.6) '.
-                    'installiert (auf passendes Zend-Installationspaket achten!)',
-                'hasZendLoaderOptimizer_DESC' => '<div>Das Modul erfordert (je nach PHP-Version) den Zend Optimizer '.
-                    'bzw. den Zend Guard Loader. Achten Sie darauf, ein f&uuml;r den verf&uuml;gbaren Decoder '.
-                    'erstelltes Installationspaket zu verwenden.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Der passende Decoder ist '.
-                    'auf Ihrem Server installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: orange;"></div> Der passende Decoder ist '.
-                    'auf Ihrem Server installiert. Es ist eine zus&auml;tzliche Erweiterungen (Zend OPcache) installiert, '.
-                    'die im Zusammenspiel mit dem Decoder Fehler verursachen kann.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann ohne den '.
-                    'passenden Decoder nicht ausgef&uuml;hrt werden. Fragen Sie Ihren Serverprovider nach der '.
-                    'Installation des passenden Zend-Decoders.</div>'.
-                    '<div>&Uuml;ber den [+]-Button k&ouml;nnen Sie Ergebnisse zu den getesteten Verzeichnissen '.
-                    'abrufen. Je nach Servereinstellung k&ouml;nnen die Ergebnisse abweichen. Nur die rot markierten '.
-                    'Verzeichnisse erfordern eine Anpassung.</div>'.
-                    '<div>Details zu Ihrer Serverinstallation sehen Sie durch Klick auf den Button "PHPInfo anzeigen". '.
-                    'Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasIonCubeLoader'       => 'ionCube Loader installiert (auf passendes ionCube-Installationspaket achten!)',
-                'hasIonCubeLoader_DESC'  => '<div>Das Modul erfordert den ionCube Loader. Achten Sie darauf, ein '.
-                    'f&uuml;r den verf&uuml;gbaren Decoder erstelltes Installationspaket zu verwenden.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Der passende Decoder ist '.
-                    'auf Ihrem Server installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann ohne den '.
-                    'passenden Decoder nicht ausgef&uuml;hrt werden. Fragen Sie Ihren Serverprovider nach der '.
-                    'Installation des ionCube Loaders.</div>'.
-                    '<div>&Uuml;ber den [+]-Button k&ouml;nnen Sie Ergebnisse zu den getesteten Verzeichnissen '.
-                    'abrufen. Je nach Servereinstellung k&ouml;nnen die Ergebnisse abweichen. Nur die rot markierten '.
-                    'Verzeichnisse erfordern eine Anpassung.</div>'.
-                    '<div>Details zu Ihrer Serverinstallation sehen Sie durch Klick auf den Button "PHPInfo anzeigen". '.
-                    'Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasIonCubeOrZendLoader'       => 'ionCube Loader oder Zend Optimizer / Guard Loader installiert '.
-                    '<span class="note">(%1$s)</span>',
-                'hasIonCubeOrZendLoader_DESC'  => '<div>Das Modul erfordert den ionCube Loader oder den Zend '.
-                    'Optimizer / Guard Loader. Achten Sie darauf, ein f&uuml;r die verf&uuml;gbaren Decoder erstelltes '.
-                    'Installationspaket zu verwenden (%1$s).</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> Ein passender Decoder ist '.
-                    'auf Ihrem Server installiert.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: orange;"></div> Ein passender Decoder ist '.
-                    'auf Ihrem Server installiert. Es ist jedoch ein Abbruchgrund festgestellt worden, der zu Fehlern '.
-                    'f&uuml;hren kann. Details entnehmen Sie bitte den folgenden Hinweisen.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> Das Modul kann ohne einen '.
-                    'passenden Decoder nicht ausgef&uuml;hrt werden. Fragen Sie Ihren Serverprovider nach der '.
-                    'Installation des ionCube Loaders oder des Zend Optimizers / Guard Loaders.</div>'.
-                    '%2$s'.
-                    '<div>&Uuml;ber den [+]-Button k&ouml;nnen Sie Ergebnisse zu den getesteten Verzeichnissen '.
-                    'abrufen. Je nach Servereinstellung k&ouml;nnen die Ergebnisse abweichen. Nur die rot markierten '.
-                    'Verzeichnisse erfordern eine Anpassung.</div>'.
-                    '<div>Details zu Ihrer Serverinstallation sehen Sie durch Klick auf den Button "PHPInfo anzeigen". '.
-                    'Bei Fragen kontaktieren Sie uns bitte &uuml;ber <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'RemoteVersionDiff'      => ' <span class="note">(Remotescript hat abweichende Version oder ist nicht '.
-                    'pr&uuml;fbar, Ergebnis mglw. nicht sicher)</span>',
-                'globalSuccess'          => 'Die technische Pr&uuml;fung war erfolgreich. Sie k&ouml;nnen das Modul '.
-                    'installieren.*<br><br>',
-                'globalNotSuccess'       => 'Die technische Pr&uuml;fung war nicht erfolgreich. Bitte kontrollieren '.
-                    'Sie die rot oder orange markierten Bedingungen.<br><br>',
-                'deleteFile1'            => 'L&ouml;schen Sie diese Datei nach der Verwendung bitte unbedingt wieder von '.
-                    'Ihrem Server! Klicken Sie <a href="',
-                'deleteFile2'            => '?fnc=deleteme">hier</a>, um diese Datei zu l&ouml;schen.',
-                'showPhpInfo'            => 'PHPinfo anzeigen',
-                'dependentoffurther'     => '* abh&auml;ngig von ungepr&uuml;ften Voraussetzungen',
-                'oneandonedescription'   => '** gepr&uuml;ft wurde das Ausf&uuml;hrungsverzeichnis, '.
-                    'providerabh&auml;ngig m&uuml;ssen Unterverzeichnisse separat gepr&uuml;ft werden (z.B. bei 1&1)',
-                'or'                     => ' oder ',
-                'toggleswitch'           => 'Klick f&uuml;r Details zur Pr&uuml;fung',
-                'unableDeleteFile'       => 'Datei konnte nicht gel&ouml;scht werden. Bitte l&ouml;schen Sie diese '.
-                    'manuell.',
-                'goodBye'                => 'Auf Wiedersehen.',
-                'unableExecuteDirectoryIterator' => 'Es k&ouml;nnen nicht alle Unterverzeichnisse auf weitere Pr&uuml;fungen '.
-                    'kontrolliert werden. (%1$s)',
-                'availableDecoder'       => 'verf&uuml;gbar: %1$s - auf passendes Installationspaket achten!',
-                'noDecoderAvailable'     => 'kein verwendbarer Decoder verf&uuml;gbar',
-                'availableDecoder_hasZendLoaderOptimizer' => 'Zend Guard Loader / Optimizer',
-                'notAvailableDecoder_hasZendLoaderOptimizer' => '<li>Der Zend Guard Loader / Optimizer ist nicht '.
-                    'installiert.</li>',
-                'decoderIssue_hasZendLoaderOptimizer' => '<li>Der Zend-Decoder ist '.
-                    'auf Ihrem Server installiert. Es ist jedoch eine zus&auml;tzliche Erweiterungen (Zend OPcache) '.
-                    'installiert, die im Zusammenspiel mit dem Zend-Decoder Fehler verursachen kann.</li>',
-                'availableDecoder_hasIonCubeLoader' => 'ionCube Loader',
-                'notAvailableDecoder_hasIonCubeLoader' => '<li>Der ionCube Loader ist nicht installiert.</li>',
-                'decoderIssue_hasIonCubeLoader' => '<li>Es wurde ein nicht definierter Abbruchgrund bei der '.
-                    'Verwendung des ionCube-Decoders festgestellt.</li>',
-            ),
-            'en' => array(
-                'RequCheck'              => 'Requirement check',
-                'ExecNotice'             => 'Execute this check script in the root directory of your shop. In this '.
-                    'case only checks can executed succesfully.',
-                'RequSucc'               => 'condition is fulfilled',
-                'RequNotSucc'            => 'condition isn\'t fulfilled',
-                'RequUnknown'            => 'condition unclear, see notes in help text',
-                'RequNotCheckable'       => 'condition isn\'t checkable',
-                'hasMinPhpVersion'       => 'at least PHP version %1$s',
-                'hasMinPhpVersion_DESC'  => '<div>The module requires a PHP version at least %1$s</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The appropriate version of PHP '.
-                    'is activated on your server.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The module can not be executed within '.
-                    'the actived PHP version. Ask your server provider for for the adaption of your PHP installation or '.
-                    'contact us for another module version.</div>'.
-                    '<div>The [+] button show details for all tested directories. Depending on the server settings, '.
-                    'the results may vary. Only the red marked directories requires adaptation.</div>'.
-                    '<div>Details about your server installation you can see by clicking on the button "show PHPinfo". '.
-                    'If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMaxPhpVersion'       => 'not more than PHP version %1$s',
-                'hasMaxPhpVersion_DESC'  => '<div>The module requires a PHP version not more than %1$s</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The appropriate version of PHP '.
-                    'is activated on your server.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The module can not be executed within '.
-                    'the actived PHP version. Ask your server provider for for the adaption of your PHP installation or '.
-                    'contact us for another module version.</div>'.
-                    '<div>The [+] button show details for all tested directories. Depending on the server settings, '.
-                    'the results may vary. Only the red marked directories requires adaptation.</div>'.
-                    '<div>Details about your server installation you can see by clicking on the button "show PHPinfo". '.
-                    'If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasFromToPhpVersion'    => 'server use PHP version between %1$s and %2$s',
-                'hasFromToPhpVersion_DESC'=> '<div>The module requires a PHP version between %1$s and %2$s</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The appropriate version of PHP '.
-                    'is activated on your server.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The module can not be executed within '.
-                    'the actived PHP version. Ask your server provider for for the adaption of your PHP installation or '.
-                    'contact us for another module version.</div>'.
-                    '<div>The [+] button show details for all tested directories. Depending on the server settings, '.
-                    'the results may vary. Only the red marked directories requires adaptation.</div>'.
-                    '<div>Details about your server installation you can see by clicking on the button "show PHPinfo". '.
-                    'If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasExtension'           => '%1$s extension is available',
-                'hasExtension_DESC'      => '<div>The module requires the %1$s server extension.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The %1$s server extension is '.
-                    'available on your server.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The module can not be executed '.
-                    'without the %1$s extension. Ask your server provider for installing this extension.</div>'.
-                    '<div>The [+] button show details for all tested directories. Depending on the server settings, '.
-                    'the results may vary. Only the red marked directories requires adaptation.</div>'.
-                    '<div>Details about your server installation you can see by clicking on the button "show PHPinfo". '.
-                    'If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMinCurlVersion'      => 'at least cURL version %1$s',
-                'hasMinCurlVersion_DESC' => '<div>The module requires at least cURL version %1$s.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> cURL is available '.
-                    'in a compatible version.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> cURL is not installed or '.
-                    'installed in an older version. Ask your server provider for an appropriate version.</div>'.
-                    '<div>The [+] button show details for all tested directories. Depending on the server settings, '.
-                    'the results may vary. Only the red marked directories requires adaptation.</div>'.
-                    '<div>Details about your server installation you can see by clicking on the button "show PHPinfo". '.
-                    'If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMinOpenSSLVersion'   => 'at least OpenSSL version %1$s',
-                'hasMinOpenSSLVersion_DESC' => '<div>The module requires at least OpenSSL version %1$s.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> OpenSSL is availabe '.
-                    'in a compatible version.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> OpenSSL is not installed or '.
-                    'installed in an older version. Ask your server provider for an appropriate version.</div>'.
-                    '<div>The [+] button show details for all tested directories. Depending on the server settings, '.
-                    'the results may vary. Only the red marked directories requires adaptation.</div>'.
-                    '<div>Details about your server installation you can see by clicking on the button "show PHPinfo". '.
-                    'If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMinShopVersion'      => 'at least shop version %1$s',
-                'hasMinShopVersion_DESC' => '<div>The module is released to shop version %1$s</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The shop software is installed '.
-                    'in a compatible version.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> We can not guarantee, '.
-                    'that this module works properly in your shop version. Please ask for a matching module version.</div>'.
-                    '<div>If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMaxShopVersion'      => 'not more than shop version %1$s',
-                'hasMaxShopVersion_DESC' => '<div>The module is released to shop version %1$s</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The shop software is installed '.
-                    'in a compatible version.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: orange;"></div> We can not guarantee, '.
-                    'that this module works properly in your shop version. Please ask for a matching module version.</div>'.
-                    '<div>If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMinModCfgVersion'    => '%2$s (ModCfg item "%1$s") at least in version %3$s',
-                'hasMinModCfgVersion_DESC' => '<div>The module requires additional software "%2$s" at least '.
-                    'in version %3$s</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The software is installed '.
-                    'in a compatible version.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The additional software is '.
-                    'not installed or in wrong version available. Please install the additional software before '.
-                    'proceeding this installation.</div>'.
-                    '<div>If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasMaxModCfgVersion'    => '%2$s (ModCfg item "%1$s") not more than in version %3$s',
-                'hasMaxModCfgVersion_DESC' => '<div>The module requires additional software "%2$s" not more than '.
-                    'in version %3$s</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The software is installed '.
-                    'in a compatible version.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The additional software is '.
-                    'be installed or in wrong version available. Please install the additional software before '.
-                    'proceeding this installation.</div>'.
-                    '<div>If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'requireNewLicence'      => 'former licence key can be used',
-                'requireNewLicence_DESC' => '<div>This test tries to determine whether you need a new licence key '.
-                    'for the use of this module</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> You have stored a license key '.
-                    'for this module, which is probably also compatible for the new module version.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> You need likely a new license '.
-                    'key for this module. Do you have already one, run the installation and then apply the license '.
-                    'key in the admin panel of your shop. Otherwise, you can purchase it in our shop '.
-                    '<a href="http://www.oxidmodule.com" target="oxidmodule.com">oxidmodule.com</a> or also create a '.
-                    'free trial license key in the admin panel of your shop.</div>'.
-                    '<div>If you have any questions, please contact us at <a href="mailto:buchhaltung@shopmodule.com">'.
-                    'buchhaltung@shopmodule.com</a>.</div>',
-                'hasModCfg'              => '<a href="http://www.oxidmodule.com/Connector" target="Connector">Module '.
-                    'Connector</a> installed',
-                'hasModCfg_DESC'         => '<div>The module requires necessarily the D<sup>3</sup> Module Connector.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The Module Connector is '.
-                    'installed.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The module can not be executed '.
-                    'without the Module Connector. Please download this free of charge from our shop '.
-                    '<a href="http://www.oxidmodule.com/connector/" target="connector">www.oxidmodule.com/'.
-                    'connector/</a> and install it beforehand.</div>'.
-                    '<div>If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'isShopEdition'          => 'shop edition is %1$s',
-                'isShopEdition_DESC'     => '<div>The module requires one of these shop editions: %1$s</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The shop is installed '.
-                    'in the appropriate edition.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The module can not be executed '.
-                    'in your shop edition. Please ask for a module version for your shop edition.</div>'.
-                    '<div>If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasZendLoaderOptimizer' => 'Zend Optimizer (PHP 5.2) or Zend Guard Loader (PHP 5.3, 5.4, 5.5, 5.6) '.
-                    'installed (pay attention to the compatible Zend installation package!)',
-                'hasZendLoaderOptimizer_DESC' => '<div>The module requires (depending on the PHP version) the Zend Guard Optimizer '.
-                    'or the Zend Guard Loader.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The appropriate decoder is '.
-                    'installed on your server.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: orange;"></div> The decoder is '.
-                    'installed on your server. There is an additional installed extension (Zend OPcache), '.
-                    'which can cause errors in combination with the decoder.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The decoder isn\'t '.
-                    'installed on your server. The module can\'t installed or executed. Please contact your server provider.</div>'.
-                    '<div>The [+] button show details for all tested directories. Depending on the server settings, '.
-                    'the results may vary. Only the red marked directories requires adaptation.</div>'.
-                    '<div>Details about your server installation you can see by clicking on the button "show PHPinfo". '.
-                    'If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasIonCubeLoader'       => 'ionCube Loader installed (pay attention to the compatible ionCube installation package!)',
-                'hasIonCubeLoader_DESC'   => '<div>The module requires the ionCube Loader.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> The appropriate decoder is '.
-                    'installed on your server.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> The decoder isn\'t '.
-                    'installed on your server. The module can\'t installed or executed. Please contact your server provider.</div>'.
-                    '<div>The [+] button show details for all tested directories. Depending on the server settings, '.
-                    'the results may vary. Only the red marked directories requires adaptation.</div>'.
-                    '<div>Details about your server installation you can see by clicking on the button "show PHPinfo". '.
-                    'If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'hasIonCubeOrZendLoader'       => 'ionCube Loader or Zend Optimizer / Guard Loader installed '.
-                    '<span class="note">(%1$s)</span>',
-                'hasIonCubeOrZendLoader_DESC'   => '<div>The module requires the ionCube Loader or the Zend '.
-                    'Optimizer / Guard Loader. Pay attention to use a compatible installation package (%1$s).</div>'.
-                    '<div><div class="squ_bullet" style="background-color: green;"></div> One of the appropriate '.
-                    'decoders is installed on your server.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: orange;"></div> One of the appropriate '.
-                    'decoder is installed on your server. An undefined abort reason has been found, which can cause '.
-                    'to errors. For details, please refer to the following notes.</div>'.
-                    '<div><div class="squ_bullet" style="background-color: red;"></div> None of the decoders is '.
-                    'installed on your server. The module can\'t installed or executed. Please contact your server provider.</div>'.
-                    '%2$s'.
-                    '<div>The [+] button show details for all tested directories. Depending on the server settings, '.
-                    'the results may vary. Only the red marked directories requires adaptation.</div>'.
-                    '<div>Details about your server installation you can see by clicking on the button "show PHPinfo". '.
-                    'If you have any questions, please contact us at <a href="mailto:support@shopmodule.com">'.
-                    'support@shopmodule.com</a>.</div>',
-                'RemoteVersionDiff'      => ' <span class="note">(Remote script has different version or isn\'t '.
-                    'callable, result may not be safe)</span>',
-                'globalSuccess'          => 'The technical test was successful. Your server is ready for installing '.
-                    'the module.*<br><br>',
-                'globalNotSuccess'       => 'The technical test wasn\'t successfull. Please check the red or orange marked '.
-                    'conditions.<br><br>',
-                'deleteFile1'            => 'Please delete this file after use on your server! Click <a href="',
-                'deleteFile2'            => '?fnc=deleteme">here</a>, to delete this file.',
-                'showPhpInfo'            => 'show PHPinfo',
-                'dependentoffurther'     => '* dependent of further unchecked conditions',
-                'oneandonedescription'   => '** this check use execution directory only, provider dependend '.
-                    'subdirectories have to check separately (e.g. at 1&1)',
-                'or'                     => ' or ',
-                'toggleswitch'           => 'click for details',
-                'unableDeleteFile'       => 'Unable to delete file. Please delete it manually.',
-                'goodBye'                => 'Good Bye.',
-                'unableExecuteDirectoryIterator' => 'Unable to check subdirectories for further checks. (%1$s)',
-                'availableDecoder'       => 'available: %1$s - pay attention to the compatible installation package!',
-                'noDecoderAvailable'     => 'no usable decoder available',
-                'availableDecoder_hasZendLoaderOptimizer' => 'Zend Guard Loader / Optimizer',
-                'notAvailableDecoder_hasZendLoaderOptimizer' => '<li>Zend Guard Loader / Optimizer isn\'t '.
-                    'available.</li>',
-                'decoderIssue_hasZendLoaderOptimizer' => '<li>The Zend decoder is '.
-                    'installed on your server. There is an additional installed extension (Zend OPcache), '.
-                    'which can cause errors in combination with the decoder.</li>',
-                'availableDecoder_hasIonCubeLoader' => 'ionCube Loader',
-                'notAvailableDecoder_hasIonCubeLoader' => '<li>ionCube Loader isn\'t available.</li>',
-                'decoderIssue_hasIonCubeLoader' => '<li>An undefined abort reason has been found when using the '.
-                    'ionCube decoder.</li>',
-            ),
-        );
-    }
-}
-
-/**
- * Class requRemote
- */
-class requRemote
-{
-    public $blUseRemote = true;
-
-    public $oModuleData;
-
-    /**
-     * @param $sModId
-     * @param $sModVersion
-     * @param $sShopEdition
-     *
-     * @return bool|array
-     */
-    public function getShopEdition($sModId, $sModVersion, $sShopEdition)
-    {
-        $sUrl = "moduleversion/";
-        $sUrl .= 'modid/' . urlencode($sModId) . '/';
-        $sUrl .= 'forcemodversion/' . urlencode($sModVersion) . '/';
-        $sUrl .= 'edition/' . urlencode($sShopEdition) . '/';
-
-        /** @var stdClass $oModuleData */
-        $oModuleData = $this->_getRemoteServerData($sUrl);
-
-        if ($oModuleData->status == 'OK' && isset($oModuleData->moduleversion->compatible_release)) {
-            return explode(',', $oModuleData->moduleversion->compatible_release->shopedition);
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $sModId
-     * @param $sModVersion
-     * @param $sShopEdition
-     *
-     * @return bool|string
-     */
-    public function getMinShopVersion($sModId, $sModVersion, $sShopEdition)
-    {
-        $sUrl = "moduleversion/";
-        $sUrl .= 'modid/' . urlencode($sModId) . '/';
-        $sUrl .= 'forcemodversion/' . urlencode($sModVersion) . '/';
-        $sUrl .= 'edition/' . urlencode($sShopEdition) . '/';
-
-        /** @var stdClass $oModuleData */
-        $oModuleData = $this->_getRemoteServerData($sUrl);
-
-        if ($oModuleData->status == 'OK' && isset($oModuleData->moduleversion->compatible_release)) {
-            return $this->shortenVersion($oModuleData->moduleversion->compatible_release->fromshopversion);
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $sModId
-     * @param $sModVersion
-     * @param $sShopEdition
-     *
-     * @return bool|string
-     */
-    public function getMaxShopVersion($sModId, $sModVersion, $sShopEdition)
-    {
-        $sUrl = "moduleversion/";
-        $sUrl .= 'modid/' . urlencode($sModId) . '/';
-        $sUrl .= 'forcemodversion/' . urlencode($sModVersion) . '/';
-        $sUrl .= 'edition/' . urlencode($sShopEdition) . '/';
-
-        /** @var stdClass $oModuleData */
-        $oModuleData = $this->_getRemoteServerData($sUrl);
-
-        if ($oModuleData->status == 'OK' && isset($oModuleData->moduleversion->compatible_release)) {
-            return $this->shortenVersion($oModuleData->moduleversion->compatible_release->toshopversion);
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $sUrl
-     *
-     * @return stdClass
-     */
-    protected function _getRemoteServerData($sUrl)
-    {
-        if (isset($this->oModuleData[$sUrl])) {
-            return $this->oModuleData[$sUrl];
-        }
-
-        $oFailureData         = new stdClass();
-        $oFailureData->status = 'NOK';
-
-        if (false === $this->blUseRemote) {
-            return $oFailureData;
-        }
-        $sHost = "http://update.oxidmodule.com";
-        $sData = $this->curlConnect($sHost . '/serialized/' . $sUrl);
-        $oData = unserialize($sData);
-
-        if (false == $oData) {
-            return $oFailureData;
-        }
-        $this->oModuleData[$sUrl] = $oData;
-
-        return $this->oModuleData[$sUrl];
-    }
-
-    /**
-     * @param $sFilePath
-     *
-     * @return string
-     */
-    public function curlConnect($sFilePath)
-    {
-        $sContent = '';
-
-        if (($ch = $this->_hasCurl())) {
-            $sCurl_URL = preg_replace('@^((http|https)://)@', '', $sFilePath);
-            curl_setopt($ch, CURLOPT_URL, $sCurl_URL);
-            if ($_SERVER['HTTP_USER_AGENT']) {
-                curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
-            }
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 1);
-            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
-            curl_setopt($ch, CURLOPT_POST, 0);
-            $sContent = curl_exec($ch);
-        }
-
-        return $sContent;
-    }
-
-    /**
-     * @return null|resource
-     */
-    protected function _hasCurl()
-    {
-        if (extension_loaded('curl')
-            && function_exists('curl_init')
-            && function_exists('curl_exec')
-        ) {
-            return curl_init();
-        }
-
-        return null;
-    }
-
-    /**
-     * @param $sVersion
-     *
-     * @return string
-     */
-    public function shortenVersion($sVersion)
-    {
-        $aVersion = explode('.', $sVersion);
-
-        unset($aVersion[3]);
-
-        return implode('.', $aVersion);
-    }
-}
-
-/**
- * Class requTests
- * contains test functions
- */
-class requTests
-{
-    public $oBase;
-    public $oDb;
-    public $oConfig;
-    public $blGlobalResult = false;
-
-    /**
-     * @param requCheck  $oCheckInstance
-     * @param requConfig $oConfig
-     * @param            $oDb
-     * @param requRemote $oRemote
-     */
-    public function __construct(requCheck $oCheckInstance, requConfig $oConfig, $oDb, requRemote $oRemote)
-    {
-        $this->oBase = $oCheckInstance;
-        $this->oConfig = $oConfig;
-        $this->oDb = $oDb;
-        $this->oRemote = $oRemote;
-    }
-
-    /**
-     * @return requCheck
-     */
-    public function getBase()
-    {
-        return $this->oBase;
-    }
-
-    public function getDb()
-    {
-        return $this->oDb;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBasePath()
-    {
-        return $this->getBase()->getBasePath();
-    }
-
-    /**
-     * @param bool $blResult
-     */
-    public function setGlobalResult($blResult)
-    {
-        $this->getBase()->blGlobalResult = $blResult;
-    }
-
-    /**
-     * @param      $sMethodName
-     * @param null $aArguments
-     *
-     * @return array
-     */
-    public function checkInSubDirs($sMethodName, $aArguments = null)
-    {
-        return $this->getBase()->checkInSubDirs($sMethodName, $aArguments);
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return array
-     */
-    public function hasMinPhpVersion(&$aConfiguration)
-    {
-        $aResult = array($this->getBasePath() => false);
-
-        if (version_compare(phpversion(), $aConfiguration['aParams']['version'], '>=')) {
-            $aResult[$this->getBasePath()] = true;
-        }
-
-        $aResult = array_merge($aResult, $this->checkInSubDirs(__FUNCTION__, $aConfiguration['aParams']));
-
-        return $aResult;
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return array
-     */
-    public function hasFromToPhpVersion(&$aConfiguration)
-    {
-        $aResult = array($this->getBasePath() => false);
-
-        if ((version_compare(phpversion(), $aConfiguration['aParams']['from'], '>=')) &&
-            (version_compare(phpversion(), $aConfiguration['aParams']['to'], '<'))
-        ) {
-            $aResult[$this->getBasePath()] = true;
-        }
-
-        $aResult = array_merge($aResult, $this->checkInSubDirs(__FUNCTION__, $aConfiguration['aParams']));
-
-        return $aResult;
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return array
-     */
-    public function hasMaxPhpVersion(&$aConfiguration)
-    {
-        $aResult = array($this->getBasePath() => false);
-
-        if (version_compare(phpversion(), $aConfiguration['aParams']['version'], '<=')) {
-            $aResult[$this->getBasePath()] = true;
-        }
-
-        $aResult = array_merge($aResult, $this->checkInSubDirs(__FUNCTION__, $aConfiguration['aParams']));
-
-        return $aResult;
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return array
-     */
-    public function hasExtension(&$aConfiguration)
-    {
-        $aResult = array($this->getBasePath() => false);
-
-        if (extension_loaded($aConfiguration['aParams']['type'])) {
-            $aResult[$this->getBasePath()] = true;
-        }
-
-        $aResult = array_merge($aResult, $this->checkInSubDirs(__FUNCTION__, $aConfiguration['aParams']));
-
-        return $aResult;
-    }
-
-    /**
-     * @param $aConfiguration
-     * @return array
-     */
-    public function hasMinCurlVersion(&$aConfiguration)
-    {
-        $aCurlVersion = curl_version();
-        $aResult = array(
-            $this->getBasePath() => version_compare($aCurlVersion['version'], $aConfiguration['aParams']['version'], '>=')
-        );
-
-        $aResult = array_merge($aResult, $this->checkInSubDirs(__FUNCTION__, $aConfiguration['aParams']));
-
-        return $aResult;
-    }
-
-    /**
-     * @param $aConfiguration
-     * @return array
-     */
-    public function hasMinOpenSSLVersion(&$aConfiguration)
-    {
-        $aResult = array(
-            $this->getBasePath() => version_compare($this->get_openssl_version_number(true), $aConfiguration['aParams']['version'], '>=')
-        );
-
-        $aResult = array_merge($aResult, $this->checkInSubDirs(__FUNCTION__, $aConfiguration['aParams']));
-
-        return $aResult;
-    }
-
-    /**
-     * @param bool $patch_as_number
-     * @param null $openssl_version_number
-     * @return bool|string
-     */
-    protected function get_openssl_version_number($patch_as_number=false,$openssl_version_number=null) {
-        if (is_null($openssl_version_number)) $openssl_version_number = OPENSSL_VERSION_NUMBER;
-        $openssl_numeric_identifier = str_pad((string)dechex($openssl_version_number),8,'0',STR_PAD_LEFT);
-
-        $openssl_version_parsed = array();
-        $preg = '/(?<major>[[:xdigit:]])(?<minor>[[:xdigit:]][[:xdigit:]])(?<fix>[[:xdigit:]][[:xdigit:]])';
-        $preg.= '(?<patch>[[:xdigit:]][[:xdigit:]])(?<type>[[:xdigit:]])/';
-        preg_match_all($preg, $openssl_numeric_identifier, $openssl_version_parsed);
-        $openssl_version = false;
-        if (!empty($openssl_version_parsed)) {
-            $alphabet = array(1=>'a',2=>'b',3=>'c',4=>'d',5=>'e',6=>'f',7=>'g',8=>'h',9=>'i',10=>'j',11=>'k',
-                12=>'l',13=>'m',14=>'n',15=>'o',16=>'p',17=>'q',18=>'r',19=>'s',20=>'t',21=>'u',
-                22=>'v',23=>'w',24=>'x',25=>'y',26=>'z');
-            $openssl_version = intval($openssl_version_parsed['major'][0]).'.';
-            $openssl_version.= intval($openssl_version_parsed['minor'][0]).'.';
-            $openssl_version.= intval($openssl_version_parsed['fix'][0]);
-            $patchlevel_dec = hexdec($openssl_version_parsed['patch'][0]);
-            if (!$patch_as_number && array_key_exists($patchlevel_dec, $alphabet)) {
-                $openssl_version.= $alphabet[$patchlevel_dec]; // ideal for text comparison
-            }
-            else {
-                $openssl_version.= '.'.$patchlevel_dec; // ideal for version_compare
-            }
-        }
-        return $openssl_version;
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return bool
-     */
-    public function hasMinShopVersion(&$aConfiguration)
-    {
-        if ($this->getDb()) {
-            $sField  = 'oxversion';
-            $sSelect = "SELECT " . $sField . " FROM oxshops WHERE 1 ORDER BY oxversion ASC LIMIT 1";
-            $rResult = mysqli_query($this->getDb(), $sSelect);
-            $oResult = mysqli_fetch_object($rResult);
-
-            $oEditionResult = $this->_getShopEdition();
-            $sEdition       = strtoupper($oEditionResult->oxedition);
-
-            $mMinRemoteVersion = $this->oRemote->getMinShopVersion(
-                $this->oConfig->sModId,
-                $this->oConfig->sModVersion,
-                $sEdition
-            );
-
-            if ($mMinRemoteVersion) {
-                $aConfiguration['aParams'] = array('version' => $mMinRemoteVersion);
-            } else {
-                $aConfiguration['aParams'] = array('version' => $aConfiguration['aParams'][$sEdition]);
-            }
-
-            if (version_compare($oResult->oxversion, $aConfiguration['aParams']['version'], '>=')) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return bool
-     */
-    public function hasMaxShopVersion(&$aConfiguration)
-    {
-        if ($this->getDb()) {
-            $sField  = 'oxversion';
-            $sSelect = "SELECT " . $sField . " FROM oxshops WHERE 1 ORDER BY oxversion DESC LIMIT 1";
-            $rResult = mysqli_query($this->getDb(), $sSelect);
-            $oResult = mysqli_fetch_object($rResult);
-
-            $oEditionResult = $this->_getShopEdition();
-            $sEdition       = strtoupper($oEditionResult->oxedition);
-
-            $mMaxRemoteVersion = $this->oRemote->getMaxShopVersion(
-                $this->oConfig->sModId,
-                $this->oConfig->sModVersion,
-                $sEdition
-            );
-
-            if ($mMaxRemoteVersion) {
-                $aConfiguration['aParams'] = array('version' => $mMaxRemoteVersion);
-            } else {
-                $aConfiguration['aParams'] = array('version' => $aConfiguration['aParams'][$sEdition]);
-            }
-
-            if (version_compare($oResult->oxversion, $aConfiguration['aParams']['version'], '<=')) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return bool
-     */
-    public function isShopEdition(&$aConfiguration)
-    {
-        if ($this->getDb()) {
-            $oResult = $this->_getShopEdition();
-
-            $mRemoteShopEditions = $this->oRemote->getShopEdition(
-                $this->oConfig->sModId,
-                $this->oConfig->sModVersion,
-                $oResult->oxedition
-            );
-
-            if (is_array($mRemoteShopEditions)) {
-                $aConfiguration['aParams'][0] = $mRemoteShopEditions;
-            }
-
-            if (in_array(strtoupper($oResult->oxedition), $aConfiguration['aParams'][0])) {
-                $aConfiguration['aParams'][0] = strtoupper($oResult->oxedition);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @return bool|object|stdClass
-     */
-    protected function _getShopEdition()
-    {
-        if ($this->getDb()) {
-            $sField  = 'oxedition';
-            $sSelect = "SELECT " . $sField . " FROM oxshops WHERE 1 LIMIT 1";
-            $rResult = mysqli_query($this->getDb(), $sSelect);
-            $oResult = mysqli_fetch_object($rResult);
-
-            return $oResult;
-        }
-
-        return false;
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasModCfg()
-    {
-        if ($this->getDb()) {
-            $sModId  = 'd3modcfg_lib';
-            $sSelect = "SELECT 1 as result FROM d3_cfg_mod WHERE oxmodid = '" . $sModId . "' LIMIT 1";
-            $rResult = mysqli_query($this->getDb(), $sSelect);
-            if (is_object($rResult)) {
-                $oResult = mysqli_fetch_object($rResult);
-
-                if ((bool) $oResult->result == true) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return bool|int
-     */
-    public function hasMinModCfgVersion(&$aConfiguration)
-    {
-        if ($this->getDb()) {
-            $sSelect = "SELECT IF ".
-                "(INET_ATON(oxversion) >= INET_ATON('" . $aConfiguration['aParams']['version'] . "'), 1, 0) AS result ".
-                "FROM d3_cfg_mod ".
-                "WHERE
-                    oxmodid = '" . $aConfiguration['aParams']['id'] . "' AND
-                    oxversion != 'basic'
-                    ORDER BY oxversion ASC LIMIT 1";
-
-            $rResult = mysqli_query($this->getDb(), $sSelect);
-            $oResult = mysqli_fetch_object($rResult);
-            $blReturn = (bool)$oResult->result;
-
-            if (false == $blReturn) {
-                $this->setGlobalResult(false);
-            }
-
-            return $blReturn;
-        }
-
-        $this->setGlobalResult(false);
-
-        return false;
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return bool|int
-     */
-    public function hasMaxModCfgVersion(&$aConfiguration)
-    {
-        if ($this->getDb()) {
-            $sSelect = "SELECT
-                IF (INET_ATON(oxversion) <= INET_ATON('" . $aConfiguration['aParams']['version'] . "'), 1, 0) AS result
-                FROM d3_cfg_mod WHERE
-                oxmodid = '" . $aConfiguration['aParams']['id'] . "' AND
-                oxversion != 'basic'
-                ORDER BY oxversion ASC LIMIT 1";
-
-            $rResult = mysqli_query($this->getDb(), $sSelect);
-            $oResult = mysqli_fetch_object($rResult);
-            $blResult = (bool)$oResult->result;
-
-            if (false == $blResult) {
-                $this->setGlobalResult(false);
-            }
-
-            return $blResult;
-        }
-
-        $this->setGlobalResult(false);
-
-        return false;
-    }
-
-    /**
-     * @param $aConfiguration
-     *
-     * @return bool
-     */
-    public function requireNewLicence(&$aConfiguration)
-    {
-        if ($this->getDb()) {
-            $sSelect = "SELECT
-                oxversion as oxversion
-                FROM d3_cfg_mod WHERE
-                oxmodid = '" . $this->oConfig->sModId . "'
-                ORDER BY oxversion ASC LIMIT 1";
-
-            $rResult = mysqli_query($this->getDb(), $sSelect);
-            $oResult = mysqli_fetch_object($rResult);
-
-            if (isset($oResult)
-                && is_object($oResult)
-                && isset($oResult->oxversion)
-                && isset($aConfiguration['aParams']['checkVersion'])
-            ) {
-                $sInstalledVersion = $this->_getConvertedVersion(
-                    $oResult->oxversion,
-                    $aConfiguration['aParams']['remainingDigits']
-                );
-                $sNewVersion = $this->_getConvertedVersion(
-                    $this->oConfig->sModVersion,
-                    $aConfiguration['aParams']['remainingDigits']
-                );
-                if (version_compare($sInstalledVersion, $sNewVersion, '>=')) {
-                    return true;
-                }
-            }
-        }
-
-        return 'notice';
-    }
-
-    /**
-     * cut not used version digits
-     * @param string $sVersion
-     * @param int $iRemainingDigits
-     *
-     * @return string
-     */
-    protected function _getConvertedVersion($sVersion, $iRemainingDigits)
-    {
-        $aInstalledVersion = explode('.', $sVersion);
-        return implode('.', array_slice($aInstalledVersion, 0, $iRemainingDigits));
-    }
-
-    /**
-     * @return array
-     */
-    public function hasZendLoaderOptimizer(&$aConfiguration, $blCheckBasePathOnly = false)
-    {
-        $aResult = array($this->getBasePath() => false);
-
-        if ((version_compare(phpversion(), '5.2.0', '>=')
-            && version_compare(phpversion(), '5.2.900', '<')
-            && function_exists('zend_optimizer_version')
-        ) || (
-            version_compare(phpversion(), '5.3.0', '>=')
-            && version_compare(phpversion(), '5.6.900', '<')
-            && function_exists('zend_loader_version')
-        )) {
-            if (function_exists('opcache_get_status')
-                && ($aOpCacheStatus = opcache_get_status())
-                && $aOpCacheStatus['opcache_enabled']
-            ) {
-                $aResult[$this->getBasePath()] = null;
-            } else {
-                $aResult[$this->getBasePath()] = true;
-            }
-        }
-
-        if ($blCheckBasePathOnly == false) {
-            $aResult = array_merge($aResult, $this->checkInSubDirs(__FUNCTION__));
-        }
-
-        return $aResult;
-    }
-
-    /**
-     * @return array
-     */
-    public function hasIonCubeLoader(&$aConfiguration, $blCheckBasePathOnly = false)
-    {
-        $aResult = array($this->getBasePath() => false);
-
-        if (function_exists('ioncube_loader_version')) {
-            $aResult[$this->getBasePath()] = true;
-        }
-
-        if ($blCheckBasePathOnly == false) {
-            $aResult = array_merge($aResult, $this->checkInSubDirs(__FUNCTION__));
-        }
-
-        return $aResult;
-    }
-
-    /**
-     * @return array
-     */
-    public function hasIonCubeOrZendLoader(&$aConfiguration)
-    {
-        $oLayout = $this->getBase()->oLayout;
-
-        $aDecoderTexts = array();
-        $aDecoderErrorTexts = array();
-        foreach (array('hasZendLoaderOptimizer', 'hasIonCubeLoader') as $sDecoderCheck) {
-            $aReturn = call_user_func_array(array($this, $sDecoderCheck), array($aConfiguration, true));
-            if ($aReturn[$this->getBasePath()]) {
-                $aDecoderTexts[$sDecoderCheck] = $oLayout->translate('availableDecoder_'.$sDecoderCheck);
-            } elseif ($aReturn[$this->getBasePath()] === null) {
-                $aDecoderErrorTexts[$sDecoderCheck] = $oLayout->translate('decoderIssue_'.$sDecoderCheck);
-            } else {
-                $aDecoderErrorTexts[$sDecoderCheck] = $oLayout->translate('notAvailableDecoder_'.$sDecoderCheck);
-            }
-        }
-
-        $sDecoderText = count($aDecoderTexts) ?
-            sprintf($oLayout->translate('availableDecoder'), implode(' + ', $aDecoderTexts)) :
-            $oLayout->translate('noDecoderAvailable');
-        $aConfiguration['aParams'][1] = $sDecoderText;
-
-        $sDecoderErrorText = count($aDecoderErrorTexts) ?
-            '<ul>'.implode('', $aDecoderErrorTexts).'</ul>' :
-            '';
-        $aConfiguration['aParams'][2] = $sDecoderErrorText;
-
-        $aZendLoaderResults = $this->hasZendLoaderOptimizer($aConfiguration);
-        $aIonCubeLoaderResults = $this->hasIonCubeLoader($aConfiguration);
-
-        $aResult = array();
-        foreach (array_keys($aZendLoaderResults) as $sPath) {
-            // transfer meta data
-            if (strstr($sPath, '@@')) {
-                $aResult[$sPath] = $aZendLoaderResults[$sPath];
-            } elseif ($aIonCubeLoaderResults[$sPath] || $aZendLoaderResults[$sPath]) {
-                $aResult[$sPath] = true;
-            } elseif ($aIonCubeLoaderResults[$sPath] === null || $aZendLoaderResults[$sPath] === null) {
-                $aResult[$sPath] = null;
-            } else {
-                $aResult[$sPath] = false;
-            }
-        }
-
-        return $aResult;
-    }
-}
-
-/**
- * Class requTransformation
- */
-class requTransformation
-{
-    public $oCheck;
-
-    /**
-     * @param requCheck $oCheck
-     */
-    public function __construct(requCheck $oCheck)
-    {
-        $this->oCheck = $oCheck;
-    }
-
-    /**
-     * @param $aCheckList
-     */
-    public function transformCheckList($aCheckList)
-    {
-        $this->_removeDeprecatedLibs($aCheckList['hasMinModCfgVersion']);
-        $this->_removeDeprecatedLibs($aCheckList['hasMaxModCfgVersion']);
-
-        return $aCheckList;
-    }
-
-    /**
-     * @param array $aCheck
-     */
-    protected function _removeDeprecatedLibs(&$aCheck)
-    {
-        $blDelOldLibs = false;
-        $sCheckVersion = 0;
-
-        if (is_array($aCheck)) {
-            $sSelect = "SELECT oxversion as result ".
-                "FROM d3_cfg_mod ".
-                "WHERE oxmodid = 'd3modcfg_lib' LIMIT 1";
-            $rResult = mysqli_query($this->oCheck->getDb(), $sSelect);
-
-            if (is_object($rResult)) {
-                $oResult = mysqli_fetch_object($rResult);
-                if ($oResult->result) {
-                    $sCheckVersion = $oResult->result;
-                }
-            }
-
-            foreach ($aCheck as $aModCfgCheck) {
-                if (isset($aModCfgCheck['aParams']['id']) &&
-                    strtolower($aModCfgCheck['aParams']['id']) == 'd3modcfg_lib' &&
-                    version_compare($sCheckVersion, '4.0.0.0', '>=')
-                ) {
-                    $blDelOldLibs = true;
-                }
-            }
-
-            reset($aCheck);
-
-            if ($blDelOldLibs) {
-                $aOldLibs = array('d3install_lib', 'd3log_lib', 'd3clrtmp_lib');
-                foreach ($aCheck as $sKey => $aModCfgCheck) {
-                    if (isset($aModCfgCheck['aParams']['id']) &&
-                        in_array(strtolower($aModCfgCheck['aParams']['id']), $aOldLibs)
-                    ) {
-                        unset($aCheck[$sKey]);
-                    }
-                }
-            }
-        }
-    }
-}
-
-/**
- * @param $mVar
- */
-function dumpvar($mVar)
-{
-    echo "<pre>";
-    print_r($mVar);
-    echo "</pre>";
-}
-
-$oRequCheck = new requcheck;
-if (isset($_REQUEST['fnc']) && $_REQUEST['fnc']) {
-    $oRequCheck->{$_REQUEST['fnc']}();
-} else {
-    $oRequCheck->startCheck();
-}
+<?php //006fd
+// This Software is the property of DÂ³ Data Development and is protected by copyright law - it is NOT Freeware.  Any unauthorized use of this software without a valid license key is a violation of the license agreement and will be prosecuted by civil and criminal law.  Inhaber: Thomas Dartsch Alle Rechte vorbehalten  @package erweiterte_Suche @version 6.1.0.0 PHP56 (${currentDate}) @author Daniel Seifert support@shopmodule.com @copyright (C) ${currentYear}, D3 Data Development @see http://www.shopmodule.com
+if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
+?>
+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
+WJZ+wUzhj5Bo7ew+SkUinW==
