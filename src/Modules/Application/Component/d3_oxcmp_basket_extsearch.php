@@ -49,14 +49,14 @@ class d3_oxcmp_basket_extsearch extends d3_oxcmp_basket_extsearch_parent
         $sAdd       = '';
 
         foreach ($aParamList as $sParam) {
-            $mTransferParam = Registry::get(Request::class)->getRequestParameter($sParam);
+            $mTransferParam = Registry::get(Request::class)->getRequestEscapedParameter($sParam);
             if ($mTransferParam) {
                 if (is_array($mTransferParam)) {
                     foreach ($mTransferParam as $key => $value) {
                         $sAdd .= $sParam . '[' . $key . ']=' . $value . '&';
                     }
                 } else {
-                    $sAdd .= $sParam . '=' . Registry::get(Request::class)->getRequestParameter($sParam) . "&";
+                    $sAdd .= $sParam . '=' . Registry::get(Request::class)->getRequestEscapedParameter($sParam) . "&";
                 }
             }
         }

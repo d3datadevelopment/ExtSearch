@@ -189,6 +189,20 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
+                                <dl>
+                                    <dt>
+                                        <label for="displaytypeCatList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <select id="displaytypeCatList" class="editinput" name="value[sExtSearch_displaytypeCatList]" size="1">
+                                            <option value="combined"[{if $edit->getEditValue('sExtSearch_displaytypeCatList') == 'combined'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_COMBINED"}]</option>
+                                            <option value="single"[{if $edit->getEditValue('sExtSearch_displaytypeCatList') == 'single'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_SINGLE"}]</option>
+                                            <option value="multi"[{if $edit->getEditValue('sExtSearch_displaytypeCatList') == 'multi'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_MULTI"}]</option>
+                                        </select>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
                             [{/block}]
                         </div>
                     </div>
@@ -225,6 +239,20 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
+                                <dl>
+                                    <dt>
+                                        <label for="displaytypeVendorList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <select id="displaytypeVendorList" class="editinput" name="value[sExtSearch_displaytypeVendorList]" size="1">
+                                            <option value="combined"[{if $edit->getEditValue('sExtSearch_displaytypeVendorList') == 'combined'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_COMBINED"}]</option>
+                                            <option value="single"[{if $edit->getEditValue('sExtSearch_displaytypeVendorList') == 'single'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_SINGLE"}]</option>
+                                            <option value="multi"[{if $edit->getEditValue('sExtSearch_displaytypeVendorList') == 'multi'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_MULTI"}]</option>
+                                        </select>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
                             [{/block}]
                         </div>
                     </div>
@@ -258,6 +286,20 @@
                                             <option value="oxtitle"[{if $edit->getEditValue('sExtSearch_orderManufacturerList') == 'oxtitle'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_MANUFACTURERLIST_SORT_ALPHA"}]</option>
                                         </select>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_MANUFACTURERLIST_SORT_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>
+                                        <label for="displaytypeManufacturerList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <select id="displaytypeManufacturerList" class="editinput" name="value[sExtSearch_displaytypeManufacturerList]" size="1">
+                                            <option value="combined"[{if $edit->getEditValue('sExtSearch_displaytypeManufacturerList') == 'combined'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_COMBINED"}]</option>
+                                            <option value="single"[{if $edit->getEditValue('sExtSearch_displaytypeManufacturerList') == 'single'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_SINGLE"}]</option>
+                                            <option value="multi"[{if $edit->getEditValue('sExtSearch_displaytypeManufacturerList') == 'multi'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_MULTI"}]</option>
+                                        </select>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
@@ -350,6 +392,20 @@
                                         <input type="hidden" name="value[blExtSearch_showNotSelectableAttributes]" value="0">
                                         <input id="showNotSelectableAttributes" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showNotSelectableAttributes]" value='1' [{if $edit->getEditValue('blExtSearch_showNotSelectableAttributes') == 1}]checked[{/if}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_SHOWNOTSELECTABLEATTRIBUTES_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>
+                                        <label for="displaytypeAttributeList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <select id="displaytypeAttributeList" class="editinput" name="value[sExtSearch_displaytypeAttributeList]" size="1">
+                                            <option value="combined"[{if $edit->getEditValue('sExtSearch_displaytypeAttributeList') == 'combined'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_COMBINED"}]</option>
+                                            <option value="single"[{if $edit->getEditValue('sExtSearch_displaytypeAttributeList') == 'single'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_SINGLE"}]</option>
+                                            <option value="multi"[{if $edit->getEditValue('sExtSearch_displaytypeAttributeList') == 'multi'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_MULTI"}]</option>
+                                        </select>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>

@@ -3,9 +3,21 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## 6.1.2.0 (2018-08-30)
+### Added
+- installierbar in OXID Compilation 6.1
+- critical CSS (above the fold) - Generierung und Implementierung
+- Anzeigeformat der Filter ist einstellbar
+### Changed
+- erweitert nur existierende Klassen
+### Fixed
+- #7384: Bug: Anzeige aller Attribute des Shops als Filter in Artikelliste
+- #7471: falsche Preisspannen im Slider bei Eingabe von Nettopreisen
+- Mehrfachauswahl der Filter war nur mit Attributfilteroption nutzbar
+
 ## 6.1.1.0 (2018-02-20)
 ### Added
-- installierbar in OXID 6.1
+- installierbar in OXID eShop 6.1
 - Query-Cache-Prüfung integriert
 ### Changed
 - Syntaxgenerierung der Datenbank-Queries optimiert

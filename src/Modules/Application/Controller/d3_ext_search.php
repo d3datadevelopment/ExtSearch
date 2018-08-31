@@ -31,6 +31,7 @@ use D3\Extsearch\Application\Model\d3_extsearch_statisticlog;
 use D3\Extsearch\Application\Model\Filters\d3Filter;
 use D3\ModCfg\Application\Model\d3database;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
+use D3\ModCfg\Application\Model\d3utils;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use D3\ModCfg\Application\Model\Log\d3log;
@@ -119,6 +120,29 @@ class d3_ext_search extends d3_ext_search_parent
 
     /** @var  d3_oxarticlelist_extsearch */
     protected $_aArticleList;
+
+    /**
+     * d3_ext_search constructor.
+     */
+    public function __construct()
+    {
+        // convert searchparam in case of decoded UTF8 search parameter (*.html?listtype=list&searchparam=kk%FCchenrollenhalter)
+        $sTmP = Registry::get(Request::class)->getRequestEscapedParameter('searchparam');
+        if (mb_detect_encoding($sTmP) !== "UTF-8" || false === mb_check_encoding($sTmP, "UTF-8")) {
+            $sTmP = utf8_encode($sTmP);
+
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $_POST['searchparam'] = trim($sTmP);
+            } else {
+                $_GET['searchparam'] = trim($sTmP);
+            }
+        }
+
+        $oD3Utils = d3utils::getInstance();
+        if ($oD3Utils->hasParentClassMethod($this, '__construct')) {
+            parent::__construct();
+        }
+    }
 
     /**
      * @return null
@@ -1053,11 +1077,11 @@ class d3_ext_search extends d3_ext_search_parent
      */
     public function getUserSelectedSorting()
     {
-        $sSortBy = Registry::get(Request::class)->getRequestParameter($this->getSortOrderByParameterName());
+        $sSortBy = Registry::get(Request::class)->getRequestEscapedParameter($this->getSortOrderByParameterName());
         $aPriorityAlias = $this->_d3GetSearchHandler()->d3GetPriorityAlias();
 
         if ($sSortBy === $aPriorityAlias['sortby']) {
-            $sSortDir = Registry::get(Request::class)->getRequestParameter($this->getSortOrderParameterName());
+            $sSortDir = Registry::get(Request::class)->getRequestEscapedParameter($this->getSortOrderParameterName());
             $aSorting = array('sortby' => $sSortBy, 'sortdir' => $sSortDir);
         } else {
             $this->_d3AddMissingSortFieldName($sSortBy);
@@ -1468,7 +1492,7 @@ class d3_ext_search extends d3_ext_search_parent
         $sPageId = "search##".
             Registry::getLang()->getLanguageAbbr()."##".
             Registry::getConfig()->getShopId()."##".
-            md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestParameter('searchparam'))));
+            md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestEscapedParameter('searchparam'))));
 
         return $sPageId;
     }

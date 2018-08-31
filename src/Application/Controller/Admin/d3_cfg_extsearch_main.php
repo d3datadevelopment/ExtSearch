@@ -534,7 +534,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         $sPageId = "search##".
             Registry::getLang()->getLanguageAbbr()."##".
             Registry::getConfig()->getShopId()."##".
-            md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestParameter('searchparam'))));
+            md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestEscapedParameter('searchparam'))));
 
         return $sPageId;
     }

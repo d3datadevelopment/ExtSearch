@@ -98,7 +98,7 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
         switch (strtolower($this->getListType())) {
             case 'search':
                 $sClassNameAdd = 'search##';
-                $sIdent = md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestParameter('searchparam'))));
+                $sIdent = md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestEscapedParameter('searchparam'))));
                 break;
             case 'manufacturer':
                 $sClassNameAdd = '##';

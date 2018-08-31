@@ -57,7 +57,7 @@ class d3_rss_extsearch extends d3_rss_extsearch_parent
     {
         if ($this->getConfig()->getConfigParam('bl_rssSearch')) {
             $sClassNameAdd = 'search##';
-            $sIdent = md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestParameter('searchparam'))));
+            $sIdent = md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestEscapedParameter('searchparam'))));
         } else {
             $sClassNameAdd = '##';
             $sIdent = Registry::get(Request::class)->getRequestEscapedParameter('cat');

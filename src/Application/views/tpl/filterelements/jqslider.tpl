@@ -30,6 +30,9 @@
 
     [{assign var="sCssInc" value=$oViewConf->getModuleUrl('d3_extsearch', 'out/src/css/d3extsearch_slider.min.css')}]
     [{oxstyle include=$sCssInc}]
+
+    [{include file=$oViewConf->getModulePath('d3_extsearch', 'out/src/css/abovethefold/d3extsearch_allthemes.min.css') assign="atfSliderCss"}]
+    [{if $atfSliderCss}]<style type="text/css">[{$atfSliderCss}]</style>[{/if}]
 [{/block}]
 
 [{block name="d3_cfg_extsearch_jqsliderinfo"}]

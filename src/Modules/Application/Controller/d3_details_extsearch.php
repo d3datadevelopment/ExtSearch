@@ -95,7 +95,7 @@ class d3_details_extsearch extends d3_details_extsearch_parent
         switch (strtolower($this->getListType())) {
             case 'search':
                 $sClassNameAdd = 'search##';
-                $sIdent = md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestParameter('searchparam'))));
+                $sIdent = md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestEscapedParameter('searchparam'))));
                 break;
             case 'manufacturer':
                 $sClassNameAdd = '##';
