@@ -41,7 +41,7 @@ $aModule = array(
         'en' => '',
     ),
     'thumbnail'   => 'picture.png',
-    'version'     => '6.1.1.0',
+    'version'     => '6.1.2.0',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'http://www.oxidmodule.com/',
@@ -62,7 +62,6 @@ $aModule = array(
         OxidModel\Search::class                             => \D3\Extsearch\Modules\Application\Model\d3_oxsearch_extsearch::class,
         OxidController\SearchController::class              => \D3\Extsearch\Modules\Application\Controller\d3_ext_search::class,
         OxidCore\UtilsView::class                           => \D3\Extsearch\Modules\Core\d3_oxutilsview_extsearch::class,
-        VisualCmsAdmin::class                               => \D3\Extsearch\Modules\Application\Controller\Admin\d3_ddoevisualcmsadmin_extsearch::class,
     ),
     'controllers'   => array(
         'd3_cfg_extsearch'                  => \D3\Extsearch\Application\Controller\Admin\d3_cfg_extsearch::class,
@@ -86,10 +85,6 @@ $aModule = array(
         'd3_cfg_extsearchlog_list'          => \D3\Extsearch\Application\Controller\Admin\d3_cfg_extsearchlog_list::class,
 
         'd3_extsearch_response'             => \D3\Extsearch\Application\Controller\d3_extsearch_response::class,
-
-        'd3_extsearch_report_base'          => \D3\Extsearch\Application\Controller\Admin\Reports\d3_extsearch_report_base::class,
-        'd3_extsearch_report_hitless'       => \D3\Extsearch\Application\Controller\Admin\Reports\d3_extsearch_report_hitless::class,
-        'd3_extsearch_report_mostsearches'  => \D3\Extsearch\Application\Controller\Admin\Reports\d3_extsearch_report_mostsearches::class,
     ),
     'templates'   => array(
         'd3_cfg_extsearch_main.tpl'                 => 'd3/extsearch/Application/views/admin/tpl/d3_cfg_extsearch_main.tpl',
@@ -346,3 +341,13 @@ $aModule = array(
         ModuleSetup\d3_extsearch_update::class,
     ),
 );
+
+if (class_exists(VisualCMSAdmin::class)) {
+    $aModule['extend'][VisualCmsAdmin::class] = \D3\Extsearch\Modules\Application\Controller\Admin\d3_ddoevisualcmsadmin_extsearch::class;
+}
+
+if (class_exists(OeStatistics_Report_Base::class)) {
+    $aModule['controllers']['d3_extsearch_report_base']         = \D3\Extsearch\Application\Controller\Admin\Reports\d3_extsearch_report_base::class;
+    $aModule['controllers']['d3_extsearch_report_hitless']      = \D3\Extsearch\Application\Controller\Admin\Reports\d3_extsearch_report_hitless::class;
+    $aModule['controllers']['d3_extsearch_report_mostsearches'] = \D3\Extsearch\Application\Controller\Admin\Reports\d3_extsearch_report_mostsearches::class;
+}

@@ -3,11 +3,15 @@ production:
   - "less:module"
   - "less:module_unminified"
   - "uglify:module"
+  # - "penthouse"
+  # - "cssmin"
 
 development:
   - "less:module_sourcemap"
   - "less:module_unminified"
   - "uglify:module"
+  # - "penthouse"
+  # - "cssmin"
 
 default:
   - "production"

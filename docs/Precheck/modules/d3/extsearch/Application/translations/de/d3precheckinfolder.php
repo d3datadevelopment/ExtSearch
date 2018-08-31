@@ -1,77 +1,146 @@
-<?php //006fd
-// This Software is the property of D³ Data Development and is protected by copyright law - it is NOT Freeware.  Any unauthorized use of this software without a valid license key is a violation of the license agreement and will be prosecuted by civil and criminal law.  Inhaber: Thomas Dartsch Alle Rechte vorbehalten  @package erweiterte_Suche @version 6.1.1.0 PHP71 (${currentDate}) @author Daniel Seifert support@shopmodule.com @copyright (C) ${currentYear}, D3 Data Development @see http://www.shopmodule.com
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-HR+cPxiaj4maemnZCUyXRxUjYmp7G4hBXBmiOUn+u/jZBnr595kleECp0h+fIrrItBXBBWYcoySA
-lJvXTx0nZoGkuLMvQAgUtIZAetIJ6L9UmoRBbDX8x2s895H+wy0aHKc2CNLIeLi8lCy89I67y+0w
-JWHZQfMd9uz3WnaPWuCnELp1tDSAmim/foMsWqCS2MpounGxrbFRigBZt0rB/07iJMvou/jKgoT4
-pX1Yv4SwOqBchrAMOgNvVyAWom2H6RmNQNhmXhyr0shrm9ztG5xXGTtX4igVVBJQPeG5jr+EvnL5
-jaUp9WIU4K+M9g3d2O8kXkDvrYykgoEO8cUGim9m5W4lHrA0zzgyS4WMMHANH6vsKv+fyGvH3hGP
-1nCALXe+3jVqz2v9MWbi6Z9Vb4JGwCCAdbC/fLONaGTxh+xiMXJeLMUanoDooqo8RZBIDO+PhimW
-gnwwaqdXoIMiG/513lNXOrvyvgdwum2nIbc8hR4lIdpRpVJ+KVlkvHHbjtsWnLbip34c7swO9ec8
-vIDgOFz6/nkWQ2/dvMZxo0wHBOZRJmrf2mw7QBuUGNz0MkOtxPmh1l/WfYXyjPcPbh//ZitfNbRq
-Z9JXOvvFtIErwQQgaIdQ7EFjPp/2iTDgOol0Rlzoj+2l+tJv1TvkCDdEwhe2EKSaHfvYr7ZVs0AZ
-X5YMtcbI3WfBrOY3ZjMAGLMtDXm1Xy5IvprZsLfxlevJPh6SSTsNXAn/bmM/KREn+fVWx7PzP1Fd
-RvQqdLx9cIYg6qj2TlP2B2Wj6yFW5Ctmww17FYOReXN1AMQOM/JR507EPP8l3KgxmbLomYlhcLK9
-kdRxdenFvqQi9CDZnI/uWZwRGUFD3nNzXIOu/LsZUAzvCugEkb5r+uumSDJU2OguaJZI8TVY1Dqa
-ozsR6UV+oncAImM9U8w4sJbRww6ioRYS3spO/jLrT0hdhTS7O3YWwS+6tZOSxmH/DojdTEoGvmg/
-+7QdinMRmjLflADPrGf8ObiQ3b6hJ2k8lZPDOtYgQ7IBqU+ay5/fccFUpfIRjdIGFjwNS7KAgtLI
-lb9xjW2Q7J306dxvaRdhM4OhFRFb+v/mn0H1Oy63wGvaz50ZlTOOuox96T5kP0H9wz/qOOh6R72k
-zZeVj/SUCMQr1Xb41NLk8iQX1MkYzeGblQX2DOchbZVmttwnQRIV2HQ0/QM3XwAvRANNdedliXWw
-OMKDGrpoQgr3os5UFu83ThhIoMSPb0yhK+DmRXNUNzVmocYfrZ/uj9v+fRjOFruHRUYJhv9jwm0i
-+GrnHkVibWiFyALg0PbwbucTxhnSOwU5esM34v3Priq2/vng/m1v/mtnPlN6tLDOiOSU3VyiWj8A
-w52dNplYCtULCMDZsyKfdFI+82mwW9cNxAwCtFpfivzcbjofw7pjdxVVrbxvFXUpuKMwDCNC81cP
-kN0f0b7+9cqrHATUaOdN1td3Gj2Q5TGxhKPYIDTRxMpxIXwzbRgdz/lnYLQf/kik0+kO0aypuP6I
-YJji3LYeye/3jLCqK+cz7YmJB/FdDKwlzrFsBHpdKb/nxtaBX1W/qVCQnDoUlYN/ex9JrvOxP5ee
-RVOSndmdidkygn3m1I5R6YI9DsL5faEoT7fQFRiEqsnzWDq5ushu8LRLKudtQuS/qAVU2bUIQEM2
-SoD9PwcDUjSeBXFauig3sut1EQSeRzm0N3VCd6D2bjmjAVx+oGxwhLuSD08NlEUwC52Vhfr/GCfK
-HgauokQ6YItgVedAreBFIvegw1qdhGX28ckd7X4DxWX+8AL42yjVYuR9pXTZDyH1kLoUvVmnoThn
-0rwWWAKkL0aFNbMFbfx0BRmZNLrE02PYqMA7AByGpYm/+rJf6PiEC8keyJ3e9g9n1M9Ds8Vz3bH/
-xc9mWkFwMDsKw0MrklYcYlQo2ewlr0yv/A3qdna3EKotSewzU4sLFL0p9w9cwJ8cslLE63g2Nftc
-W7hApxCXv2sBD0CuPhyqJviGZG1Jh9KPeiNgaOlY0QHnDLBSs0f0JcbLkbJzHvK6l9FtocwGRtjd
-tYl/uFx95xPABZOV0YQotggv8j5J2m6mmOg9ZN9+xoyDyRhA2PqlQrjp/uo+IkkVoopGP3N/s7fU
-olNZgn5Mpadaq5ODp4eZfXMS1YwVDIW8KzTTed2tFJW4p19hapzUUHdm9w2bsqfoSVrUNqq7aqRO
-hKFs8VR09VZgRhi20b9NNRNyLc+I5LefUACbkz1Np3KFftRyM9rtL1tWQpDfDgCUW5kfl3fZ14EU
-y6f/u2eU5/MiKTSQtHY+FO/+7cHkno/RqKnAo1kgYWGOUy0hREgYwBUdeetk52We2dQrkQ32X0hv
-PfddeQgghbnEKYsa+aGzg1qeeBg3YT/14bEhq2ASAWUU7YzNCm8vYa1izxGmUXoKZ7GmDqbp/Nl7
-/eRsuwuAHpABzaJHgd9eXwq5bUJLnkTC96UA7YrT1ii0uI+m6gm57RU3PJEXXPhawLEMjWkPZet+
-dDbwio63uVOoa3D4Sx2nOfK/+b5yvimN1wmzezo6YajHAY0MUrG4w3reL6VvWo7AgFW/VBkqkJrx
-W19rB8jpJdMYXX3RDgkvG0voahlLrOudsWwXcD7QhizngS2XVSJVEPEHSgw+NM70l7ZXewoaXxKx
-u9uZ9nq9oP2+gOydWG/B4A1BCuWf4z8HP0PB0JRHQ+vYFd/3w4ioLXB7xXGOopMtosFZSfVSYoIb
-auyJPgTo/vps8B6vBK1bfa+y/cl/aGMjRaSDnwoiFeghhm17N/NB/3uUAFXwDDkteLCR+d1vnsyQ
-xtrP/Nzu3SedY89NWziANNeeeNINJhoZzZZHYGG20KpJlvUUiSW+SZFVdWlLVgiwj5DpiDIvIsiz
-eeUqEZDoq6o+5qIR+dkWXDOwGx6e8z6e7RtC7Sb84TBFrDGuCC/AeCNXRXIBTq7rZyS7XJGhdZFS
-+HA/OYZRBYI6FGZ60QGCRTPNB9F0RrguVFxsCsr+tOFk2RP+8J9HAzMw5zRQJw8eqbTcZCx/weUW
-Wdu+UYHXiGOHoVxM3jVApVfceNQhG5nXXaQW7N+7yWxadsl8batBiKVwFninLWAAnKmwxLiNwDEX
-dghy/CoIdroc6Xw+XtM5ObRPfF17Ue2r68Ojr4IZICVssaOPlMpVK2CjmN6/s8KYQGECsKQYK17n
-QzM3e9LcBq96nqHZb6z6saXAKFQfW3l/sUYaTrq7wjmvRNLN+UPZDutMslOZHBoifBve+haqi6gt
-L6poTHrsLyu5GI4mJ93y7X2bkcX/2S88/WJpUXxPBeUnpnzE0c5z6MQNvP8Qs1ZaQi5EWmE4+E6I
-DoZ+qv87DSABEJys69X/PSdrKepWeLJ4OsbuxENril94ZiAXZDUJssX9+j337w7QS0B6rhXzT+5z
-V09P0sqxi1vZS6misLr5GJb4WSLJWLHwUx8KWwpSbbg7cP1+lcQZlQmOIOA/TJtgN4VMRkhkFRUL
-MF5D+32JcbGkHPW1itg00kz9JBUSRXpTf9UnhNVrKgYE/uIWTqinUoEO0gDadn80PTI8OKEx1MKT
-PsHzBPgGnoXHqe7GAGb+LuOaS+z3KfoalVlZvdR3OAltHyzCvu5iDnjhiPFknuJ6h+KnXHaV3NEF
-Qlv5jFcqrnXmCaMJM8G+/q6z6kthdDzcd79McFIGryeLYCSlGCbmTyQzYBGoBPZ/XgA6IRzVskur
-uN3fn1TpS4q5vEIpS/W66XY0fXDCIPN5ssO3eIFoJGSMNGLzaJxkPUjZ3laXhmzVYPMfcH9sfgQC
-U8UhcXuOC01glYVqy+GsUTVrnklrlAbsvPffp7DAJInr+PrfhO4wNvIUtA5vvn/GRgvidhyn7UkF
-P/4ts/tgnmPEUiPViER9faYWp53zb86FNoPvoark4fa/plISJ8j0my4DQMihCktrtG6qQloh/p7N
-a0yArh+4+lHZrkjtZk0Jc2TG7GNuibXvPwRD7xzpUQt9KyEB9nHWKZYbVIfwjcP6KPw1H2qu+Kmq
-H+2kBRfg04zh33yufBksa/W56F6qloWWj/yS1Nh8SV4Q/f9DVaJOieCIpQh219VBBUgRM6oDInqM
-EXQf8eTsug4H34Lsvw2LsyQ1bkip9biIJAlIAvcr8QS2Bo9n9bB5X3E9cuf+H5g1sDoFHhGQHW/Y
-inFnpEIxYG6Yjxd+vhfbwM3AuaPiqlvftMbNiJihmH54Cy+InLyC0EST/u8LjAp60V4AQQ4ePl1+
-djaOZWTHY4cESq2XrH6FKTZ9IBQxKTRrnGkWPpeEsSl0/6C8UsWkcFeVroLGE1taRpRbqxXDbIha
-v+VAfMpAAROVcko2fjo10ysys2LgmxuFZnEVX0dyZnuJS3hAPouhViyXtpiKaTLPkdFvopd4CwKH
-606IuunwpMU/oCPC7EoihdF72Vie6iBQpvK7v2q5elIOWnmOmWjw8x5Yhq0cGavcjP3/ZKRoKFOP
-LsSOHnjxmue9026BNuK6yjUP9brFxcT4tTjziX3PLe67R4Mn2KIYpHEn81roBmjbEVAhEQvN3n/h
-gF+mbFzedT9t5FzLT8POZ82z4xw0wO50f3jwTtaoJwmngMEg5qpbji1MteXe+SqjBg2BSpBFjo/H
-E2TCu5HqMbI6fiphJsjFknJpslUAvgW34h0Wz0XNnMfaG536kV741pbChVLRCWXX7jeneREjxHJ2
-oCvrWEMbKzw7+eLVLewj634jB00e/N8om+RRmBDPrO3RB5K20dIJxrsWXNCJBDhiJ0mdo+CK+r/g
-13Dgl17wq0I8ByaP/5aBmYQPy29CtIr5TDnzWzDSWEmea/Om195jMZzM/vrZFNPoMCbkx+qrVYfH
-5ykim0vTpKQJDfPaa0UHfxlXsJZvexdQZ/Bzz0KkzFTXiQKapQpPDytJZtMoLX+hFp6xvapAnHz7
-GBrFhcbO+KYmi44zcfnj6TeRX9vgsg4irF4sBMy1DRuTr/v4AhLry1fHd/jA26eo6Wie7hbi6Nmq
-DM15zGfNX5p58UzU9jtSOjfx7x6tNUa8er1Nel4uDPiId84LYNCeP4FBhQL4bGXLCOEE3gh5x/4k
-y2Ojv+5+Cw/4VYnzVXA9rkHXOSaBqOClFSUqv9tT8WJvHySd5i3EZyBMYMg9VuF5JyxH9I6Kypi+
-sL0zht9BM4/sgVvOaYZ/t5T8Kv+MOrrmFoADO82YhdMnBUqDb6n8WP3eG0Z/Eic/UwIwWw1d+4yX
-93a9UB6rMWy06beuOxCb8DL4mKaMplOQZC9Yz+da61s+KRHT85rd01a+Hop8+6oQwfUYmtctp20h
-WmwDzkA64qCLy9QqoJ5u4EFjU1IVDMVdrsW+TLtUmXR7ilfm8Z6/iwJAmK8dQR3jtuMWlE/Q8IdP
-cEV3f/i74IEFGmaiXqT7Fl9pzUt4fk795IMFeHEG+FitVkr3Zoo4I2fBoYpcKDWfkTnV494gwnW/
-TgcrE40hrx5IKC2pmcLuZI1iB4+zDcs+yeuMsb+MeWBTvtzq3EH5Kt2D
+<?php
+
+/**
+ * This Software is the property of Data Development and is protected
+ * by copyright law - it is NOT Freeware.
+ * http://www.shopmodule.com
+ *
+ * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
+ * @author        D3 Data Development - <support@shopmodule.com>
+ * @link          http://www.oxidmodule.com
+ */
+
+date_default_timezone_set('Europe/Berlin');
+
+/**
+ * Class d3PreCheckInFolder
+ */
+class d3PreCheckInFolder
+{
+    public $sVersion = '5.0.0';
+
+    /**
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->sVersion;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasMinPhpVersion()
+    {
+        $aArgs = func_get_args();
+
+        if (version_compare(phpversion(), $aArgs[0]['version'], '>=')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasMaxPhpVersion()
+    {
+        $aArgs = func_get_args();
+
+        if (version_compare(phpversion(), $aArgs[0]['version'], '<=')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function hasFromToPhpVersion()
+    {
+        $aArgs = func_get_args();
+
+        if ((version_compare(phpversion(), $aArgs[0]['from'], '>=')) && (version_compare(
+                phpversion(),
+                $aArgs[0]['to'],
+                '<'
+            ))
+        ) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasZendLoaderOptimizer()
+    {
+        if ((version_compare(phpversion(), '5.2.0', '>=')
+            && version_compare(phpversion(), '5.2.900', '<')
+            && function_exists('zend_optimizer_version')
+        ) || (
+            version_compare(phpversion(), '5.3.0', '>=')
+            && version_compare(phpversion(), '5.6.900', '<')
+            && function_exists('zend_loader_version')
+        )) {
+            if (function_exists('opcache_get_status')
+                && ($aOpCacheStatus = opcache_get_status())
+                && $aOpCacheStatus['opcache_enabled']
+            ) {
+                return null;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasIonCubeLoader()
+    {
+        if (function_exists('ioncube_loader_version')) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasExtension()
+    {
+        $aArgs = func_get_args();
+
+        if (extension_loaded($aArgs[0]['type'])) {
+            return true;
+        }
+
+        return false;
+    }
+}
+
+/**
+ * @param $mVar
+ */
+function dumpvar($mVar)
+{
+    echo "<pre>";
+    print_r($mVar);
+    echo "</pre>";
+}
+
+if (!isset($_SERVER['REMOTE_ADDR']) || !isset($_SERVER['HTTP_USER_AGENT'])) {
+    $oPreCheck = new d3precheckinfolder;
+    if (isset($_GET['fnc']) && $_GET['fnc']) {
+        $aParams = isset($_GET['params']) ? unserialize(stripslashes(urldecode($_GET['params']))) : array();
+        echo serialize(call_user_func(array($oPreCheck, $_GET['fnc']), $aParams));
+    }
+}
