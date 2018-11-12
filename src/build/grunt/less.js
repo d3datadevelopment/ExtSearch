@@ -54,5 +54,4 @@ module.exports = {
             "../out/src/css/d3extsearch_allthemes.css": "sources/less/styles_allthemes.less"
         }
     }
-
 };

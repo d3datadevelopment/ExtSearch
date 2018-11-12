@@ -15,9 +15,9 @@
                     [{capture name="d3script"}][{strip}]
                         $(document).ready(function () {
                             $('#searchParam').d3extsearchsuggest({
-                                sWaitMessage: '[{$sD3QSWaitMessage|strip|escape:"htmlall":$sCharSet}]',
+                                sWaitMessage: '[{$sD3QSWaitMessage|strip|oxescape:"htmlall":$sCharSet}]',
                                 sParentThemeId: '[{$oModCfg_d3_extsearch->getReferenceThemeId()}]',
-                                sRequestUrl: '[{$oViewConf->getModuleUrl('d3_extsearch')|cat:"public/d3_extsearch_response.php?shp="|cat:$oViewConf->getActiveShopId()|cat:"&"}]',
+                                sRequestUrl: '[{$oViewConf->getModuleUrl('d3_extsearch')|cat:"public/d3_extsearch_response.php?shp="|cat:$oViewConf->getActiveShopId()|cat:"&"}]'
                             });
                         });
                     [{/strip}][{/capture}]

@@ -103,7 +103,7 @@
                         [{/if}]
 
                         [{if $useMultipleObjectTypes && $oContentHitList|@count}]
-                            [{block name="d3extsearch_suggest_listitem_content"}]
+                            [{block name="d3extsearch_suggest_list_content"}]
                                 <div class="d3extsearch_suggest contentbox" id="d3extsearch_suggest_contentbox">
                                     <h3>[{oxmultilang ident="SERVICES"}]</h3>
                                     [{foreach name="contenthitlist" from=$oContentHitList item="oHit"}]

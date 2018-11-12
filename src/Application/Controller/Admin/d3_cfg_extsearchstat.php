@@ -26,8 +26,8 @@ class d3_cfg_extsearchstat extends d3_cfg_mod_
      */
     public function render()
     {
-        $this->addTplParam('sListClass', 'd3_cfg_extsearchstat_list');
-        $this->addTplParam('sMainClass', 'd3tbclextsearch_settings_statistik');
+        $this->addTplParam('sListClass', d3_cfg_extsearchstat_list::class);
+        $this->addTplParam('sMainClass', d3_cfg_extsearch_Statistik::class);
         return parent::render();
     }
 }

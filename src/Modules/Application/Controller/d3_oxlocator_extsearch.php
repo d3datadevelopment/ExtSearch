@@ -175,7 +175,7 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
             if ($oLocatorTarget->showSorting()) {
                 $oIdList->setCustomSorting($oLocatorTarget->getSortingSql($oLocatorTarget->getSortIdent()));
             }
-            $oIdList->loadVendorIds($sVendorId);
+            $oIdList->loadVendorIDs($sVendorId);
 
             //page number
             $iPage = $this->_findActPageNumber($oLocatorTarget->getActPage(), $oIdList, $oCurrArticle);
@@ -223,7 +223,7 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
             if ($oLocatorTarget->showSorting()) {
                 $oIdList->setCustomSorting($oLocatorTarget->getSortingSql($oLocatorTarget->getSortIdent()));
             }
-            $oIdList->loadManufacturerIds($sManufacturerId);
+            $oIdList->loadManufacturerIDs($sManufacturerId);
 
             //page number
             $iPage = $this->_findActPageNumber($oLocatorTarget->getActPage(), $oIdList, $oCurrArticle);

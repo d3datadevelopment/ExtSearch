@@ -13,7 +13,7 @@
             </h3>
             <div class="content list">
                 <!--
-            [{* Darstellung als Detaileinträge untereinander
+            [{* Darstellung als Detaileintraege untereinander
                    <ul style="margin: 2px;">
                        [{foreach from=$oView->d3GetCMSList() item="oContent"}]
                            [{assign var="TitleCharCount" value=$oContent->oxcontents__oxtitle->value|count_characters}]

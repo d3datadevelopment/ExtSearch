@@ -389,7 +389,6 @@ class d3_ext_search extends d3_ext_search_parent
      * @throws DatabaseConnectionException
      * @throws DatabaseErrorException
      * @throws StandardException
-     * @throws \OxidEsales\Eshop\Core\Exception\DatabaseException
      * @throws d3ShopCompatibilityAdapterException
      * @throws d3_cfg_mod_exception
      */
@@ -623,7 +622,7 @@ class d3_ext_search extends d3_ext_search_parent
      */
     public function isHitForIndexLetter($sLetter)
     {
-        $oIndexList = $this->d3getIndexList();
+        $oIndexList = $this->d3GetIndexList();
         if ($sLetter == 'all'
             || (
                 $oIndexList->count()

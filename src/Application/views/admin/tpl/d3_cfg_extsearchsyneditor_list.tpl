@@ -17,7 +17,7 @@
     {
         var oTransfer = parent.edit.document.getElementById("transfer");
         oTransfer.oxid.value=sID;
-        oTransfer.cl.value='[{if $actlocation}][{$actlocation|escape:"javascript"}][{else}][{$default_edit|escape:"javascript"}][{/if}]';
+        oTransfer.cl.value='[{if $actlocation}][{$actlocation|oxescape:"javascript"}][{else}][{$default_edit|oxescape:"javascript"}][{/if}]';
 
         //forcing edit frame to reload after submit
         top.forceReloadingEditFrame();

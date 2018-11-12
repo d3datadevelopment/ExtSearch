@@ -370,6 +370,7 @@
                                             <option value="counter"[{if $edit->getEditValue('sExtSearch_orderAttributeList') == 'counter'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_COUNT"}]</option>
                                             <option value="oxpos"[{if $edit->getEditValue('sExtSearch_orderAttributeList') == 'oxpos'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_POS"}]</option>
                                         </select>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>

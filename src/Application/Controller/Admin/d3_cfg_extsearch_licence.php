@@ -16,6 +16,7 @@
 namespace D3\Extsearch\Application\Controller\Admin;
 
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_licence;
+use D3\ModCfg\Application\Model\Log\d3log;
 
 class d3_cfg_extsearch_licence extends d3_cfg_mod_licence
 {
@@ -23,7 +24,7 @@ class d3_cfg_extsearch_licence extends d3_cfg_mod_licence
 
     protected $_hasNewsletterForm = false;
 
-    protected $_sLogType = 2;
+    protected $_sLogType = d3log::CRITICAL;
 
     protected $_sBlogFeed = "http://blog.oxidmodule.com/feeds/categories/9-erweiterte-Suche.rss";
     

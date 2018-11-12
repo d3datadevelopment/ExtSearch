@@ -187,8 +187,8 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
      */
     public function d3_browser_suggest()
     {
-        // zwingend, um die Gültigkeit des Dokuments sicherzustellen
-        // fängt Fehlausgaben anderer Module ab
+        // zwingend, um die Gueltigkeit des Dokuments sicherzustellen
+        // faengt Fehlausgaben anderer Module ab
         ob_end_clean();
 
         // we don't require a complete object
