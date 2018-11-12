@@ -4,8 +4,11 @@
         [{oxmultilang ident="D3_EXTSEARCH_EXT_PRICECATS"}]:
     </label><br>
     [{if $oView->d3HasjQuerySlider() && $oView->d3CanShowPriceFilterSlider()}]
+        [{assign var="random" value=1|rand:1000}]
+        [{assign var="sliderIdDefault" value="PriceFilter"|cat:$random}]
+        [{assign var="sliderId" value=$sliderId|default:$sliderIdDefault}]
         [{include file="d3_ext_search_filter_jqslider.tpl"
-            sliderId="PriceFilter"
+            sliderId=$sliderId
             formId="d3searchfilterform"
             aPriceLimits=$aPriceLimits
             aPriceSteps=$aPriceSteps

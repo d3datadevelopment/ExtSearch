@@ -24,8 +24,8 @@ class d3_cfg_extsearch extends d3_cfg_mod_
      */
     public function render()
     {
-        $this->addTplParam('sListClass', 'd3_cfg_extsearch_list');
-        $this->addTplParam('sMainClass', 'd3_cfg_extsearch_main');
+        $this->addTplParam('sListClass', d3_cfg_extsearch_list::class);
+        $this->addTplParam('sMainClass', d3_cfg_extsearch_main::class);
 
         return parent::render();
     }

@@ -25,6 +25,7 @@ use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use Doctrine\DBAL\DBALException;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Exception\DatabaseException;
 use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
@@ -120,6 +121,11 @@ class d3_cfg_extsearchsyneditor_manage extends d3_cfg_mod_main
         $this->setEditObjectId($oTerm->getId());
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseException
+     */
     public function savesynonym()
     {
         $oTerm = oxNew(d3_extsearch_term::class);
@@ -156,6 +162,8 @@ class d3_cfg_extsearchsyneditor_manage extends d3_cfg_mod_main
 
     /**
      * @return mixed
+     * @throws DBALException
+     * @throws DatabaseConnectionException
      */
     public function getNextSynsetId()
     {
@@ -172,6 +180,11 @@ class d3_cfg_extsearchsyneditor_manage extends d3_cfg_mod_main
         return ord($binValue);
     }
 
+    /**
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     */
     public function searchSynonymLists()
     {
         $oSemantic      = oxNew(d3_semantic::class);

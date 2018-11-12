@@ -66,6 +66,8 @@ class d3_cfg_extsearch_Statistik extends d3_cfg_mod_main
 
     /**
      * @return array
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
      */
     protected function _getAvailableLogTime()
     {

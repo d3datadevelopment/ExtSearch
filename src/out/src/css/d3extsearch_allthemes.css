@@ -476,25 +476,32 @@ body .d3_extsearch_navigation.d3theme_flow.d3sidebar #d3searchfilterform .item {
   padding-left: 15px;
   padding-right: 15px;
 }
-body .d3_extsearch_navigation.d3theme_flow.d3sidebar #d3searchfilterform .item {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 @media (min-width: 768px) {
+  body .d3_extsearch_navigation.d3theme_flow.d3sidebar #d3searchfilterform .item {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+@media (min-width: 768px) and (min-width: 768px) {
   body .d3_extsearch_navigation.d3theme_flow.d3sidebar #d3searchfilterform .item {
     float: left;
     width: 50%;
   }
 }
-body .d3_extsearch_navigation.d3theme_flow.d3sidebar #d3searchfilterform .item {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 @media (min-width: 992px) {
+  body .d3_extsearch_navigation.d3theme_flow.d3sidebar #d3searchfilterform .item {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  body .xajax_resp_flow.suggestVisible {
+    display: block;
+  }
+}
+@media (min-width: 992px) and (min-width: 992px) {
   body .d3_extsearch_navigation.d3theme_flow.d3sidebar #d3searchfilterform .item {
     float: left;
     width: 100%;

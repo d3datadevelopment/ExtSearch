@@ -59,6 +59,8 @@ namespace D3\Extsearch\Modules\Application\Model
     class d3_oxrssfeed_extsearch_parent extends \OxidEsales\Eshop\Application\Model\RssFeed {}
 
     class d3_oxshop_extsearch_parent extends \OxidEsales\Eshop\Application\Model\Shop {}
+
+    class d3_basemodel_extsearch_parent extends \OxidEsales\Eshop\Core\Model\BaseModel {}
 }
 
 namespace D3\Extsearch\Modules\Core

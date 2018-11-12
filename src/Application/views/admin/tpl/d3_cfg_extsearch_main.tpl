@@ -207,7 +207,7 @@
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_ShowPopup]" value="0">
                                         <input id="ShowPopup" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_ShowPopup]" value='1' [{if $edit->getEditValue('blExtSearch_ShowPopup') == 1}]checked[{/if}]>
-                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SHOWPOPUP_DESC"}]
+                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SHOW_POPUP_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
@@ -317,6 +317,9 @@
                                     </b>
                                 </a>
                                 <dl>
+                                    <dt style="width: 90%; float: none;">[{oxmultilang ident="D3_EXTSEARCH_MAIN_PHONETICS_DESC"}]</dt>
+                                </dl>
+                                <dl>
                                     <dt>
                                         <label for="similarSearch">[{oxmultilang ident="D3_EXTSEARCH_MAIN_SIMILARSEARCH"}]</label>
                                     </dt>
@@ -380,6 +383,9 @@
                                     </b>
                                 </a>
                                 <dl>
+                                    <dt style="width: 90%; float: none;">[{oxmultilang ident="D3_EXTSEARCH_MAIN_SEMANTICS_DESC"}]</dt>
+                                </dl>
+                                <dl>
                                     <dt>
                                         <label for="semanticSearch">[{oxmultilang ident="D3_EXTSEARCH_MAIN_SEMANTICSEARCH"}]</label>
                                     </dt>
@@ -420,6 +426,7 @@
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_catSearch]" value="0">
                                         <input id="catSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_catSearch]" value='1' [{if $edit->getEditValue('blExtSearch_catSearch') == 1}]checked[{/if}]>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_CATEGORY_SEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
@@ -475,6 +482,7 @@
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_manufacturerSearch]" value="0">
                                         <input id="manufacturerSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_manufacturerSearch]" value='1' [{if $edit->getEditValue('blExtSearch_manufacturerSearch') == 1}]checked[{/if}]>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_MANUFACTURER_SEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
@@ -672,6 +680,9 @@
                                         [{oxmultilang ident="D3_EXTSEARCH_MAIN_INDEX"}]
                                     </b>
                                 </a>
+                                <dl>
+                                    <dt style="width: 90%; float: none;">[{oxmultilang ident="D3_EXTSEARCH_MAIN_INDEX_DESC"}]</dt>
+                                </dl>
                                 <dl>
                                     <dt>
                                         <input id="articlesPerTick" type="text" class="editinput" size="4" maxlength="3" name="value[iExtSearch_articlesPerTick]" value="[{$oView->getArticleCountPerTick()}]">

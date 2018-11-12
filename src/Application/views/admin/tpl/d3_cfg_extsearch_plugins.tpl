@@ -153,7 +153,7 @@
             <input type="hidden" name="editval[oxid]" value="[{$oxid}]">
 
             <span class="d3modcfg_btn d3color-blue">
-                [{assign var="escapedCl" value=$oViewConf->getActiveClassName()|escape:"url"}]
+                [{assign var="escapedCl" value=$oViewConf->getActiveClassName()|oxescape:"url"}]
                 [{assign var="clParam" value="cl="|cat:$escapedCl}]
                 <input type="submit" name="save" value="[{oxmultilang ident="D3_EXTSEARCH_PLUGIN_STARTGENERATING"}]" onclick="window.open('[{$oViewConf->getSelfLink()}]&sid=[{$shop->sid}]&[{$clParam}]&fnc=generatePluginFile', 'generate_plugin', 'width=300, height=300, left=100'); return false;">
             </span>

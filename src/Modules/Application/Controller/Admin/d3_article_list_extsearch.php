@@ -45,7 +45,9 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
         $sRet = parent::render();
 
         if ($this->_d3GetSet()->getValue('blExtSearch_adminShowVariants')) {
-            if (!in_array('oxvarselect', $this->getViewDataElement("pwrsearchfields"))) {
+            if (false == is_array($this->getViewDataElement("pwrsearchfields")) ||
+                !in_array('oxvarselect', $this->getViewDataElement("pwrsearchfields"))
+            ) {
                 $aSearchFields   = $this->getViewDataElement("pwrsearchfields");
                 $aSearchFields[] = 'oxvarselect';
                 $this->addTplParam("pwrsearchfields", $aSearchFields);
@@ -89,7 +91,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
     {
         $sSql = parent::_buildSelectString($oListObject);
 
-        // wenn für Admin Variantensuche
+        // wenn fÃ¼r Admin Variantensuche
         if ($this->_d3GetSet()->isActive()
             && $this->_d3GetSet()->getValue('blExtSearch_adminShowVariants')
             && $this->_d3IsSearch()
@@ -177,7 +179,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
     {
         $sQ = parent::_prepareWhereQuery($aWhere, $sQ);
 
-        // wenn für Admin Variantensuche
+        // wenn fÃ¼r Admin Variantensuche
         if ($this->_d3GetSet()->isActive()
             && $this->_d3GetSet()->getValue('blExtSearch_adminShowVariants')
             && $this->_d3IsSearch()
@@ -231,7 +233,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
         $sType  = false;
         $sValue = false;
 
-        // wenn für Admin Variantensuche
+        // wenn fÃ¼r Admin Variantensuche
         if ($this->_d3GetSet()->isActive()
             && $this->_d3GetSet()->getValue('blExtSearch_adminShowVariants')
             && $this->_d3IsSearch()

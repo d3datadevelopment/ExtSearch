@@ -81,7 +81,7 @@ class d3_xlist_extsearch
      */
     public function render()
     {
-        if ($this->_d3UseAlistFilters()) {
+        if ($this->d3GetSet()->isActive() && $this->_d3UseAlistFilters()) {
             $this->addSideBar();
             $this->_d3AddAllTplParams();
         }
@@ -501,7 +501,7 @@ class d3_xlist_extsearch
                 $sRet .= $sSeparator;
             }
 
-            $blExcludeShopHandledSingleParameters = $this->isControllerClass(searchController::class) ? true : false;
+            $blExcludeShopHandledSingleParameters = $this->isControllerClass(SearchController::class) ? true : false;
 
             /** @var d3Filter $oFilter */
             foreach ($this->d3GetOwnSearchHandler()->getFilterList() as $oFilter) {

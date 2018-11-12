@@ -432,6 +432,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         );
         $aAllList = array();
         $aUsedFields = array();
+        $aFieldNames = array();
 
         /** @var $smarty \Smarty */
         $smarty = Registry::get(UtilsView::class)->getSmarty();
@@ -453,12 +454,17 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
                 foreach (array_keys($aAllList[$aAllKeys[0]]) as $sFieldName) {
                     if (in_array(strtolower($sFieldName), $aAllowedFields) || strstr($sFieldName, '_IN_')) {
                         $aUsedFields[] = $sFieldName;
+                        if (strstr($sFieldName, '_IN_') && strstr($sFieldName, '@@')) {
+                            $sFieldName = $this->translateAnalysisFields($sFieldName);
+                        }
+                        $aFieldNames[] = $sFieldName;
                     }
                 }
             }
         }
 
         $smarty->assign('aUsedFields', $aUsedFields);
+        $smarty->assign('aFieldNames', $aFieldNames);
         $smarty->assign('aAllList', $aAllList);
 
         $sTplFile = 'd3_cfg_extsearch_main_sortanalysis.tpl';
@@ -471,6 +477,18 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         Registry::getConfig()->pageClose();
         $outputManager->flushOutput();
         die();
+    }
+
+    public function translateAnalysisFields($sFieldName)
+    {
+        $aFieldName = explode('@@', $sFieldName);
+        $searchParam = $aFieldName[0];
+        $sTranslationIdent = "D3_EXTSEARCH_MAIN_SORTDEBUG" . $aFieldName[1];
+        $sFieldName = $aFieldName[2];
+
+        $sTranslation = sprintf(Registry::getLang()->translateString($sTranslationIdent), $searchParam, $sFieldName);
+
+        return $sTranslation;
     }
 
     /**

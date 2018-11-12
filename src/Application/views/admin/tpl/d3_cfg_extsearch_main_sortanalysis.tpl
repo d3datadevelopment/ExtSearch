@@ -21,8 +21,8 @@
                 [{capture name="fieldNameLine"}]
                     <tr>
                         <td style='font-weight: bold; padding: 2px; border: 1px solid black; '>No:</td>
-                        [{foreach from=$aUsedFields item="sUsedField"}]
-                            <td style='font-weight: bold; padding: 2px; border: 1px solid black; '>[{$sUsedField}]</td>
+                        [{foreach from=$aFieldNames item="sFieldName"}]
+                            <td style='font-weight: bold; padding: 2px; border: 1px solid black; '>[{$sFieldName}]</td>
                         [{/foreach}]
                     </tr>
                 [{/capture}]

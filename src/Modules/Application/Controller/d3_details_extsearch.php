@@ -41,6 +41,12 @@ class d3_details_extsearch extends d3_details_extsearch_parent
 
     /**
      * @return array
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
      */
     public function getNavigationParams()
     {
