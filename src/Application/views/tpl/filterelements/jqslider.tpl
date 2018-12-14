@@ -24,6 +24,7 @@
             infoMaxId:  '[{$priceInfoMaxId}]',
             fieldMinId: '[{$fieldMinId}]',
             fieldMaxId: '[{$fieldMaxId}]',
+            precision:  [{$precision}]
         });
     [{/strip}][{/capture}]
     [{oxscript add=$smarty.capture.d3script}]

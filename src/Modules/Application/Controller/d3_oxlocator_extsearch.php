@@ -436,8 +436,9 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
      */
     private function _d3UseAlistFilters()
     {
-        return ($this->_d3GetSet()->getLicenseConfigData(d3_extsearch_conf::SERIAL_BIT_HAS_FILTERS_IN_ALIST, false) || $this->_d3GetSet()->isDemo()) //
-            && $this->_d3GetSet()->getValue('blExtSearch_useAListFilter');
+        return ($this->_d3GetSet()->getLicenseConfigData(d3_extsearch_conf::SERIAL_BIT_HAS_FILTERS_IN_ALIST, false)
+                || $this->_d3GetSet()->isDemo())
+            && $this->_d3GetSet()->getValue(d3_extsearch_conf::CONF_USEFILTERSINLISTS);
     }
 
     /**

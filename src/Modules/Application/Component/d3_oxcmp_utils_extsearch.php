@@ -16,6 +16,7 @@
 namespace D3\Extsearch\Modules\Application\Component;
 
 use D3\Extsearch\Application\Model\d3_search;
+use D3\Extsearch\Core\d3_extsearch_conf;
 use D3\ModCfg\Application\Model\d3utils;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
 use D3\ModCfg\Application\Model\d3filesystem;
@@ -82,7 +83,7 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
                 /** @var $oParentView BaseController */
                 $oParentView = $this->getParent();
                 $oParentView->addTplParam('blD3ShowIAS', $this->_d3GetSet()->getValue('blExtSearch_ShowIAS'));
-                $oParentView->addTplParam('blD3EmptySearch', $this->_d3GetSet()->getValue('blExtSearch_emptySearch'));
+                $oParentView->addTplParam('blD3EmptySearch', $this->_d3GetSet()->getValue(d3_extsearch_conf::CONF_ALLOWEMPTYSEARCHSTR));
                 $oParentView->addTplParam('blD3ShowSearchPopup', $this->_d3GetSet()->getValue('blExtSearch_ShowPopup'));
                 $oParentView->addTplParam('sSearchPluginURL', $this->_d3GetSearchPluginUrl());
                 $oParentView->addTplParam('oD3ExtSearchCmpUtils', $this);
@@ -111,7 +112,7 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
                 'blSearchPluginInstall',
                 $this->_d3GetSet()->getValue('blExtSearch_enablePluginBrowserInstall')
             );
-            $oParentView->addTplParam('blOwnFormFields', $this->_d3GetSet()->getValue('blExtSearch_ownFormFields'));
+            $oParentView->addTplParam('blOwnFormFields', $this->_d3GetSet()->getValue(d3_extsearch_conf::CONF_CUSTOMFILTER_USE));
         }
 
         if (!$this->isAdmin()
@@ -127,7 +128,7 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
 
         if (!$this->isAdmin() //
             && $this->_d3GetSet()->isActive() //
-            && $this->_d3GetSet()->getValue('blExtSearch_useAListFilter')
+            && $this->_d3GetSet()->getValue(d3_extsearch_conf::CONF_USEFILTERSINLISTS)
         ) {
             /** @var $oParentView FrontendController */
             $oParentView = $this->getParent();

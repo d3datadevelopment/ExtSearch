@@ -41,7 +41,7 @@ $aModule = array(
         'en' => '',
     ),
     'thumbnail'   => 'picture.png',
-    'version'     => '6.1.3.0',
+    'version'     => '6.2.0.0',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'http://www.oxidmodule.com/',
@@ -85,6 +85,12 @@ $aModule = array(
         'd3_cfg_extsearchlog'               => \D3\Extsearch\Application\Controller\Admin\d3_cfg_extsearchlog::class,
         'd3_cfg_extsearchlog_list'          => \D3\Extsearch\Application\Controller\Admin\d3_cfg_extsearchlog_list::class,
 
+        'd3_attribute_extsearch'            => \D3\Extsearch\Application\Controller\Admin\d3_attribute_extsearch::class,
+        'd3_attribute2category_extsearch_ajax'      => \D3\Extsearch\Application\Controller\Admin\Popups\d3_attribute2category_extsearch_ajax::class,
+        'd3_attribute2manufacturer_extsearch_ajax'  => \D3\Extsearch\Application\Controller\Admin\Popups\d3_attribute2manufacturer_extsearch_ajax::class,
+        'd3_attribute2vendor_extsearch_ajax'        => \D3\Extsearch\Application\Controller\Admin\Popups\d3_attribute2vendor_extsearch_ajax::class,
+        'd3_category_extsearch'             => \D3\Extsearch\Application\Controller\Admin\d3_category_extsearch::class,
+
         'd3_extsearch_response'             => \D3\Extsearch\Application\Controller\d3_extsearch_response::class,
     ),
     'templates'   => array(
@@ -101,6 +107,10 @@ $aModule = array(
         'd3_extsearch_report_mostsearches.tpl'      => 'd3/extsearch/Application/views/admin/tpl/reports/d3_extsearch_report_mostsearches.tpl',
         'd3_extsearch_plugin.tpl'                   => 'd3/extsearch/Application/views/admin/tpl/d3_extsearch_plugin.tpl',
         'd3_extsearch_popup.tpl'                    => 'd3/extsearch/Application/views/admin/tpl/d3_extsearch_popup.tpl',
+
+        'd3_attribute_extsearch.tpl'                => 'd3/extsearch/Application/views/admin/tpl/d3_attribute_extsearch.tpl',
+        'd3_attribute_extsearch_ajax.tpl'           => 'd3/extsearch/Application/views/admin/tpl/popups/d3_attribute_extsearch_ajax.tpl',
+        'd3_category_extsearch.tpl'                 => 'd3/extsearch/Application/views/admin/tpl/d3_category_extsearch.tpl',
 
         'd3_ext_search_suggestsearch.tpl'           => 'd3/extsearch/Application/views/tpl/d3_ext_search_suggestsearch.tpl',
 
@@ -123,6 +133,7 @@ $aModule = array(
         'd3_ext_search_filter_jqslider.tpl'         => 'd3/extsearch/Application/views/tpl/filterelements/jqslider.tpl',
 
         'd3_ddeovisualcmsadmin_extsearch.tpl'       => 'd3/extsearch/Application/views/tpl/d3_ddoevisualcmsadmin_extsearch.tpl',
+        'd3_togglegroup_extsearch.tpl'              => 'd3/extsearch/Application/views/admin/tpl/d3_togglegroup_extsearch.tpl',
     ),
     'events'      => [
         'onActivate'    => '\D3\Extsearch\setup\Events::onActivate',
@@ -275,6 +286,7 @@ $aModule = array(
         'd3/extsearch/setup/d3_extsearch_semantic_synset.php',
         'd3/extsearch/setup/d3_extsearch_semantic_term.php',
         'd3/extsearch/setup/d3_extsearch_statisticlog.php',
+        'd3/extsearch/setup/d3_extsearch_attribute2object.php',
 
         'd3/extsearch/Application/Controller/d3_extsearch_response.php',
         'd3/extsearch/Application/Controller/d3_xlist_extsearch.php',
@@ -329,6 +341,7 @@ $aModule = array(
         'd3/extsearch/Modules/Application/Controller/d3_rss_extsearch.php',
         'd3/extsearch/Modules/Application/Controller/Admin/d3_article_list_extsearch.php',
         'd3/extsearch/Modules/Application/Controller/Admin/d3_ddoevisualcmsadmin_extsearch.php',
+        'd3/extsearch/Application/Controller/Admin/Popups/d3_attribute_extsearch_ajax_abstract.php',
         'd3/extsearch/Modules/Application/Controller/d3_ext_search.php',
         'd3/extsearch/Modules/Application/Model/d3_oxsearch_extsearch.php',
         'd3/extsearch/Modules/Application/Model/d3_oxarticlelist_extsearch.php',
@@ -337,6 +350,34 @@ $aModule = array(
         'd3/extsearch/Modules/Core/d3_oxutilsview_extsearch.php',
 
         'd3/extsearch/setup/Events.php',
+        
+        'd3/extsearch/tests/d3extsearch_config.php',
+        'd3/extsearch/tests/additional.inc.php',
+        'd3/extsearch/tests/integration/assignedFilters/nofilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/d3ExtsearchFilterQueriesIntegrationTestCase.php',
+        'd3/extsearch/tests/integration/assignedFilters/categoryMultiFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/categorySingleFilterTest.php',
+        'd3/extsearch/tests/integration/d3ExtsearchIntegrationTestCase.php',
+        'd3/extsearch/tests/integration/assignedFilters/manufacturerSingleFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/manufacturerMultiFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/vendorSingleFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/vendorMultiFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/fieldLikeFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/fieldIsFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/priceSliderFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/priceArrayFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/indexFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/allSingleFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/allMultiFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/attributeSingleFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/attributeMultiFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/attributeFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/categoryFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/indexFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/manufacturerFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/priceFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/vendorFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/d3ExtsearchFilterlistsIntegrationTestCase.php',
     ),
     'd3SetupClasses'    => array(
         ModuleSetup\d3_extsearch_update::class,
