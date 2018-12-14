@@ -5,7 +5,7 @@
  * is a violation of the license agreement and will be prosecuted by
  * civil and criminal law.
  * http://www.shopmodule.com
- * 
+ *
  * @license
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
  * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
@@ -44,11 +44,17 @@ $( function() {
             sSearchParamName: "searchParam",
             sActClassName: "item_act",
             sInactClassName: "item_inact",
-            sActiveElementStyleDisplay: "block",
+
+            sActiveElementClassName: null,        // apply css class
+            blSetActiveElementDimensions: true,   // use calculated or applied inline formats
             sActiveElementStyleTop: null,
+            sActiveElementStyleTopImportant: "",  // should "" or "important"
             sActiveElementStyleLeft: null,
+            sActiveElementStyleLeftImportant: "",  // should "" or "important"
             blAutomatedActiveElementStyleWidth: false,
             sActiveElementStyleWidth: null,
+            sActiveElementStyleWidthImportant: "",  // should "" or "important"
+
             iScrollTopOffset: 29,
             blEnableLeftRightNavigation: true,
             blToggleLeftRightDirection: false
@@ -261,11 +267,12 @@ $( function() {
         },
 
         handleEnterKeyWithoutSelectedItem: function () {
+            var self    = this;
             var options = this.options;
 
             if (options.isSend) {
                 window.clearTimeout(options.isSend);
-                options.oAjaxResponseElement.hide();
+                self.hideSuggest();
             }
             var searchFormElement = $("#" + options.sSearchFormId);
             searchFormElement.off("submit");
@@ -273,8 +280,9 @@ $( function() {
         },
 
         handleEscapeKey: function () {
+            var self    = this;
             var options = this.options;
-            options.oAjaxResponseElement.hide();
+            self.hideSuggest();
         },
 
         handleOtherKeys: function () {
@@ -334,37 +342,65 @@ $( function() {
         },
 
         setResponseElementStyle: function () {
+            var self    = this;
             var options = this.options;
             var el = this.element;
 
-            function ResponseStyles() {
-                this.top = options.sActiveElementStyleTop ?
-                    options.sActiveElementStyleTop :
-                    (el.offset().top + ( el.height() + 5 ) + "px");
-                this.left = options.sActiveElementStyleLeft ?
-                    options.sActiveElementStyleLeft :
-                    (el.offset().left + "px");
-                if (options.blAutomatedActiveElementStyleWidth) {
-                    this.width = options.sActiveElementStyleWidth ?
-                        options.sActiveElementStyleWidth :
-                        (el.width() + "px");
+            function setResponseStyles() {
+                if (options.sActiveElementClassName) {
+                    options.oAjaxResponseElement.addClass(options.sActiveElementClassName);
+                }
+
+                if (options.blSetActiveElementDimensions) {
+                    options.oAjaxResponseElement.get(0).style.setProperty(
+                        'top',
+                        options.sActiveElementStyleTop ?
+                            options.sActiveElementStyleTop :
+                            (el.offset().top + (el.height() + 5) + "px"),
+                        options.sActiveElementStyleTopImportant
+                    );
+                    options.oAjaxResponseElement.get(0).style.setProperty(
+                        'left',
+                        options.sActiveElementStyleLeft ?
+                            options.sActiveElementStyleLeft :
+                            (el.offset().left + "px"),
+                        options.sActiveElementStyleLeftImportant
+                    );
+                    if (options.blAutomatedActiveElementStyleWidth) {
+                        options.oAjaxResponseElement.get(0).style.setProperty(
+                            'width',
+                            options.sActiveElementStyleWidth ?
+                                options.sActiveElementStyleWidth :
+                                (el.width() + "px"),
+                            options.sActiveElementStyleWidthImportant
+                        );
+                    }
                 }
             }
 
-            options.oAjaxResponseElement.show().css(new ResponseStyles()).click(function(event){   // required to prevent close on inside click
+            setResponseStyles();
+            this.showSuggest();
+            options.oAjaxResponseElement.click(function(event){   // required to prevent close on inside click
                 event.stopPropagation();
             });
             this.element.click(function(event) {
                 event.stopPropagation();
             });
             $("body").click(function() {
-                options.oAjaxResponseElement.hide();
+                self.hideSuggest();
             });
             $("#" + options.sCloseBtnId).click(function(event) {
                 event.stopPropagation();
-                options.oAjaxResponseElement.hide();
+                self.hideSuggest();
             });
+        },
 
+        showSuggest: function () {
+            this.options.oAjaxResponseElement.addClass('suggestVisible');
+        },
+
+        hideSuggest: function () {
+            this.options.oAjaxResponseElement.removeClass('suggestVisible');
         },
 
         getResultItemListElement: function () {

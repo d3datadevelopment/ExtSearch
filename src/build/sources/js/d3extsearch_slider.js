@@ -20,7 +20,8 @@
             fieldMaxId: "d3extsearch_PriceFilterfieldMaxId",
             infoMinId:  "d3extsearch_PriceFilterPriceInfoMinId",
             infoMaxId:  "d3extsearch_PriceFilterPriceInfoMaxId",
-            formId:     "d3searchfilterform"
+            formId:     "d3searchfilterform",
+            precision:  100,
         },
 
         _create: function ()
@@ -43,13 +44,13 @@
                                 $(el).slider(
                                     "option",
                                     "values"
-                                )[0] / 100
+                                )[0] / options.precision
                             );
                             $("#" + options.infoMaxId).html(
                                 $(el).slider(
                                     "option",
                                     "values"
-                                )[1] / 100
+                                )[1] / options.precision
                             );
                         },
                         change: function (e, ui) {
@@ -57,25 +58,25 @@
                                 $(el).slider(
                                     "option",
                                     "values"
-                                )[0] / 100
+                                )[0] / options.precision
                             );
                             $("input#" + options.fieldMaxId).val(
                                 $(el).slider(
                                     "option",
                                     "values"
-                                )[1] / 100
+                                )[1] / options.precision
                             );
                             $("#" + options.infoMinId).html(
                                 $(el).slider(
                                     "option",
                                     "values"
-                                )[0] / 100
+                                )[0] / options.precision
                             );
                             $("#" + options.infoMaxId).html(
                                 $(el).slider(
                                     "option",
                                     "values"
-                                )[1] / 100
+                                )[1] / options.precision
                             );
                             d3_extsearch_popup.popup.load();
                             $("form#" + options.formId).submit();

@@ -631,6 +631,17 @@ class d3_alist_extsearch extends d3_alist_extsearch_parent
     }
 
     /**
+     * @return float|int
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     */
+    public function d3getPricePrecision()
+    {
+        return $this->d3GetXListController()->d3getPricePrecision();
+    }
+
+    /**
      * @return array
      * @throws DBALException
      * @throws DatabaseConnectionException
@@ -698,7 +709,7 @@ class d3_alist_extsearch extends d3_alist_extsearch_parent
         if (null === $this->_blUseAlistFilter) {
             $this->_blUseAlistFilter = $this->d3GetSet()->isActive()
                 && ($this->d3GetSet()->getLicenseConfigData(d3_extsearch_conf::SERIAL_BIT_HAS_FILTERS_IN_ALIST, false) || $this->d3GetSet()->isDemo())
-                && $this->d3GetSet()->getValue('blExtSearch_useAListFilter');
+                && $this->d3GetSet()->getValue(d3_extsearch_conf::CONF_USEFILTERSINLISTS);
         }
         return $this->_blUseAlistFilter;
     }

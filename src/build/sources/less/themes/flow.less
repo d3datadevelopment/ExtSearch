@@ -1,7 +1,13 @@
 @import "flow_xs";
-@import "flow_sm";
-@import "flow_md";
-@import "flow_lg";
+@media (min-width: @screen-sm-min ) {
+    @import "flow_sm";
+}
+@media (min-width: @screen-md-min ) {
+    @import "flow_md";
+}
+@media (min-width: @screen-lg-min ) {
+    @import "flow_lg";
+}
 
 body {
     .d3_extsearch_navigation {

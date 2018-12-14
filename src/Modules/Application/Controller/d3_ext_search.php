@@ -23,6 +23,7 @@ use D3\Extsearch\Application\Model\Filters\d3IndexFilter;
 use D3\Extsearch\Application\Model\Filters\d3ManufacturerFilter;
 use D3\Extsearch\Application\Model\Filters\d3PriceFilter;
 use D3\Extsearch\Application\Model\Filters\d3VendorFilter;
+use D3\Extsearch\Core\d3_extsearch_conf;
 use D3\Extsearch\Modules\Application\Model\d3_oxsearch_extsearch;
 use D3\Extsearch\Modules\Application\Model\d3_oxarticlelist_extsearch;
 use D3\Extsearch\Application\Controller\d3_xlist_extsearch;
@@ -168,7 +169,7 @@ class d3_ext_search extends d3_ext_search_parent
             // if search string is empty and empty string is allowed
             if ($this->isEmptySearch() == true
                 && $sRet == false
-                && $this->d3GetSet()->getValue('blExtSearch_emptySearch')
+                && $this->d3GetSet()->getValue(d3_extsearch_conf::CONF_ALLOWEMPTYSEARCHSTR)
             ) {
                 $this->_d3PerformEmptySearch();
             }
@@ -229,9 +230,9 @@ class d3_ext_search extends d3_ext_search_parent
      */
     protected function _d3CheckForCategoryList()
     {
-        if ($this->d3GetSet()->getValue('blExtSearch_showCatList')
+        if ($this->d3GetSet()->getValue(d3_extsearch_conf::CONF_CATEGORYFILTER_SHOWLIST)
             && ($this->_iAllArtCnt
-                || ($this->d3GetSet()->getValue('blExtSearch_emptySearch')
+                || ($this->d3GetSet()->getValue(d3_extsearch_conf::CONF_ALLOWEMPTYSEARCHSTR)
                     && $this->d3GetSet()->getValue('blExtSearch_catSearch')
                     && $this->d3GetSet()->getValue('sExtSearch_showCatArticles') == 'catinlist'
                 )
@@ -456,7 +457,7 @@ class d3_ext_search extends d3_ext_search_parent
         if (Registry::get(Request::class)->getRequestEscapedParameter('d3avoiddirectshow') == 1
             || (
                 !Registry::get(Request::class)->getRequestParameter('searchparam')
-                && !$this->d3GetSet()->getValue('blExtSearch_emptySearch')
+                && !$this->d3GetSet()->getValue(d3_extsearch_conf::CONF_ALLOWEMPTYSEARCHSTR)
             )
         ) {
             return;
@@ -1322,6 +1323,17 @@ class d3_ext_search extends d3_ext_search_parent
     public function d3HasjQuerySlider()
     {
         return $this->d3GetXListController()->d3HasjQuerySlider();
+    }
+
+    /**
+     * @return float|int
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     */
+    public function d3getPricePrecision()
+    {
+        return $this->d3GetXListController()->d3getPricePrecision();
     }
 
     /**

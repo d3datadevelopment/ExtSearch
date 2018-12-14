@@ -18,14 +18,16 @@
 use D3\Extsearch\Application\Controller\d3_extsearch_response;
 use OxidEsales\Eshop\Core\Registry;
 
-/**
- * Returns shop base path.
- *
- * @return string
- */
-function getShopBasePath()
-{
-    return dirname(__FILE__) . '/../../../../';
+if (!function_exists('getShopBasePath')) {
+    /**
+     * Returns shop base path.
+     *
+     * @return string
+     */
+    function getShopBasePath()
+    {
+        return dirname(__FILE__) . '/../../../../';
+    }
 }
 
 require_once getShopBasePath() . "/bootstrap.php";

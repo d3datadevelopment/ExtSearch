@@ -10,6 +10,7 @@ Diese Modulversion stellt folgende Funktionen zur Verfügung:
     - Listen können ab X Einträgen eingeschränkt werden
     - Listen können bei nur einem Eintrag ausgeblendet werden
     - Kategorien können einzeln von Verwendung ausgeschlossen werden
+    - Nicht-Hauptkategorien können von der Verwendung ausgeschlossen werden (Version 6.2)
     - Filter auch in Kategorien, Hersteller- sowie Markenlisten (Version 5.5)
     - Mehrfachauswahl der zu filternden Listen und Werte (Version 5.6)
 
@@ -62,6 +63,7 @@ Diese Modulversion stellt folgende Funktionen zur Verfügung:
     - Treffer können nach zugeordneten Attributen ausgefiltert werden (Version 3.7)
     - Filter auch in Kategorien, Hersteller- sowie Markenlisten (Version 5.5)
     - Mehrfachauswahl der zu filternden Attributen und Werten (Version 5.1)
+    - filterbare Attribute können Kategorie-, Hersteller- und Lieferantenspezifisch aktiviert werden (Version 6.2)
 
 - Preisspannenselektion möglich (Version 3.9)
     - Filter auch in Kategorien, Hersteller- sowie Markenlisten (Version 5.5)

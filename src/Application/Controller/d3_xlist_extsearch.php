@@ -147,13 +147,17 @@ class d3_xlist_extsearch
         } elseif (method_exists($oCategory, 'isPriceCategory')  // in case of manufacturerlist class
             && $oCategory->isPriceCategory()
         ) {
+            $oCur = Registry::getConfig()->getActShopCurrencyObject();
+            $iCurPrecision = $oCur->decimal;
+            $pow = pow(10, $iCurPrecision);
+
             $aPriceSelector = array(
                 'min' => $oCategory->getFieldData('oxpricefrom'),
                 'max' => $oCategory->getFieldData('oxpriceto')
             );
             $aPSOV = array(
-                'min' => $oCategory->getFieldData('oxpricefrom') * 100,
-                'max' => $oCategory->getFieldData('oxpriceto') * 100
+                'min' => $oCategory->getFieldData('oxpricefrom') * $pow,
+                'max' => $oCategory->getFieldData('oxpriceto') * $pow
             );
             $_POST["d3psov"] = $aPSOV;
             $_POST["priceselector"] = $aPriceSelector;
@@ -291,7 +295,7 @@ class d3_xlist_extsearch
     {
         $oSet = d3_cfg_mod::get($this->_d3getModId());
         // set "allow search without searchparam"
-        $oSet->setValue('blExtSearch_emptySearch', true);
+        $oSet->setValue(d3_extsearch_conf::CONF_ALLOWEMPTYSEARCHSTR, true);
 
         return $oSet;
     }
@@ -688,6 +692,17 @@ class d3_xlist_extsearch
     }
 
     /**
+     * @return float|int
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     */
+    public function d3getPricePrecision()
+    {
+        return $this->d3GetOwnSearchHandler()->getFilterList()->getPriceFilter()->getPricePrecision();
+    }
+
+    /**
      * @return array
      * @throws DBALException
      * @throws DatabaseConnectionException
@@ -795,8 +810,9 @@ class d3_xlist_extsearch
     private function _d3UseAlistFilters()
     {
         if (null === $this->_blUseAlistFilter) {
-            $this->_blUseAlistFilter = ($this->d3GetSet()->getLicenseConfigData(d3_extsearch_conf::SERIAL_BIT_HAS_FILTERS_IN_ALIST, false) || $this->d3GetSet()->isDemo())
-                && $this->d3GetSet()->getValue('blExtSearch_useAListFilter');
+            $this->_blUseAlistFilter = ($this->d3GetSet()->getLicenseConfigData(d3_extsearch_conf::SERIAL_BIT_HAS_FILTERS_IN_ALIST, false)
+                    || $this->d3GetSet()->isDemo())
+                && $this->d3GetSet()->getValue(d3_extsearch_conf::CONF_USEFILTERSINLISTS);
         }
         return $this->_blUseAlistFilter;
     }

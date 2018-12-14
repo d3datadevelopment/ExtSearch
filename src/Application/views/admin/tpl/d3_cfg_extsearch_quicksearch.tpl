@@ -108,12 +108,12 @@
                                         </dt>
                                         <dd>
                                             <input type="hidden" name="value[blExtSearch_enableAjaxSearch]" value="0">
-                                            <input id="enableAjaxSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_enableAjaxSearch]" value='1' [{if $edit->getEditValue('blExtSearch_enableAjaxSearch') == 1}]checked[{/if}]>
+                                            <input id="enableAjaxSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_enableAjaxSearch]" value='1' [{if $edit->getEditValue('blExtSearch_enableAjaxSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_enableAjaxSearch" sToggleOptionClass=".suggest_options"}]'>
                                             [{oxinputhelp ident="D3_EXTSEARCH_QUICK_ACTIVE_DESC"}]
                                         </dd>
                                         <dd class="spacer"></dd>
                                     </dl>
-                                    <dl>
+                                    <dl class="suggest_options">
                                         <dt>
                                             <label for="ajaxSearchLoadFullObjects">[{oxmultilang ident="D3_EXTSEARCH_QUICK_FULLOBJECTS"}]</label>
                                         </dt>
@@ -124,7 +124,7 @@
                                         </dd>
                                         <dd class="spacer"></dd>
                                     </dl>
-                                    <dl>
+                                    <dl class="suggest_options">
                                         <dt>
                                             <label for="QuickSearchMaxArticles">[{oxmultilang ident="D3_EXTSEARCH_QUICK_COUNT"}]</label>
                                         </dt>
@@ -134,7 +134,7 @@
                                         </dd>
                                         <dd class="spacer"></dd>
                                     </dl>
-                                    <dl>
+                                    <dl class="suggest_options">
                                         <dt>
                                             <label for="QuickSearchLoadCategories">[{oxmultilang ident="D3_EXTSEARCH_QUICK_LOADCATEGORIES"}]</label>
                                         </dt>
@@ -145,7 +145,7 @@
                                         </dd>
                                         <dd class="spacer"></dd>
                                     </dl>
-                                    <dl>
+                                    <dl class="suggest_options">
                                         <dt>
                                             <label for="QuickSearchLoadManufacturers">[{oxmultilang ident="D3_EXTSEARCH_QUICK_LOADMANUFACTURERS"}]</label>
                                         </dt>
@@ -156,7 +156,7 @@
                                         </dd>
                                         <dd class="spacer"></dd>
                                     </dl>
-                                    <dl>
+                                    <dl class="suggest_options">
                                         <dt>
                                             <label for="QuickSearchLoadVendors">[{oxmultilang ident="D3_EXTSEARCH_QUICK_LOADVENDORS"}]</label>
                                         </dt>
@@ -167,7 +167,7 @@
                                         </dd>
                                         <dd class="spacer"></dd>
                                     </dl>
-                                    <dl>
+                                    <dl class="suggest_options">
                                         <dt>
                                             <label for="QuickSearchLoadContent">[{oxmultilang ident="D3_EXTSEARCH_QUICK_LOADCONTENT"}]</label>
                                         </dt>

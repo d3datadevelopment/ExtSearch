@@ -18,6 +18,7 @@
             originalMaxValue=$originalMaxValue
             inputMinValue=$inputMinValue
             inputMaxValue=$inputMaxValue
+            precision=$precision
         }]
     [{elseif !$oView->d3HasjQuerySlider()}]
         <SELECT id="priceselector" name="priceselector" onchange="d3_extsearch_popup.popup.load(); this.form.submit();">

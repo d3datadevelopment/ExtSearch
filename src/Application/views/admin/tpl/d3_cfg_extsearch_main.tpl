@@ -180,17 +180,6 @@
                                 </dl>
                                 <dl>
                                     <dt>
-                                        <label for="useArtNumSearch">[{oxmultilang ident="D3_EXTSEARCH_MAIN_USEARTNUMSEARCH"}]</label>
-                                    </dt>
-                                    <dd>
-                                        <input type="hidden" name="value[blExtSearch_useArtNumSearch]" value="0">
-                                        <input id="useArtNumSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_useArtNumSearch]" value='1' [{if $edit->getEditValue('blExtSearch_useArtNumSearch') == 1}]checked[{/if}]>
-                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_USEARTNUMSEARCH_DESC"}]
-                                    </dd>
-                                    <dd class="spacer"></dd>
-                                </dl>
-                                <dl>
-                                    <dt>
                                         <label for="findPutInAndLeaveOut">[{oxmultilang ident="D3_EXTSEARCH_MAIN_PUTINLEAVEOUT"}]</label>
                                     </dt>
                                     <dd>
@@ -275,12 +264,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_VariantSearch]" value="0">
-                                        <input id="VariantSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_VariantSearch]" value='1' [{if $edit->getEditValue('blExtSearch_VariantSearch') == 1}]checked[{/if}]>
+                                        <input id="VariantSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_VariantSearch]" value='1' [{if $edit->getEditValue('blExtSearch_VariantSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_VariantSearch" sToggleOptionClass=".variant_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_VARIANTSEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="variant_options">
                                     <dt>
                                         <label for="VariantUsage">[{oxmultilang ident="D3_EXTSEARCH_MAIN_VARIANTUSAGE"}]</label>
                                     </dt>
@@ -293,7 +282,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="variant_options">
                                     <dt>
                                         <label for="VariantCheckParentActive">[{oxmultilang ident="D3_EXTSEARCH_MAIN_VARIANTCHECKPARENTACTIVE"}]</label>
                                     </dt>
@@ -325,12 +314,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_similarSearch]" value="0">
-                                        <input id="similarSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_similarSearch]" value='1' [{if $edit->getEditValue('blExtSearch_similarSearch') == 1}]checked[{/if}]>
+                                        <input id="similarSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_similarSearch]" value='1' [{if $edit->getEditValue('blExtSearch_similarSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_similarSearch" sToggleOptionClass=".phonetic_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SIMILARSEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="phonetic_options">
                                     <dt>
                                         <label for="langFile">[{oxmultilang ident="D3_EXTSEARCH_MAIN_PHONETICLANG"}]</label>
                                     </dt>
@@ -344,7 +333,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="phonetic_options">
                                     <dt>
                                         <label for="blsimilarExtList">[{oxmultilang ident="D3_EXTSEARCH_MAIN_SIMILAREXTLIST_1"}]</label>
                                     </dt>
@@ -356,7 +345,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="phonetic_options">
                                     <dt>
                                         <label for="minPhonLength">[{oxmultilang ident="D3_EXTSEARCH_MAIN_MINPHONLENGTH"}]</label>
                                     </dt>
@@ -391,12 +380,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_semanticSearch]" value="0">
-                                        <input id="semanticSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_semanticSearch]" value='1' [{if $edit->getEditValue('blExtSearch_semanticSearch') == 1}]checked[{/if}]>
+                                        <input id="semanticSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_semanticSearch]" value='1' [{if $edit->getEditValue('blExtSearch_semanticSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_semanticSearch" sToggleOptionClass=".semantic_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SEMANTICSEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="semantic_options">
                                     <dt>
                                         <label for="semanticUsePhonetic">[{oxmultilang ident="D3_EXTSEARCH_MAIN_SEMANTICUSEPHONETIC"}]</label>
                                     </dt>
@@ -425,12 +414,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_catSearch]" value="0">
-                                        <input id="catSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_catSearch]" value='1' [{if $edit->getEditValue('blExtSearch_catSearch') == 1}]checked[{/if}]>
+                                        <input id="catSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_catSearch]" value='1' [{if $edit->getEditValue('blExtSearch_catSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_catSearch" sToggleOptionClass=".category_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_CATEGORY_SEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="category_options">
                                     <dt>
                                         <label for="blSearchUseAND">[{oxmultilang ident="SHOP_CONFIG_SEARCHUSEAND"}]</label>
                                     </dt>
@@ -453,7 +442,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="category_options">
                                     <dt>
                                         <label for="catPrio">[{oxmultilang ident="D3_EXTSEARCH_MAIN_CATEGORY_PRIORITY"}]</label>
                                     </dt>
@@ -481,12 +470,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_manufacturerSearch]" value="0">
-                                        <input id="manufacturerSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_manufacturerSearch]" value='1' [{if $edit->getEditValue('blExtSearch_manufacturerSearch') == 1}]checked[{/if}]>
+                                        <input id="manufacturerSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_manufacturerSearch]" value='1' [{if $edit->getEditValue('blExtSearch_manufacturerSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_manufacturerSearch" sToggleOptionClass=".manufacturer_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_MANUFACTURER_SEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="manufacturer_options">
                                     <dt>
                                         <label for="blSearchUseAND">[{oxmultilang ident="SHOP_CONFIG_SEARCHUSEAND"}]</label>
                                     </dt>
@@ -497,7 +486,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="manufacturer_options">
                                     <dt>
                                         <label for="manufacturerPrio">[{oxmultilang ident="D3_EXTSEARCH_MAIN_MANUFACTURER_PRIORITY"}]</label>
                                     </dt>
@@ -525,12 +514,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showContentList]" value="0">
-                                        <input id="showContentList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showContentList]" value='1' [{if $edit->getEditValue('blExtSearch_showContentList') == 1}]checked[{/if}]>
+                                        <input id="showContentList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showContentList]" value='1' [{if $edit->getEditValue('blExtSearch_showContentList') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showContentList" sToggleOptionClass=".content_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_CONTENTLIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="content_options">
                                     <dt>
                                         <label for="contentSearchLongtext">[{oxmultilang ident="D3_EXTSEARCH_NAVI_CONTENTSEARCHINLONGTEXT"}]</label>
                                     </dt>
@@ -553,6 +542,17 @@
                                         [{oxmultilang ident="D3_EXTSEARCH_NAVI_REDIRECTS"}]
                                     </b>
                                 </a>
+                                <dl>
+                                    <dt>
+                                        <label for="useArtNumSearch">[{oxmultilang ident="D3_EXTSEARCH_MAIN_USEARTNUMSEARCH"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <input type="hidden" name="value[blExtSearch_useArtNumSearch]" value="0">
+                                        <input id="useArtNumSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_useArtNumSearch]" value='1' [{if $edit->getEditValue('blExtSearch_useArtNumSearch') == 1}]checked[{/if}]>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_USEARTNUMSEARCH_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
                                 <dl>
                                     <dt>
                                         <label for="goToUniqueHit">[{oxmultilang ident="D3_EXTSEARCH_NAVI_UNIQUEHIT"}]</label>

@@ -171,12 +171,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showCatList]" value="0">
-                                        <input id="showCatList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showCatList]" value='1' [{if $edit->getEditValue('blExtSearch_showCatList') == 1}]checked[{/if}]>
+                                        <input id="showCatList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showCatList]" value='1' [{if $edit->getEditValue('blExtSearch_showCatList') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showCatList" sToggleOptionClass=".category_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_CATLIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="category_options">
                                     <dt>
                                         <label for="orderCatList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_CATLIST_SORT"}]</label>
                                     </dt>
@@ -189,7 +189,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="category_options">
                                     <dt>
                                         <label for="displaytypeCatList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE"}]</label>
                                     </dt>
@@ -200,6 +200,17 @@
                                             <option value="multi"[{if $edit->getEditValue('sExtSearch_displaytypeCatList') == 'multi'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_MULTI"}]</option>
                                         </select>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
+                                <dl class="category_options">
+                                    <dt>
+                                        <label for="mainCategoryOnly">[{oxmultilang ident="D3_EXTSEARCH_NAVI_CATLISTMAINCATEGORIESONLY"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <input type="hidden" name="value[blExtSearch_catListMainCategoryOnly]" value="0">
+                                        <input id="mainCategoryOnly" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_catListMainCategoryOnly]" value='1' [{if $edit->getEditValue('blExtSearch_catListMainCategoryOnly') == 1}]checked[{/if}]>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_NAVI_CATLISTMAINCATEGORIESONLY_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
@@ -221,12 +232,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showVendorList]" value="0">
-                                        <input id="showVendorList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showVendorList]" value='1' [{if $edit->getEditValue('blExtSearch_showVendorList') == 1}]checked[{/if}]>
+                                        <input id="showVendorList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showVendorList]" value='1' [{if $edit->getEditValue('blExtSearch_showVendorList') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showVendorList" sToggleOptionClass=".vendor_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_VENDORLIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="vendor_options">
                                     <dt>
                                         <label for="orderVendorList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_VENDORLIST_SORT"}]</label>
                                     </dt>
@@ -239,7 +250,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="vendor_options">
                                     <dt>
                                         <label for="displaytypeVendorList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE"}]</label>
                                     </dt>
@@ -271,12 +282,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showManufacturerList]" value="0">
-                                        <input id="showManufacturerList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showManufacturerList]" value='1' [{if $edit->getEditValue('blExtSearch_showManufacturerList') == 1}]checked[{/if}]>
+                                        <input id="showManufacturerList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showManufacturerList]" value='1' [{if $edit->getEditValue('blExtSearch_showManufacturerList') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showManufacturerList" sToggleOptionClass=".manufacturer_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_MANUFACTURERLIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="manufacturer_options">
                                     <dt>
                                         <label for="orderManufacturerList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_MANUFACTURERLIST_SORT"}]</label>
                                     </dt>
@@ -289,7 +300,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="manufacturer_options">
                                     <dt>
                                         <label for="displaytypeManufacturerList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE"}]</label>
                                     </dt>
@@ -321,12 +332,23 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showAttributeList]" value="0">
-                                        <input id="showAttributeList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showAttributeList]" value='1' [{if $edit->getEditValue('blExtSearch_showAttributeList') == 1}]checked[{/if}]>
+                                        <input id="showAttributeList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showAttributeList]" value='1' [{if $edit->getEditValue('blExtSearch_showAttributeList') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showAttributeList" sToggleOptionClass=".attribute_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="attribute_options">
+                                    <dt>
+                                        <label for="showAttributeList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_ASSIGNMENT"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <input type="hidden" name="value[blExtSearch_useAttributeListAssignments]" value="0">
+                                        <input id="showAttributeList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_useAttributeListAssignments]" value='1' [{if $edit->getEditValue('blExtSearch_useAttributeListAssignments') == 1}]checked[{/if}]>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_ASSIGNMENT_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
+                                <dl class="attribute_options">
                                     <dt>
                                         <label for="useAttributeCombineOr">[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTES_COMBINE"}]</label>
                                     </dt>
@@ -337,7 +359,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="attribute_options">
                                     <dt>
                                         <label for="orderAttributes">[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTES_SORT"}]</label>
                                     </dt>
@@ -350,7 +372,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="attribute_options">
                                     <dt>
                                         <label for="useAttributeValueCombineAnd">[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTEVALUES_COMBINE"}]</label>
                                     </dt>
@@ -361,7 +383,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="attribute_options">
                                     <dt>
                                         <label for="orderAttributeList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT"}]</label>
                                     </dt>
@@ -374,7 +396,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="attribute_options">
                                     <dt>
                                         <label for="showNoAssignedAttributeArticles">[{oxmultilang ident="D3_EXTSEARCH_NAVI_NOATTRIBUTEARTS"}]</label>
                                     </dt>
@@ -385,7 +407,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="attribute_options">
                                     <dt>
                                         <label for="showNotSelectableAttributes">[{oxmultilang ident="D3_EXTSEARCH_NAVI_SHOWNOTSELECTABLEATTRIBUTES"}]</label>
                                     </dt>
@@ -396,7 +418,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="attribute_options">
                                     <dt>
                                         <label for="displaytypeAttributeList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE"}]</label>
                                     </dt>
@@ -428,12 +450,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showPriceSelector]" value="0">
-                                        <input id="showPriceSelector" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showPriceSelector]" value='1' [{if $edit->getEditValue('blExtSearch_showPriceSelector') == 1}]checked[{/if}]>
+                                        <input id="showPriceSelector" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showPriceSelector]" value='1' [{if $edit->getEditValue('blExtSearch_showPriceSelector') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showPriceSelector" sToggleOptionClass=".price_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_PRICELIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="price_options">
                                     <dt>
                                         <label for="priceSelectorItems">[{oxmultilang ident="D3_EXTSEARCH_NAVI_PRICELIST_ITEMS"}]</label>
                                     </dt>
@@ -443,7 +465,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="price_options">
                                     <dt>
                                         <label for="PriceSelectorsRounded">[{oxmultilang ident="D3_EXTSEARCH_NAVI_PRICELIST_ROUNDED"}]</label>
                                     </dt>
@@ -454,7 +476,7 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="price_options">
                                     <dt>
                                         <label for="PriceSelectorsDispType">[{oxmultilang ident="D3_EXTSEARCH_NAVI_PRICELIST_DISPLAY"}]</label>
                                     </dt>
@@ -487,12 +509,12 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showFilterParam]" value="0">
-                                        <input id="showFilterParam" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showFilterParam]" value='1' [{if $edit->getEditValue('blExtSearch_showFilterParam') == 1}]checked[{/if}]>
+                                        <input id="showFilterParam" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showFilterParam]" value='1' [{if $edit->getEditValue('blExtSearch_showFilterParam') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showFilterParam" sToggleOptionClass=".index_options"}]'>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_SHOWINDEX_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
-                                <dl>
+                                <dl class="index_options">
                                     <dt>
                                         <label for="filterParamField">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTERFIELDNAME"}]</label>
                                     </dt>

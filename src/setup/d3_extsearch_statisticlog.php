@@ -169,26 +169,26 @@ if (isset($this->aESStatisticTables)
     && is_array($this->aESStatisticTables)
     && count($this->aESStatisticTables)
 ) {
-    $this->aStatisticTables = array_merge($this->aStatisticTables, $this->aESStatisticTables);
+    $this->aStatisticTables = is_array($this->aStatisticTables) ? array_merge($this->aStatisticTables, $this->aESStatisticTables) : $this->aStatisticTables;
 }
 
 if (isset($this->aESStatisticFields)
     && is_array($this->aESStatisticFields)
     && count($this->aESStatisticFields)
 ) {
-    $this->aFields = array_merge($this->aFields, $this->aESStatisticFields);
+    $this->aFields = is_array($this->aFields) ? array_merge($this->aFields, $this->aESStatisticFields) : $this->aESStatisticFields;
 }
 
 if (isset($this->aESStatisticIndizes)
     && is_array($this->aESStatisticIndizes)
     && count($this->aESStatisticIndizes)
 ) {
-    $this->aIndizes = array_merge($this->aIndizes, $this->aESStatisticIndizes);
+    $this->aIndizes = is_array($this->aIndizes) ? array_merge($this->aIndizes, $this->aESStatisticIndizes) : $this->aESStatisticIndizes;
 }
 
 if (isset($this->aESStatisticRenameFields)
     && is_array($this->aESStatisticRenameFields)
     && count($this->aESStatisticRenameFields)
 ) {
-    $this->aRenameFields = array_merge($this->aRenameFields, $this->aESStatisticRenameFields);
+    $this->aRenameFields = is_array($this->aRenameFields) ? array_merge($this->aRenameFields, $this->aESStatisticRenameFields) : $this->aESStatisticRenameFields;
 }
