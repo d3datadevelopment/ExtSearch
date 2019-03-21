@@ -15,10 +15,15 @@ After this, install ``grunt`` globally.
     npm install
     ```
 
-3. The module-specific LESS files use the LESS variables of the shop. If you 
-have customized these, you may need to recreate the module assets. Please note, 
-that CSS and JavaScript files were overwritten by module updates. Then run the 
-generation again or better store your customizations in own files.
+3. The module-specific LESS files use the LESS variables of the shop. 
+
+   If the LESS files of the parent theme are missing, re-install it with Composer 
+   and the `--prefer-source` option.
+   
+   If you have customized the parent theme LESS files, you may need to recreate 
+   the module assets. Please note, that CSS and JavaScript files were overwritten 
+   by module updates. Then run the generation again or better store your 
+   customizations in own files.
 
 3. configure "above the fold" stylesheets:
 

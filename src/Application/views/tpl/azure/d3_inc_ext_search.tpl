@@ -94,7 +94,7 @@
                         <input type="hidden" name="fnc" value="">
                         [{foreach from=$oView->getNavigationParams() key="keyname" item="value"}]
                             [{if $keyname != 'searchcnid' && $keyname != 'searchvendor' && $keyname != 'searchmanufacturer'}]
-                                <input type="hidden" name="[{$keyname}]" value="[{$value}]">
+                                <input type="hidden" name="[{$keyname|htmlentities}]" value="[{$value|htmlentities}]">
                             [{/if}]
                         [{/foreach}]
                         <input type="hidden" name="isextsearch" value="search">

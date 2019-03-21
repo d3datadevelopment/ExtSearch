@@ -46,7 +46,7 @@ $aLang = array(
     'D3_EXTSEARCH_EXT_LESSARTMSG'            => 'To this term were only found a few articles. We added some similar articles to the list.',
     'D3_EXTSEARCH_EXT_PLUGINHEADLINE'        => 'search faster, find faster',
     'D3_EXTSEARCH_EXT_PLUGINBROWSERERROR'    => 'This search extension works in Mozilla Firefox from version 2.0 on and Microsoft Internet Explorer from version 7 on.',
-    'D3_EXTSEARCH_EXT_PLUGININSTALLMSG'      => 'Install our free advanced search. You will add our shop into the search function of your browser (top right). So you will always find everything to your convenience.<br>(available for Mozilla Firefox from Version 2 on and Microsoft Internet Explorer from Version 7 on)',
+    'D3_EXTSEARCH_EXT_PLUGININSTALLMSG'      => 'Install our free search extension. This will add our shop to the search function of your browser (top right). So you will find what you are looking for anytime and anywhere.<br>(available in Mozilla Firefox from version 2 and Microsoft Internet Explorer from version 7)',
     'D3_EXTSEARCH_EXT_PLUGININSTALLBTN'      => 'install plugin for advanced search',
 
     'D3_EXTSEARCH_EXT_SEARCHBOX'             => 'filters',
