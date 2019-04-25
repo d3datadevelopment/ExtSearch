@@ -390,6 +390,7 @@ body .IAS_box .headline .closebtn {
   height: 62px;
   display: block;
   border: 0 solid #00748d;
+  background: -webkit-gradient(linear, left top, left bottom, from(#00c8f3), color-stop(#009EC0), to(#00748d)) repeat scroll 0 0 rgba(0, 0, 0, 0);
   background: -webkit-linear-gradient(#00c8f3, #009EC0, #00748d) repeat scroll 0 0 rgba(0, 0, 0, 0);
   background: linear-gradient(#00c8f3, #009EC0, #00748d) repeat scroll 0 0 rgba(0, 0, 0, 0);
   text-shadow: 0 -1px 0 #00748d;

@@ -20,6 +20,7 @@ use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use Doctrine\DBAL\DBALException;
+use OxidEsales\Eshop\Core\ConfigFile;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Exception\StandardException;
@@ -69,10 +70,25 @@ class d3_extsearch_response extends BaseController
     {
         startProfile(__METHOD__);
 
+        ob_start();
+
+        // disable displaying debug informations, that will destroy JSON document
+        Registry::getConfig()->setConfigParam('iDebug', 0);
+        Registry::get(ConfigFile::class)->setVar( 'iDebug', 0);
+
         $outputManager = oxNew(Output::class);
         $outputManager->setCharset(Registry::getConfig()->getActiveView()->getCharSet());
+        $outputManager->setOutputFormat(Output::OUTPUT_FORMAT_JSON);
         $outputManager->sendHeaders();
-        $outputManager->output('content', $this->_getD3SearchHandler()->suggestGetContent($aParams['searchparam']));
+
+        // fetch debug contents and add it after suggest window
+        $sContent = $this->_getD3SearchHandler()->suggestGetContent($aParams['searchparam']);
+        $sContent .= ob_get_contents();
+        ob_end_clean();
+
+        $outputManager->output('searchparam', $aParams['searchparam']);
+        $outputManager->output('content', $sContent);
+
         Registry::getConfig()->pageClose();
         $outputManager->flushOutput();
 

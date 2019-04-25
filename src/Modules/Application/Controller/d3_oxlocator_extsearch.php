@@ -354,7 +354,7 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
      */
     protected function _d3GetParamForSearch($sParamName, $blFormParam = false)
     {
-        if (!$this->_aD3Params[$sParamName . $blFormParam]) {
+        if (!isset($this->_aD3Params[$sParamName . $blFormParam]) || !$this->_aD3Params[$sParamName . $blFormParam]) {
             $this->_aD3Params[$sParamName . $blFormParam] =
                 $blFormParam ?
                     Registry::get(Request::class)->getRequestParameter($sParamName) :
