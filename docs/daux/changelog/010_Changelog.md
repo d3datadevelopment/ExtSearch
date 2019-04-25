@@ -5,6 +5,11 @@ title: Changelog
 ## noch nicht veröffentlicht
 
 ---
+## 6.2.1.0 (2019-04-25)
+### Added
+- Suggest-Suche verhindert die Anzeige veralteter Anfrageergebnisse
+
+---
 ## 6.2.0.1 (2019-03-21)
 ### Added
 - Build-Ressourcen als `export-ignore` markiert, können bei Bedarf mit `--prefer-source` nachgeladen werden
