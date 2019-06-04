@@ -19,7 +19,7 @@ und diese Felder in bestehenden Tabellen:
   * das Feld `D3_PHONETIC_1`
   * das Feld `D3_PHONETIC_...`
   
-sowie diese Einträge bestehenden Tabellen:
+sowie diese Einträge in bestehenden Tabellen:
 
 * in Tabelle `d3_cfg_mod`:  
   * den Eintrag `oxmodid = "{$modcfgident}"` **)

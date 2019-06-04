@@ -2,7 +2,15 @@
 title: Changelog
 ---
 
-## noch nicht veröffentlicht
+## 6.2.1.1 (2019-06-04)
+### Added
+- Dokumentation um Erklärung zur Cache-Verhinderung ergänzt
+- Offset-Option für Suggest-Fenster integriert
+### Changed
+- feste Position des Suggest-Fensters im Azure-Theme geändert
+### Fixed
+- fehlende Styles für Azure-Theme nachgetragen
+- fehlende Netto-/Bruttopreisumrechnung in Artikellisten korrigiert
 
 ---
 ## 6.2.1.0 (2019-04-25)
