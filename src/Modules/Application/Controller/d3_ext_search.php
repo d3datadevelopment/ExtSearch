@@ -37,6 +37,8 @@ use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use D3\ModCfg\Application\Model\Log\d3log;
 use Doctrine\DBAL\DBALException;
+use exception;
+use oxCategoryList;
 use OxidEsales\Eshop\Application\Model\CategoryList;
 use OxidEsales\Eshop\Application\Model\VendorList;
 use OxidEsales\Eshop\Application\Model\ManufacturerList;
@@ -84,7 +86,7 @@ class d3_ext_search extends d3_ext_search_parent
 
     public $oRegularyArtList;
 
-    /** @var CategoryList|\oxCategoryList */
+    /** @var CategoryList|oxCategoryList */
     public $oSearchCatList;
 
     protected $_aBlockRedirectParams = array();
@@ -392,6 +394,7 @@ class d3_ext_search extends d3_ext_search_parent
      * @throws StandardException
      * @throws d3ShopCompatibilityAdapterException
      * @throws d3_cfg_mod_exception
+     * @throws exception
      */
     protected function _handleLogging()
     {
@@ -1100,7 +1103,7 @@ class d3_ext_search extends d3_ext_search_parent
     protected function _d3AddMissingSortFieldName($sSortBy)
     {
         /** @var $oArticle article */
-        if (($oArticle = oxNew(article::class))
+        if (($oArticle = oxNew(Article::class))
             && false == in_array($sSortBy, $oArticle->getFieldNames())
         ) {
             $oQB = d3database::getInstance()->getQueryBuilder();

@@ -2,6 +2,18 @@
 title: Changelog
 ---
 
+## 6.3.0.0 (2019-07-22)
+### Added
+- korrespondiesende Attributwerte implementiert
+### Changed
+- Response-Script ermittelt Pfad der Bootstrap-Datei dynamisch
+- Abfrage-Veränderungen für Aggrosoft WaWi-Modul-Anpassungen optimiert
+- Unit-Tests angepasst
+### Fixed
+- fehlende Datei im Dateiregister nachgetragen
+
+---
+
 ## 6.2.1.1 (2019-06-04)
 ### Added
 - Dokumentation um Erklärung zur Cache-Verhinderung ergänzt

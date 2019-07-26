@@ -1,18 +1,18 @@
 <br>
 [{if $drawStat}]
     [{foreach from=$aStats item="aStat"}]
-    <table class="report_searchstrings_table" cellpadding="0" cellspacing="0" width="800">
+    <table class="report_searchstrings_table" style="padding:0;width:800px">
         <tr>
             <td class="report_searchstrings_td">
-                <table width="100%" cellpadding="0" cellspacing="0">
+                <table style="width:100%;padding:0">
                     <tr>
-                        <td colspan="[{$aStat.allCols}]" align="center">&nbsp;</td>
+                        <td colspan="[{$aStat.allCols}]" style="text-align: center">&nbsp;</td>
                     </tr>
                     <tr>
-                        <td colspan="[{$aStat.allCols}]" align="center"><b>[{$aStat.sHeadline}] [{if $aStat.sFilters}]([{$aStat.sFilters}])[{/if}]</b></td>
+                        <td colspan="[{$aStat.allCols}]" style="text-align: center"><b>[{$aStat.sHeadline}] [{if $aStat.sFilters}]([{$aStat.sFilters}])[{/if}]</b></td>
                     </tr>
                     <tr>
-                        <td colspan="[{$aStat.allCols}]" align="center">&nbsp;</td>
+                        <td colspan="[{$aStat.allCols}]" style="text-align: center">&nbsp;</td>
                     </tr>
                     <tr>
                         <td></td>

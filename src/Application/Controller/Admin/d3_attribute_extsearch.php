@@ -22,6 +22,7 @@ use D3\Extsearch\Application\Controller\Admin\Popups\d3_attribute2manufacturer_e
 use D3\Extsearch\Application\Controller\Admin\Popups\d3_attribute2vendor_extsearch_ajax;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
 use Doctrine\DBAL\DBALException;
+use Exception;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
 use OxidEsales\Eshop\Application\Model\Attribute;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
@@ -77,7 +78,7 @@ class d3_attribute_extsearch extends AdminDetailsController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function save()
     {

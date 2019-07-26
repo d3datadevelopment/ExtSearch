@@ -23,6 +23,7 @@ use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_main;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use Doctrine\DBAL\DBALException;
+use OeStatistics_Report_Base;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Exception\StandardException;
@@ -31,6 +32,8 @@ use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\UtilsDate;
 use OxidEsales\Eshop\Core\UtilsView;
+use Smarty;
+use stdClass;
 
 class d3_cfg_extsearch_Statistik extends d3_cfg_mod_main
 {
@@ -93,7 +96,7 @@ class d3_cfg_extsearch_Statistik extends d3_cfg_mod_main
                     substr(base64_encode($oStatItem->getFieldData('OXPARAMETER')), 0, 16) .
                     substr(base64_encode($oStatItem->getFieldData('OXPARAMETER')), -16, 16);
 
-                $oSearchWord                     = new \stdClass();
+                $oSearchWord                     = new stdClass();
                 $oSearchWord->sWord              = $oStatItem->getFieldData('OXSEARCHPARAM');
                 $oSearchWord->iCount             = $oStatItem->getFieldData('COUNTER')  + $this->aSearchwords[$sFilterKey]->iCount;
                 $oSearchWord->blGraph            = $oStatItem->getFieldData('GRAPH');
@@ -157,7 +160,7 @@ class d3_cfg_extsearch_Statistik extends d3_cfg_mod_main
      */
     public function checkReportBaseClass()
     {
-        return class_exists(\OeStatistics_Report_Base::class);
+        return class_exists(OeStatistics_Report_Base::class);
     }
 
     public function generateStat()
@@ -181,7 +184,7 @@ class d3_cfg_extsearch_Statistik extends d3_cfg_mod_main
                 $sTimeTo = date("Y-m-d", time());
             }
 
-            /** @var $oSmarty \Smarty */
+            /** @var $oSmarty Smarty */
             $oSmarty = Registry::get(UtilsView::class)->getSmarty();
             $oSmarty->assign("time_from", $sTimeFrom . " 23:59:59");
             $oSmarty->assign("time_to", $sTimeTo . " 23:59:59");

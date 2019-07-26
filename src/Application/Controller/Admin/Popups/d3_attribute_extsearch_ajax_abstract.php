@@ -17,6 +17,7 @@
 
 namespace D3\Extsearch\Application\Controller\Admin\Popups;
 
+use Exception;
 use OxidEsales\Eshop\Application\Controller\Admin\ListComponentAjax;
 use OxidEsales\Eshop\Application\Model\Attribute;
 use OxidEsales\Eshop\Core\DatabaseProvider;
@@ -120,7 +121,7 @@ abstract class d3_attribute_extsearch_ajax_abstract extends ListComponentAjax
 
     /**
      * @throws DatabaseConnectionException
-     * @throws \Exception
+     * @throws Exception
      */
     public function addAttributeObject()
     {

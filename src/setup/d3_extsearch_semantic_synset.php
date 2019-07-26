@@ -41,6 +41,26 @@ $this->aESSemanticFields = array(
         'sExtra'      => '',
         'blMultilang' => false,
     ),
+    'D3SYN_SYNSET_USE_FOR_TERMS'    => array(
+        'sTableName'  => 'd3_extsearch_synset',
+        'sFieldName'  => 'USEFORTERMS',
+        'sType'       => 'TINYINT(1)',
+        'blNull'      => false,
+        'sDefault'    => '0',
+        'sComment'    => 'synonym will used for search terms',
+        'sExtra'      => '',
+        'blMultilang' => false,
+    ),
+    'D3SYN_SYNSET_USE_FOR_ATTRIBUTES'    => array(
+        'sTableName'  => 'd3_extsearch_synset',
+        'sFieldName'  => 'USEFORATTRIBUTES',
+        'sType'       => 'TINYINT(1)',
+        'blNull'      => false,
+        'sDefault'    => '0',
+        'sComment'    => 'synonym will used for attribute filters',
+        'sExtra'      => '',
+        'blMultilang' => false,
+    ),
 );
 
 $this->aESSemanticIndizes = array(

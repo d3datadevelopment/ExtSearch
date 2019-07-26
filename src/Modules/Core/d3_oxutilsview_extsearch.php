@@ -15,16 +15,17 @@
 
 namespace D3\Extsearch\Modules\Core;
 
-use OxidEsales\Eshop\Core\Exception\FileException;
+use OxidEsales\Eshop\Core\Exception\FileException as FileExceptionAlias;
 use OxidEsales\Eshop\Core\Registry;
+use Smarty;
 
 class d3_oxutilsview_extsearch extends d3_oxutilsview_extsearch_parent
 {
     /**
-     * @param \Smarty $oSmarty
+     * @param Smarty $oSmarty
      *
      * @return null|void
-     * @throws FileException
+     * @throws FileExceptionAlias
      */
     protected function _fillCommonSmartyProperties($oSmarty)
     {

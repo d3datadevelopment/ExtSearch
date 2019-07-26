@@ -15,14 +15,14 @@
 
     function EditThis( sID)
     {
-        var oTransfer = parent.edit.document.getElementById("transfer");
+        let oTransfer = parent.edit.document.getElementById("transfer");
         oTransfer.oxid.value=sID;
         oTransfer.cl.value='[{if $actlocation}][{$actlocation|oxescape:"javascript"}][{else}][{$default_edit|oxescape:"javascript"}][{/if}]';
 
         //forcing edit frame to reload after submit
         top.forceReloadingEditFrame();
 
-        var oSearch = document.getElementById("search");
+        let oSearch = document.getElementById("search");
         oSearch.oxid.value=sID;
         oSearch.submit();
     }
@@ -35,25 +35,25 @@
         <input type="hidden" name="delete_oxmodid" value="">
         <input type="hidden" name="delete_oxtype" value="">
 
-        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <table style="padding:0;border:0;width:100%">
             <colgroup>
-                <col width="30%">
-                <col width="50%">
-                <col width="9%">
-                <col width="2%">
+                <col style="width:30%">
+                <col style="width:50%">
+                <col style="width:9%">
+                <col style="width:2%">
             </colgroup>
             <tr class="listitem">
-                <td height="20" valign="middle" class="listfilter first" nowrap>
+                <td style="height:20px; vertical-align: middle" class="listfilter first" nowrap>
                     <div class="r1"><div class="b1">
                         <input class="listedit" type="text" size="50" maxlength="250" name="where[[{$listTable}]][word]" value="[{$where.d3_extsearch_term.word}]" [{include file="help.tpl" helpid=searchfieldoxdynamic}]>
                         [{oxinputhelp ident="D3_EXTSEARCH_SYNED_WORD_DESC"}]
                     </div></div>
                 </td>
-                <td height="20" valign="middle" class="listfilter" nowrap>
+                <td style="height:20px;vertical-align: middle" class="listfilter" nowrap>
                     <div class="r1"><div class="b1">
                     </div></div>
                 </td>
-                <td height="20" colspan="2" valign="middle" class="listfilter" nowrap>
+                <td style="height:20px; vertical-align: middle" colspan="2" class="listfilter" nowrap>
                     <div class="r1"><div class="b1">
                         <div class="find">
                             <input class="listedit" type="submit" name="submitit" value="[{oxmultilang ident="GENERAL_SEARCH"}]" onClick="document.search.lstrt.value=0;">
@@ -64,16 +64,16 @@
                 </td>
             </tr>
             <tr>
-                <td class="listheader first" height="15">&nbsp;
+                <td class="listheader first" style="height:15px">&nbsp;
                     <a href="#" onclick="top.oxid.admin.setSorting( document.search, 'd3_extsearch_term', 'word', 'asc');document.search.submit();" class="listheader">[{oxmultilang ident="D3_EXTSEARCH_SYNED_WORD"}]</a>
                 </td>
-                <td class="listheader" height="15">&nbsp;
+                <td class="listheader" style="height:15px">&nbsp;
                     [{oxmultilang ident="D3_EXTSEARCH_SYNED_ALTWORD"}]
                 </td>
-                <td class="listheader" height="15">&nbsp;
+                <td class="listheader" style="height:15px">&nbsp;
                     <a href="#" onclick="top.oxid.admin.setSorting( document.search, 'd3_extsearch_term', 'synset_id', 'asc');document.search.submit();" class="listheader">[{oxmultilang ident="D3_EXTSEARCH_SYNED_SYNSETID"}]</a>
                 </td>
-                <td class="listheader" height="15">&nbsp;
+                <td class="listheader" style="height:15px">&nbsp;
                 </td>
             </tr>
 
@@ -92,10 +92,10 @@
                         [{assign var="listclass" value=listitem4}]
                     [{/if}]
 
-                    <td valign="top" class="[{$listclass}]" height="15"><div class="listitemfloating">&nbsp;<a href="Javascript:EditThis('[{$listitem->d3_extsearch_term__oxid->value}]');" class="[{$listclass}]">[{$listitem->d3_extsearch_term__word->value}]</a></div></td>
-                    <td valign="top" class="[{$listclass}]" height="15"><div class="listitemfloating">&nbsp;<a href="Javascript:EditThis('[{$listitem->d3_extsearch_term__oxid->value}]');" class="[{$listclass}]">[{$listitem->getSynonymsForSynsetId($listitem->d3_extsearch_term__synset_id->value, $listitem->d3_extsearch_term__word->value)}]</a></div></td>
-                    <td valign="top" class="[{$listclass}]" height="15"><div class="listitemfloating">&nbsp;<a href="Javascript:EditThis('[{$listitem->d3_extsearch_term__oxid->value}]');" class="[{$listclass}]">[{$listitem->d3_extsearch_term__synset_id->value}]</a></div></td>
-                    <td valign="top" class="[{$listclass}]" height="15"><div class="listitemfloating">&nbsp;<a href="Javascript:top.oxid.admin.deleteThis('[{$listitem->d3_extsearch_term__oxid->value}]');"  class="delete" id="del.[{$_cnt}]" title="" [{include file="help.tpl" helpid=item_delete}]></a></div></td>
+                    <td style="vertical-align: top; height: 15px" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:EditThis('[{$listitem->d3_extsearch_term__oxid->value}]');" class="[{$listclass}]">[{$listitem->d3_extsearch_term__word->value}]</a></div></td>
+                    <td style="vertical-align: top; height: 15px" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:EditThis('[{$listitem->d3_extsearch_term__oxid->value}]');" class="[{$listclass}]">[{$listitem->getSynonymsForSynsetId($listitem->d3_extsearch_term__synset_id->value, $listitem->d3_extsearch_term__word->value)}]</a></div></td>
+                    <td style="vertical-align: top; height: 15px" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:EditThis('[{$listitem->d3_extsearch_term__oxid->value}]');" class="[{$listclass}]">[{$listitem->d3_extsearch_term__synset_id->value}]</a></div></td>
+                    <td style="vertical-align: top; height: 15px" class="[{$listclass}]"><div class="listitemfloating"><a href="Javascript:top.oxid.admin.deleteThis('[{$listitem->d3_extsearch_term__oxid->value}]');"  class="delete" id="del.[{$_cnt}]" title="" [{include file="help.tpl" helpid=item_delete}]></a></div></td>
                 </tr>
                 [{if $blWhite == "2"}]
                     [{assign var="blWhite" value=""}]

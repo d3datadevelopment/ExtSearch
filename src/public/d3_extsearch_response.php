@@ -18,19 +18,36 @@
 use D3\Extsearch\Application\Controller\d3_extsearch_response;
 use OxidEsales\Eshop\Core\Registry;
 
-if (!function_exists('getShopBasePath')) {
-    /**
-     * Returns shop base path.
-     *
-     * @return string
-     */
-    function getShopBasePath()
-    {
-        return dirname(__FILE__) . '/../../../../';
+$bootstrapFileName = getenv('ESHOP_BOOTSTRAP_PATH');
+if (!empty($bootstrapFileName)) {
+    $bootstrapFileName = realpath(trim(getenv('ESHOP_BOOTSTRAP_PATH')));
+} else {
+    $count = 0;
+    $bootstrapFileName = '../../../source/bootstrap.php';
+    $currentDirectory = __DIR__ . '/';
+    while ($count < 5) {
+        $count++;
+        if (file_exists($currentDirectory . $bootstrapFileName)) {
+            $bootstrapFileName = $currentDirectory . $bootstrapFileName;
+            break;
+        }
+        $bootstrapFileName = '../' . $bootstrapFileName;
     }
 }
 
-require_once getShopBasePath() . "/bootstrap.php";
+if (!(file_exists($bootstrapFileName) && !is_dir($bootstrapFileName))) {
+    $items = [
+        "Unable to find eShop bootstrap.php file.",
+        "You can override the path by using ESHOP_BOOTSTRAP_PATH environment variable.",
+        "\n"
+    ];
+
+    $message = implode(" ", $items);
+
+    die($message);
+}
+
+require_once($bootstrapFileName);
 
 /** @var d3_extsearch_response $oResponse */
 $oResponse = oxNew(d3_extsearch_response::class);

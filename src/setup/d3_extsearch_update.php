@@ -17,17 +17,20 @@
 
 namespace D3\Extsearch\setup;
 
+use D3\Extsearch\Application\Model\d3_extsearch_synset;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ParameterNotFoundException;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use D3\ModCfg\Application\Model\Install\d3install_updatebase;
 use Doctrine\DBAL\DBALException;
+use Doctrine\DBAL\Driver\PDOException;
 use OxidEsales\Eshop\Core\Exception\ConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Application\Model\Shop;
+use ReflectionException;
 
 /**
  * Class d3_extsearch_update
@@ -36,14 +39,14 @@ class d3_extsearch_update extends d3install_updatebase
 {
     public $sModKey = 'd3_extsearch';
     public $sModName = 'erweiterte Suche';
-    public $sModVersion = '6.2.1.1';
-    public $sModRevision = '6211';
-    public $sBaseConf = 'e9lv2==TDZJbkpvS3AySW04MnZ2aDhjNlZNMm9iUXFva01KWmk0L1E2cUVmMFhqOWhrMHBhT21wTEhEN
-nU1OGdQVHpNSC9oc0FEZHZMZUMwR3NCTHZabDNPNHZUcnlwMm42ajJFbVVoYWFMYnAzZXk2MWZ5ZnhXU
-DZUOFV5NDNhWTZ5cTJ5WFpqVVJrZCs5SXY4d203dFdISkdDUTk0cGR0THhaUWNYYml5a0dXM0JZT2pRT
-UVVYWZHeUJsc0daYnIyd0dmNWU0Mk9ydTFGQzV0Q3ZBY0YvenJSNnAxZ05ZaWVsYmlJZlM0dHRZSFBCR
-zhnb3MrUHZEOG9idzV5NmhiV01tTENjY2QyRi9oNVBySkNiOUNiQVZ3S3VxekRsYjZuNnIrN1k2Y2xMO
-HhVRENHTFRLU1UxcG9SbUt0NTZ2clFBTEVtaTVhdjJObUpZRGQwYnFIeFhRUWNnPT0=';
+    public $sModVersion = '6.3.0.0';
+    public $sModRevision = '6300';
+    public $sBaseConf = 'cpav2==cXd2dyt0aFBDeXdoTWxNZWdwdG1rYTdZS1N5T1hVSFpCeEhxTzVmWWpYMlBHb2lwOVYyaWhkc
+1p5TzF0WXRERVpTdUtoeHNYcFV4a1hibE9LMnI0bXRNSWMwdWUyUm4ySC9DY1p2eW9IQzJsTUlqa3BZT
+3I3b3cvc3BEdE81aGgvZ1lyQTNBMzBUclZIaE8wTndhdmI0ZVVJQmxXRFY0WkozdkxhamxlUmpQeDlJd
+XF6endObHpnVFJyUHY4R2Y1QVpJY21qNjl1M1BHbm51c2U5MnVqb3RGdStrLzZGcGZ6TFpnNnFGanFCT
+khXV1V6WGwzUktOZVpoRVZPeGh6OWhEWjJDQXdBd0hDUm44c3RDT0hxV3BjZlZqaTNrWVNkQ0VHazVoZ
+m8xNVRCSlVxRk5OQmhWbWpYOHRtODZWNHBYNU0zbWRjODJVcDYzWE13cWJSeW5nPT0=';
     public $sRequirements = '';
     public $sBaseValue = 'TyUzQTglM0ElMjJzdGRDbGFzcyUyMiUzQTY5JTNBJTdCcyUzQTI4JTNBJTIyZDNfY2ZnX21vZF9fYUxpY2Vuc2VJbmZvTWFpbCUyMiUzQmElM0EyJTNBJTdCcyUzQTQyJTNBJTIyTk9MSUNLRVlfXzQ3OTM2Mzg3MDJiNjc3MTVmMWRmYmZjODMyNDY2OTE0JTIyJTNCcyUzQTE5JTNBJTIyMjAxMy0wMS0xNiUyMDEyJTNBMTAlM0E0MCUyMiUzQnMlM0E0NCUzQSUyMk5PU0VSSUFMSURfXzQ3OTM2Mzg3MDJiNjc3MTVmMWRmYmZjODMyNDY2OTE0JTIyJTNCcyUzQTE5JTNBJTIyMjAxMy0wMS0xNiUyMDEyJTNBMTElM0E0MiUyMiUzQiU3RHMlM0E0MiUzQSUyMmQzX2NmZ19tb2RfX2FFeHRTZWFyY2hfc2ltaWxhclNlYXJjaEZpZWxkcyUyMiUzQmElM0E0JTNBJTdCaSUzQTAlM0JzJTNBMTQlM0ElMjI1MCUyMCUzRCUzRSUyMG94YXJ0bnVtJTIyJTNCaSUzQTElM0JzJTNBMTMlM0ElMjI1MCUyMCUzRCUzRSUyMG94dGl0bGUlMjIlM0JpJTNBMiUzQnMlM0ExOCUzQSUyMjQwJTIwJTNEJTNFJTIwb3hzZWFyY2hrZXlzJTIyJTNCaSUzQTMlM0JzJTNBMTclM0ElMjIyMCUyMCUzRCUzRSUyMG94c2hvcnRkZXNjJTIyJTNCJTdEcyUzQTQzJTNBJTIyZDNfY2ZnX21vZF9fc0V4dFNlYXJjaF9NdWx0aVNlYXJjaHdvcmRVc2FnZSUyMiUzQnMlM0ExMCUzQSUyMnNpbmdsZVdvcmQlMjIlM0JzJTNBMzklM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF91c2VBcnROdW1TZWFyY2glMjIlM0JzJTNBMSUzQSUyMjElMjIlM0JzJTNBMzklM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9vcmRlckJ5UHJpb3JpdHklMjIlM0JzJTNBMSUzQSUyMjElMjIlM0JzJTNBMzUlM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9vcmRlckJ5UHVzaCUyMiUzQnMlM0ExJTNBJTIyMSUyMiUzQnMlM0E0NCUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX2ZpbmRQdXRJbkFuZExlYXZlT3V0JTIyJTNCcyUzQTElM0ElMjIxJTIyJTNCcyUzQTM3JTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfb3duRm9ybUZpZWxkcyUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0EzNyUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX1ZhcmlhbnRTZWFyY2glMjIlM0JzJTNBMSUzQSUyMjAlMjIlM0JzJTNBMzUlM0ElMjJkM19jZmdfbW9kX19zRXh0U2VhcmNoX1ZhcmlhbnRVc2FnZSUyMiUzQnMlM0ExMCUzQSUyMnNob3dQYXJlbnQlMjIlM0JzJTNBMzclM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9zaW1pbGFyU2VhcmNoJTIyJTNCcyUzQTElM0ElMjIxJTIyJTNCcyUzQTMxJTNBJTIyZDNfY2ZnX21vZF9fc0V4dFNlYXJjaF9sYW5nRmlsZSUyMiUzQnMlM0EyMiUzQSUyMmQzX3Bob25ldGljX2RlX3ZvYy5waHAlMjIlM0JzJTNBMzglM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9zaW1pbGFyRXh0TGlzdCUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0EzNyUzQSUyMmQzX2NmZ19tb2RfX2lFeHRTZWFyY2hfc2ltaWxhckV4dExpc3QlMjIlM0JzJTNBMiUzQSUyMjEwJTIyJTNCcyUzQTM2JTNBJTIyZDNfY2ZnX21vZF9faUV4dFNlYXJjaF9taW5QaG9uTGVuZ3RoJTIyJTNCcyUzQTElM0ElMjIzJTIyJTNCcyUzQTM4JTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfc2VtYW50aWNTZWFyY2glMjIlM0JzJTNBMSUzQSUyMjAlMjIlM0JzJTNBNDMlM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9zZW1hbnRpY1VzZVBob25ldGljJTIyJTNCcyUzQTElM0ElMjIwJTIyJTNCcyUzQTQzJTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfc2VtYW50aWNBbGxvd1Z1bGdhciUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0EzMyUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX2NhdFNlYXJjaCUyMiUzQnMlM0ExJTNBJTIyMSUyMiUzQnMlM0EzOCUzQSUyMmQzX2NmZ19tb2RfX3NFeHRTZWFyY2hfc2hvd0NhdEFydGljbGVzJTIyJTNCcyUzQTglM0ElMjJhcnRpbmNhdCUyMiUzQnMlM0EzMCUzQSUyMmQzX2NmZ19tb2RfX2lFeHRTZWFyY2hfY2F0UHJpbyUyMiUzQnMlM0EyJTNBJTIyNTAlMjIlM0JzJTNBNDIlM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9tYW51ZmFjdHVyZXJTZWFyY2glMjIlM0JzJTNBMSUzQSUyMjElMjIlM0JzJTNBMzklM0ElMjJkM19jZmdfbW9kX19pRXh0U2VhcmNoX21hbnVmYWN0dXJlclByaW8lMjIlM0JzJTNBMiUzQSUyMjUwJTIyJTNCcyUzQTM5JTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfc2hvd0NvbnRlbnRMaXN0JTIyJTNCcyUzQTElM0ElMjIxJTIyJTNCcyUzQTQ1JTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfY29udGVudFNlYXJjaExvbmd0ZXh0JTIyJTNCcyUzQTElM0ElMjIwJTIyJTNCcyUzQTM0JTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfbG9nSGl0bGVzcyUyMiUzQnMlM0ExJTNBJTIyMSUyMiUzQnMlM0E0NSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX2dlbmVyYWxseUxvZ0ZvclNlYXJjaCUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0E0MSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX2FkbWluU2hvd1ZhcmlhbnRzJTIyJTNCcyUzQTElM0ElMjIxJTIyJTNCcyUzQTM4JTNBJTIyZDNfY2ZnX21vZF9faUV4dFNlYXJjaF9hcnRpY2xlc1BlclRpY2slMjIlM0JzJTNBMiUzQSUyMjEwJTIyJTNCcyUzQTM1JTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfZW1wdHlTZWFyY2glMjIlM0JzJTNBMSUzQSUyMjAlMjIlM0JzJTNBNDMlM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9zaG93SGlnaGxpZ2h0ZWRUZXh0JTIyJTNCcyUzQTElM0ElMjIxJTIyJTNCcyUzQTM3JTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfZ29Ub1VuaXF1ZUhpdCUyMiUzQnMlM0ExJTNBJTIyMSUyMiUzQnMlM0EzNSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX3Nob3dDYXRMaXN0JTIyJTNCcyUzQTElM0ElMjIxJTIyJTNCcyUzQTM1JTNBJTIyZDNfY2ZnX21vZF9fc0V4dFNlYXJjaF9vcmRlckNhdExpc3QlMjIlM0JzJTNBNyUzQSUyMmNvdW50ZXIlMjIlM0JzJTNBNDIlM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9zaG93T25lSXRlbUNhdExpc3QlMjIlM0JzJTNBMSUzQSUyMjAlMjIlM0JzJTNBMzglM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9zaG93VmVuZG9yTGlzdCUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0EzOCUzQSUyMmQzX2NmZ19tb2RfX3NFeHRTZWFyY2hfb3JkZXJWZW5kb3JMaXN0JTIyJTNCcyUzQTclM0ElMjJjb3VudGVyJTIyJTNCcyUzQTQ1JTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfc2hvd09uZUl0ZW1WZW5kb3JMaXN0JTIyJTNCcyUzQTElM0ElMjIwJTIyJTNCcyUzQTQ0JTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfc2hvd01hbnVmYWN0dXJlckxpc3QlMjIlM0JzJTNBMSUzQSUyMjElMjIlM0JzJTNBNDQlM0ElMjJkM19jZmdfbW9kX19zRXh0U2VhcmNoX29yZGVyTWFudWZhY3R1cmVyTGlzdCUyMiUzQnMlM0E3JTNBJTIyY291bnRlciUyMiUzQnMlM0E1MSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX3Nob3dPbmVJdGVtTWFudWZhY3R1cmVyTGlzdCUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0E0MSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX3Nob3dBdHRyaWJ1dGVMaXN0JTIyJTNCcyUzQTElM0ElMjIwJTIyJTNCcyUzQTQxJTNBJTIyZDNfY2ZnX21vZF9fc0V4dFNlYXJjaF9vcmRlckF0dHJpYnV0ZUxpc3QlMjIlM0JzJTNBNyUzQSUyMmNvdW50ZXIlMjIlM0JzJTNBNTUlM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9zaG93Tm9Bc3NpZ25lZEF0dHJpYnV0ZUFydGljbGVzJTIyJTNCcyUzQTElM0ElMjIwJTIyJTNCcyUzQTQxJTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfc2hvd1ByaWNlU2VsZWN0b3IlMjIlM0JzJTNBMSUzQSUyMjElMjIlM0JzJTNBNDElM0ElMjJkM19jZmdfbW9kX19pRXh0U2VhcmNoX3ByaWNlU2VsZWN0b3JJdGVtcyUyMiUzQnMlM0ExJTNBJTIyNSUyMiUzQnMlM0E0NSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX1ByaWNlU2VsZWN0b3JzUm91bmRlZCUyMiUzQnMlM0ExJTNBJTIyMSUyMiUzQnMlM0E0NSUzQSUyMmQzX2NmZ19tb2RfX3NFeHRTZWFyY2hfUHJpY2VTZWxlY3RvcnNEaXNwVHlwZSUyMiUzQnMlM0E4JTNBJTIyanFzbGlkZXIlMjIlM0JzJTNBMzklM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9zaG93RmlsdGVyUGFyYW0lMjIlM0JzJTNBMSUzQSUyMjElMjIlM0JzJTNBMzklM0ElMjJkM19jZmdfbW9kX19zRXh0U2VhcmNoX2ZpbHRlclBhcmFtRmllbGQlMjIlM0JzJTNBNyUzQSUyMm94dGl0bGUlMjIlM0JzJTNBNDAlM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9lbmFibGVBamF4U2VhcmNoJTIyJTNCcyUzQTElM0ElMjIxJTIyJTNCcyUzQTQ1JTNBJTIyZDNfY2ZnX21vZF9fc0V4dFNlYXJjaF9RdWlja1NlYXJjaE1heEFydGljbGVzJTIyJTNCcyUzQTMlM0ElMjIyMDAlMjIlM0JzJTNBNDklM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9RdWlja1NlYXJjaExvYWRDYXRlZ29yaWVzJTIyJTNCcyUzQTElM0ElMjIxJTIyJTNCcyUzQTUyJTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfUXVpY2tTZWFyY2hMb2FkTWFudWZhY3R1cmVycyUyMiUzQnMlM0ExJTNBJTIyMSUyMiUzQnMlM0E0NiUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX1F1aWNrU2VhcmNoTG9hZFZlbmRvcnMlMjIlM0JzJTNBMSUzQSUyMjElMjIlM0JzJTNBNDYlM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9RdWlja1NlYXJjaExvYWRDb250ZW50JTIyJTNCcyUzQTElM0ElMjIwJTIyJTNCcyUzQTMxJTNBJTIyZDNfY2ZnX21vZF9fYmxFeHRTZWFyY2hfU2hvd0lBUyUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0EzMyUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX1Nob3dQb3B1cCUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0E0OCUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX1ZhcmlhbnRDaGVja1BhcmVudEFjdGl2ZSUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0E0MSUzQSUyMmQzX2NmZ19tb2RfX3NFeHRTZWFyY2hfb3JkZXJCeUFsdGVybmF0aXZlJTIyJTNCcyUzQTclM0ElMjJveHRpdGxlJTIyJTNCcyUzQTQyJTNBJTIyZDNfY2ZnX21vZF9fc0V4dFNlYXJjaF9vcmRlckRpckFsdGVybmF0aXZlJTIyJTNCcyUzQTMlM0ElMjJhc2MlMjIlM0JzJTNBNTAlM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF9lbmFibGVQbHVnaW5Ccm93c2VySW5zdGFsbCUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0E0MCUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX2VuYWJsZVBsdWdpbkxpbmslMjIlM0JzJTNBMSUzQSUyMjAlMjIlM0JzJTNBMzglM0ElMjJkM19jZmdfbW9kX19ibEV4dFNlYXJjaF91c2VBTGlzdEZpbHRlciUyMiUzQnMlM0ExJTNBJTIyMSUyMiUzQnMlM0E0NSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX3VzZUF0dHJpYnV0ZUNvbWJpbmVPciUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0EzOCUzQSUyMmQzX2NmZ19tb2RfX3NFeHRTZWFyY2hfb3JkZXJBdHRyaWJ1dGVzJTIyJTNCcyUzQTUlM0ElMjJveHBvcyUyMiUzQnMlM0E1MSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX3VzZUF0dHJpYnV0ZVZhbHVlQ29tYmluZUFuZCUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0E1MSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX3Nob3dOb3RTZWxlY3RhYmxlQXR0cmlidXRlcyUyMiUzQnMlM0ExJTNBJTIyMCUyMiUzQnMlM0E0OSUzQSUyMmQzX2NmZ19tb2RfX2JsRXh0U2VhcmNoX2FqYXhTZWFyY2hMb2FkRnVsbE9iamVjdHMlMjIlM0JzJTNBMSUzQSUyMjAlMjIlM0IlN0Q=';
 
@@ -66,6 +69,8 @@ HhVRENHTFRLU1UxcG9SbUt0NTZ2clFBTEVtaTVhdjJObUpZRGQwYnFIeFhRUWNnPT0=';
               'do'    => 'fixFields'),
         array('check' => 'checkIndizes',
               'do'    => 'fixIndizes'),
+        array('check' => 'checkUnsetSynsetTypes',
+              'do'    => 'setInitialSynsetTypes'),
         array('check' => 'checkContentNoArtItemExist',
               'do'    => 'updateContentNoArtItemExist'),
         array('check' => 'hasUnregisteredFiles',
@@ -122,6 +127,16 @@ HhVRENHTFRLU1UxcG9SbUt0NTZ2clFBTEVtaTVhdjJObUpZRGQwYnFIeFhRUWNnPT0=';
             'blNull'      => false,
             'sDefault'    => '0',
             'sComment'    => 'attrib use in extsearch',
+            'sExtra'      => '',
+            'blMultilang' => false,
+        ),
+        'D3USECORRESPONDINGVALUES'    => array(
+            'sTableName'  => 'oxattribute',
+            'sFieldName'  => 'D3USECORRESPONDINGVALUES',
+            'sType'       => 'TINYINT(1)',
+            'blNull'      => false,
+            'sDefault'    => '0',
+            'sComment'    => 'use synonyms in extsearch',
             'sExtra'      => '',
             'blMultilang' => false,
         ),
@@ -504,12 +519,58 @@ HhVRENHTFRLU1UxcG9SbUt0NTZ2clFBTEVtaTVhdjJObUpZRGQwYnFIeFhRUWNnPT0=';
     }
 
     /**
+     * @return bool // true, if there are unassigned synsets
+     * @throws DatabaseConnectionException
+     */
+    public function checkUnsetSynsetTypes()
+    {
+        $iUnassigned = (int) $this->getDb()->getOne(
+            "SELECT count(*) FROM `".oxNew(d3_extsearch_synset::class)->getCoreTableName()."` WHERE 1 IN (`USEFORTERMS`, `USEFORATTRIBUTES`)"
+        );
+        $iTotal = (int) $this->getDb()->getOne(
+            "SELECT count(*) FROM `".oxNew(d3_extsearch_synset::class)->getCoreTableName()."` WHERE 1"
+        );
+
+        return !$iUnassigned && $iTotal;
+    }
+
+    /**
+     * @return bool
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     */
+    public function setInitialSynsetTypes()
+    {
+        if ($this->checkUnsetSynsetTypes()) {
+            $sQuery = "UPDATE `" . oxNew(d3_extsearch_synset::class)->getCoreTableName() . "` SET USEFORTERMS = 1 WHERE 1;";
+
+            if ($this->hasExecute()) {
+                try {
+                    $this->getDb()->execute($sQuery);
+                } catch (PDOException $exception) {
+                    if ($exception->errorInfo[1]) {
+                        $this->setErrorMessage($exception->errorInfo[2]);
+                    }
+                }
+            }
+
+            $this->setUpdateBreak(false);
+
+            if ($sQuery) {
+                $this->setActionLog('SQL', $sQuery, __METHOD__);
+            }
+        }
+
+        return true;
+    }
+
+    /**
      * @return bool
      * @throws DBALException
      * @throws DatabaseConnectionException
      * @throws DatabaseErrorException
      * @throws StandardException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @throws d3ParameterNotFoundException
      * @throws d3ShopCompatibilityAdapterException
      * @throws d3_cfg_mod_exception
@@ -525,7 +586,7 @@ HhVRENHTFRLU1UxcG9SbUt0NTZ2clFBTEVtaTVhdjJObUpZRGQwYnFIeFhRUWNnPT0=';
      * @throws DatabaseConnectionException
      * @throws DatabaseErrorException
      * @throws StandardException
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @throws d3ShopCompatibilityAdapterException
      * @throws d3_cfg_mod_exception
      */

@@ -61,9 +61,9 @@ $( function() {
         },
 
         _create: function () {
-            var self    = this;
-            var el      = this.element;
-            var options = this.options;
+            let self    = this;
+            let el      = this.element;
+            let options = this.options;
 
             this.addResponseElement();
             el.keyup(function(event) {
@@ -75,8 +75,8 @@ $( function() {
         },
 
         addResponseElement: function () {
-            var options = this.options;
-            var ResponseElement = $("#" + options.sResponseElementId);
+            let options = this.options;
+            let ResponseElement = $("#" + options.sResponseElementId);
             if (ResponseElement.length === 0) {
                 options.oAjaxResponseElement = $("<div>", {
                     "id": options.sResponseElementId,
@@ -88,7 +88,7 @@ $( function() {
         },
 
         mouseHandler: function (elementId, iLine) {
-            var options = this.options;
+            let options = this.options;
             options.oldColoredId = options.coloredId;
             options.coloredId = elementId;
             options.iActLine = iLine;
@@ -98,10 +98,10 @@ $( function() {
 
         keyHandler: function (event) {
             event.preventDefault();
-            var options = this.options;
+            let options = this.options;
             options.currentEvent = event;
-            var isSubmitEvent = event.type.toLowerCase() === "submit";
-            var sKey = isSubmitEvent ? "Enter" : event.key;
+            let isSubmitEvent = event.type.toLowerCase() === "submit";
+            let sKey = isSubmitEvent ? "Enter" : event.key;
 
             if (isSubmitEvent || options.oAjaxResponseElement.is(":visible")) {
                 if (sKey.toLowerCase() === "arrowup") {
@@ -133,7 +133,7 @@ $( function() {
         },
 
         handleArrowUpKey: function () {
-            var options = this.options;
+            let options = this.options;
             if (options.iActLine > 0) {
                 options.iActLine--;
             }
@@ -146,8 +146,8 @@ $( function() {
         },
 
         handleArrowDownKey: function () {
-            var options = this.options;
-            var iNodesCount = this.getResultItemCount();
+            let options = this.options;
+            let iNodesCount = this.getResultItemCount();
 
             if (options.iActLine < iNodesCount - 1) {
                 options.iActLine++;
@@ -162,16 +162,16 @@ $( function() {
         },
 
         handleArrowLeftKey: function () {
-            var options = this.options;
-            var iIndex = null;
-            var iDirection = null;
-            var aTypes = this.getTypesList();
+            let options = this.options;
+            let iIndex = null;
+            let iDirection = null;
+            let aTypes = this.getTypesList();
 
             if (options.iActLine < 0) {
                 iIndex = 0;
                 iDirection = 0;
             } else {
-                var sCurrType = $("#" + this.getResultItemIdByLine(options.iActLine)).attr("data-object-type");
+                let sCurrType = $("#" + this.getResultItemIdByLine(options.iActLine)).attr("data-object-type");
                 if (sCurrType !== null) {
                     if (sCurrType && sCurrType.length && aTypes.length > 1) {
                         iIndex = $.inArray(sCurrType, aTypes);
@@ -183,8 +183,8 @@ $( function() {
             }
 
             if (iIndex !== null) {
-                var sNewType = aTypes[iIndex + iDirection];
-                var sElementId = this.findFirstElementIdByObjectType(sNewType);
+                let sNewType = aTypes[iIndex + iDirection];
+                let sElementId = this.findFirstElementIdByObjectType(sNewType);
                 if (sElementId !== null) {
                     if (options.coloredId) {
                         options.oldColoredId = options.coloredId;
@@ -197,16 +197,16 @@ $( function() {
         },
 
         handleArrowRightKey: function () {
-            var options = this.options;
-            var iIndex = null;
-            var iDirection = null;
-            var aTypes = this.getTypesList();
+            let options = this.options;
+            let iIndex = null;
+            let iDirection = null;
+            let aTypes = this.getTypesList();
 
             if (options.iActLine < 0) {
                 iIndex = 0;
                 iDirection = 0;
             } else {
-                var sCurrType = $("#" + this.getResultItemIdByLine(options.iActLine)).attr("data-object-type");
+                let sCurrType = $("#" + this.getResultItemIdByLine(options.iActLine)).attr("data-object-type");
                 if (sCurrType) {
                     if (sCurrType && sCurrType.length && aTypes.length > 1) {
                         iIndex = $.inArray(sCurrType, aTypes);
@@ -218,8 +218,8 @@ $( function() {
             }
 
             if (iIndex !== null) {
-                var sNewType = aTypes[iIndex + iDirection];
-                var sElementId = this.findFirstElementIdByObjectType(sNewType);
+                let sNewType = aTypes[iIndex + iDirection];
+                let sElementId = this.findFirstElementIdByObjectType(sNewType);
                 if (sElementId) {
                     if (options.coloredId) {
                         options.oldColoredId = options.coloredId;
@@ -232,9 +232,9 @@ $( function() {
         },
 
         getTypesList: function () {
-            var types = [];
+            let types = [];
             this.getResultItemListElement().each(function () {
-                var objecttype = $(this).attr("data-object-type");
+                let objecttype = $(this).attr("data-object-type");
                 if (objecttype) {
                     if (objecttype.length && $.inArray(objecttype, types) < 0) {
                         types.push(objecttype);
@@ -247,8 +247,8 @@ $( function() {
         },
 
         findFirstElementIdByObjectType: function (sType) {
-            var options = this.options;
-            var sId = null;
+            let options = this.options;
+            let sId = null;
             this.getResultItemListElement().each(function (index) {
                 if ($(this).attr("data-object-type") === sType) {
                     options.iActLine = index;
@@ -261,34 +261,33 @@ $( function() {
         },
 
         handleEnterKeyOnSelectedItem: function () {
-            var options = this.options;
-            var element = $("#" + this.getResultItemIdByLine(options.iActLine));
+            let options = this.options;
+            let element = $("#" + this.getResultItemIdByLine(options.iActLine));
             window.location.href = element.attr("href");
         },
 
         handleEnterKeyWithoutSelectedItem: function () {
-            var self    = this;
-            var options = this.options;
+            let self    = this;
+            let options = this.options;
 
             if (options.isSend) {
                 window.clearTimeout(options.isSend);
                 self.hideSuggest();
             }
-            var searchFormElement = $("#" + options.sSearchFormId);
+            let searchFormElement = $("#" + options.sSearchFormId);
             searchFormElement.off("submit");
             searchFormElement.submit();
         },
 
         handleEscapeKey: function () {
-            var self    = this;
-            var options = this.options;
+            let self    = this;
             self.hideSuggest();
         },
 
         handleOtherKeys: function () {
-            var options = this.options;
-            var event = options.currentEvent;
-            var sKey = event.key;
+            let options = this.options;
+            let event = options.currentEvent;
+            let sKey = event.key;
 
             if (sKey !== "ArrowLeft" && sKey !== "ArrowRight") {
                 this.showSuggestWindow();
@@ -296,7 +295,7 @@ $( function() {
         },
 
         showSuggestWindow: function () {
-            var options = this.options;
+            let options = this.options;
 
             if (options.currentEvent.key.toLowerCase() === "enter") {
                 return;
@@ -317,21 +316,24 @@ $( function() {
         },
 
         showWaitMessage: function () {
-            var options = this.options;
+            let options = this.options;
             options.oAjaxResponseElement.html($("<div/>").html(options.sWaitMessage).text());
             this.setResponseElementStyle();
         },
 
         showResult: function () {
-            var options = this.options;
-            var el = this.element;
-            var self = this;
+            let options = this.options;
+            let el = this.element;
+            let self = this;
             // don't use oD3SearchJQ.ajax, because it sends one letter per request
-            $.get(options.sRequestUrl + "fnc=" + options.sRequestFncName + "&" + options.sSearchParamName + "=" + el.val(), function (text) {
-                options.oAjaxResponseElement.html(text);
-                self.setItemsMouseHandler();
-                self.setResponseElementStyle();
-                self.setStartSearchButtonHandler();
+            $.get(options.sRequestUrl + "fnc=" + options.sRequestFncName + "&" + options.sSearchParamName + "=" + el.val(), function (data) {
+                // prevent the display of outdated informations
+                if (el.val() === data.searchparam) {
+                    options.oAjaxResponseElement.html(data.content);
+                    self.setItemsMouseHandler();
+                    self.setResponseElementStyle();
+                    self.setStartSearchButtonHandler();
+                }
             });
 
             options.iActLine = -1;
@@ -342,9 +344,9 @@ $( function() {
         },
 
         setResponseElementStyle: function () {
-            var self    = this;
-            var options = this.options;
-            var el = this.element;
+            let self    = this;
+            let options = this.options;
+            let el = this.element;
 
             function setResponseStyles() {
                 if (options.sActiveElementClassName) {
@@ -356,14 +358,18 @@ $( function() {
                         'top',
                         options.sActiveElementStyleTop ?
                             options.sActiveElementStyleTop :
-                            (el.offset().top + (el.height() + 5) + "px"),
+                            el[0].hasAttribute("suggestTopOffsetPx") ?
+                                (el.offset().top + (el.height() + 5) + parseInt(el.attr('suggestTopOffsetPx'), 10) + "px"):
+                                (el.offset().top + (el.height() + 5) + "px"),
                         options.sActiveElementStyleTopImportant
                     );
                     options.oAjaxResponseElement.get(0).style.setProperty(
                         'left',
                         options.sActiveElementStyleLeft ?
                             options.sActiveElementStyleLeft :
-                            (el.offset().left + "px"),
+                            el[0].hasAttribute("suggestLeftOffsetPx") ?
+                                (el.offset().left + parseInt(el.attr('suggestLeftOffsetPx'), 10)) + "px":
+                                (el.offset().left + "px"),
                         options.sActiveElementStyleLeftImportant
                     );
                     if (options.blAutomatedActiveElementStyleWidth) {
@@ -404,7 +410,7 @@ $( function() {
         },
 
         getResultItemListElement: function () {
-            var options = this.options;
+            let options = this.options;
             return $(options.sResultListId).find("a" + options.sResultItemClass);
         },
 
@@ -413,8 +419,8 @@ $( function() {
         },
 
         getResultItemIdByLine:function (iLine) {
-            var iRet = null;
-            this.getResultItemListElement().each(function (index, value) {
+            let iRet = null;
+            this.getResultItemListElement().each(function (index) {
                 if (index === iLine) {
                     iRet = $(this).attr("id");
                 }
@@ -424,7 +430,7 @@ $( function() {
         },
 
         changeResultItemColor: function (newId, oldId) {
-            var options = this.options;
+            let options = this.options;
 
             if (oldId !== -1 && oldId !== newId) {
                 // don't use toggleClass, because this method is to slow for this case
@@ -439,37 +445,37 @@ $( function() {
         },
 
         scrollToSelectedElement: function (elementId) {
-            var options = this.options;
-            var currentEvent = options.currentEvent;
-            var itemElement = $("#" + elementId);
+            let options = this.options;
+            let currentEvent = options.currentEvent;
+            let itemElement = $("#" + elementId);
 
             // if list doesn't exist or event is mouse event
             if (itemElement.length === 0 || currentEvent.type.toLowerCase().indexOf("mouse") >= 0) {
                 return;
             }
 
-            var listElement = $(options.sResultListId);
-            var iPosition = itemElement.position().top + listElement.scrollTop() - options.iScrollTopOffset;
+            let listElement = $(options.sResultListId);
+            let iPosition = itemElement.position().top + listElement.scrollTop() - options.iScrollTopOffset;
             listElement.stop(true).animate({
                 scrollTop: iPosition
             }, "slow");
         },
 
         setItemsMouseHandler: function () {
-            var self = this;
-            var options = this.options;
+            let self = this;
+            let options = this.options;
             this.getResultItemListElement().each(function (index) {
                 $(this).mouseover(function(event) {
                     options.currentEvent = event;
-                    var sElementId = self.getResultItemIdByLine(index);
+                    let sElementId = self.getResultItemIdByLine(index);
                     self.mouseHandler(sElementId, index);
                 });
             });
         },
 
         setStartSearchButtonHandler: function () {
-            var self = this;
-            var options = this.options;
+            let self = this;
+            let options = this.options;
 
             $("#" + options.sStartSearchButtonId).click(function(event) {
                 event.preventDefault();

@@ -22,12 +22,12 @@
     <input type="hidden" name="oxid" value="[{$oxid}]">
     <input type="hidden" name="editval[d3_extsearch_attribute2object__oxid]" value="[{$oxid}]">
 
-    <table cellspacing="0" cellpadding="0" border="0" width="98%">
+    <table style="padding: 0; border: 0; width: 98%">
         <tr>
             <!-- Anfang rechte Seite -->
-            <td valign="top" class="edittext" align="left" width="50%">
+            <td style="vertical-align: top; text-align: left; width: 50%" class="edittext">
 
-                <table cellspacing="0" cellpadding="0" border="0">
+                <table style="padding: 0; border: 0">
                     [{block name="d3_admin_category_extsearch_form"}]
                         <tr>
                             <td class="edittext" colspan="2">
@@ -37,7 +37,7 @@
 
                         <tr id="d3notuse4filter">
                             <td class="edittext">
-                                [{oxmultilang ident="D3_EXTSEARCH_CATEGORY_NOTUSE4FILTER"}]
+                                <label for="d3notuse4filter">[{oxmultilang ident="D3_EXTSEARCH_CATEGORY_NOTUSE4FILTER"}]</label>
                             </td>
                             <td class="edittext">
                                 <input type="hidden" name="editval[oxcategories__d3notuse4filter]" value="0">
@@ -55,8 +55,8 @@
                 </table>
             </td>
             <!-- Anfang rechte Seite -->
-            <td valign="top" class="edittext" align="left">
-                <table cellspacing="0" cellpadding="0" border="0">
+            <td style="vertical-align: top; text-align: left" class="edittext">
+                <table style="padding: 0; border: 0">
                     [{block name="d3_admin_category_extsearch_form2"}]
                         <tr>
                             <td class="edittext" colspan="2">

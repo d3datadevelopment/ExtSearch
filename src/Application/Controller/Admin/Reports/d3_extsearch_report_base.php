@@ -27,6 +27,7 @@ use OxidEsales\Eshop\Application\Model\Vendor;
 use OxidEsales\Eshop\Application\Model\Manufacturer;
 use OxidEsales\Eshop\Application\Model\Attribute;
 use \OeStatistics_Report_Base;
+use stdClass;
 
 class d3_extsearch_report_base extends OeStatistics_Report_Base
 {
@@ -258,7 +259,7 @@ class d3_extsearch_report_base extends OeStatistics_Report_Base
 
         if (is_array($aFilters)) {
             foreach ($aFilters as $sType => $sValue) {
-                $oPreparedFilter = new \stdClass;
+                $oPreparedFilter = new stdClass;
 
                 switch ($sType) {
                     case "cat":
