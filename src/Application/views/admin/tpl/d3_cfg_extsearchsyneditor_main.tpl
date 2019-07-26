@@ -7,7 +7,7 @@
         [{if $updatelist == 1}]
             top.oxid.admin.updateList('[{$oxid}]');
         [{/if}]
-        var oField = top.oxid.admin.getLockTarget();
+        let oField = top.oxid.admin.getLockTarget();
         oField.onchange = oField.onkeyup = oField.onmouseout = top.oxid.admin.unlockSave;
     }
     -->
@@ -60,11 +60,11 @@
     <input type="hidden" name="fnc" value="save">
     <input type="hidden" name="oxid" value="[{$oxid}]">
     <input type="hidden" name="editval[d3_extsearch_term__oxid]" value="[{$oxid}]">
-    <table cellspacing="0" cellpadding="0" border="0" style="width:98%;">
+    <table style="width:98%;padding:0;border:0">
         <tr>
-            <td valign="top" class="edittext" style="padding-top:10px;padding-left:10px; width: 50%;">
+            <td class="edittext" style="vertical-align:top;padding-top:10px;padding-left:10px; width: 50%;">
 
-                <table cellspacing="0" cellpadding="0" border="0">
+                <table style="padding:0;border:0">
                     <tr>
                         <td class="edittext" style="width:120px;">
                             <label for="term__word">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_WORD"}]</label>
@@ -86,8 +86,8 @@
                 </table>
             </td>
     <!-- Anfang rechte Seite -->
-            <td valign="top" class="edittext" align="left" style="width:100%;height:99%;padding-left:5px;padding-bottom:30px;padding-top:10px;">
-                <table cellspacing="0" cellpadding="0" border="0">
+            <td class="edittext" style="text-align: left;vertical-align:top;width:100%;height:99%;padding-left:5px;padding-bottom:30px;padding-top:10px;">
+                <table style="padding:0;border:0">
                     <tr>
                         <td class="edittext" style="width:120px;">
                             <label for="term__synset_id">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_SYNSETID"}]</label>
@@ -112,6 +112,17 @@
                                 [{/foreach}]
                             </select>
                             [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_LANGUAGE_DESC"}]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="edittext" style="width:120px;">
+                            [{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSE"}]
+                        </td>
+                        <td class="edittext">
+                            <input type="hidden" name="synset[d3_extsearch_synset__useforterms]" value="0">
+                            <input id="synUseForTerms" class="edittext ext_edittext" type="checkbox" name="synset[d3_extsearch_synset__useforterms]" value="1" [{if $synset->getFieldData('useForTerms') == 1}]checked[{/if}]> <label for="synUseForTerms">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORTERMS"}]</label> [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORTERMS_DESC"}]<br>
+                            <input type="hidden" name="synset[d3_extsearch_synset__useforattributes]" value="0">
+                            <input id="synUseForAttributes" class="edittext ext_edittext" type="checkbox" name="synset[d3_extsearch_synset__useforattributes]" value="1" [{if $synset->getFieldData('useForAttributes') == 1}]checked[{/if}]> <label for="synUseForAttributes">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORATTRIBUTES"}]</label> [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORATTRIBUTES_DESC"}]<br>
                         </td>
                     </tr>
                 </table>

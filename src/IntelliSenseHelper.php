@@ -22,6 +22,8 @@ namespace D3\Extsearch\Modules\Application\Component
     class d3_oxcmp_utils_extsearch_parent extends \OxidEsales\Eshop\Application\Component\UtilsComponent {}
 
     class d3_oxwarticledetails_extsearch_parent extends \OxidEsales\Eshop\Application\Component\Widget\ArticleDetails {}
+
+    class d3_oxwarticlebox_extsearch_parent extends \OxidEsales\Eshop\Application\Component\Widget\ArticleBox {}
 }
 
 namespace D3\Extsearch\Modules\Application\Controller\Admin

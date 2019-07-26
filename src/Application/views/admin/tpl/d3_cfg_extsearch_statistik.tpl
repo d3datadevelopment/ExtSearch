@@ -8,7 +8,7 @@
 
     function UpdateList( sID)
     {
-        var oSearch = parent.list.document.getElementById("search");
+        let oSearch = parent.list.document.getElementById("search");
         oSearch.oxid.value=sID;
         oSearch.fnc.value='';
         oSearch.submit();
@@ -88,7 +88,7 @@
     <input type="hidden" name="oxid" value="[{$oxid}]">
     <input type="hidden" name="editval[oxid]" value="[{$oxid}]">
 
-<table border="0" style="width:98%;">
+<table style="border: 0; width:98%;">
     <tr>
         <td style="vertical-align: top;" class="edittext">
 
@@ -105,11 +105,11 @@
                 </span>
             [{else}]
                 <fieldset>
-                    <table cellspacing="0" cellpadding="0" border="0" style="width: 100%;">
+                    <table style="width: 100%;padding:0;border:0">
                         <colgroup>
-                            <col width="35%">
-                            <col width="35%">
-                            <col width="30%">
+                            <col style="width:35%">
+                            <col style="width:35%">
+                            <col style="width:30%">
                         </colgroup>
                         <tr>
                             <td>

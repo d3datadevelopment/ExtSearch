@@ -26,9 +26,9 @@ $( function() {
         },
 
         _create: function () {
-            var self = this;
-            var el      = this.element;
-            var options = this.options;
+            let self = this;
+            let el      = this.element;
+            let options = this.options;
 
             $("#" + options.sElementId).mouseup(function(event) {
                 event.stopPropagation();
@@ -42,11 +42,11 @@ $( function() {
         },
 
         showIasWindow: function (event) {
-            var options = this.options;
-            var oIASBoxElement = $("#" + options.sElementId);
-            var oIASInputElement = $("#" + options.sInputElementId);
+            let options = this.options;
+            let oIASBoxElement = $("#" + options.sElementId);
+            let oIASInputElement = $("#" + options.sInputElementId);
             if (oIASBoxElement.length) {
-                var sSelection = this.getSelection();
+                let sSelection = this.getSelection();
                 if (sSelection !== options.sLastSelection && sSelection.length > 0) {
                     oIASBoxElement.show().css({
                         "top":event.pageY + options.iPosOffset + "px",
@@ -67,13 +67,13 @@ $( function() {
         },
 
         clearIasWindow: function () {
-            var options = this.options;
+            let options = this.options;
             $("#" + options.sElementId).hide();
             options.sLastSelection = "";
         },
 
         getSelection: function () {
-            var oSelection;
+            let oSelection;
             if (window.getSelection) {
                 oSelection = window.getSelection();
             } else if (document.getSelection) {

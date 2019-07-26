@@ -78,15 +78,15 @@
             </div>
 
             <script type="text/javascript">
-                var d3_extsearch_popup = {
+                let d3_extsearch_popup = {
                     // Popups
                     popup: {
                         load : function(){
-                            var id = 'd3extsearch_message';
-                            var pcl = 'd3extsearch_popup load on';
-                            var mcl = 'on';
-                            var _mk = document.getElementById('d3extsearch_mask');
-                            var _el = document.getElementById(id);
+                            let id = 'd3extsearch_message';
+                            let pcl = 'd3extsearch_popup load on';
+                            let mcl = 'on';
+                            let _mk = document.getElementById('d3extsearch_mask');
+                            let _el = document.getElementById(id);
                             if(_mk && _el) {
                                 _mk.className = mcl;
                                 _el.className = pcl;
@@ -101,7 +101,7 @@
     [{else}]
         [{block name="d3_extsearch_js__nopopup"}]
             <script type="text/javascript">
-                var d3_extsearch_popup = {
+                let d3_extsearch_popup = {
                     popup: {
                         load : function(){ }
                     }

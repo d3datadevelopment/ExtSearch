@@ -17,7 +17,7 @@
         <hr style="clear: both; float: none;">
 
         [{if $aAllList|count}]
-            <table cellspacing='0' style='font-size: 10px; border: 1px solid silver;'>
+            <table style='font-size: 10px; border: 1px solid silver;'>
                 [{capture name="fieldNameLine"}]
                     <tr>
                         <td style='font-weight: bold; padding: 2px; border: 1px solid black; '>No:</td>

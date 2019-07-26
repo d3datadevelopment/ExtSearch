@@ -32,6 +32,7 @@ use OxidEsales\Eshop\Application\Model\Article;
 use OxidEsales\Eshop\Application\Model\Category;
 use OxidEsales\Eshop\Application\Model\ArticleList;
 use \OxidEsales\Eshop\Application\Controller\FrontendController;
+use stdClass;
 
 class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
 {
@@ -264,7 +265,7 @@ class d3_oxlocator_extsearch extends d3_oxlocator_extsearch_parent
             return;
         }
 
-        /** @var $oSearchCat Category|\stdClass */
+        /** @var $oSearchCat Category|stdClass */
         $oSearchCat = $oLocatorTarget->getActSearch();
         if ($oSearchCat) {
             $sSeparator = htmlspecialchars(ini_get('arg_separator.output'));

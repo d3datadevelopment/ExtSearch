@@ -8,7 +8,7 @@
 
     function UpdateList( sID)
     {
-        var oSearch = parent.list.document.getElementById("search");
+        let oSearch = parent.list.document.getElementById("search");
         oSearch.oxid.value=sID;
         oSearch.fnc.value='';
         oSearch.submit();
@@ -16,12 +16,12 @@
 
     function EditThis( sID)
     {
-        var oTransfer = document.getElementById("transfer");
+        let oTransfer = document.getElementById("transfer");
         oTransfer.oxid.value=sID;
         oTransfer.cl.value='';
         oTransfer.submit();
 
-        var oSearch = parent.list.document.getElementById("search");
+        let oSearch = parent.list.document.getElementById("search");
         oSearch.actedit.value = 0;
         oSearch.oxid.value=sID;
         oSearch.submit();
@@ -88,7 +88,7 @@
 
         <fieldset>
             <legend>[{oxmultilang ident="D3_EXTSEARCH_PLUGIN_SETTINGS"}]</legend>
-            <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+            <table style="width:100%;padding:0;border:0">
                 [{block name="d3_cfg_extsearch_plugins__form"}]
                     <tr>
                         <td class="edittext ext_edittext">

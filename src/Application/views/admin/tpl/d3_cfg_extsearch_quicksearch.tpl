@@ -8,7 +8,7 @@
 
     function UpdateList( sID)
     {
-        var oSearch = parent.list.document.getElementById("search");
+        let oSearch = parent.list.document.getElementById("search");
         oSearch.oxid.value=sID;
         oSearch.fnc.value='';
         oSearch.submit();
@@ -16,21 +16,21 @@
 
     function EditThis( sID)
     {
-        var oTransfer = document.getElementById("transfer");
+        let oTransfer = document.getElementById("transfer");
         oTransfer.oxid.value=sID;
         oTransfer.cl.value='';
         oTransfer.submit();
 
-        var oSearch = parent.list.document.getElementById("search");
+        let oSearch = parent.list.document.getElementById("search");
         oSearch.actedit.value = 0;
         oSearch.oxid.value=sID;
         oSearch.submit();
     }
 
     function _groupExp(el) {
-        var _cur = el.parentNode;
+        let _cur = el.parentNode;
 
-        if (_cur.className == "exp") _cur.className = "";
+        if (_cur.className === "exp") _cur.className = "";
           else _cur.className = "exp";
     }
     -->
@@ -89,7 +89,7 @@
         <b>[{oxmultilang ident="D3_EXTSEARCH_MAIN_NOCONFIG_DESC"}]</b><br>
         <input type="submit" value="[{oxmultilang ident="D3_EXTSEARCH_MAIN_NOCONFIG_BTN"}]">
     [{else}]
-        <table border="0" style="width: 98%;">
+        <table style="border: 0; width: 98%;">
             <tr>
                 <td style="vertical-align: top;" class="edittext">
 

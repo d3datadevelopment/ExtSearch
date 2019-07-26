@@ -1,7 +1,7 @@
 [{$smarty.block.parent}]
 
 <tr>
-    <td class="edittext" width="120">
+    <td class="edittext" style="width:120px">
         <label for="d3push">[{oxmultilang ident="D3_EXTSEARCH_PUSH"}]</label>
     </td>
     <td class="edittext">

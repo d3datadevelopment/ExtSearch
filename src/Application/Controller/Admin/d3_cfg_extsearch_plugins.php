@@ -26,6 +26,7 @@ use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\UtilsView;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Output;
+use Smarty;
 
 class d3_cfg_extsearch_plugins extends d3_cfg_mod_main
 {
@@ -122,7 +123,7 @@ class d3_cfg_extsearch_plugins extends d3_cfg_mod_main
             $blHasIcon = count($aImgInfo) ? true : false;
         }
 
-        /** @var $smarty \Smarty */
+        /** @var $smarty Smarty */
         $smarty = Registry::get(UtilsView::class)->getSmarty();
         $smarty->assign('oShop', $oShop);
         $smarty->assign('blHasIcon', $blHasIcon);
@@ -141,7 +142,7 @@ class d3_cfg_extsearch_plugins extends d3_cfg_mod_main
         $sCharSet = "UTF-8";
         $sTitle = Registry::getLang()->translateString('D3_EXTSEARCH_MAIN_GENERATOR_NOTE');
 
-        /** @var $smarty \Smarty */
+        /** @var $smarty Smarty */
         $smarty = Registry::get(UtilsView::class)->getSmarty();
         $smarty->assign('sCharset', $sCharSet);
         $smarty->assign('sTitle', $sTitle);

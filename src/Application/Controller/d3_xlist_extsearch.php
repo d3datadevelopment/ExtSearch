@@ -16,6 +16,7 @@
 
 namespace D3\Extsearch\Application\Controller;
 
+use alist;
 use D3\Extsearch\Modules\Application\Model\d3_oxsearch_extsearch;
 use D3\Extsearch\Modules\Application\Controller\d3_alist_extsearch;
 use D3\Extsearch\Application\Model\Filters\d3FilterList;
@@ -26,6 +27,7 @@ use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use Doctrine\DBAL\DBALException;
+use manufacturerlist as manufacturerlistAlias;
 use OxidEsales\Eshop\Application\Controller\ManufacturerListController;
 use OxidEsales\Eshop\Application\Controller\VendorListController;
 use OxidEsales\Eshop\Application\Controller\ArticleListController;
@@ -44,6 +46,7 @@ use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\StrMb;
+use vendorlist as vendorlistAlias;
 
 class d3_xlist_extsearch
 {
@@ -58,6 +61,11 @@ class d3_xlist_extsearch
     protected $_aSelectedAttributes;
     private $_blUseAlistFilter;
 
+    /**
+     * d3_xlist_extsearch constructor.
+     * @param $oListController
+     * @throws StandardException
+     */
     public function __construct($oListController)
     {
         if (false == ($oListController instanceof ArticleListController)
@@ -114,11 +122,11 @@ class d3_xlist_extsearch
         ) {
             $sControllerClassName = strtolower($this->getaListController()->getClassKey());
 
-            if (in_array($sControllerClassName, array(ArticleListController::class, \alist::class))) {
+            if (in_array($sControllerClassName, array(ArticleListController::class, alist::class))) {
                 $_POST["searchcnid"] = Registry::get(Request::class)->getRequestEscapedParameter('cnid');
-            } elseif (in_array($sControllerClassName, array(ManufacturerListController::class, \manufacturerlist::class))) {
+            } elseif (in_array($sControllerClassName, array(ManufacturerListController::class, manufacturerlistAlias::class))) {
                 $_POST["searchmanufacturer"] = Registry::get(Request::class)->getRequestEscapedParameter('mnid');
-            } elseif (in_array($sControllerClassName, array(VendorListController::class, \vendorlist::class))) {
+            } elseif (in_array($sControllerClassName, array(VendorListController::class, vendorlistAlias::class))) {
                 $sActCat = Registry::get(Request::class)->getRequestEscapedParameter('cnid');
                 /** @var StrMb $oStrMb */
                 $oStrMb = getStr();
@@ -131,11 +139,11 @@ class d3_xlist_extsearch
 
             $aExclude = array();
 
-            if (in_array($sControllerClassName, array(ArticleListController::class, \alist::class))) {
+            if (in_array($sControllerClassName, array(ArticleListController::class, alist::class))) {
                 $aExclude[] = d3FilterList::CategoryFilterId;
-            } elseif (in_array($sControllerClassName, array(VendorListController::class, \vendorlist::class))) {
+            } elseif (in_array($sControllerClassName, array(VendorListController::class, vendorlistAlias::class))) {
                 $aExclude[] = d3FilterList::VendorFilterId;
-            } elseif (in_array($sControllerClassName, array(ManufacturerListController::class, \manufacturerlist::class))) {
+            } elseif (in_array($sControllerClassName, array(ManufacturerListController::class, manufacturerlistAlias::class))) {
                 $aExclude[] = d3FilterList::ManufacturerFilterId;
             }
 

@@ -35,6 +35,7 @@ use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\TableViewNameGenerator;
 use OxidEsales\Eshop\Core\Output;
+use Smarty;
 
 class d3_cfg_extsearch_main extends d3_cfg_mod_main
 {
@@ -251,7 +252,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
             $iProcessedPercent
         );
 
-        /** @var $smarty \Smarty */
+        /** @var $smarty Smarty */
         $smarty = Registry::get(UtilsView::class)->getSmarty();
         $smarty->assign('sCharset', $this->getCharSet());
         $smarty->assign('sTitle', $sTitle);
@@ -366,7 +367,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
             $iProcessedPercent
         );
 
-        /** @var $smarty \Smarty */
+        /** @var $smarty Smarty */
         $smarty = Registry::get(UtilsView::class)->getSmarty();
         $smarty->assign('sCharset', $this->getCharSet());
         $smarty->assign('sTitle', $sTitle);
@@ -399,7 +400,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
     {
         $sCharSet = "UTF-8";
 
-        /** @var $smarty \Smarty */
+        /** @var $smarty Smarty */
         $smarty = Registry::get(UtilsView::class)->getSmarty();
         $smarty->assign('sCharset', $sCharSet);
         $smarty->assign('sTitle', $sTitle);
@@ -434,7 +435,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         $aUsedFields = array();
         $aFieldNames = array();
 
-        /** @var $smarty \Smarty */
+        /** @var $smarty Smarty */
         $smarty = Registry::get(UtilsView::class)->getSmarty();
         $smarty->assign('sCharSet', $this->getCharSet());
         $smarty->assign('sFormUrl', d3utils::getInstance()->getAdminClassUrl($aParams));

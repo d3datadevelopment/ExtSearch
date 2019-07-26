@@ -5,27 +5,27 @@
         [{if $updatelist == 1}]
             top.oxid.admin.updateList('[{$oxid}]');
         [{/if}]
-        var oField = top.oxid.admin.getLockTarget();
+        let oField = top.oxid.admin.getLockTarget();
         oField.onchange = oField.onkeyup = oField.onmouseout = top.oxid.admin.unlockSave;
     }
 
     function editThis(sID) {
-        var oTransfer = top.basefrm.edit.document.getElementById("transfer");
+        let oTransfer = top.basefrm.edit.document.getElementById("transfer");
         oTransfer.oxid.value = sID;
         oTransfer.cl.value = top.basefrm.list.sDefClass;
 
         //forcing edit frame to reload after submit
         top.forceReloadingEditFrame();
 
-        var oSearch = top.basefrm.list.document.getElementById("search");
+        let oSearch = top.basefrm.list.document.getElementById("search");
         oSearch.oxid.value = sID;
         oSearch.actedit.value = 0;
         oSearch.submit();
     }
     function deleteThis(sID) {
-        blCheck = confirm("[{oxmultilang ident="D3_EXTSEARCH_SYNED_DELETESYN"}]");
+        let blCheck = confirm("[{oxmultilang ident="D3_EXTSEARCH_SYNED_DELETESYN"}]");
         if (blCheck === true) {
-            var oSearch = document.getElementById("myedit2");
+            let oSearch = document.getElementById("myedit2");
             oSearch.fnc.value = 'deletesynonym';
             oSearch.deloxid.value = sID;
             oSearch.submit();
@@ -80,14 +80,14 @@
 </form>
 
 [{oxmultilang ident="D3_EXTSEARCH_SYNED_MANAGE_DESC"}]
-<table cellspacing="0" cellpadding="0" border="0" style="width:98%;">
+<table style="padding:0;border:0;width:98%;">
     <tr>
-        <td valign="top" class="edittext" style="padding-top:10px;padding-left:10px; width: 50%;">
-            <table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
+        <td class="edittext" style="vertical-align: top;padding-top:10px;padding-left:10px; width: 50%;">
+            <table style="padding:0;border:0;width:100%;">
                 <colgroup>
-                    <col width="10%">
+                    <col style="width:10%">
                     <col>
-                    <col width="29">
+                    <col style="width:29px">
                 </colgroup>
                 [{assign var="blWhite" value=""}]
                 <tr>
@@ -99,7 +99,7 @@
                     [{assign var="listclass" value="listitem"|cat:$blWhite}]
                     <tr>
                         <td class="edittext [{$listclass}]" style="text-align: center;">
-                            <a href="JavaScript:editThis('[{$termid}]');"><img src="[{$oViewConf->getImageUrl()}]editvariant.gif" width="15" height="15" alt="" border="0" align="absmiddle"></a>
+                            <a href="JavaScript:editThis('[{$termid}]');"><img src="[{$oViewConf->getImageUrl()}]editvariant.gif" style="width:15px;height:15px;border:0;vertical-align: middle" alt=""></a>
                         </td>
                         <td class="edittext [{$listclass}]">
                             [{$sSynonym}]

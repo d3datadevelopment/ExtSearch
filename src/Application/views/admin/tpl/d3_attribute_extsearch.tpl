@@ -22,12 +22,12 @@
     <input type="hidden" name="oxid" value="[{$oxid}]">
     <input type="hidden" name="editval[d3_extsearch_attribute2object__oxid]" value="[{$oxid}]">
 
-    <table cellspacing="0" cellpadding="0" border="0" width="98%">
+    <table style="padding: 0; border: 0; width: 98%">
         <tr>
             <!-- Anfang rechte Seite -->
-            <td valign="top" class="edittext" align="left" width="50%">
+            <td style="vertical-align: top; text-align: left; width: 50%" class="edittext">
 
-                <table cellspacing="0" cellpadding="0" border="0">
+                <table style="padding: 0; border: 0">
                     [{block name="d3_admin_attribute_extsearch_form"}]
                         <tr>
                             <td class="edittext" colspan="2">
@@ -35,13 +35,25 @@
                             </td>
                         </tr>
 
-                        <tr id="d3notuse4filter">
+                        <tr>
                             <td class="edittext">
                                 <label for="d3notuse4filter">[{oxmultilang ident="D3_EXTSEARCH_ATTRIBUTE_NOTUSE4FILTER"}]</label>
                             </td>
                             <td class="edittext">
                                 <input type="hidden" name="editval[oxattribute__d3notuse4filter]" value="0">
                                 <input type="checkbox" name="editval[oxattribute__d3notuse4filter]" id="d3notuse4filter" value="1" class="edittext" [{if $edit->oxattribute__d3notuse4filter->value == 1}]CHECKED[{/if}] [{$readonly}]>
+                                [{oxinputhelp ident="D3_EXTSEARCH_ATTRIBUTE_NOTUSE4FILTER_DESC"}]
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="edittext">
+                                <label for="d3useCorrespondingValues">[{oxmultilang ident="D3_EXTSEARCH_ATTRIBUTE_USECORRESPONDINGVALUES"}]</label>
+                            </td>
+                            <td class="edittext">
+                                <input type="hidden" name="editval[oxattribute__d3usecorrespondingvalues]" value="0">
+                                <input type="checkbox" name="editval[oxattribute__d3usecorrespondingvalues]" id="d3useCorrespondingValues" value="1" class="edittext" [{if $edit->getFieldData('d3usecorrespondingvalues') == 1}]CHECKED[{/if}] [{$readonly}]>
+                                [{oxinputhelp ident="D3_EXTSEARCH_ATTRIBUTE_USECORRESPONDINGVALUES_DESC"}]
                             </td>
                         </tr>
                     [{/block}]
@@ -55,8 +67,8 @@
                 </table>
             </td>
             <!-- Anfang rechte Seite -->
-            <td valign="top" class="edittext" align="left">
-                <table cellspacing="0" cellpadding="0" border="0">
+            <td style="vertical-align: top; text-align: left" class="edittext">
+                <table style="padding: 0; border: 0">
                     [{block name="d3_admin_attribute_extsearch_form2"}]
                         <tr>
                             <td class="edittext" colspan="2">

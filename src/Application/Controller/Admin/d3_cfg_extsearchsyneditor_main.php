@@ -17,6 +17,7 @@
 
 namespace D3\Extsearch\Application\Controller\Admin;
 
+use D3\Extsearch\Application\Model\d3_extsearch_synset;
 use D3\Extsearch\Application\Model\d3_extsearch_term;
 use D3\Extsearch\Application\Model\d3_semantic;
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_main;
@@ -77,6 +78,10 @@ class d3_cfg_extsearchsyneditor_Main extends d3_cfg_mod_main
         $oTerm = oxNew(d3_extsearch_term::class);
         $this->addTplParam('edit', $oTerm);
 
+        /** @var $oSynset d3_extsearch_synset */
+        $oSynset = oxNew(d3_extsearch_synset::class);
+        $this->addTplParam('synset', $oSynset);
+
         if (method_exists($this, 'getEditObjectId')) {
             $soxId = $this->getEditObjectId();
         } else {
@@ -100,6 +105,7 @@ class d3_cfg_extsearchsyneditor_Main extends d3_cfg_mod_main
                 $this->addTplParam('oxid', $soxId);
             } else {
                 $oTerm->load($soxId);
+                $oSynset->load($oTerm->getFieldData('synset_id'));
             }
         }
 
@@ -128,6 +134,9 @@ class d3_cfg_extsearchsyneditor_Main extends d3_cfg_mod_main
         $oTerm = oxNew(d3_extsearch_term::class);
         $oTerm->setLanguage($this->_iEditLang);
 
+        /** @var d3_extsearch_synset $oSynset */
+        $oSynset = oxNew(d3_extsearch_synset::class);
+
         if ($soxId != "-1") {
             $oTerm->loadInLang($this->_iEditLang, $soxId);
         } else {
@@ -142,6 +151,12 @@ class d3_cfg_extsearchsyneditor_Main extends d3_cfg_mod_main
         $oTerm->assign($aParams);
         $oTerm->setLanguage($this->_iEditLang);
         $oTerm->save();
+
+        $aSynsetParams = Registry::get(Request::class)->getRequestEscapedParameter("synset");
+
+        $oSynset->load($oTerm->getFieldData('synset_id'));
+        $oSynset->assign($aSynsetParams);
+        $oSynset->save();
 
         if (method_exists($this, 'setEditObjectId')) {
             $this->setEditObjectId($oTerm->getId());

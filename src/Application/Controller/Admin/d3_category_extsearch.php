@@ -19,8 +19,8 @@ namespace D3\Extsearch\Application\Controller\Admin;
 
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
 use Doctrine\DBAL\DBALException;
+use Exception;
 use OxidEsales\Eshop\Application\Controller\Admin\AdminDetailsController;
-use OxidEsales\Eshop\Application\Model\Attribute;
 use OxidEsales\Eshop\Application\Model\Category;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
@@ -57,7 +57,7 @@ class d3_category_extsearch extends AdminDetailsController
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function save()
     {

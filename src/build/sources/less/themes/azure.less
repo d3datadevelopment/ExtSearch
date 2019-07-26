@@ -28,9 +28,10 @@ body {
         width: 214px;
     }
 
-
     .xajax_resp_cl.xajax_resp_azure {
-        right: 484px !important;
-        left: auto !important;
+        left: auto;
+        &.suggestVisible {
+            display: block;
+        }
     }
 }

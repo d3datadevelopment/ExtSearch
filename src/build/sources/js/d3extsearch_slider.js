@@ -14,7 +14,7 @@
 
 (function ( $ )
 {
-    d3extsearchslider = {
+    let d3extsearchslider = {
         options: {
             fieldMinId: "d3extsearch_PriceFilterfieldMinId",
             fieldMaxId: "d3extsearch_PriceFilterfieldMaxId",
@@ -26,9 +26,9 @@
 
         _create: function ()
         {
-            var self = this;
-            var options = self.options;
-            var el      = self.element;
+            let self = this;
+            let options = self.options;
+            let el      = self.element;
 
             if (typeof options.limitMin !== "undefined") {
                 $('input#' + options.fieldMinId + ',input#' + options.fieldMaxId).hide();
