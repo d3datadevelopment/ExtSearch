@@ -33,6 +33,7 @@ use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Exception\FileException;
 use OxidEsales\Eshop\Core\Exception\StandardException;
+use OxidEsales\Eshop\Core\Registry;
 
 class d3_vendorlist_extsearch extends d3_vendorlist_extsearch_parent
 {
@@ -724,5 +725,30 @@ class d3_vendorlist_extsearch extends d3_vendorlist_extsearch_parent
             $this->_oXListController = oxNew(d3_xlist_extsearch::class, $this);
         }
         return $this->_oXListController;
+    }
+
+    /**
+     * checks if this view can be cached
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
+    public function canCache()
+    {
+        $canCache = parent::canCache();
+
+        if ($canCache &&
+            // need function check, because canCache is called before the filters are reset
+            strtolower(Registry::getRequest()->getRequestEscapedParameter('fnc')) !== 'd3clearfilter' &&
+            count($this->d3GetXListController()->getAllSelections())
+        ) {
+            $canCache = false;
+        }
+
+        return $canCache;
     }
 }

@@ -2,9 +2,19 @@
 title: Changelog
 ---
 
+## 6.3.1.0 (2019-09-24)
+### Changed
+- gefilterte Seiten werden nicht im Dynamic Content Cache aufgenommen
+- Debug-Ausgaben von der Browser-Ausgabe zur Browser-Konsole verschoben
+- Suggest (Schnellsuche) verwendet ArticleList-Objekt statt natives Array
+### Fixed
+- setze passende Leerwerte, wenn jeweiliger Filter nicht aktiviert ist, vermeidet warning-Meldungen im Log
+
+---
+
 ## 6.3.0.0 (2019-07-22)
 ### Added
-- korrespondiesende Attributwerte implementiert
+- korrespondierende Attributwerte implementiert
 ### Changed
 - Response-Script ermittelt Pfad der Bootstrap-Datei dynamisch
 - Abfrage-Veränderungen für Aggrosoft WaWi-Modul-Anpassungen optimiert

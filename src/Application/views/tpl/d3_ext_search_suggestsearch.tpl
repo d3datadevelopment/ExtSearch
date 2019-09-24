@@ -16,11 +16,13 @@
         </div>
 
         [{capture assign="sCssClasses"}][{strip}]
-            [{if $oHitList|@count}] hasArticleItems[{/if}]
-            [{if $oCatHitList|@count}] hasCategoryItems[{/if}]
-            [{if $oManHitList|@count}] hasManufacturerItems[{/if}]
-            [{if $oVendorHitList|@count}] hasVendorItems[{/if}]
-            [{if $oContentHitList|@count}] hasContentItems[{/if}]
+            [{if !$blStartSearch}]
+                [{if $oHitList && $oHitList->count()}] hasArticleItems[{/if}]
+                [{if $oCatHitList && $oCatHitList->count()}] hasCategoryItems[{/if}]
+                [{if $oManHitList && $oManHitList->count()}] hasManufacturerItems[{/if}]
+                [{if $oVendorHitList && $oVendorHitList->count()}] hasVendorItems[{/if}]
+                [{if $oContentHitList && $oContentHitList->count()}] hasContentItems[{/if}]
+            [{/if}]
         [{/strip}][{/capture}]
 
         [{strip}]
@@ -28,7 +30,7 @@
                 [{block name="d3extsearch_suggest_list"}]
                     <div class="list [{if $useMultipleObjectTypes}]small[{/if}] [{$sCssClasses}]" id="searchItemList">
 
-                        [{if $oHitList|@count}]
+                        [{if $oHitList->count()}]
                             [{block name="d3extsearch_suggest_list_article"}]
                                 <div class="d3extsearch_suggest articlebox" id="d3extsearch_suggest_articlebox">
                                     <h3>[{oxmultilang ident="PRODUCTS"}]</h3>
@@ -48,7 +50,7 @@
                             [{/block}]
                         [{/if}]
 
-                        [{if $useMultipleObjectTypes && $oCatHitList|@count}]
+                        [{if $useMultipleObjectTypes && $oCatHitList->count()}]
                             [{block name="d3extsearch_suggest_list_category"}]
                                 <div class="d3extsearch_suggest categorybox" id="d3extsearch_suggest_categorybox">
                                     <h3>[{oxmultilang ident="CATEGORIES"}]</h3>
@@ -66,7 +68,7 @@
                             [{/block}]
                         [{/if}]
 
-                        [{if $useMultipleObjectTypes && $oManHitList|@count}]
+                        [{if $useMultipleObjectTypes && $oManHitList->count()}]
                             [{block name="d3extsearch_suggest_list_manufacturer"}]
                                 <div class="d3extsearch_suggest manufacturerbox" id="d3extsearch_suggest_manufacturerbox">
                                     <h3>[{oxmultilang ident="MANUFACTURERS"}]</h3>
@@ -84,7 +86,7 @@
                             [{/block}]
                         [{/if}]
 
-                        [{if $useMultipleObjectTypes && $oVendorHitList|@count}]
+                        [{if $useMultipleObjectTypes && $oVendorHitList->count()}]
                             [{block name="d3extsearch_suggest_list_vendor"}]
                                 <div class="d3extsearch_suggest vendorbox" id="d3extsearch_suggest_vendorbox">
                                     <h3>[{oxmultilang ident="DISTRIBUTORS"}]</h3>
@@ -102,7 +104,7 @@
                             [{/block}]
                         [{/if}]
 
-                        [{if $useMultipleObjectTypes && $oContentHitList|@count}]
+                        [{if $useMultipleObjectTypes && $oContentHitList->count()}]
                             [{block name="d3extsearch_suggest_list_content"}]
                                 <div class="d3extsearch_suggest contentbox" id="d3extsearch_suggest_contentbox">
                                     <h3>[{oxmultilang ident="SERVICES"}]</h3>
