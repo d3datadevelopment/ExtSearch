@@ -48,7 +48,7 @@ $aLang = array(
     'D3_EXTSEARCH_CONFIGVARS_BLUSEFILTERINARTICLELISTS' => 'Filter in Artikellisten verfügbar:',
     'D3_EXTSEARCH_CONFIGVARS_FEATUREBIT1'             => 'Filter in Artikellisten verfügbar:',
 
-    'D3_EXTSEARCH_MAIN_DEBUGACTIVE_DESC'              => 'Der Debugmodus gibt die verwendeten Datenbankabfragen zur einfacheren Programmierung und Fehlersuche im Frontend aus. Deaktivieren Sie diesen bitte unbedingt für den Livebetrieb, da mit aktiviertem Debugmodus das Datenbank-Caching nicht verwendet wird.',
+    'D3_EXTSEARCH_MAIN_DEBUGACTIVE_DESC'              => 'Der Debugmodus gibt die verwendeten Datenbankabfragen zur einfacheren Programmierung und Fehlersuche in der Browser-Konsole und FirePHP-Konsole aus (Ajax-Requests können aus technischen Gründen nur in FirePHP ausgegeben werden). Zur Anzeige der Abfragen installieren Sie bitte das FirePHP-AddOn für Ihren Browser. Deaktivieren Sie den Debugmodus bitte unbedingt für den Livebetrieb, da mit aktiviertem Debugmodus das Datenbank-Caching nicht verwendet wird.',
     'D3_EXTSEARCH_MAIN_MAINSETTINGS'                  => 'allgemeine Einstellungen',
     'D3_EXTSEARCH_MAIN_FIELDLIST'                     => 'diese Felder für die Ähnlichkeitssuche und die Schnellsuche verwenden<br>Relevanz => Feldname (Bsp.: 50 => oxtitle)',
     'D3_EXTSEARCH_MAIN_SORTDEBUG'                     => 'Ergebnis-Feld-Analyse',

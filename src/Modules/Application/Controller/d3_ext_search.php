@@ -1685,4 +1685,29 @@ class d3_ext_search extends d3_ext_search_parent
     {
         return $this->d3GetXListController()->d3GetOwnSearchHandler()->getFilterList()->getAttributeFilter();
     }
+
+    /**
+     * checks if this view can be cached
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
+    public function canCache()
+    {
+        $canCache = parent::canCache();
+
+        if ($canCache &&
+            // need function check, because canCache is called before the filters are reset
+            strtolower(Registry::getRequest()->getRequestEscapedParameter('fnc')) !== 'd3clearfilter' &&
+            count($this->d3GetXListController()->getAllSelections())
+        ) {
+            $canCache = false;
+        }
+
+        return $canCache;
+    }
 }

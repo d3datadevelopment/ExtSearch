@@ -48,7 +48,7 @@ $aLang = array(
     'D3_EXTSEARCH_CONFIGVARS_BLUSEFILTERINARTICLELISTS' => 'filters in article lists available:',
     'D3_EXTSEARCH_CONFIGVARS_FEATUREBIT1'             => 'filters in article lists available:',
 
-    'D3_EXTSEARCH_MAIN_DEBUGACTIVE_DESC'              => 'Debug mode outputs the used database queries for easier programming and debugging in the frontend. Be sure to deactivate it for live operation, as debug mode does not use database caching.',
+    'D3_EXTSEARCH_MAIN_DEBUGACTIVE_DESC'              => 'In debug mode, the used database queries are displayed in the browser console and FirePHP console for easier programming and troubleshooting (Ajax requests can only be issued in FirePHP for technical reasons.). To view the queries, please install the FirePHP add-on for your browser.  Please deactivate the debug mode for live operation, as database caching is not used with activated debug mode.',
     'D3_EXTSEARCH_MAIN_MAINSETTINGS'                  => 'Common Settings',
     'D3_EXTSEARCH_MAIN_FIELDLIST'                     => 'these fields will used in similar and quicksearch<br>relevance => field name (example.: 50 => oxtitle)',
     'D3_EXTSEARCH_MAIN_SORTDEBUG'                     => 'result field analysis',

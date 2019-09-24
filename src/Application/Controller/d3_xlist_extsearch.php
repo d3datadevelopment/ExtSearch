@@ -807,6 +807,46 @@ class d3_xlist_extsearch
     }
 
     /**
+     * returns all selections (inclusive attributes) as a merged array
+     * @return array
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
+    public function getAllSelections()
+    {
+        $selections = [];
+
+        /** @var d3Filter $oFilter */
+        foreach ($this->d3GetOwnSearchHandler()->getFilterList() as $oFilter) {
+            $selection = $oFilter->getUserSelection();
+            if ($selection && !(is_array($selection) && !count($selection))) {
+                $selections[] = $selection;
+            }
+        }
+
+        return $selections;
+    }
+
+    /**
+     * returns a unique hash from selected filter combination
+     * @return string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
+    public function getHashedSelections()
+    {
+        return md5(serialize($this->getAllSelections()));
+    }
+
+    /**
      * @return bool
      * @throws DBALException
      * @throws DatabaseConnectionException
