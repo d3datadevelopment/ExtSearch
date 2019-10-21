@@ -7,25 +7,11 @@
 
 [{if $oView->d3GetCMSList()}]
     [{block name="d3_cfg_extsearch_search_cms_results"}]
-        <div class="box d3_extsearch_navigation d3theme_flow baseframe">
+        <div class="box d3_extsearch_navigation d3theme_[{$themename}] baseframe">
             <h3>
                 [{oxmultilang ident="D3_EXTSEARCH_EXT_CMSHEADLINE"}]
             </h3>
             <div class="content list">
-                <!--
-            [{* Darstellung als Detaileintraege untereinander
-                   <ul style="margin: 2px;">
-                       [{foreach from=$oView->d3GetCMSList() item="oContent"}]
-                           [{assign var="TitleCharCount" value=$oContent->oxcontents__oxtitle->value|count_characters}]
-                           [{math equation="100-s" s=$TitleCharCount assign="iTextLength"}]
-                           <li>
-                               <a href="[{$oContent->getLink()}]"><b>[{$oContent->oxcontents__oxtitle->value}]</b> - [{$oContent->oxcontents__oxcontent->value|strip_tags|oxtruncate:$iTextLength:"..."}]</a><br>
-                           </li>
-                       [{/foreach}]
-                   </ul>
-            *}]
-            -->
-
                 [{foreach from=$oView->d3GetCMSList() item="oContent"}]
                     [{assign var="TitleCharCount" value=$oContent->oxcontents__oxtitle->value|count_characters}]
                     [{math equation="100-s" s=$TitleCharCount assign="iTextLength"}]
@@ -41,7 +27,7 @@
 
 [{if $blSearchPluginLink == 1}]
     [{block name="d3_cfg_extsearch_search_plugin"}]
-        <div class="box d3_extsearch_navigation d3theme_flow baseframe">
+        <div class="box d3_extsearch_navigation d3theme_[{$themename}] baseframe">
             <h3>
                 [{oxmultilang ident="D3_EXTSEARCH_EXT_PLUGINHEADLINE"}]
             </h3>
@@ -65,7 +51,7 @@
 [{assign var="similarSearch" value=$oView->getSearchResultStatusMessage()}]
 [{if $similarSearch}]
     [{block name="d3_cfg_extsearch_search_similar_messages"}]
-        <div class="d3_extsearch_navigation d3theme_flow baseframe">
+        <div class="d3_extsearch_navigation d3theme_[{$themename}] baseframe">
             <div class="message">
                 [{if $similarSearch == 'similar'}]
                     [{oxmultilang ident="D3_EXTSEARCH_EXT_NOARTMSG"}] [{$oView->getUsedParams()}]

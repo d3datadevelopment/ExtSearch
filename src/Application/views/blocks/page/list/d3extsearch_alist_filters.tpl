@@ -5,9 +5,9 @@
     [{assign var="sTplName" value="d3_list_filters_"|cat:$oModCfg_d3_extsearch->getMappedThemeId()|cat:'.tpl'}]
 
     [{block name="d3extsearch_alist_filters_general"}]
-        [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('flow')}]
+        [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('flow') || $oModCfg_d3_extsearch->isThemeIdMappedTo('wave')}]
             [{capture append="oxidBlock_sidebar"}]
-                [{include file=$sTplName sidebar_class="d3sidebar"}]
+                [{include file=$sTplName sidebar_class="d3sidebar" themename=$oModCfg_d3_extsearch->getMappedThemeId()}]
             [{/capture}]
         [{else}]
             [{** display filter across articles **}]

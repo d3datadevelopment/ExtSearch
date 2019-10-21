@@ -78,8 +78,9 @@ body {
     
     .xajax_resp_@{d3_class_themeid} {
         #d3_extsearch_quicksearch {
-            .box-shadow(0 0 8px @d3_color_suggestbox_shadow);
-            .border-radius(4px);
+            box-shadow: 0 0 8px @d3_color_suggestbox_shadow;
+            border-radius: 4px;
+            background-clip: padding-box;
 
             .headline {
                 background-color: @d3_color_azure_medium;
@@ -87,7 +88,8 @@ body {
                 height:           auto;
                 padding:          5px;
                 font-size:        14px;
-                .border-radius(4px 4px 0 0);
+                border-radius: 4px 4px 0 0;
+                background-clip: padding-box;
             }
 
             .closebtn {
@@ -100,7 +102,8 @@ body {
                 padding:            5px;
                 line-height:        1.2;
                 height:             auto;
-                .border-radius(0 0 4px 4px);
+                border-radius: 0 0 4px 4px;
+                background-clip: padding-box;
             }
         }
     }

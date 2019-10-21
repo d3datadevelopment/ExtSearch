@@ -1,0 +1,25 @@
+@include media-breakpoint-up(xl) {
+  body {
+    &.cl-search,
+    &.cl-alist,
+    &.cl-manufacturerlist,
+    &.cl-vendorlist {
+      .list-container {
+        .productData {
+          .row {
+            > div {
+              &.col-lg-5 {
+                /* reset lg viewport fix, set product box alignment to side */
+                @include make-col(($grid-columns / 12) * 5)
+              }
+              &.col-lg-7 {
+                /* reset lg viewport fix, set product box alignment to side */
+                @include make-col(($grid-columns / 12) * 7)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

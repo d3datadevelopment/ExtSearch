@@ -2,6 +2,24 @@
 title: Changelog
 ---
 
+## 6.4.0.0 (2019-10-21)
+### Added
+- Support für OXID Wave Theme
+- Critical CSS (above the fold) eingefügt (erfordert Generierung im finalen Shop durch Grunt)
+### Changed
+- Query-Manipulation für die Fälle angepasst, in denen weitere count(*) aus anderen Tabellen außer oxarticles abgefragt werden
+- Grunt-Module aktualisiert
+- CSS-Optimierung auf PostCSS und NanoCSS umgestellt
+- Anordnung der Produktboxen im MD-Viewport des Flow-Themes optimiert
+- JavaScript-Dateien erhalten Lizenz-Header
+- Slider-CSS in Theme-CSS integriert, spart Requests beim Seitenaufbau
+- 
+- Generierung des Critical CSS (above the fold) auf criticalcss Plugin umgestellt
+### Fixed
+- fehlerhaft verwendete HTML-Element-IDs in Klassen korrigert
+
+---
+
 ## 6.3.1.0 (2019-09-24)
 ### Changed
 - gefilterte Seiten werden nicht im Dynamic Content Cache aufgenommen

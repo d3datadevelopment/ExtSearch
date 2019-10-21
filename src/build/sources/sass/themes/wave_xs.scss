@@ -1,0 +1,50 @@
+body {
+    .d3_extsearch_navigation {
+        &.d3theme_#{$d3_class_themeid} {
+            &.baseframe {
+                width: 100%;
+            }
+            &.d3sidebar {
+                #d3searchfilterform .item {
+                    @include make-col($grid-columns);
+                    float: none;
+                }
+            }
+        }
+    }
+
+    &.cl-search,
+    &.cl-alist,
+    &.cl-manufacturerlist,
+    &.cl-vendorlist {
+        #sidebar {
+            .box {
+                display: none !important;
+
+                &.d3sidebar {
+                    display: block !important;
+
+                    .box {
+                        display: block !important;
+                    }
+                }
+            }
+        }
+    }
+
+    &.cl-search {
+        .d3_extsearch_navigation {
+            &.d3theme_#{$d3_class_themeid} {
+                &.baseframe {
+                    div {
+                        &.content {
+                            &.list {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

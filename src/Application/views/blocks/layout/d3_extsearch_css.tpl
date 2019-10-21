@@ -3,18 +3,10 @@
 [{d3modcfgcheck modid="d3_extsearch"}][{/d3modcfgcheck}]
 
 [{if $mod_d3_extsearch}]
-    [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('mobile')}]
-        [{assign var="sCssName" value="out/src/css/d3extsearch_mobile.min.css"}]
-        [{include file=$oViewConf->getModulePath('d3_extsearch', 'out/src/css/abovethefold/d3extsearch_mobile.min.css') assign="atfCss"}]
-    [{elseif $oModCfg_d3_extsearch->isThemeIdMappedTo('flow')}]
-        [{assign var="sCssName" value="out/src/css/d3extsearch_flow.min.css"}]
-        [{include file=$oViewConf->getModulePath('d3_extsearch', 'out/src/css/abovethefold/d3extsearch_flow.min.css') assign="atfCss"}]
-    [{elseif $oModCfg_d3_extsearch->isThemeIdMappedTo('azure')}]
-        [{assign var="sCssName" value="out/src/css/d3extsearch_azure.min.css"}]
-        [{include file=$oViewConf->getModulePath('d3_extsearch', 'out/src/css/abovethefold/d3extsearch_azure.min.css') assign="atfCss"}]
-    [{else}]
-        [{assign var="sCssName" value="out/src/css/d3extsearch_allthemes.min.css"}]
-        [{include file=$oViewConf->getModulePath('d3_extsearch', 'out/src/css/abovethefold/d3extsearch_allthemes.min.css') assign="atfCss"}]
+    [{assign var="sCssName" value="out/src/css/d3extsearch_"|cat:$oModCfg_d3_extsearch->getMappedThemeId()|cat:".min.css"}]
+
+    [{if $sAboveTheFoldCssFile}]
+        [{include file=$sAboveTheFoldCssFile assign="atfCss"}]
     [{/if}]
 
     [{oxstyle include=$oViewConf->getModuleUrl('d3_extsearch', $sCssName)}]

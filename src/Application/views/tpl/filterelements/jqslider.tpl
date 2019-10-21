@@ -15,25 +15,23 @@
     [{/block}]
     
     [{capture name="d3script"}][{strip}]
-        $('#[{$elementId}]').d3extsearchslider({
-            limitMin:   [{$aPriceLimits.min}],
-            limitMax:   [{$aPriceLimits.max}],
-            stepsMin:   [{$aPriceSteps.min}],
-            stepsMax:   [{$aPriceSteps.max}],
-            infoMinId:  '[{$priceInfoMinId}]',
-            infoMaxId:  '[{$priceInfoMaxId}]',
-            fieldMinId: '[{$fieldMinId}]',
-            fieldMaxId: '[{$fieldMaxId}]',
-            precision:  [{$precision}]
-        });
+        try {
+            $('#[{$elementId}]').d3extsearchslider({
+                limitMin:   [{$aPriceLimits.min}],
+                limitMax:   [{$aPriceLimits.max}],
+                stepsMin:   [{$aPriceSteps.min}],
+                stepsMax:   [{$aPriceSteps.max}],
+                infoMinId:  '[{$priceInfoMinId}]',
+                infoMaxId:  '[{$priceInfoMaxId}]',
+                fieldMinId: '[{$fieldMinId}]',
+                fieldMaxId: '[{$fieldMaxId}]',
+                precision:  [{$precision}]
+            });
+        } catch (e) {
+            console.log(e.message);
+        }
     [{/strip}][{/capture}]
     [{oxscript add=$smarty.capture.d3script}]
-
-    [{assign var="sCssInc" value=$oViewConf->getModuleUrl('d3_extsearch', 'out/src/css/d3extsearch_slider.min.css')}]
-    [{oxstyle include=$sCssInc}]
-
-    [{include file=$oViewConf->getModulePath('d3_extsearch', 'out/src/css/abovethefold/d3extsearch_allthemes.min.css') assign="atfSliderCss"}]
-    [{if $atfSliderCss}]<style type="text/css">[{$atfSliderCss}]</style>[{/if}]
 [{/block}]
 
 [{block name="d3_cfg_extsearch_jqsliderinfo"}]

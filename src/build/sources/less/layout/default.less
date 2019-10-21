@@ -1,5 +1,5 @@
 body {
-    .product strong.h3 #similar {
+    .product strong.h3 .similar {
         font-weight: normal;
         color: @d3_color_gray_medium;
     }
@@ -21,7 +21,7 @@ body {
         visibility: visible;
         top: 0;
         position: fixed;
-        .opacity(0.7);
+        opacity: 0.7;
         left: 0;
         height: 100%;
         display: block;
@@ -33,7 +33,7 @@ body {
     &:extend(#d3extsearch_mask);
 }
 
-#similar {
+.similar {
     padding-left: 10px;
     color:        @d3_color_gray_medium;
 }
@@ -57,8 +57,9 @@ body {
                 display: block;
                 border: 0 solid @d3_color_azure_dark;
                 background: linear-gradient(@d3_color_azure_light, @d3_color_azure_medium, @d3_color_azure_dark) repeat scroll 0 0 rgba(0, 0, 0, 0);
-                .text-shadow(0 -1px 0 @d3_color_azure_dark);
-                .border-radius(5px);
+                text-shadow: 0 -1px 0 @d3_color_azure_dark;
+                border-radius: 5px;
+                background-clip: padding-box;
             }
         }
     }

@@ -32,18 +32,8 @@
                         [{$oAttrValue->getTitle()}] [{if $oAttrValue->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
                     </label><br>
                 [{/foreach}]
-                <button type="submit" class="submitButton largeButton" onclick="d3_extsearch_popup.popup.load();">[{oxmultilang ident="D3_EXTSEARCH_EXT_ASSIGNFILTER"}]</button>
 
-                <button id="d3searchmanufacturer__multiclear__[{$sIdKey}]" type="submit" class="submitButton largeButton" onclick="d3_extsearch_popup.popup.load();">[{oxmultilang ident="D3_EXTSEARCH_EXT_UNASSIGNFILTER"}]</button>
-
-                [{capture name="d3JsFnc"}][{strip}]
-                    $('#d3searchmanufacturer__multiclear__[{$sIdKey}]').click(function(){
-                        $(this).parent().children('input:checkbox').each(function() {
-                            $(this).removeAttr('checked');
-                        });
-                    });
-                [{/strip}][{/capture}]
-                [{oxscript add=$smarty.capture.d3JsFnc}]
+                [{include file="d3_ext_search_filter_inc_multibuttons.tpl" type="manufacturer"}]
             </div>
         [{/block}]
     [{/if}]
