@@ -113,6 +113,7 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
                 $this->_d3GetSet()->getValue('blExtSearch_enablePluginBrowserInstall')
             );
             $oParentView->addTplParam('blOwnFormFields', $this->_d3GetSet()->getValue(d3_extsearch_conf::CONF_CUSTOMFILTER_USE));
+            $oParentView->addTplParam('sAboveTheFoldCssFile', $this->d3GetAtfCssFile());
         }
 
         if (!$this->isAdmin()
@@ -141,6 +142,27 @@ class d3_oxcmp_utils_extsearch extends d3_oxcmp_utils_extsearch_parent
         }
 
         return $ret;
+    }
+
+    /**
+     * @return bool|string
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws FileException
+     */
+    public function d3GetAtfCssFile()
+    {
+        $sFilePath = "out/src/css/abovethefold/d3extsearch_".$this->_d3GetSet()->getMappedThemeId()."_".
+            strtolower(Registry::getConfig()->getActiveView()->getClassKey()).".min.css";
+
+        $sDir = Registry::getConfig()->getActiveView()->getViewConfig()->getModulePath(
+                'd3_extsearch'
+            ) . $sFilePath;
+
+        $fs = oxNew(d3filesystem::class);
+
+        return $fs->exists($sDir) ? $sDir : false;
     }
 
     /**

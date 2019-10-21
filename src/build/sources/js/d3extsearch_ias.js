@@ -27,7 +27,6 @@ $( function() {
 
         _create: function () {
             let self = this;
-            let el      = this.element;
             let options = this.options;
 
             $("#" + options.sElementId).mouseup(function(event) {

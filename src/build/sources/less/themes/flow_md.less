@@ -13,4 +13,36 @@ body {
             display: block;
         }
     }
+
+    &.cl-search,
+    &.cl-alist,
+    &.cl-manufacturerlist,
+    &.cl-vendorlist {
+        #sidebar {
+            .box {
+                display: none !important;
+
+                &.d3sidebar {
+                    display: block !important;
+                    .box {
+                        display: block !important;
+                    }
+                }
+            }
+        }
+
+        .list-container {
+            .productData {
+                .row {
+                    > div {
+                        &.col-md-5,
+                        &.col-md-7 {
+                            /* fix bad product alignment from alignment from side to top of each other */
+                            .make-md-column(@grid-columns);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

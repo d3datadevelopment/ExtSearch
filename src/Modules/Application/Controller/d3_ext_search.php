@@ -176,6 +176,7 @@ class d3_ext_search extends d3_ext_search_parent
                 $this->_d3PerformEmptySearch();
             }
 
+            $this->addSideBar();
             $this->_d3AddAllTplParams();
 
             // writes search items into oxlog table, if set
@@ -285,6 +286,11 @@ class d3_ext_search extends d3_ext_search_parent
         $iNrofCatArticles = (int)Registry::getConfig()->getConfigParam('iNrofCatArticles');
         $iNrofCatArticles = $iNrofCatArticles ? $iNrofCatArticles : 1;
         $this->_iCntPages = round($this->_iAllArtCnt / $iNrofCatArticles + 0.49);
+    }
+
+    public function addSideBar()
+    {
+        $this->addTplParam('sidebar', 'left');
     }
 
     /**

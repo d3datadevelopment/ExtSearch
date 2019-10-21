@@ -41,7 +41,7 @@ $aModule = array(
         'en' => '',
     ),
     'thumbnail'   => 'picture.png',
-    'version'     => '6.3.1.0',
+    'version'     => '6.4.0.0',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'http://www.oxidmodule.com/',
@@ -123,6 +123,9 @@ $aModule = array(
         'd3_search_contents_flow.tpl'               => 'd3/extsearch/Application/views/tpl/flow/d3_search_contents.tpl',
         'd3_search_filters_flow.tpl'                => 'd3/extsearch/Application/views/tpl/flow/d3_search_filters.tpl',
         'd3_list_filters_flow.tpl'                  => 'd3/extsearch/Application/views/tpl/flow/d3_list_filters.tpl',
+        'd3_search_contents_wave.tpl'               => 'd3/extsearch/Application/views/tpl/flow/d3_search_contents.tpl',
+        'd3_search_filters_wave.tpl'                => 'd3/extsearch/Application/views/tpl/flow/d3_search_filters.tpl',
+        'd3_list_filters_wave.tpl'                  => 'd3/extsearch/Application/views/tpl/flow/d3_list_filters.tpl',
         'd3_inc_ext_search_mobile.tpl'              => 'd3/extsearch/Application/views/tpl/mobile/d3_inc_ext_search.tpl',
         'd3_list_filters_mobile.tpl'                => 'd3/extsearch/Application/views/tpl/mobile/d3extsearch_alist_filters.tpl',
 
@@ -133,6 +136,8 @@ $aModule = array(
         'd3_ext_search_filter_priceselector.tpl'    => 'd3/extsearch/Application/views/tpl/filterelements/priceselector.tpl',
         'd3_ext_search_filter_jqslider.tpl'         => 'd3/extsearch/Application/views/tpl/filterelements/jqslider.tpl',
 
+        'd3_ext_search_filter_inc_multibuttons.tpl' => 'd3/extsearch/Application/views/tpl/filterelements/inc/multibuttons.tpl',
+
         'd3_ddeovisualcmsadmin_extsearch.tpl'       => 'd3/extsearch/Application/views/tpl/d3_ddoevisualcmsadmin_extsearch.tpl',
         'd3_togglegroup_extsearch.tpl'              => 'd3/extsearch/Application/views/admin/tpl/d3_togglegroup_extsearch.tpl',
     ),
@@ -141,6 +146,12 @@ $aModule = array(
         'onDeactivate'  => '\D3\Extsearch\setup\Events::onDeactivate',
     ],
     'settings' => array(
+        array(
+            'group'     => 'd3thememapping_module',
+            'name'      => 'd3custParentThemeMappedToWave_'.$sModuleId,
+            'type'      => 'str',
+            'value'     => ''
+        ),
         array(
             'group'     => 'd3thememapping_module',
             'name'      => 'd3custParentThemeMappedToFlow_'.$sModuleId,

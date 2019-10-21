@@ -9,8 +9,8 @@
         </a>
 
 [{*** D3 Modul "extSearch" ADD START ***}]
-        [{if $product->blIsSimilar}]<span id='similar'>[{oxmultilang ident="D3_EXTSEARCH_EXT_SIMILAR"}]</span>[{/if}]
-        [{if $product->isD3CatHit}]<span id='similar'>[{oxmultilang ident="D3_EXTSEARCH_EXT_CATHIT"}]</span>[{/if}]
+        [{if $product->blIsSimilar}]<span class='similar'>[{oxmultilang ident="D3_EXTSEARCH_EXT_SIMILAR"}]</span>[{/if}]
+        [{if $product->isD3CatHit}]<span class='similar'>[{oxmultilang ident="D3_EXTSEARCH_EXT_CATHIT"}]</span>[{/if}]
 [{*** D3 Modul "extSearch" ADD END ***}]
     </div>
 

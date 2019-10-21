@@ -8,4 +8,22 @@ body {
             }
         }
     }
+
+    &.cl-alist,
+    &.cl-manufacturerlist,
+    &.cl-vendorlist {
+        #sidebar {
+            .box {
+                display: none !important;
+
+                &.d3sidebar {
+                    display: block !important;
+
+                    .box {
+                        display: block !important;
+                    }
+                }
+            }
+        }
+    }
 }

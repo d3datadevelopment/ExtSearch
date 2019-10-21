@@ -11,8 +11,11 @@ title: Systemanforderungen
         * 6.0.x
         * 6.1.x
 * Themes
+    * wave
     * flow
-* D3 Modul-Connector ([kostenfrei bei D3 erhältlich](https://www.oxidmodule.com/connector/)) ab Version 5.1.0.0 
+    * azure
+    * mobile
+* D3 Modul-Connector ([kostenfrei bei D3 erhältlich](https://www.oxidmodule.com/connector/)) ab Version 5.1.1.3 
 * Installation via [Composer](https://getcomposer.org)
 
 Beachten Sie, dass die Ihnen vorliegende Modulversion entsprechend für **PHP 5.6**, **PHP 7.0**, **PHP 7.1** oder **PHP 7.2** sowie dem auf Ihrem Server vorhandenen Decoder (**ionCube Loader**) kompatibel ist. Im Zweifelsfall kontaktieren Sie uns und nennen den für Ihren Shop genutzten Decoder und die PHP-Version.

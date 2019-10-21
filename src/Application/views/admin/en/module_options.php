@@ -31,8 +31,10 @@ $aLang = array(
     'SHOP_MODULE_d3custParentThemeMappedToMobile_'.$sModId => 'If this herein referenced theme is active, "<b>mobile</b>" template blocks of the module is used.',
     'SHOP_MODULE_d3custParentThemeMappedToAzure_'.$sModId => 'If this herein referenced theme is active, "<b>azure</b>" template blocks of the module is used.',
     'SHOP_MODULE_d3custParentThemeMappedToFlow_'.$sModId => 'If this herein referenced theme is active, "<b>flow</b>" template blocks of the module is used.',
+    'SHOP_MODULE_d3custParentThemeMappedToWave_'.$sModId => 'If this herein referenced theme is active, "<b>wave</b>" template blocks of the module is used.',
 
     'HELP_SHOP_MODULE_d3custParentThemeMappedToMobile_'.$sModId => $sD3Help_mappedTo,
     'HELP_SHOP_MODULE_d3custParentThemeMappedToAzure_'.$sModId => $sD3Help_mappedTo,
     'HELP_SHOP_MODULE_d3custParentThemeMappedToFlow_'.$sModId => $sD3Help_mappedTo,
+    'HELP_SHOP_MODULE_d3custParentThemeMappedToWave_'.$sModId => $sD3Help_mappedTo,
 );

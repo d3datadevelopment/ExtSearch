@@ -39,7 +39,7 @@
                         max: options.limitMax,
                         step: 100,
                         values: [options.stepsMin, options.stepsMax],
-                        slide: function (e, ui) {
+                        slide: function () {
                             $("#" + options.infoMinId).html(
                                 $(el).slider(
                                     "option",
@@ -53,7 +53,7 @@
                                 )[1] / options.precision
                             );
                         },
-                        change: function (e, ui) {
+                        change: function () {
                             $("input#" + options.fieldMinId).val(
                                 $(el).slider(
                                     "option",
