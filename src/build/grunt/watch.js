@@ -1,7 +1,7 @@
 module.exports = {
 
     development: {
-        files: [ "sources/**/*.js", "sources/**/*.less", "sources/**/*.scss" ],
+        files: [ "origin/**/*.js", "origin/**/*.less", "origin/**/*.scss" ],
         tasks: [ "development", "development" ]
     }
 

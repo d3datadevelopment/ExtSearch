@@ -11,7 +11,7 @@ module.exports = {
             outputStyle: 'nested'
         },
         files: {
-            "tmp/d3extsearch_wave.css": "sources/sass/styles_wave.scss"
+            "tmp/d3extsearch_wave.css": "origin/sass/styles_wave.scss"
         }
     },
     
@@ -21,7 +21,7 @@ module.exports = {
             outputStyle: 'nested'
         },
         files: {
-            "tmp/d3extsearch_wave.css": "sources/sass/styles_wave.scss"
+            "tmp/d3extsearch_wave.css": "origin/sass/styles_wave.scss"
         }
     }
 };

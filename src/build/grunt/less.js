@@ -7,9 +7,9 @@ module.exports = {
             compress: false
         },
         files: {
-            "tmp/d3extsearch_flow.css": "sources/less/styles_flow.less",
-            "tmp/d3extsearch_azure.css": "sources/less/styles_azure.less",
-            "tmp/d3extsearch_mobile.css": "sources/less/styles_mobile.less"
+            "tmp/d3extsearch_flow.css": "origin/less/styles_flow.less",
+            "tmp/d3extsearch_azure.css": "origin/less/styles_azure.less",
+            "tmp/d3extsearch_mobile.css": "origin/less/styles_mobile.less"
         }
     },
     
@@ -20,9 +20,9 @@ module.exports = {
             compress: false
         },
         files: {
-            "tmp/d3extsearch_flow.css": "sources/less/styles_flow.less",
-            "tmp/d3extsearch_azure.css": "sources/less/styles_azure.less",
-            "tmp/d3extsearch_mobile.css": "sources/less/styles_mobile.less"
+            "tmp/d3extsearch_flow.css": "origin/less/styles_flow.less",
+            "tmp/d3extsearch_azure.css": "origin/less/styles_azure.less",
+            "tmp/d3extsearch_mobile.css": "origin/less/styles_mobile.less"
         }
     }
 };

@@ -15,6 +15,7 @@
                     [{capture name="d3script"}][{strip}]
                         $(document).ready(function () {
                             try {
+                                if (!$('#searchParam').length) {throw new Error('Error: extsearch: no DOM element with id "searchParam" found')};
                                 $('#searchParam').d3extsearchsuggest({
                                     sWaitMessage: '[{$sD3QSWaitMessage|strip|oxescape:"htmlall":$sCharSet}]',
                                     sParentThemeId: '[{$oModCfg_d3_extsearch->getReferenceThemeId()}]',

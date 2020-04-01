@@ -15,4 +15,17 @@
     [{if $blSearchPluginInstall == '1' && $sSearchPluginURL}]
         <link rel="search" type="application/opensearchdescription+xml" title="[{$oxcmp_shop->oxshops__oxname->value}]" href="[{$sSearchPluginURL}]" />
     [{/if}]
+
+    <script type="application/ld+json">
+        {
+            "@context": "http://schema.org",
+            "@type": "WebSite",
+            "url": "[{$oViewConf->getHomeLink()}]",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "[{$oViewConf->getSelfLink()|oxaddparams:"cl=search"|oxaddparams:"searchparam="|cat:"{search_term_string}"}]",
+                "query-input": "required name=search_term_string"
+            }
+        }
+    </script>
 [{/if}]
