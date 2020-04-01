@@ -2,6 +2,22 @@
 title: Changelog
 ---
 
+## 6.5.0.0 (2020-03-31)
+### Added
+- Kompatibilität zu OXID 6.2 hergestellt
+- strukturierte Daten für Suchaktion eingefügt
+- erzeuge JS-Fehler, wenn kein Eingabeelement für Suggest gefunden wird
+- Build-Umgebung aktualisiert
+- Ergebnis-Feld-Analyse in Dokumentation aufgenommen
+### Changed
+- verhindere wählbarer Attributfilter von Variantenartikeln in Kategorieansicht
+- ändere JS Event-Eigenschaft
+### Fixed
+- Datenbankabfragen für abgewählte Attributsfilter korrigiert
+- doppelt selektrierte Felder in Datenbankabfrage korrigiert
+
+---
+
 ## 6.4.0.0 (2019-10-21)
 ### Added
 - Support für OXID Wave Theme
@@ -13,7 +29,6 @@ title: Changelog
 - Anordnung der Produktboxen im MD-Viewport des Flow-Themes optimiert
 - JavaScript-Dateien erhalten Lizenz-Header
 - Slider-CSS in Theme-CSS integriert, spart Requests beim Seitenaufbau
-- 
 - Generierung des Critical CSS (above the fold) auf criticalcss Plugin umgestellt
 ### Fixed
 - fehlerhaft verwendete HTML-Element-IDs in Klassen korrigert

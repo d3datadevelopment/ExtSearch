@@ -101,7 +101,7 @@ $( function() {
             let options = this.options;
             options.currentEvent = event;
             let isSubmitEvent = event.type.toLowerCase() === "submit";
-            let sKey = isSubmitEvent ? "Enter" : event.key;
+            let sKey = isSubmitEvent ? "Enter" : event.originalEvent.key;
 
             if (isSubmitEvent || options.oAjaxResponseElement.is(":visible")) {
                 if (sKey.toLowerCase() === "arrowup") {
@@ -287,7 +287,7 @@ $( function() {
         handleOtherKeys: function () {
             let options = this.options;
             let event = options.currentEvent;
-            let sKey = event.key;
+            let sKey = event.originalEvent.key;
 
             if (sKey !== "ArrowLeft" && sKey !== "ArrowRight") {
                 this.showSuggestWindow();
@@ -297,7 +297,7 @@ $( function() {
         showSuggestWindow: function () {
             let options = this.options;
 
-            if (options.currentEvent.key.toLowerCase() === "enter") {
+            if (options.currentEvent.originalEvent.key.toLowerCase() === "enter") {
                 return;
             }
 

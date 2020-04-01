@@ -6,7 +6,7 @@
   "keywords": [],
   "author": "D3 Data Development (Inh. Thomas Dartsch)",
   "devDependencies": {
-    "bootstrap": "^4.2.0",
+    "bootstrap": "^4.4.1",
     "cssnano": "^4.1.10",
     "cssnano-preset-advanced": "^4.0.7",
     "grunt": "^1.0.4",
@@ -21,15 +21,15 @@
     "grunt-sass": "^3.1.0",
     "jquery": "^3.4.1",
     "load-grunt-config": "^3.0.1",
-    "node-sass": "^4.12.0",
-    "popper.js": "^1.12.6",
+    "node-sass": "^4.13.1",
+    "popper.js": "^1.16.1",
     "time-grunt": "^2.0.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/d3datadevelopment/ExtSearch"
   },
-  "license": "proprietary",
+  "license": "UNLICENSED",
   "browserslist": [
     "last 10 versions",
     "> 0.2%",
