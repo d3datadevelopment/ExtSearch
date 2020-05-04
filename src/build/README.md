@@ -20,7 +20,10 @@ install ``grunt`` and run ``grunt's`` default task to regenerate all minimized
    Flow or Wave theme. 
    
    If the LESS/SASS files of the parent theme are missing, re-install it with Composer 
-   and the `--prefer-source` option.
+   and the `--prefer-source` option:
+
+   - delete the desired package in the vendor directory
+   - reinstall it with "composer update oxid-esales/*-theme --prefer-source"
    
    If you have customized these, you may need to recreate the 
    module assets. Please note, that CSS and JavaScript files were overwritten by module 

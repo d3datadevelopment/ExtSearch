@@ -32,6 +32,7 @@ use OxidEsales\Eshop\Application\Controller\ManufacturerListController;
 use OxidEsales\Eshop\Application\Controller\VendorListController;
 use OxidEsales\Eshop\Application\Controller\ArticleListController;
 use OxidEsales\Eshop\Application\Controller\SearchController;
+use OxidEsales\Eshop\Application\Model\ArticleList;
 use OxidEsales\Eshop\Application\Model\CategoryList;
 use OxidEsales\Eshop\Application\Model\Search;
 use OxidEsales\Eshop\Application\Model\VendorList;
@@ -202,6 +203,8 @@ class d3_xlist_extsearch
     }
 
     /**
+     * @param ArticleList $oArtList
+     *
      * @throws DBALException
      * @throws DatabaseConnectionException
      * @throws DatabaseErrorException
@@ -209,9 +212,9 @@ class d3_xlist_extsearch
      * @throws d3ShopCompatibilityAdapterException
      * @throws d3_cfg_mod_exception
      */
-    public function setTplParams()
+    public function setTplParams($oArtList)
     {
-        $this->getaListController()->addTplParam('blD3ShowFilters', $this->d3CanShowFilters());
+        $this->getaListController()->addTplParam( 'blD3ShowFilters', $this->d3CanShowFilters($oArtList) );
         $this->getaListController()->addTplParam('blD3HasSelectedFilters', $this->d3HasSelectedFilters());
     }
 
@@ -272,6 +275,8 @@ class d3_xlist_extsearch
     }
 
     /**
+     * @param ArticleList $oArtList
+     *
      * @return bool
      * @throws DBALException
      * @throws DatabaseConnectionException
@@ -280,8 +285,12 @@ class d3_xlist_extsearch
      * @throws d3ShopCompatibilityAdapterException
      * @throws d3_cfg_mod_exception
      */
-    public function d3CanShowFilters()
+    public function d3CanShowFilters($oArtList)
     {
+        if ($oArtList->count() == 0) {
+            return false;
+        }
+
         $oFilterList = $this->d3GetOwnSearchHandler()->getFilterList();
         /** @var d3Filter $oFilter */
         foreach ($oFilterList->getArray() as $oFilter) {

@@ -8,7 +8,7 @@ D3 Data Development - Daniel Seifert
 d3
 
 == Version ==
-6.5.0.0
+6.5.1.0
 
 == Link ==
 http://www.oxidmodule.com/

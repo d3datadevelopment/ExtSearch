@@ -71,14 +71,14 @@ class d3_vendorlist_extsearch extends d3_vendorlist_extsearch_parent
     protected function _loadArticles($oCategory)
     {
         $aRet = parent::_loadArticles($oCategory);
-        $aKeys = array_keys($aRet);
 
-        $iArtCnt  = $aRet[$aKeys[1]];
+        list($oArtList, $iArtCnt) = $aRet;
 
         if ($this->_iCntPages || $iArtCnt) {
             $this->d3GetXListController()->addAListFilters($oCategory);
-            $this->d3GetXListController()->setTplParams();
         }
+
+        $this->d3GetXListController()->setTplParams($oArtList);
 
         return $aRet;
     }

@@ -76,8 +76,9 @@ class d3_alist_extsearch extends d3_alist_extsearch_parent
         /** @var ArticleList $oArtList */
         if ($this->_iCntPages || ($oArtList && $oArtList->count())) {
             $this->d3GetXListController()->addAListFilters($oCategory);
-            $this->d3GetXListController()->setTplParams();
         }
+
+        $this->d3GetXListController()->setTplParams($oArtList);
 
         return $oArtList;
     }
