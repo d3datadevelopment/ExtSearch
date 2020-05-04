@@ -1,48 +1,142 @@
-<?php //006f0
-// This Software is the property of D³ Data Development and is protected by copyright law - it is NOT Freeware.  Any unauthorized use of this software without a valid license key is a violation of the license agreement and will be prosecuted by civil and criminal law.  Inhaber: Thomas Dartsch Alle Rechte vorbehalten  @package erweiterte_Suche @version 6.5.0.0 PHP71 (01.04.2020) @author  Daniel Seifert support@shopmodule.com @copyright (C) 2020, D3 Data Development @see http://www.shopmodule.com
-if(!extension_loaded('ionCube Loader')){$__oc=strtolower(substr(php_uname(),0,3));$__ln='ioncube_loader_'.$__oc.'_'.substr(phpversion(),0,3).(($__oc=='win')?'.dll':'.so');if(function_exists('dl')){@dl($__ln);}if(function_exists('_il_exec')){return _il_exec();}$__ln='/ioncube/'.$__ln;$__oid=$__id=realpath(ini_get('extension_dir'));$__here=dirname(__FILE__);if(strlen($__id)>1&&$__id[1]==':'){$__id=str_replace('\\','/',substr($__id,2));$__here=str_replace('\\','/',substr($__here,2));}$__rd=str_repeat('/..',substr_count($__id,'/')).$__here.'/';$__i=strlen($__rd);while($__i--){if($__rd[$__i]=='/'){$__lp=substr($__rd,0,$__i).$__ln;if(file_exists($__oid.$__lp)){$__ln=$__lp;break;}}}if(function_exists('dl')){@dl($__ln);}}else{die('The file '.__FILE__." is corrupted.\n");}if(function_exists('_il_exec')){return _il_exec();}echo("Site error: the ".(php_sapi_name()=='cli'?'ionCube':'<a href="http://www.ioncube.com">ionCube</a>')." PHP Loader needs to be installed. This is a widely used PHP extension for running ionCube protected PHP code, website security and malware blocking.\n\nPlease visit ".(php_sapi_name()=='cli'?'get-loader.ioncube.com':'<a href="http://get-loader.ioncube.com">get-loader.ioncube.com</a>')." for install assistance.\n\n");exit(199);
-?>
-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
+<?php
+
+/**
+ * This Software is the property of Data Development and is protected
+ * by copyright law - it is NOT Freeware.
+ *
+ * Any unauthorized use of this software without a valid license
+ * is a violation of the license agreement and will be prosecuted by
+ * civil and criminal law.
+ *
+ * http://www.shopmodule.com
+ *
+ * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
+ * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
+ * @link      http://www.oxidmodule.com
+ */
+
+use D3\Extsearch\setup as ModuleSetup;
+
+/**
+ * Module information
+ */
+$aModule = array(
+    'd3FileRegister'    => array(
+        'd3/extsearch/IntelliSenseHelper.php',
+        'd3/extsearch/metadata.php',
+        'd3/extsearch/d3metadata.php',
+        'd3/extsearch/core/smarty/plugins/function.d3_extsearch_highlight.php',
+        'd3/extsearch/Application/Model/d3_phonetic_de.php',
+        'd3/extsearch/Application/Model/d3_phonetic_de_voc.php',
+        'd3/extsearch/public/d3_extsearch_response.php',
+        'd3/extsearch/Application/translations/de/d3_extsearch_lang.php',
+        'd3/extsearch/Application/translations/en/d3_extsearch_lang.php',
+        'd3/extsearch/Application/views/admin/de/d3_extsearch_lang.php',
+        'd3/extsearch/Application/views/admin/de/module_options.php',
+        'd3/extsearch/Application/views/admin/en/d3_extsearch_lang.php',
+        'd3/extsearch/Application/views/admin/en/module_options.php',
+        'd3/extsearch/setup/d3_extsearch_semanticstructure.php',
+        'd3/extsearch/setup/d3_extsearch_semantic_synset.php',
+        'd3/extsearch/setup/d3_extsearch_semantic_term.php',
+        'd3/extsearch/setup/d3_extsearch_statisticlog.php',
+        'd3/extsearch/setup/d3_extsearch_attribute2object.php',
+
+        'd3/extsearch/Application/Controller/d3_extsearch_response.php',
+        'd3/extsearch/Application/Controller/d3_xlist_extsearch.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_navigation.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_list.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_main.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_licence.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchsyneditor.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchsyneditor_list.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchlog.php',
+        'd3/extsearch/Application/Controller/Admin/Reports/d3_extsearch_report_hitless.php',
+        'd3/extsearch/Application/Controller/Admin/Reports/d3_extsearch_report_base.php',
+        'd3/extsearch/Application/Controller/Admin/Reports/d3_extsearch_report_mostsearches.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchlog_list.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchsyneditor_manage.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchstat.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchstat_list.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_plugins.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_quicksearch.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchsyneditor_main.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_statistik.php',
+        'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch.php',
+        'd3/extsearch/Application/Model/d3_extsearch_statisticlog.php',
+        'd3/extsearch/Application/Model/d3_oxutils_extsearch.php',
+        'd3/extsearch/Application/Model/d3_semantic.php',
+        'd3/extsearch/Application/Model/d3_search.php',
+        'd3/extsearch/Application/Model/d3_extsearch_term.php',
+        'd3/extsearch/Application/Model/d3_extsearch_synset.php',
+        'd3/extsearch/Application/Model/d3_search_generator.php',
+        'd3/extsearch/Application/Model/Filters/d3Filter.php',
+        'd3/extsearch/Application/Model/Filters/d3FieldIsFilter.php',
+        'd3/extsearch/Application/Model/Filters/d3VendorFilter.php',
+        'd3/extsearch/Application/Model/Filters/d3FilterList.php',
+        'd3/extsearch/Application/Model/Filters/d3IndexFilter.php',
+        'd3/extsearch/Application/Model/Filters/d3AttributeFilter.php',
+        'd3/extsearch/Application/Model/Filters/d3ManufacturerFilter.php',
+        'd3/extsearch/Application/Model/Filters/d3CategoryFilter.php',
+        'd3/extsearch/Application/Model/Filters/d3FieldLikeFilter.php',
+        'd3/extsearch/Application/Model/Filters/d3PriceFilter.php',
+        'd3/extsearch/Application/Model/Filters/d3FilterInterface.php',
+        'd3/extsearch/setup/d3_extsearch_update.php',
+        'd3/extsearch/Core/d3_extsearch_conf.php',
+
+        'd3/extsearch/Modules/Application/Component/d3_oxcmp_basket_extsearch.php',
+        'd3/extsearch/Modules/Application/Component/d3_oxcmp_utils_extsearch.php',
+        'd3/extsearch/Modules/Application/Component/d3_oxwarticledetails_extsearch.php',
+        'd3/extsearch/Modules/Application/Controller/d3_manufacturerlist_extsearch.php',
+        'd3/extsearch/Modules/Application/Controller/d3_vendorlist_extsearch.php',
+        'd3/extsearch/Modules/Application/Controller/d3_oxlocator_extsearch.php',
+        'd3/extsearch/Modules/Application/Controller/d3_alist_extsearch.php',
+        'd3/extsearch/Modules/Application/Controller/d3_details_extsearch.php',
+        'd3/extsearch/Modules/Application/Controller/d3_rss_extsearch.php',
+        'd3/extsearch/Modules/Application/Controller/Admin/d3_article_list_extsearch.php',
+        'd3/extsearch/Modules/Application/Controller/Admin/d3_ddoevisualcmsadmin_extsearch.php',
+        'd3/extsearch/Application/Controller/Admin/Popups/d3_attribute_extsearch_ajax_abstract.php',
+        'd3/extsearch/Modules/Application/Controller/d3_ext_search.php',
+        'd3/extsearch/Modules/Application/Model/d3_oxsearch_extsearch.php',
+        'd3/extsearch/Modules/Application/Model/d3_oxarticlelist_extsearch.php',
+        'd3/extsearch/Modules/Application/Model/d3_oxarticle_phonetic.php',
+        'd3/extsearch/Modules/Application/Model/d3_basemodel_extsearch.php',
+        'd3/extsearch/Modules/Application/Model/d3_oxrssfeed_extsearch.php',
+        'd3/extsearch/Modules/Core/d3_oxutilsview_extsearch.php',
+
+        'd3/extsearch/setup/Events.php',
+        
+        'd3/extsearch/tests/d3extsearch_config.php',
+        'd3/extsearch/tests/additional.inc.php',
+        'd3/extsearch/tests/integration/assignedFilters/nofilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/d3ExtsearchFilterQueriesIntegrationTestCase.php',
+        'd3/extsearch/tests/integration/assignedFilters/categoryMultiFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/categorySingleFilterTest.php',
+        'd3/extsearch/tests/integration/d3ExtsearchIntegrationTestCase.php',
+        'd3/extsearch/tests/integration/assignedFilters/manufacturerSingleFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/manufacturerMultiFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/vendorSingleFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/vendorMultiFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/fieldLikeFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/fieldIsFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/priceSliderFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/priceArrayFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/indexFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/allSingleFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/allMultiFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/attributeSingleFilterTest.php',
+        'd3/extsearch/tests/integration/assignedFilters/attributeMultiFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/attributeFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/categoryFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/indexFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/manufacturerFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/priceFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/vendorFilterTest.php',
+        'd3/extsearch/tests/integration/filterlists/d3ExtsearchFilterlistsIntegrationTestCase.php',
+        'd3/extsearch/tests/integration/queryExecute/alistQueryExecuteTest.php',
+        'd3/extsearch/tests/integration/queryExecute/searchQueryExecuteTest.php',
+        'd3/extsearch/tests/integration/queryExecute/d3ExtsearchFilterQueriesIntegrationTestCase.php'
+    ),
+    'd3SetupClasses'    => array(
+        ModuleSetup\d3_extsearch_update::class,
+    ),
+);

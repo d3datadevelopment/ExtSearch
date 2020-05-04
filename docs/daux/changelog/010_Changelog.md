@@ -2,6 +2,14 @@
 title: Changelog
 ---
 
+## 6.5.1.0 (2020-05-04)
+### Added
+- Artikellisten (Kategorien, Hersteller, Lieferanten) können ebenfalls Varianten zeigen und zur Filterung verwenden
+### Fixed
+- ungültige Filterkombinationen zeigen in Artikellisten entsprechende Hinweise und ermöglichen ein Zurücksetzen der gesetzten Filter
+
+---
+
 ## 6.5.0.0 (2020-03-31)
 ### Added
 - Kompatibilität zu OXID 6.2 hergestellt

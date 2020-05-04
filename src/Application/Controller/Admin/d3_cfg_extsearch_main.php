@@ -16,6 +16,7 @@
 namespace D3\Extsearch\Application\Controller\Admin;
 
 use D3\Extsearch\Application\Model\d3_search_generator;
+use D3\Extsearch\Core\d3_extsearch_conf;
 use D3\Extsearch\Modules\Application\Model\d3_oxsearch_extsearch;
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_main;
 use D3\ModCfg\Application\Model\d3utils;
@@ -556,5 +557,19 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
             md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestEscapedParameter('searchparam'))));
 
         return $sPageId;
+    }
+
+    /**
+     * @return bool
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     */
+    public function d3UseAlistFilters()
+    {
+        return $this->d3GetSet()->getLicenseConfigData(d3_extsearch_conf::SERIAL_BIT_HAS_FILTERS_IN_ALIST, false) || $this->d3GetSet()->isDemo();
     }
 }

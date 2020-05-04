@@ -282,6 +282,24 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
+
+                                [{if $oView->d3UseAlistFilters()}]
+                                    [{assign var="blActionRestriction" value=""}]
+                                [{else}]
+                                    [{assign var="blActionRestriction" value="readonly disabled"}]
+                                    [{assign var="blRestricted" value=true}]
+                                [{/if}]
+                                <dl class="variant_options">
+                                    <dt>
+                                        <label for="VariantInAList" class="[{$blActionRestriction}]">[{oxmultilang ident="D3_EXTSEARCH_MAIN_VARIANTINALIST"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <input type="hidden" name="value[blExtSearch_VariantInAList]" value="0" [{$blActionRestriction}]>
+                                        <input id="VariantInAList" class="edittext ext_edittext" type="checkbox" [{$blActionRestriction}] name="value[blExtSearch_VariantInAList]" value='1' [{if !$blRestricted && $edit->getEditValue('blExtSearch_VariantInAList') == 1}]checked[{/if}]>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_VARIANTINALIST_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
                                 <dl class="variant_options">
                                     <dt>
                                         <label for="VariantCheckParentActive">[{oxmultilang ident="D3_EXTSEARCH_MAIN_VARIANTCHECKPARENTACTIVE"}]</label>
