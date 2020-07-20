@@ -11,6 +11,17 @@ body {
                 }
             }
         }
+        .list {
+            .item {
+                > label {
+                    font-size: 16px;
+                }
+                input[type="checkbox"] {
+                    margin: 4px 0 0;
+                    line-height: normal;
+                }
+            }
+        }
     }
 
     &.cl-search,

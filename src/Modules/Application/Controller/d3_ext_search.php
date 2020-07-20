@@ -129,8 +129,8 @@ class d3_ext_search extends d3_ext_search_parent
      */
     public function __construct()
     {
-        // convert searchparam in case of decoded UTF8 search parameter (*.html?listtype=list&searchparam=kk%FCchenrollenhalter)
-        $sTmP = Registry::get(Request::class)->getRequestEscapedParameter('searchparam');
+        // mustn'd be getRequestEscapedParameter!
+        $sTmP = Registry::get(Request::class)->getRequestParameter('searchparam');
         if (mb_detect_encoding($sTmP) !== "UTF-8" || false === mb_check_encoding($sTmP, "UTF-8")) {
             $sTmP = utf8_encode($sTmP);
 

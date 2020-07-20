@@ -2,6 +2,23 @@
 title: Changelog
 ---
 
+## 6.5.2.0 (2020-07-20)
+### Changed
+- unnötige Maskierung des Suchbegriffes entfernt
+  - führte bei Verwendung von Sonderzeichen zu fehlerfaften Ergebnissen 
+- Build-Komponenten aktualisiert 
+  - vermeidet Verwendung unsicherer Pakete)
+- Benennung des Source-Verzeichnisses wird automatisch ermittelt
+  - so kann dieses Verzeichnis auch anders benannt oder an anderer Stelle abgelegt sein
+- kleine Layoutanpassungen im Flow- und Wavetheme
+- Dokumentation aktualisiert
+### Fixed
+- fehlende Datenbankfelder in Abfrage ergänzt
+  - führte in Verwendung der Indexbuchstaben in bestimmter Konstellation zu Fehlern bei der Abfrage
+- bei entsprechender Einstellung werden leere Kategorien nicht in Filtern gezeigt
+
+---
+
 ## 6.5.1.0 (2020-05-04)
 ### Added
 - Artikellisten (Kategorien, Hersteller, Lieferanten) können ebenfalls Varianten zeigen und zur Filterung verwenden

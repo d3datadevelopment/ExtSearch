@@ -57,9 +57,11 @@
                                     [{foreach name="cathitlist" from=$oCatHitList item="oHit"}]
                                         [{block name="d3extsearch_suggest_listitem_category"}]
                                             [{strip}]
-                                                <a class="item_inact d3QSItem category" data-object-type="category" id="[{$oHit->getId()|replace:".":""}]" href="[{$oHit->getLink()}]">
-                                                    [{$oHit->getFieldData('oxtitle')}]
-                                                </a>
+                                                [{if $oHit->getIsVisible()}]
+                                                    <a class="item_inact d3QSItem category" data-object-type="category" id="[{$oHit->getId()|replace:".":""}]" href="[{$oHit->getLink()}]">
+                                                        [{$oHit->getFieldData('oxtitle')}]
+                                                    </a>
+                                                [{/if}]
                                             [{/strip}]
                                             [{assign var="blItem" value=true}]
                                         [{/block}]
