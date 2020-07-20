@@ -17,13 +17,16 @@
 
 use D3\Extsearch\Application\Controller\d3_extsearch_response;
 use OxidEsales\Eshop\Core\Registry;
+use OxidEsales\ComposerPlugin\Installer\Package\ShopPackageInstaller;
+
+require_once(__DIR__.'/../../../../../vendor/autoload.php');
 
 $bootstrapFileName = getenv('ESHOP_BOOTSTRAP_PATH');
 if (!empty($bootstrapFileName)) {
     $bootstrapFileName = realpath(trim(getenv('ESHOP_BOOTSTRAP_PATH')));
 } else {
     $count = 0;
-    $bootstrapFileName = '../../../source/bootstrap.php';
+    $bootstrapFileName = '../../../'. ShopPackageInstaller::SHOP_SOURCE_DIRECTORY .'/bootstrap.php';
     $currentDirectory = __DIR__ . '/';
     while ($count < 5) {
         $count++;

@@ -33,14 +33,15 @@ $sModuleId = 'd3_extsearch';
  */
 $aModule = array(
     'id'          => $sModuleId,
-    'title'       =>
-        (class_exists(d3utils::class) ? d3utils::getInstance()->getD3Logo() : 'D&sup3;') . ' Erweiterte Suche / Extended Search',
+    'title'       => 
+        '<img src="https://logos.oxidmodule.com/d3logo.svg" alt="(D3)" style="height:1em;width:1em"> '.
+        'Erweiterte Suche / Extended Search',
     'description' => array(
         'de' => 'Stellt fehlertolerante Suche und weitere Filterm&ouml;glichkeiten zur Verf&uuml;gung.<br>Aktivieren Sie die Moduleintr&auml;ge bitte immer und steuern Sie die Modulaktivit&auml;t ausschlie&szlig;lich im Adminbereich des Moduls.',
         'en' => '',
     ),
     'thumbnail'   => 'picture.png',
-    'version'     => '6.5.1.0',
+    'version'     => '6.5.2.0',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'http://www.oxidmodule.com/',

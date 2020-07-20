@@ -35,11 +35,8 @@ body {
             }
         
             &.baseframe {
-                width: auto;
-                
                 .message {
                     margin-bottom: 10px;
-                    font-family: $font-family-base;
                     font-size: 12px;
                 }
                 .content.list {

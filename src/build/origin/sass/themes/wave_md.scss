@@ -33,11 +33,6 @@
                     select {
                         @extend %body_d3_extsearch_navigation_list_item_select;
                     }
-
-                    input[type="checkbox"] {
-                        margin: 4px 0 0;
-                        line-height: normal;
-                    }
                 }
             }
         }

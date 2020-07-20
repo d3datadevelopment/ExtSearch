@@ -397,6 +397,9 @@ body .d3_extsearch_navigation.d3theme_flow.d3sidebar #d3searchfilterform .item {
   position: relative;
   width: 100%;
 }
+body .d3_extsearch_navigation .list .item > label {
+  font-size: 1pc;
+}
 body.cl-alist #sidebar .box,
 body.cl-manufacturerlist #sidebar .box,
 body.cl-vendorlist #sidebar .box {

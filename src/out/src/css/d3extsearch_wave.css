@@ -376,6 +376,13 @@ body .d3_extsearch_navigation.d3theme_wave.d3sidebar #d3searchfilterform .item {
   float: none;
   max-width: 100%; }
 
+body .d3_extsearch_navigation .list .item > label {
+  font-size: 1pc; }
+
+body .d3_extsearch_navigation .list .item input[type="checkbox"] {
+  line-height: normal;
+  margin: 4px 0 0; }
+
 body.cl-search #sidebar .box, body.cl-alist #sidebar .box, body.cl-manufacturerlist #sidebar .box, body.cl-vendorlist #sidebar .box {
   display: none !important; }
     body.cl-search #sidebar .box.d3sidebar, body.cl-alist #sidebar .box.d3sidebar, body.cl-manufacturerlist #sidebar .box.d3sidebar, body.cl-vendorlist #sidebar .box.d3sidebar,body.cl-search #sidebar .box.d3sidebar .box, body.cl-alist #sidebar .box.d3sidebar .box, body.cl-manufacturerlist #sidebar .box.d3sidebar .box, body.cl-vendorlist #sidebar .box.d3sidebar .box {
@@ -404,9 +411,6 @@ body.cl-search .d3_extsearch_navigation.d3theme_wave.baseframe div.content.list 
     width: 100%; }
     body .d3_extsearch_navigation .list .item label {
       margin-bottom: 5px; }
-    body .d3_extsearch_navigation .list .item input[type="checkbox"] {
-      line-height: normal;
-      margin: 4px 0 0; }
   body .xajax_resp_wave.suggestVisible {
     display: block; }
   body.cl-search .content-box .row > div.col-md-3, body.cl-search .content-box .row > div.col-md-9, body.cl-alist .content-box .row > div.col-md-3, body.cl-alist .content-box .row > div.col-md-9, body.cl-manufacturerlist .content-box .row > div.col-md-3, body.cl-manufacturerlist .content-box .row > div.col-md-9, body.cl-vendorlist .content-box .row > div.col-md-3, body.cl-vendorlist .content-box .row > div.col-md-9 {
@@ -461,17 +465,15 @@ body .d3_extsearch_navigation.d3theme_wave.d3sidebar .indexlink_usable {
 body .d3_extsearch_navigation.d3theme_wave.d3sidebar .letter_all {
   width: 22.8%; }
 
-body .d3_extsearch_navigation.d3theme_wave.baseframe {
-  width: auto; }
-  body .d3_extsearch_navigation.d3theme_wave.baseframe .message {
-    font-family: Raleway,Helvetica Neue,Helvetica,Arial,sans-serif;
-    font-size: 9pt;
-    margin-bottom: 10px; }
-  body .d3_extsearch_navigation.d3theme_wave.baseframe .content.list {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -15px;
-    margin-right: -15px; }
+body .d3_extsearch_navigation.d3theme_wave.baseframe .message {
+  font-size: 9pt;
+  margin-bottom: 10px; }
+
+body .d3_extsearch_navigation.d3theme_wave.baseframe .content.list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -15px;
+  margin-right: -15px; }
 
 body .d3_extsearch_navigation.d3theme_wave .list {
   border-style: none;
