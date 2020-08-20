@@ -25,7 +25,7 @@ use OxidEsales\Eshop\Core as OxidCore;
 /**
  * Metadata version
  */
-$sMetadataVersion = '2.0';
+$sMetadataVersion = '2.1';
 
 $sModuleId = 'd3_extsearch';
 /**
@@ -41,7 +41,7 @@ $aModule = array(
         'en' => '',
     ),
     'thumbnail'   => 'picture.png',
-    'version'     => '6.5.2.0',
+    'version'     => '6.5.2.1',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'http://www.oxidmodule.com/',
