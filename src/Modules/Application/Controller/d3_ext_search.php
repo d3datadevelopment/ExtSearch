@@ -881,7 +881,9 @@ class d3_ext_search extends d3_ext_search_parent
     {
         $sAddParams = parent::getAddUrlParams();
 
-        $sAddParams .= $this->d3AddBaseUrlParams($sAddParams);
+        if ($this->d3GetSet()->isActive()) {
+            $sAddParams .= $this->d3AddBaseUrlParams( $sAddParams );
+        }
 
         return $sAddParams;
     }
@@ -985,7 +987,9 @@ class d3_ext_search extends d3_ext_search_parent
     {
         $sRet = parent::getDynUrlParams();
 
-        $sRet .= $this->d3AddBaseUrlParams($sRet);
+        if ($this->d3GetSet()->isActive()) {
+            $sRet .= $this->d3AddBaseUrlParams( $sRet );
+        }
 
         return $sRet;
     }

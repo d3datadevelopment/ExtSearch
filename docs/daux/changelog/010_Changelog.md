@@ -2,12 +2,27 @@
 title: Changelog
 ---
 
+## 6.5.2.2 (2020-09-29)
+### Changed
+- Suggest: Submit bei markiertem Eintrag sendet Formular ab, anstatt den Eintrag zu zeigen
+- JavaScripts verwenden Strict Mode
+### Fixed
+- optimiertes Decoding verhindert SQL Injections
+
+---
+
+## 6.5.2.1 (2020-08-20)
+### Fixed
+- fehlerhaften BaseConfKey getauscht
+
+---
+
 ## 6.5.2.0 (2020-07-20)
 ### Changed
 - unnötige Maskierung des Suchbegriffes entfernt
-  - führte bei Verwendung von Sonderzeichen zu fehlerfaften Ergebnissen 
+  - führte bei Verwendung von Sonderzeichen zu fehlerhaften Ergebnissen 
 - Build-Komponenten aktualisiert 
-  - vermeidet Verwendung unsicherer Pakete)
+  - vermeidet Verwendung unsicherer Pakete
 - Benennung des Source-Verzeichnisses wird automatisch ermittelt
   - so kann dieses Verzeichnis auch anders benannt oder an anderer Stelle abgelegt sein
 - kleine Layoutanpassungen im Flow- und Wavetheme
