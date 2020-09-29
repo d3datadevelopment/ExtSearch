@@ -13,6 +13,7 @@
  */
 
 $( function() {
+    "use strict";
     $.widget( "ui.d3extsearchias", {
         // default options
         options: {

@@ -13,6 +13,7 @@
  */
 
 $( function() {
+    "use strict";
     $.widget( "ui.d3extsearchsuggest", {
         // default options
         options: {
@@ -63,13 +64,9 @@ $( function() {
         _create: function () {
             let self    = this;
             let el      = this.element;
-            let options = this.options;
 
             this.addResponseElement();
             el.keyup(function(event) {
-                self.keyHandler(event);
-            });
-            $("#" + options.sSearchFormId).submit(function(event) {
                 self.keyHandler(event);
             });
         },
@@ -103,7 +100,7 @@ $( function() {
             let isSubmitEvent = event.type.toLowerCase() === "submit";
             let sKey = isSubmitEvent ? "Enter" : event.originalEvent.key;
 
-            if (isSubmitEvent || options.oAjaxResponseElement.is(":visible")) {
+            if (isSubmitEvent || sKey.toLowerCase() === "enter" || options.oAjaxResponseElement.is(":visible")) {
                 if (sKey.toLowerCase() === "arrowup") {
                     this.handleArrowUpKey();
                 } else if (

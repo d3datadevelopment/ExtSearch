@@ -1,6 +1,12 @@
 module.exports = {
 
     options: {
+        "asi"      : true,
+        "expr"     : true,
+        "jquery"   : true,
+        "laxbreak" : true,
+        "nonbsp"   : true,
+        "strict"   : true,
         "curly": true,
         "latedef": true,
         "undef": true,

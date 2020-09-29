@@ -12,8 +12,8 @@
  * @link      http://www.oxidmodule.com
  */
 
-(function ( $ )
-{
+(function ( $ ) {
+    "use strict";
     let d3extsearchslider = {
         options: {
             fieldMinId: "d3extsearch_PriceFilterfieldMinId",
