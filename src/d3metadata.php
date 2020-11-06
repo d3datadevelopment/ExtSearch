@@ -43,6 +43,7 @@ $aModule = array(
 
         'd3/extsearch/Application/Controller/d3_extsearch_response.php',
         'd3/extsearch/Application/Controller/d3_xlist_extsearch.php',
+        'd3/extsearch/Application/Controller/d3_extsearch_cron_response.php',
         'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_navigation.php',
         'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_list.php',
         'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearch_main.php',
@@ -103,6 +104,8 @@ $aModule = array(
         'd3/extsearch/Modules/Application/Model/d3_oxrssfeed_extsearch.php',
         'd3/extsearch/Modules/Core/d3_oxutilsview_extsearch.php',
 
+        'd3/extsearch/public/d3_extsearch_cron.php',
+
         'd3/extsearch/setup/Events.php',
         
         'd3/extsearch/tests/d3extsearch_config.php',
@@ -134,7 +137,9 @@ $aModule = array(
         'd3/extsearch/tests/integration/filterlists/d3ExtsearchFilterlistsIntegrationTestCase.php',
         'd3/extsearch/tests/integration/queryExecute/alistQueryExecuteTest.php',
         'd3/extsearch/tests/integration/queryExecute/searchQueryExecuteTest.php',
-        'd3/extsearch/tests/integration/queryExecute/d3ExtsearchFilterQueriesIntegrationTestCase.php'
+        'd3/extsearch/tests/integration/queryExecute/d3ExtsearchFilterQueriesIntegrationTestCase.php',
+        'd3/extsearch/tests/unit/d3ExtsearchUnitTestCase.php',
+        'd3/extsearch/tests/unit/Application/Model/Filters/d3ManufacturerFilterTest.php',
     ),
     'd3SetupClasses'    => array(
         ModuleSetup\d3_extsearch_update::class,

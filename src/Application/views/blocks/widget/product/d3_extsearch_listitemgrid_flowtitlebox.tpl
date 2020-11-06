@@ -1,5 +1,5 @@
 [{d3modcfgcheck modid="d3_extsearch"}][{/d3modcfgcheck}]
-[{if $mod_d3_extsearch && $oModCfg_d3_extsearch->isThemeIdMappedTo('flow')}]
+[{if $mod_d3_extsearch && ($oModCfg_d3_extsearch->isThemeIdMappedTo('flow') || $oModCfg_d3_extsearch->isThemeIdMappedTo('wave'))}]
     <div class="title">
         <a id="[{$testid}]" href="[{$_productLink}]" class="title" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
 [{*** D3 Modul "extSearch" CHANGE START ***}]

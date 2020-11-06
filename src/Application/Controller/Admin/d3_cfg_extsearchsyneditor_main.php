@@ -31,7 +31,7 @@ use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 
-class d3_cfg_extsearchsyneditor_Main extends d3_cfg_mod_main
+class d3_cfg_extsearchsyneditor_main extends d3_cfg_mod_main
 {
     protected $_sThisTemplate = 'd3_cfg_extsearchsyneditor_main.tpl';
     protected $_sModId = 'd3_extsearch';

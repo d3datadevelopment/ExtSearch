@@ -1,5 +1,5 @@
 [{d3modcfgcheck modid="d3_extsearch"}][{/d3modcfgcheck}]
-[{if $mod_d3_extsearch && false == $oModCfg_d3_extsearch->isThemeIdMappedTo('flow')}]
+[{if $mod_d3_extsearch && $oModCfg_d3_extsearch->isThemeIdMappedTo('azure')}]
     [{assign var="product"              value=$oView->getProduct()}]
     [{assign var="blDisableToCart"      value=$oView->getDisableToCart()}]
     [{assign var="iIndex"               value=$oView->getIndex()}]

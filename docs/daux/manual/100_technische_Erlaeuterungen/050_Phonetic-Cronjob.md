@@ -2,20 +2,10 @@
 title: Phonetic-Cronjob
 ---
 
-Werden Ihre Artikel außerhalb des OXID-Frameworks gepflegt, muss die Erstellung des phonetischen Indexes (notwenidig für die klangähnliche Suche) manuell gestartet werden. Daher haben Sie die Möglichkeit, die Generierung des Suchindex über einen externen Aufruf zu starten. Verwenden Sie dazu den folgenden Aufruf:
+Werden Ihre Artikel außerhalb des OXID-Frameworks gepflegt, muss die Erstellung des phonetischen Indexes (notwendig für die klangähnliche Suche) manuell gestartet werden. Daher haben Sie die Möglichkeit, die Generierung des Suchindex über einen externen Aufruf zu starten. Verwenden Sie dazu den folgenden Aufruf:
 
 ```
-http://www.example.com/admin/index.php?cl=d3_cfg_extsearch_main&fnc=
-generatePhoneticStringsExt&extlogin=true&user=admin&pwd=admin&blNewe
-st=true&blMsg=true&iTimeLimit=0
+./vendor/bin/d3_extsearch_cron
 ```
 
-Die verwendeten Parameter haben folgende Bedeutung:
-
-```
-extlogin=true    => ermöglicht externes Login in den Adminbereich
-user=admin       => Benutzername eine angelegten Adminbenutzers
-pwd=admin        => Passwort eines angelegten Adminbenutzers
-blNewest=true    => es werden nur neue / alle Einträge generiert
-blMsg=true       => mögliche Meldungen werden ausgegeben / unterdrückt
-iTimeLimit=0     => Timeout des Servers in Sekunden
+Dieser Aufruf listet Ihnen alle möglichen Optionen und Aufgaben. Stellen Sie sich den gewünschten Aufruf damit zusammen und verwenden Sie diesen zum Beispiel als regelmäßig ausgeführter Cronjob.

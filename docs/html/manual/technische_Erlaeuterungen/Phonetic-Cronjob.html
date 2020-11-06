@@ -72,23 +72,14 @@
     <div class="Page__header">
         <h1><a href="../../manual/technische_Erlaeuterungen/zusaetzliche_Formularfelder.html">technische Erlaeuterungen</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../manual/technische_Erlaeuterungen/Phonetic-Cronjob.html">Phonetic-Cronjob</a></h1>
                 <span class="ModifiedDate">
-                        29.09.2020        </span>
+                        06.11.2020        </span>
                     </div>
 
     <div class="s-content">
-        <p>Werden Ihre Artikel außerhalb des OXID-Frameworks gepflegt, muss die Erstellung des phonetischen Indexes (notwenidig für die klangähnliche Suche) manuell gestartet werden. Daher haben Sie die Möglichkeit, die Generierung des Suchindex über einen externen Aufruf zu starten. Verwenden Sie dazu den folgenden Aufruf:</p>
-<pre><code>http://www.example.com/admin/index.php?cl=d3_cfg_extsearch_main&amp;fnc=
-generatePhoneticStringsExt&amp;extlogin=true&amp;user=admin&amp;pwd=admin&amp;blNewe
-st=true&amp;blMsg=true&amp;iTimeLimit=0
+        <p>Werden Ihre Artikel außerhalb des OXID-Frameworks gepflegt, muss die Erstellung des phonetischen Indexes (notwendig für die klangähnliche Suche) manuell gestartet werden. Daher haben Sie die Möglichkeit, die Generierung des Suchindex über einen externen Aufruf zu starten. Verwenden Sie dazu den folgenden Aufruf:</p>
+<pre><code>./vendor/bin/d3_extsearch_cron
 </code></pre>
-<p>Die verwendeten Parameter haben folgende Bedeutung:</p>
-<pre><code>extlogin=true    =&gt; ermöglicht externes Login in den Adminbereich
-user=admin       =&gt; Benutzername eine angelegten Adminbenutzers
-pwd=admin        =&gt; Passwort eines angelegten Adminbenutzers
-blNewest=true    =&gt; es werden nur neue / alle Einträge generiert
-blMsg=true       =&gt; mögliche Meldungen werden ausgegeben / unterdrückt
-iTimeLimit=0     =&gt; Timeout des Servers in Sekunden
-</code></pre>
+<p>Dieser Aufruf listet Ihnen alle möglichen Optionen und Aufgaben. Stellen Sie sich den gewünschten Aufruf damit zusammen und verwenden Sie diesen zum Beispiel als regelmäßig ausgeführter Cronjob.</p>
     </div>
 
         <nav>
