@@ -35,7 +35,7 @@ use OxidEsales\Eshop\Core\UtilsView;
 use Smarty;
 use stdClass;
 
-class d3_cfg_extsearch_Statistik extends d3_cfg_mod_main
+class d3_cfg_extsearch_statistik extends d3_cfg_mod_main
 {
     protected $_sThisTemplate = "d3_cfg_extsearch_statistik.tpl";
     protected $_sModId = 'd3_extsearch';

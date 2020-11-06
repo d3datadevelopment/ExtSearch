@@ -16,19 +16,19 @@
 namespace D3\Extsearch\Modules\Application\Controller\Admin;
 
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
-use D3\ModCfg\Application\Model\d3utils;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use Doctrine\DBAL\DBALException;
 use \OxidEsales\Eshop\Application\Model\Article;
+use OxidEsales\Eshop\Application\Model\Object2Category;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Exception\StandardException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\DatabaseProvider;
+use OxidEsales\Eshop\Core\Str;
 use OxidEsales\Eshop\Core\StrMb;
-use OxidEsales\Eshop\Core\TableViewNameGenerator;
 
 class d3_article_list_extsearch extends d3_article_list_extsearch_parent
 {
@@ -97,62 +97,17 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
             && $this->_d3IsSearch()
         ) {
             $sViewName = $oListObject->getViewName();
-            $oD3Utils = Registry::get(d3utils::class);
+
             $aReplSearch = array(
                 'from ' . $sViewName,
-                ", " . DatabaseProvider::getDb()->quoteIdentifier(
-                    "{$sViewName}." . $oD3Utils->getMultiLangFieldName(
-                        'oxtitle',
-                        '',
-                        $oListObject
-                    )
-                ),
-                ", " . DatabaseProvider::getDb()->quoteIdentifier(
-                    "{$sViewName}." . $oD3Utils->getMultiLangFieldName(
-                        'oxvarselect',
-                        '',
-                        $oListObject
-                    )
-                )
+                ", " . DatabaseProvider::getDb()->quoteIdentifier("{$sViewName}.oxtitle"),
+                ", " . DatabaseProvider::getDb()->quoteIdentifier("{$sViewName}.oxvarselect")
             );
 
             $aReplReplacement = array(
-                'from ' . $sViewName . ' LEFT JOIN ' . $oListObject->getViewName() . ' oxp '.
-                    'ON ' . $sViewName . '.oxparentid = oxp.oxid',
-                ', if(' . $sViewName . '.' . $oD3Utils->getMultiLangFieldName(
-                    'oxparentid',
-                    '',
-                    $oListObject
-                ) . ', CONCAT(oxp.' . $oD3Utils->getMultiLangFieldName(
-                    'oxtitle',
-                    '',
-                    $oListObject
-                ) . '," ",' . $sViewName . '.' . $oD3Utils->getMultiLangFieldName(
-                    'oxvarselect',
-                    '',
-                    $oListObject
-                ) . '),' . $sViewName . '.' . $oD3Utils->getMultiLangFieldName(
-                    'oxtitle',
-                    '',
-                    $oListObject
-                ) . ') as oxtitle',
-                ', if(' . $sViewName . '.' . $oD3Utils->getMultiLangFieldName(
-                    'oxparentid',
-                    '',
-                    $oListObject
-                ) . ', CONCAT(oxp.' . $oD3Utils->getMultiLangFieldName(
-                    'oxtitle',
-                    '',
-                    $oListObject
-                ) . '," ",' . $sViewName . '.' . $oD3Utils->getMultiLangFieldName(
-                    'oxvarselect',
-                    '',
-                    $oListObject
-                ) . '),' . $sViewName . '.' . $oD3Utils->getMultiLangFieldName(
-                    'oxvarselect',
-                    '',
-                    $oListObject
-                ) . ') as oxvarselect'
+                'from ' . $sViewName . ' LEFT JOIN ' . $oListObject->getViewName() . ' oxp ON ' . $sViewName . '.oxparentid = oxp.oxid',
+                ", if($sViewName.oxparentid, CONCAT(oxp.oxtitle,' ', $sViewName.oxvarselect), $sViewName.oxtitle) as oxtitle",
+                ", if($sViewName.oxparentid, CONCAT(oxp.oxtitle,' ', $sViewName.oxvarselect), $sViewName.oxvarselect) as oxvarselect"
             );
 
             $sSql = str_replace($aReplSearch, $aReplReplacement, $sSql);
@@ -184,13 +139,11 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
             && $this->_d3GetSet()->getValue('blExtSearch_adminShowVariants')
             && $this->_d3IsSearch()
         ) {
-            $oTableViewNameGenerator = Registry::get(TableViewNameGenerator::class);
             $oArticle         = oxNew(Article::class);
-            $aReplSearch      = array(" and " . $oTableViewNameGenerator->getViewName('oxarticles') . ".oxparentid = '' ");
+            $aReplSearch      = array(" and " . $oArticle->getViewName() . ".oxparentid = '' ");
             $aReplReplacement = array('');
 
-            $sSearchKey    = strtolower(Registry::get(TableViewNameGenerator::class)->getViewName('oxarticles')) . '.' .
-                Registry::get(d3utils::class)->getMultiLangFieldName('oxtitle', '', $oArticle);
+            $sSearchKey    = strtolower($oArticle->getViewName()) . '.oxtitle';
             $aLowerWhere   = array_change_key_case($aWhere);
             $aKeys         = array_keys($aLowerWhere);
             $aOrgKeys      = array_keys($aWhere);
@@ -201,10 +154,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
             if (in_array($sSearchKey, $aKeys)) {
                 $aReplSearch[]      = '( ' . $sQuotedOrgSearchKey . "  like '" . $aWhere[$sOrgSearchKey] . "'  )";
                 $aReplReplacement[] = '( ' . $sQuotedOrgSearchKey . " like '" . $aWhere[$sOrgSearchKey] . "' OR ".
-                    DatabaseProvider::getDb()->quoteIdentifier(
-                        "oxp." .
-                        Registry::get(d3utils::class)->getMultiLangFieldName('oxtitle', '', $oArticle)
-                    ) . " LIKE '" . $aWhere[$sOrgSearchKey] . "' )";
+                    DatabaseProvider::getDb()->quoteIdentifier("oxp.oxtitle") . " LIKE '" . $aWhere[$sOrgSearchKey] . "' )";
             }
 
             $sQ = str_replace($aReplSearch, $aReplReplacement, $sQ);
@@ -246,8 +196,8 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
                 $sType  = 'cat';
             }
 
-            $oTableViewNameGenerator = Registry::get(TableViewNameGenerator::class);
-            $sTable = $oTableViewNameGenerator->getViewName("oxarticles");
+            $oArticle = oxNew(Article::class);
+            $sTable = $oArticle->getViewName();
 
             // D3 pattern changed
             $sPattern = "from\s+$sTable\s+(.*?)\s{0,1}where";
@@ -256,8 +206,9 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
                 // add category
                 case 'cat':
                     /** @var $oStr StrMb */
-                    $oStr     = getStr();
-                    $sO2CView = $oTableViewNameGenerator->getViewName("oxobject2category");
+                    $oStr     = Str::getStr();
+                    $oO2C = oxNew(Object2Category::class);
+                    $sO2CView = $oO2C->getViewName();
                     // d3 sumatch added again (\\1)
                     $sLJAdd = strstr(
                         $sSql,

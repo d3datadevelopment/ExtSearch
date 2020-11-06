@@ -122,10 +122,8 @@ $aLang = array(
     'D3_EXTSEARCH_MAIN_INDEXARTCNT_DESC'              => 'Der Webserver bricht Scripte nach einer gewissen Laufzeit aus Sicherheitsgründen ab. Um die Generierung des Suchindexes dennoch fertigstellen zu können, verarbeitet dieses Script nur eine gewisse Anzahl Artikel und startet sich dann neu. Legen Sie hier fest, wie viele Artikel in einem Durchlauf bearbeitet werden sollen. Bricht die Generierung mit einem Fehler ab, reduzieren Sie die Zahl. Je niedriger die Anzahl, um so länger benötigt jedoch das Script.',
     'D3_EXTSEARCH_MAIN_INDEXERR'                      => 'Der benötigte Index für die fehlertolerante Suche ist lückenhaft. Klicken Sie hier, um die Liste neu zu generieren:',
     'D3_EXTSEARCH_MAIN_INDEXNOERR'                    => 'Der benötigte Index für die fehlertolerante Suche scheint vollständig. Im Moment ist keine Aktion nötig, wenn Sie die Sprache nicht geändert haben oder Artikel importiert haben.<br>Der Index muß für jede Sprache des Shop separat erstellt werden.',
-    'D3_EXTSEARCH_MAIN_GENINDEXCMPL'                  => 'Suchindex komplett neu generieren',
-    'D3_EXTSEARCH_MAIN_GENINDEXCMPL_DESC'             => 'Generiert für alle im Shop vorhandenen Artikel den Suchindex neu. Dies kann unter Umständen länger dauern.',
-    'D3_EXTSEARCH_MAIN_GENINDEXNEW'                   => 'neue Artikel in Suchindex aufnehmen',
-    'D3_EXTSEARCH_MAIN_GENINDEXNEW_DESC'              => 'Klicken Sie auf die nebenstehende Schaltfläche, um alle Artikel, die seit der letzten Indizierung geändert oder hinzugefügt wurden, in den Suchindex aufzunehmen. Alle bisherigen Artikel werden dabei ignoriert.',
+    'D3_EXTSEARCH_MAIN_GENINDEXCMPL'                  => 'phonetischen Suchindex aktualisieren',
+    'D3_EXTSEARCH_MAIN_GENINDEXCMPL_DESC'             => 'Generiert für veränderte oder neue Artikel den Suchindex neu.',
     'D3_EXTSEARCH_MAIN_GENSEMANTICINDEX'              => 'Lexikon für sinngleiche Suche neu indizieren',
     'D3_EXTSEARCH_MAIN_GENSEMANTICINDEX_DESC'         => 'Für die Verbindung von sinngleicher Suche und phonetischer Suche benötigt auch das Lexikon den phonetischen Index. Mit dieser Schaltfläche starten Sie die Neuindizierung des Lexikons. Im Normalfall ist dies jedoch nicht notwendig.',
     'D3_EXTSEARCH_MAIN_SHOW_POPUP'                    => 'PopUp während des Suchvorgangs zeigen',
@@ -153,12 +151,13 @@ $aLang = array(
     'D3_EXTSEARCH_MAIN_DONTUSEOWNDBVIEWS'             => 'Datenbankabfragen verwenden <b>nicht</b> die moduleigenen View-Tabellen',
     'D3_EXTSEARCH_MAIN_DONTUSEOWNDBVIEWS_DESC'        => 'Aus Performance-Gründen verwendet die Suche nicht die shopeigenen View-Tabellen, sondern bringt optimierte Versionen dessen mit. Je nach Größe des Datenbank kann deren Verwendung die Geschwindigkeit von Datenbankabfragen bis um den Faktor 100 beschleunigen. Sollen die spezialisierten View-Tabellen <b>nicht</b> verwendet werden, setzen Sie diesen Haken. Dann werden die Abfragen über die shopeigenen View-Tabellen geleitet.<br>Beachten Sie, dass bei deaktivierung dieser Option die View-Tabellen noch einmal aktualisiert werden müssen.',
     'D3_EXTSEARCH_MAIN_GENERATOR_INCONSISTENTTABLE'   => 'Die Artikel-Tabelle der Datenbank ist mit der Langtext-Tabelle nicht konsistent. Bitte bereinigen Sie dies vor der Ausführung des Generators. <br><br>Weitere Informationen finden Sie in der FAQ unter <a href="%1$s" target="_new">%1$s</a>.',
+    'D3_EXTSEARCH_MAIN_GENERATOR_INCONSISTENTTABLE_NOLINK' => 'Die Artikel-Tabelle der Datenbank ist mit der Langtext-Tabelle nicht konsistent. Bitte bereinigen Sie dies vor der Ausführung des Generators.',
     'D3_EXTSEARCH_MAIN_GENERATOR_FINISHED'            => 'Beendet.',
     'D3_EXTSEARCH_MAIN_GENERATOR_NOTE'                => 'Hinweis',
-    'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSED'           => '%1$s Artikel bearbeitet<br>Generierung abgeschlossen!',
+    'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSED'           => '%1$s Artikelsprachen (ca. %2$s Artikel) bearbeitet<br>Generierung abgeschlossen!',
     'D3_EXTSEARCH_MAIN_GENERATOR_TERMPROCESSED'       => '%1$s Wort/Wörter bearbeitet<br>Generierung abgeschlossen!',
     'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING'          => 'Bearbeite %1$s&#37;',
-    'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING1'         => 'Bearbeite %1$s / %2$s Artikel',
+    'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING1'         => 'Bearbeite %1$s / %2$s Artikelsprachen (ca. %3$s Artikel)',
     'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING3'         => 'Bearbeite %1$s / %2$s Begriffe',
     'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING2'         => '%1$s&#37; bearbeitet',
     'D3_EXTSEARCH_MAIN_GENERATOR_WAIT'                => 'Bitte warten...',
@@ -409,12 +408,31 @@ $aLang = array(
 
     'D3_EXTSEARCH_UPDATE_GENPHONETIC'                 => '"erweiterte Suche": Das Modulupdate führte Änderungen in der Datenbankstruktur für die Ähnlichkeitssuche aus. Aktualisieren Sie deshalb nach Abschluss dieser Installation den Suchindex im Adminbereich des Moduls.',
 
-    'GENERAL_ARTICLE_D3_PHONETIC'                     => 'erwSuche - phonetischer Index',
-    // Multilang-Fields for importer
-    'GENERAL_ARTICLE_D3_SEARCHINDEXDATE'              => 'erwSuche - Datum letzte Indizierung',
-    // Multilang-Fields for importer
-    'GENERAL_ARTICLE_D3PUSH'                          => 'erwSuche - Artikelwichtigkeit',
-    // Multilang-Fields for importer
+    'GENERAL_ARTICLE_D3_PHONETIC'                     => 'erwSuche - phonetischer Index', // Multilang-Fields for importer
+    'GENERAL_ARTICLE_D3_SEARCHINDEXDATE'              => 'erwSuche - Datum letzte Indizierung', // Multilang-Fields for importer
+    'GENERAL_ARTICLE_D3PUSH'                          => 'erwSuche - Artikelwichtigkeit', // Multilang-Fields for importer
+    'GENERAL_ARTICLE_D3CONTENTHASH'                   => 'extSearch - Hash der indizierten Inhalte', // Multilang-Fields for importer
     'GENERAL_ARTICLE_OXVARSELECT'                     => 'Variantentitel',
+
+    'D3_EXTSEARCH_CLI_COMMON_RUNFROMCLI'              => 'Dieses Script muss von der Befehlszeile aus ausgeführt werden. / This script has to be run from the command line',
+    'D3_EXTSEARCH_CLI_COMMON_UNVALIDSHOPID'           => 'ungültige Shop-ID',
+    'D3_EXTSEARCH_CLI_COMMON_NOGENERATORSCRIPT'       => 'Keine Generierungssprache definiert, setzen Sie diese bitte in den Einstellungen des Moduls.',
+    'D3_EXTSEARCH_CLI_HELP'                           => 'Ermöglicht automatisierte Aufgaben  / Wartung des Moduls "erweiterte Suche".',
+    'D3_EXTSEARCH_CLI_OPTION_VERSION'                 => 'zeigt Version',
+    'D3_EXTSEARCH_CLI_OPTION_QUIET'                   => 'verhindert die Anzeige der Ausgabe',
+    'D3_EXTSEARCH_CLI_OPTION_LANG'                    => 'optional - Sprache der ausgegebenen Meldungen, mögliche Werte sind: "%1$s"',
+    'D3_EXTSEARCH_CLI_OPTION_HELP'                    => 'Diesen Hilfetext anzeigen und den Aufruf verlassen.',
+    'D3_EXTSEARCH_CLI_OPTION_NOCOLORS'                => 'Verwendet keine Farben in der Ausgabe. Nützlich bei der Weitergabe der Ausgabe an andere Tools oder Dateien.',
+    'D3_EXTSEARCH_CLI_OPTION_LOGLEVELS'               => 'Kleinstes Level der anzuzeigenden Meldungen. Standard ist "info". Gültige Stufen sind: "debug", "info", "notice", "success", "warning", "error", "critical", "alert", "emergency".',
+    'D3_EXTSEARCH_CLI_COMMAND'                        => 'Dieses Tool akzeptiert einen Befehl als ersten Parameter, wie unten beschrieben:',
+    'D3_EXTSEARCH_CLI_COMMAND_GENERATEINDEX'          => 'phonetischen Suchindex aktualisieren',
+    'D3_EXTSEARCH_CLI_COMMAND_GENERATESEMANTIC'       => 'Lexikon für sinngleiche Suche neu indizieren',
+    'D3_EXTSEARCH_CLI_COMMAND_FIXARTEXTENDS'          => 'Langtexttabelle bereinigen',
+    'D3_EXTSEARCH_CLI_ARGUMENT_SHOPID'                => 'ID des ausgewählten Shops, mögliche Werte sind: "%1$s"',
+    'D3_EXTSEARCH_CLI_ARGUMENT_ENCLOSER'              => '", "',
+    'D3_EXTSEARCH_CLI_GENERATOR_PROCESSING'           => 'Verarbeitung gestartet ...',
+    'D3_EXTSEARCH_CLI_GENERATOR_PROCESSED'            => '%1$s Artikelsprachen (ca. %2$s Artikel) bearbeitet - Generierung abgeschlossen!',
+    'D3_EXTSEARCH_CLI_GENERATOR_TERMPROCESSED'        => '%1$s Wort/Wörter bearbeitet - Generierung abgeschlossen!',
+    'D3_EXTSEARCH_CLI_FINISHED_SUCCFESSFULLY'         => 'Das Script wurde erfolgreich beendet.',
 
 );

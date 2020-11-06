@@ -2,6 +2,19 @@
 title: Changelog
 ---
 
+## 6.6.0.0 (2020-11-06)
+### Added
+- Wartungsaufgaben über CLI aufrufbar
+- Cronjobaufruf generiert fehlende oxartextends-Einträge selbst
+- CLI komplett übersetzt und übersetzbar
+- Status der Indexgenerierung wird aus Inhalten anstelle des letzten Generierungsdatums ermittelt
+- Metadaten mehrsprachig verfügbar
+
+### fixed
+- Theme-Weichen für passende Produktdarstellung im Wave-Theme korrigiert
+
+---
+
 ## 6.5.2.2 (2020-09-29)
 ### Changed
 - Suggest: Submit bei markiertem Eintrag sendet Formular ab, anstatt den Eintrag zu zeigen

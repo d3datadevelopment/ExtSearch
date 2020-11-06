@@ -17,11 +17,12 @@
 
 namespace D3\Extsearch\Application\Controller\Admin\Reports;
 
+use D3\Extsearch\Application\Model\d3_extsearch_statisticlog;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
+use OxidEsales\Eshop\Core\Model\BaseModel;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
-use OxidEsales\Eshop\Core\TableViewNameGenerator;
 
 if (false == class_exists(d3_extsearch_report_hitless::class)) {
     /**
@@ -65,9 +66,8 @@ if (false == class_exists(d3_extsearch_report_hitless::class)) {
             $this->sTimeType = 'month';
             $this->aFilters  = base64_decode(Registry::get(Request::class)->getRequestEscapedParameter('searchparams'));
 
-            list($sSelect, $aParameters) = $this->getLogSubQuery(
-                Registry::get(TableViewNameGenerator::class)->getViewName('d3_extsearch_statisticlog')
-            );
+            $statLog = oxNew(d3_extsearch_statisticlog::class);
+            list($sSelect, $aParameters) = $this->getLogSubQuery($statLog->getViewName());
 
             $aTemp   = $this->_getDataArray($sSelect, $aParameters, $this->_getLineCount());
 
@@ -120,9 +120,9 @@ if (false == class_exists(d3_extsearch_report_hitless::class)) {
             $this->sTimeType = 'year';
             $this->aFilters  = base64_decode(Registry::get(Request::class)->getRequestEscapedParameter('searchparams'));
 
-            list($sSelect, $aParameters) = $this->getLogSubQuery(
-                Registry::get(TableViewNameGenerator::class)->getViewName('d3_extsearch_statisticlog')
-                );
+
+            $statLog = oxNew(d3_extsearch_statisticlog::class);
+            list($sSelect, $aParameters) = $this->getLogSubQuery($statLog->getViewName());
             $aTemp   = $this->_getDataArray($sSelect, $aParameters, $this->_getLineCount());
 
             foreach ($aTemp as $key => $value) {

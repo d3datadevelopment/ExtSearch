@@ -17,11 +17,11 @@
 
 namespace D3\Extsearch\Application\Controller\Admin\Reports;
 
+use D3\Extsearch\Application\Model\d3_extsearch_statisticlog;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
-use OxidEsales\Eshop\Core\TableViewNameGenerator;
 
 if (!class_exists(d3_extsearch_report_mostsearches::class)) {
 
@@ -67,7 +67,7 @@ if (!class_exists(d3_extsearch_report_mostsearches::class)) {
             $this->aFilters  = base64_decode(Registry::get(Request::class)->getRequestEscapedParameter('searchparams'));
 
             list($sSelect, $aParameters) = $this->getLogSubQuery(
-                Registry::get(TableViewNameGenerator::class)->getViewName('d3_extsearch_statisticlog')
+                oxNew(d3_extsearch_statisticlog::class)->getViewName()
             );
 
             $aTemp   = $this->_getDataArray($sSelect, $aParameters, $this->_getLineCount());
@@ -123,7 +123,7 @@ if (!class_exists(d3_extsearch_report_mostsearches::class)) {
             $this->aFilters  = base64_decode(Registry::get(Request::class)->getRequestEscapedParameter('searchparams'));
 
             list($sSelect, $aParameters) = $this->getLogSubQuery(
-                Registry::get(TableViewNameGenerator::class)->getViewName('d3_extsearch_statisticlog')
+                oxNew(d3_extsearch_statisticlog::class)->getViewName()
             );
 
             $aTemp   = $this->_getDataArray($sSelect, $aParameters, $this->_getLineCount());

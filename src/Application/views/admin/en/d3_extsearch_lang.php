@@ -122,10 +122,8 @@ $aLang = array(
     'D3_EXTSEARCH_MAIN_INDEXARTCNT_DESC'              => 'The web server aborts scripts after a certain period of time for security reasons. In order to be able to finish the generation of the search index nevertheless, this script processes only a certain number of articles and then restarts. Define here how many articles should be processed in one go. If the generation terminates with an error, reduce the number. The lower the number, the longer the script needs.',
     'D3_EXTSEARCH_MAIN_INDEXERR'                      => 'The required index for the fault-tolerant search is incomplete. Click here to regenerate the list:',
     'D3_EXTSEARCH_MAIN_INDEXNOERR'                    => 'The required index for the fault-tolerant search seems to be complete. At the moment, no action is necessary if you have not changed the language or have imported articles. <br> The index must be created separately for each language of the shop.',
-    'D3_EXTSEARCH_MAIN_GENINDEXCMPL'                  => 'Generate search index completely',
-    'D3_EXTSEARCH_MAIN_GENINDEXCMPL_DESC'             => 'Generates the search index for all existing articles in the shop. This may take longer.',
-    'D3_EXTSEARCH_MAIN_GENINDEXNEW'                   => 'Include new articles in search index',
-    'D3_EXTSEARCH_MAIN_GENINDEXNEW_DESC'              => 'Click the adjoining button to include all items that have been modified or added since the last indexing in the search index. All previous articles are ignored.',
+    'D3_EXTSEARCH_MAIN_GENINDEXCMPL'                  => 'Generate outdated phonetic search index',
+    'D3_EXTSEARCH_MAIN_GENINDEXCMPL_DESC'             => 'Generates the search index for all changed or added articles in the shop.',
     'D3_EXTSEARCH_MAIN_GENSEMANTICINDEX'              => 'Reindex lexicon for same meaning search',
     'D3_EXTSEARCH_MAIN_GENSEMANTICINDEX_DESC'         => 'For the connection of same meaning search and phonetic search also the lexicon needs the phonetic index. With this button you start the reindexing of the lexicon. Normally this is not necessary.',
     'D3_EXTSEARCH_MAIN_SHOW_POPUP'                    => 'show popup while searching',
@@ -153,12 +151,13 @@ $aLang = array(
     'D3_EXTSEARCH_MAIN_DONTUSEOWNDBVIEWS'             => 'Database queries <b> do not </b> use the module-specific view tables',
     'D3_EXTSEARCH_MAIN_DONTUSEOWNDBVIEWS_DESC'        => 'For performance reasons, the search does not use the system-specific view tables, but comes with optimized versions of it. Depending on the size of the database, their use can speed the speed of database queries up to a factor of 100. If you do <b>not</b> want to use the specialized view tables, check this box. The queries are then routed through the on-look view tables. <br> Note that disabling this option requires the view tables to be updated again.',
     'D3_EXTSEARCH_MAIN_GENERATOR_INCONSISTENTTABLE'   => 'The database article table is inconsistent to longtext table. Please fix it before executing this generator.<br><br>For further informations, check out our FAQ at <a href="%1$s" target="_new">%1$s</a>.',
+    'D3_EXTSEARCH_MAIN_GENERATOR_INCONSISTENTTABLE_NOLINK' => 'The database article table is inconsistent to longtext table. Please fix it before executing this generator.',
     'D3_EXTSEARCH_MAIN_GENERATOR_FINISHED'            => 'Finished.',
     'D3_EXTSEARCH_MAIN_GENERATOR_NOTE'                => 'Notice',
-    'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSED'           => '%1$s article(s) processed<br>Finished!',
+    'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSED'           => '%1$s article language(s) (ca. %2$s article(s)) processed<br>Finished!',
     'D3_EXTSEARCH_MAIN_GENERATOR_TERMPROCESSED'       => '%1$s term(s) processed<br>Finished!',
     'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING'          => 'Processing %1$s&#37;',
-    'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING1'         => 'Processing: %1$s / %2$s article(s)',
+    'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING1'         => 'Processing: %1$s / %2$s article language(s) (ca. %3$s article(s))',
     'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING3'         => 'Processing: %1$s / %2$s term(s)',
     'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING2'         => '%1$s&#37; finished',
     'D3_EXTSEARCH_MAIN_GENERATOR_WAIT'                => 'Please wait...',
@@ -410,11 +409,30 @@ $aLang = array(
     'D3_EXTSEARCH_UPDATE_GENPHONETIC'                 => '"extended search": The module update made changes in the database structure for the similarity search. Therefore, after completing this installation, update the search index in the admin area of the module.',
 
     'GENERAL_ARTICLE_D3_PHONETIC'                     => 'extSearch - phonetic index', // Multilang-Fields for importer
-    // Multilang-Fields for importer
-    'GENERAL_ARTICLE_D3_SEARCHINDEXDATE'              => 'extSearch - date of last search index generating',
-    // Multilang-Fields for importer
-    'GENERAL_ARTICLE_D3PUSH'                          => 'extSearch - product importance',
-    // Multilang-Fields for importer
+    'GENERAL_ARTICLE_D3_SEARCHINDEXDATE'              => 'extSearch - date of last search index generating', // Multilang-Fields for importer
+    'GENERAL_ARTICLE_D3PUSH'                          => 'extSearch - product importance', // Multilang-Fields for importer
+    'GENERAL_ARTICLE_D3CONTENTHASH'                   => 'extSearch - hash of indexed contents', // Multilang-Fields for importer
     'GENERAL_ARTICLE_OXVARSELECT'                     => 'variant title',
+
+    'D3_EXTSEARCH_CLI_COMMON_RUNFROMCLI'              => 'This script has to be run from the command line',
+    'D3_EXTSEARCH_CLI_COMMON_UNVALIDSHOPID'           => 'unvalid shop id',
+    'D3_EXTSEARCH_CLI_COMMON_NOGENERATORSCRIPT'       => 'No generation language defined, please set it in the module settings.',
+    'D3_EXTSEARCH_CLI_HELP'                           => 'Enables automated tasks / maintenance of the "extended search" module.',
+    'D3_EXTSEARCH_CLI_OPTION_VERSION'                 => 'print version',
+    'D3_EXTSEARCH_CLI_OPTION_QUIET'                   => 'prevents output from being displayed',
+    'D3_EXTSEARCH_CLI_OPTION_LANG'                    => 'optional - language of the output messages, possible values are: "%1$s"',
+    'D3_EXTSEARCH_CLI_OPTION_HELP'                    => 'Display this help screen and exit immeadiately.',
+    'D3_EXTSEARCH_CLI_OPTION_NOCOLORS'                => 'Do not use any colors in output. Useful when piping output to other tools or files.',
+    'D3_EXTSEARCH_CLI_OPTION_LOGLEVELS'               => 'Minimum level of messages to display. Default is "info". Valid levels are: "debug", "info", "notice", "success", "warning", "error", "critical", "alert", "emergency".',
+    'D3_EXTSEARCH_CLI_COMMAND'                        => 'This tool accepts a command as first parameter as outlined below:',
+    'D3_EXTSEARCH_CLI_COMMAND_GENERATEINDEX'          => 'Generate outdated phonetic search index',
+    'D3_EXTSEARCH_CLI_COMMAND_GENERATESEMANTIC'       => 'Reindex lexicon for a search with the same meaning',
+    'D3_EXTSEARCH_CLI_COMMAND_FIXARTEXTENDS'          => 'Clean up long text table',
+    'D3_EXTSEARCH_CLI_ARGUMENT_SHOPID'                => 'ID of the selected shop, possible values are: "%1$s"',
+    'D3_EXTSEARCH_CLI_ARGUMENT_ENCLOSER'              => '", "',
+    'D3_EXTSEARCH_CLI_GENERATOR_PROCESSING'           => 'processing ...',
+    'D3_EXTSEARCH_CLI_GENERATOR_PROCESSED'            => '%1$s article language(s) (ca. %2$s article(s)) edited - generation completed!',
+    'D3_EXTSEARCH_CLI_GENERATOR_TERMPROCESSED'        => '%1$s word(s) edited - generation completed!',
+    'D3_EXTSEARCH_CLI_FINISHED_SUCCFESSFULLY'         => 'script successfully finished',
 
 );

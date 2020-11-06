@@ -24,18 +24,19 @@ use D3\ModCfg\Application\Model\d3database;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use Doctrine\DBAL\DBALException;
-use OxidEsales\Eshop\Application\Controller\Admin\LoginController;
+use OxidEsales\Eshop\Application\Model\Article;
 use OxidEsales\Eshop\Application\Model\Search;
 use OxidEsales\Eshop\Core\DatabaseProvider;
 use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Exception\DatabaseErrorException;
 use OxidEsales\Eshop\Core\Exception\FileException;
 use OxidEsales\Eshop\Core\Exception\StandardException;
+use OxidEsales\Eshop\Core\Model\MultiLanguageModel;
 use OxidEsales\Eshop\Core\UtilsView;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
-use OxidEsales\Eshop\Core\TableViewNameGenerator;
 use OxidEsales\Eshop\Core\Output;
+use RuntimeException;
 use Smarty;
 
 class d3_cfg_extsearch_main extends d3_cfg_mod_main
@@ -67,24 +68,6 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
     protected $_sMenuSubItemTitle = 'd3mxextsearch_settings';
 
     /**
-     * constructor
-     */
-    public function __construct()
-    {
-        startProfile(__METHOD__);
-        if (Registry::get(Request::class)->getRequestEscapedParameter('extlogin')) {
-            // fake sToken
-            $_GET['stoken'] = Registry::getSession()->getSessionChallengeToken();
-            $oLogin         = oxNew(LoginController::class);
-            $oLogin->checklogin();
-        }
-
-        stopProfile(__METHOD__);
-
-        return parent::__construct();
-    }
-
-    /**
      * @return string
      * @throws DBALException
      * @throws DatabaseConnectionException
@@ -96,9 +79,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
             $this->_iUnindexedArticles = 0;
             startProfile(__METHOD__);
 
-            $this->d3getGenerator()->setGetNewArticlesOnly(true);
             $this->_iUnindexedArticles = $this->d3getGenerator()->getMaxUpdatePos();
-            $this->d3getGenerator()->setGetNewArticlesOnly(false);
 
             stopProfile(__METHOD__);
         }
@@ -170,7 +151,12 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
             // nicht betroffene Artikel auf aktuelles Datum setzen
             $iMaxPos = $this->d3getGenerator()->getMaxUpdatePos();
         }
-        $iProcessedArticles = $this->d3getGenerator()->updateArticles();
+
+        try {
+            $iProcessedArticles = $this->d3getGenerator()->updateArticles();
+        } catch (RuntimeException $e) {
+            die($e->getMessage());
+        }
 
         if ($iProcessedArticles > 0) {
             $iNewPos = $iArtPos + $iProcessedArticles;
@@ -188,41 +174,10 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         } else {
             $this->showHtmlMessage(
                 Registry::getLang()->translateString('D3_EXTSEARCH_MAIN_GENERATOR_FINISHED'),
-                sprintf(Registry::getLang()->translateString('D3_EXTSEARCH_MAIN_GENERATOR_PROCESSED'), $iArtPos)
-            );
-        }
-
-        Registry::getConfig()->pageClose();
-        stopProfile(__METHOD__);
-        die();
-    }
-
-    /**
-     * there is no ticker
-     * @throws DBALException
-     * @throws DatabaseConnectionException
-     * @throws DatabaseErrorException
-     * @throws FileException
-     */
-    public function generatePhoneticStringsExt()
-    {
-        startProfile(__METHOD__);
-
-        ignore_user_abort(true);
-        $iTimeLimit = Registry::get(Request::class)->getRequestEscapedParameter('iTimeLimit') ?
-            Registry::get(Request::class)->getRequestEscapedParameter('iTimeLimit') :
-            30;
-        @set_time_limit($iTimeLimit);
-
-        $blMsg      = Registry::get(Request::class)->getRequestEscapedParameter('blMsg');
-        $iProcessedArticles = $this->d3getGenerator()->updateArticles();
-
-        if (strtoupper($blMsg) == 'true') {
-            $this->showHtmlMessage(
-                Registry::getLang()->translateString('D3_EXTSEARCH_MAIN_GENERATOR_FINISHED'),
                 sprintf(
                     Registry::getLang()->translateString('D3_EXTSEARCH_MAIN_GENERATOR_PROCESSED'),
-                    $iProcessedArticles
+                    (string) $iArtPos,
+                    (string) ceil($iArtPos / count(Registry::getLang()->getLanguageIds()))
                 )
             );
         }
@@ -231,7 +186,6 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         stopProfile(__METHOD__);
         die();
     }
-
 
     /**
      * @param $sArtPos
@@ -261,7 +215,8 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         $smarty->assign('sMessage', sprintf(
             Registry::getLang()->translateString('D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING1'),
             (string) $sArtPos,
-            (string) $iMaxPos
+            (string) $iMaxPos,
+            (string) ceil($sArtPos / count(Registry::getLang()->getLanguageIds()))
         ));
         if ($sArtPos > 0) {
             $smarty->assign('iProgressPercent', $iProcessedPercent);
@@ -284,11 +239,13 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
      * @return string
      * @throws DBALException
      */
-    protected function getCheckOxartextendsQuery()
+    public function getCheckOxartextendsQuery()
     {
-        $oTableViewNameGenerator = Registry::get(TableViewNameGenerator::class);
-        $sArtTblName = $oTableViewNameGenerator->getViewName('oxarticles');
-        $sArtExtTblName = $oTableViewNameGenerator->getViewName('oxartextends');
+        $oArt = oxNew(Article::class);
+        $sArtTblName = $oArt->getViewName();
+        $oArtExtends = oxNew(MultiLanguageModel::class);
+        $oArtExtends->init('oxartextends');
+        $sArtExtTblName = $oArtExtends->getViewName();
 
         $oQB = d3database::getInstance()->getQueryBuilder();
         $oQB->select('count(oa.oxid)')
@@ -323,7 +280,11 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
             $iMaxPos = $this->d3getGenerator()->getMaxSemanticUpdatePos();
         }
 
-        $iProcessedTerms = $this->d3getGenerator()->updateSemantics($iTermPos);
+        try {
+            $iProcessedTerms = $this->d3getGenerator()->updateSemantics( $iTermPos );
+        } catch (RuntimeException $e) {
+            die($e->getMessage());
+        }
 
         if ($iProcessedTerms > 0) {
             $iNewPos = $iTermPos + $iProcessedTerms;
@@ -488,9 +449,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         $sTranslationIdent = "D3_EXTSEARCH_MAIN_SORTDEBUG" . $aFieldName[1];
         $sFieldName = $aFieldName[2];
 
-        $sTranslation = sprintf(Registry::getLang()->translateString($sTranslationIdent), $searchParam, $sFieldName);
-
-        return $sTranslation;
+        return sprintf(Registry::getLang()->translateString($sTranslationIdent), $searchParam, $sFieldName);
     }
 
     /**
@@ -551,12 +510,10 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
      */
     public function d3getFilterPageId()
     {
-        $sPageId = "search##".
+        return "search##".
             Registry::getLang()->getLanguageAbbr()."##".
             Registry::getConfig()->getShopId()."##".
             md5(rawurlencode(strtolower(Registry::get(Request::class)->getRequestEscapedParameter('searchparam'))));
-
-        return $sPageId;
     }
 
     /**

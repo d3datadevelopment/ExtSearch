@@ -737,24 +737,6 @@
                                 </dl>
                                 <dl>
                                     <dt>
-                                        [{if $oView->getIndexStatus() > 0}]
-                                            [{oxmultilang ident="D3_EXTSEARCH_MAIN_INDEXERR"}]
-                                        [{else}]
-                                            [{oxmultilang ident="D3_EXTSEARCH_MAIN_INDEXNOERR"}]
-                                        [{/if}]
-                                    </dt>
-                                    <dd>
-                                        <span class="d3modcfg_btn icon [{if $oView->getIndexStatus() > 0}]d3color-red[{else}]d3color-orange[{/if}]">
-                                            <button type="submit" name="save" onclick="window.open('[{$oViewConf->getSelfLink()|oxaddparams:$clParam|oxaddparams:"fnc=generatePhoneticStrings"|oxaddparams:"type=newest"}]', 'generate_phonetic', 'width=300, height=300, left=100'); return false;">
-                                                <i class="fa fa-warning fa-inverse"></i>[{oxmultilang ident="D3_EXTSEARCH_MAIN_GENINDEXNEW"}]
-                                            </button>
-                                        </span>
-                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_GENINDEXNEW_DESC"}]
-                                    </dd>
-                                    <dd class="spacer"></dd>
-                                </dl>
-                                <dl>
-                                    <dt>
                                         &nbsp;
                                     </dt>
                                     <dd>
