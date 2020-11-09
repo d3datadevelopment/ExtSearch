@@ -112,5 +112,4 @@ $aLang = array(
     'D3_CUSTOMFIELDTEXT_CHOOSEPRICE'         => 'Bitte Preis wählen',
 
     'D3_EXTSEARCH_DEBUG_UNABLE_QUERY'        => 'Query kann auf Grund gestellter Bedingungen nicht generiert werden.',
-    'D3_EXTSEARCH_DEBUG_UNABLE_DIRECTSHOW'   => 'Im Debug-Mode kann nicht auf Detailseite gewechselt werden:',
 );

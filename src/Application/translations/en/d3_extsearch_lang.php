@@ -111,6 +111,5 @@ $aLang = array(
     'D3_CUSTOMFIELDTEXT_ISBETWEENPRICE'      => 'Selection is within the price',
     'D3_CUSTOMFIELDTEXT_CHOOSEPRICE'         => 'Please select stock',
 
-    'D3_EXTSEARCH_DEBUG_UNABLE_QUERY'        => 'unable to generate query because of chosen settings',
-    'D3_EXTSEARCH_DEBUG_UNABLE_DIRECTSHOW'   => 'switch to details page avoided in debug mode:',
+    'D3_EXTSEARCH_DEBUG_UNABLE_QUERY'        => 'unable to generate query because of chosen settings'
 );
