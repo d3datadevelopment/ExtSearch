@@ -2,6 +2,15 @@
 title: Changelog
 ---
 
+## 6.6.0.1 (2020-11-09)
+### Changed
+- unnötige Redirect-Prävention im Falle eines Einzeltreffers beim Debug-Modus entfernt
+
+### Fixed
+- ungültige Tabellenname/Feldname-Kombination in SQL Query korrigiert
+
+---
+
 ## 6.6.0.0 (2020-11-06)
 ### Added
 - Wartungsaufgaben über CLI aufrufbar
@@ -10,7 +19,7 @@ title: Changelog
 - Status der Indexgenerierung wird aus Inhalten anstelle des letzten Generierungsdatums ermittelt
 - Metadaten mehrsprachig verfügbar
 
-### fixed
+### Fixed
 - Theme-Weichen für passende Produktdarstellung im Wave-Theme korrigiert
 
 ---
