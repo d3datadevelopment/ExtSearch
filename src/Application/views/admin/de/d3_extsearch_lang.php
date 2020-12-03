@@ -162,6 +162,7 @@ $aLang = array(
     'D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING2'         => '%1$s&#37; bearbeitet',
     'D3_EXTSEARCH_MAIN_GENERATOR_WAIT'                => 'Bitte warten...',
     'D3_EXTSEARCH_MAIN_GENERATOR_CLOSEWND'            => 'Fenster schließen',
+    'D3_EXTSEARCH_MAIN_GENERATOR_EXCEPTION'           => 'Generierungsfehler, der Index kann leider nicht erstellt werden.',
 
     'D3_EXTSEARCH_NAVI_MAINSETTINGS'                  => 'allgemeine Einstellungen',
     'D3_EXTSEARCH_NAVI_DISPTYPE'                      => 'Art der Filter-Anzeige',
