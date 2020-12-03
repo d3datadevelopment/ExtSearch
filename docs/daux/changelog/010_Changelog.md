@@ -2,6 +2,20 @@
 title: Changelog
 ---
 
+## 6.6.1.0 (2020-12-03)
+### Added
+- installierbar in OXID 6.2.3
+
+### Changed
+- fehlende Übersetzungsbausteine in Sprache Englisch nachgetragen
+
+### Fixed
+- Indexgenerierung läuft in manchen Fällen in eine Endlosschleife
+- fehlerhaften Feldnamen bei Datenbankabfrage in Phonetic Light korrigiert
+- Testlauf verwendet keinen Debugmode
+
+---
+
 ## 6.6.0.1 (2020-11-09)
 ### Changed
 - unnötige Redirect-Prävention im Falle eines Einzeltreffers beim Debug-Modus entfernt
