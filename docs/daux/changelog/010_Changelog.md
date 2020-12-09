@@ -2,6 +2,12 @@
 title: Changelog
 ---
 
+## 6.6.1.1 (2020-12-09)
+### Fixed
+- fehlerhaften Tabellennamengenerierung bei Abfrage in Nicht-Standardsprache korrigiert 
+
+---
+
 ## 6.6.1.0 (2020-12-03)
 ### Added
 - installierbar in OXID 6.2.3
