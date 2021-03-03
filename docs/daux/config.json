@@ -1,9 +1,9 @@
 {
     "title": "<i class='fab fa-d3 d3fa-color-blue'></i> erweiterte Suche",
-    "moduleversion": "6.6.1.1",
+    "moduleversion": "6.6.1.2",
     "titledesc": "für den Oxid eShop",
     "author": "D³ Data Development",
-    "moduledate": "09.12.2020",
+    "moduledate": "03.03.2021",
     "editors": "",
     "tagline": "",
     "image": "",
@@ -65,6 +65,7 @@
         "modulename"    : "<i class='fab fa-d3 d3fa-color-blue'></i> erweiterte Suche",
         "menutitle"     : "<i class='fab fa-d3 d3fa-color-blue'></i> erweiterte Suche",
         "modulefolder"  : "extsearch",
+        "metadataident" : "d3_extsearch",
         "modcfgident"   : "d3_extsearch",
         "composerident" : "d3/extsearch"
     },

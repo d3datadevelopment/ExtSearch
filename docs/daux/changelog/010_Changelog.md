@@ -2,6 +2,20 @@
 title: Changelog
 ---
 
+## 6.6.1.2 (2021-03-03)
+### Fixed
+- Queryfehler durch unzugeordnetes oxtimestamp-Feld korrigiert
+- fehlerhaften Tabellennamengenerierung bei Abfrage in Nicht-Standardsprache korrigiert 
+- zu große Artikelanzahl bei mit ähnlichen Artikeln aufgefüllte Trefferliste korrigiert
+
+### Changed
+- phonetischer Hash wird ausschließlich in der Datenbank generiert, um Differenzen zwischen PHP- und mySQL-Verhalten zu vermeiden (führte zu ungültigen Updateanforderungen)
+- Phonetischer Index wird nicht generiert, wenn kein Generator eingestellt ist
+- Bevorzugen der Filtermehrfachauswahl, wenn auch Einfachauswahl gesetzt ist (verhindert ungültige Wertkombinationen)
+- Admin-Icon verwendet feste Breite
+
+---
+
 ## 6.6.1.1 (2020-12-09)
 ### Fixed
 - fehlerhaften Tabellennamengenerierung bei Abfrage in Nicht-Standardsprache korrigiert 
