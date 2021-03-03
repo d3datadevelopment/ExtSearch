@@ -138,6 +138,7 @@ $aModule = array(
         'd3/extsearch/tests/integration/queryExecute/alistQueryExecuteTest.php',
         'd3/extsearch/tests/integration/queryExecute/searchQueryExecuteTest.php',
         'd3/extsearch/tests/integration/queryExecute/d3ExtsearchFilterQueriesIntegrationTestCase.php',
+        'd3/extsearch/tests/integration/queryExecute/rssQueryExecuteTest.php',
         'd3/extsearch/tests/unit/d3ExtsearchUnitTestCase.php',
         'd3/extsearch/tests/unit/Application/Model/Filters/d3ManufacturerFilterTest.php',
     ),
