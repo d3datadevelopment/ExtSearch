@@ -23,7 +23,7 @@ $aLang = array(
 
 //Navigation
     'charset'                                         => 'UTF-8',
-    'd3mxextsearch'                                   => '<i class="fa fa-search-plus"></i> Erweiterte Suche',
+    'd3mxextsearch'                                   => '<i class="fa fa-fw fa-search-plus"></i> Erweiterte Suche',
     'd3mxextsearch_settings'                          => 'Einstellungen',
     'd3mxextsearch_statistic'                         => 'Statistik',
     'd3mxextsearch_syneditor'                         => 'Synonym-Editor',
