@@ -222,14 +222,23 @@ class d3_details_extsearch extends d3_details_extsearch_parent
     {
         $canCache = parent::canCache();
 
-        $oController = $this->d3GetBaseController();
-        if ($canCache &&
-            method_exists($oController, 'd3GetXListController') &&
-            count($oController->d3GetXListController()->getAllSelections())
-        ) {
-            $canCache = false;
-        }
+        return $canCache && $this->d3CanCache();
+    }
 
-        return $canCache;
+    /**
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
+    public function d3CanCache()
+    {
+        $oController = $this->d3GetBaseController();
+
+        return false === method_exists($oController, 'd3GetXListController') ||
+            ((bool) count($oController->d3GetXListController()->getAllSelections())) === false;
     }
 }

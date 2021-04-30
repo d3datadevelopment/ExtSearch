@@ -103,6 +103,7 @@ $aModule = array(
         'd3/extsearch/Modules/Application/Model/d3_basemodel_extsearch.php',
         'd3/extsearch/Modules/Application/Model/d3_oxrssfeed_extsearch.php',
         'd3/extsearch/Modules/Core/d3_oxutilsview_extsearch.php',
+        'd3/extsearch/Modules/PsCache/Core/d3_CacheCore_extsearch.php',
 
         'd3/extsearch/public/d3_extsearch_cron.php',
 
@@ -140,7 +141,9 @@ $aModule = array(
         'd3/extsearch/tests/integration/queryExecute/d3ExtsearchFilterQueriesIntegrationTestCase.php',
         'd3/extsearch/tests/integration/queryExecute/rssQueryExecuteTest.php',
         'd3/extsearch/tests/unit/d3ExtsearchUnitTestCase.php',
+        'd3/extsearch/tests/unit/Application/Model/d3semanticTest.php',
         'd3/extsearch/tests/unit/Application/Model/Filters/d3ManufacturerFilterTest.php',
+        'd3/extsearch/tests/unit/Modules/Application/Model/d3_oxsearch_extsearchTest.php'
     ),
     'd3SetupClasses'    => array(
         ModuleSetup\d3_extsearch_update::class,
