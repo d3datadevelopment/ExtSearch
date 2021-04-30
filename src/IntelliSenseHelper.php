@@ -69,3 +69,10 @@ namespace D3\Extsearch\Modules\Core
 {
     class d3_oxutilsview_extsearch_parent extends \OxidEsales\Eshop\Core\UtilsView { }
 }
+
+namespace D3\Extsearch\Modules\PsCache\Core
+{
+    use ProudSourcing\psCache\Core\CacheCore;
+
+    class d3_CacheCore_extsearch_parent extends CacheCore { }
+}

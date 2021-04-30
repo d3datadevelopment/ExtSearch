@@ -741,14 +741,22 @@ class d3_manufacturerlist_extsearch extends d3_manufacturerlist_extsearch_parent
     {
         $canCache = parent::canCache();
 
-        if ($canCache &&
-            // need function check, because canCache is called before the filters are reset
-            strtolower(Registry::getRequest()->getRequestEscapedParameter('fnc')) !== 'd3clearfilter' &&
-            count($this->d3GetXListController()->getAllSelections())
-        ) {
-            $canCache = false;
-        }
+        return $canCache && $this->d3CanCache();
+    }
 
-        return $canCache;
+    /**
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
+    public function d3CanCache()
+    {
+        // need function check, because canCache is called before the filters are reset
+        return trim(strtolower(Registry::getRequest()->getRequestEscapedParameter('fnc'))) === 'd3clearfilter' ||
+            ((bool) count($this->d3GetXListController()->getAllSelections())) === false;
     }
 }

@@ -22,11 +22,13 @@ use D3\Extsearch\Modules\Application\Controller\Admin as ModuleExtControllerAdmi
 use D3\Extsearch\Modules\Application\Controller as ModuleExtController;
 use D3\Extsearch\Modules\Application\Model as ModuleExtModel;
 use D3\Extsearch\Modules\Core\d3_oxutilsview_extsearch;
+use D3\Extsearch\Modules\PsCache\Core\d3_CacheCore_extsearch;
 use OxidEsales\VisualCmsModule\Application\Controller\Admin\VisualCmsAdmin as VisualCMSAdmin;
 use OxidEsales\Eshop\Application\Controller as OxidController;
 use OxidEsales\Eshop\Application\Model as OxidModel;
 use OxidEsales\Eshop\Application\Component as OxidComponent;
 use OxidEsales\Eshop\Core as OxidCore;
+use ProudSourcing\psCache\Core\CacheCore;
 
 /**
  * Metadata version
@@ -50,7 +52,7 @@ $aModule = [
         'en' => 'Provides error-tolerant search and other filter options. Please always activate the module entries and control the module activity exclusively in the admin area of the module.',
     ],
     'thumbnail'   => 'picture.png',
-    'version'     => '6.6.1.2',
+    'version'     => '6.6.2.0',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'http://www.oxidmodule.com/',
@@ -300,4 +302,8 @@ if (class_exists(OeStatistics_Report_Base::class)) {
     $aModule['controllers']['d3_extsearch_report_base']         = ModuleControllerAdmin\Reports\d3_extsearch_report_base::class;
     $aModule['controllers']['d3_extsearch_report_hitless']      = ModuleControllerAdmin\Reports\d3_extsearch_report_hitless::class;
     $aModule['controllers']['d3_extsearch_report_mostsearches'] = ModuleControllerAdmin\Reports\d3_extsearch_report_mostsearches::class;
+}
+
+if (class_exists(CacheCore::class)) {
+    $aModule['extend'][CacheCore::class]    = d3_CacheCore_extsearch::class;
 }
