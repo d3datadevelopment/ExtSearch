@@ -2,6 +2,33 @@
 title: Changelog
 ---
 
+## 7.0.0.0 (2021-04-30)
+### Added
+- installierbar in OXID 6.3
+
+### Changed
+- Tests angepasst
+
+---
+
+## 6.6.2.0 (2021-04-30)
+### Added
+- installierbar in OXID 6.2.4
+- zusätzliche Tests eingefügt
+- Cachechecks sind auch in Community und Professional Editions nutzbar
+- Controller steuern Cachestatus im psCache Modul 
+
+### Changed
+- Sonderzeichenoptimierung in Abfrage für semantische Suche
+- fehlende Dateiregsitrierungen eingefügt
+- Build Pakete aktualisiert
+- 
+
+### fixed
+- fehlende Sortierdefinition wird leer gesetzt, um Ausführungsfehler zu vermeiden
+
+---
+
 ## 6.6.1.2 (2021-03-03)
 ### Fixed
 - Queryfehler durch unzugeordnetes oxtimestamp-Feld korrigiert

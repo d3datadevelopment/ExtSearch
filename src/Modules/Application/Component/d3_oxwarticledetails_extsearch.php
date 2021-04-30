@@ -118,6 +118,27 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
     }
 
     /**
+     * @return d3_alist_extsearch|d3_ext_search|d3_manufacturerlist_extsearch|d3_vendorlist_extsearch
+     */
+    public function d3GetBaseController()
+    {
+        $sListType = Registry::get(Request::class)->getRequestEscapedParameter('listtype');
+
+        /** @var d3_ext_search|d3_alist_extsearch|d3_manufacturerlist_extsearch|d3_vendorlist_extsearch $oController */
+        if ('search' == $sListType) {
+            $oController = oxNew(SearchController::class);
+        } elseif ('vendor' == $sListType) {
+            $oController = oxNew(VendorListController::class);
+        } elseif ('manufacturer' == $sListType) {
+            $oController = oxNew(ManufacturerListController::class);
+        } else {
+            $oController = oxNew(ArticleListController::class);
+        }
+
+        return $oController;
+    }
+
+    /**
      * @return array
      * @throws DBALException
      * @throws DatabaseConnectionException
@@ -130,17 +151,7 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
     {
         $aParams = parent::getNavigationParams();
 
-        $sListType = Registry::get(Request::class)->getRequestEscapedParameter('listtype');
-        /** @var d3_ext_search|d3_alist_extsearch|d3_manufacturerlist_extsearch|d3_vendorlist_extsearch $oController */
-        if ('search' == $sListType) {
-            $oController = oxNew(SearchController::class);
-        } elseif ('vendor' == $sListType) {
-            $oController = oxNew(VendorListController::class);
-        } elseif ('manufacturer' == $sListType) {
-            $oController = oxNew(ManufacturerListController::class);
-        } else {
-            $oController = oxNew(ArticleListController::class);
-        }
+        $oController = $this->d3GetBaseController();
         $aSearchParams = $oController->getNavigationParams();
         $this->_d3GetSearchHandler()->d3RemoveEmptyParameters($aParams);
 
@@ -279,5 +290,38 @@ class d3_oxwarticledetails_extsearch extends d3_oxwarticledetails_extsearch_pare
     private function _d3getModId()
     {
         return $this->_sModId;
+    }
+
+    /**
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
+    public function canCache()
+    {
+        $canCache = parent::canCache();
+
+        return $canCache && $this->d3CanCache();
+    }
+
+    /**
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
+    public function d3CanCache()
+    {
+        $oController = $this->d3GetBaseController();
+
+        return false === method_exists($oController, 'd3GetXListController') ||
+            ((bool) count($oController->d3GetXListController()->getAllSelections())) === false;
     }
 }

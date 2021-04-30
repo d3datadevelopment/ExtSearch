@@ -134,10 +134,10 @@ class d3_ext_search extends d3_ext_search_parent
         if (mb_detect_encoding($sTmP) !== "UTF-8" || false === mb_check_encoding($sTmP, "UTF-8")) {
             $sTmP = utf8_encode($sTmP);
 
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $_POST['searchparam'] = trim($sTmP);
-            } else {
-                $_GET['searchparam'] = trim($sTmP);
+            if (strlen(trim($sTmP))) {
+                $_SERVER['REQUEST_METHOD'] === 'POST' ?
+                    $_POST['searchparam'] = trim($sTmP) :
+                    $_GET['searchparam'] = trim($sTmP);
             }
         }
 
@@ -1056,7 +1056,7 @@ class d3_ext_search extends d3_ext_search_parent
      */
     public function getSorting($sCnid)
     {
-        $aSorting = parent::getSorting($sCnid);
+        $aSorting = parent::getSorting($sCnid) ?: [];
 
         if ($this->d3GetSet()->isActive()
             && !count($aSorting)
@@ -1710,14 +1710,22 @@ class d3_ext_search extends d3_ext_search_parent
     {
         $canCache = parent::canCache();
 
-        if ($canCache &&
-            // need function check, because canCache is called before the filters are reset
-            strtolower(Registry::getRequest()->getRequestEscapedParameter('fnc')) !== 'd3clearfilter' &&
-            count($this->d3GetXListController()->getAllSelections())
-        ) {
-            $canCache = false;
-        }
+        return $canCache && $this->d3CanCache();
+    }
 
-        return $canCache;
+    /**
+     * @return bool
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     * @throws StandardException
+     * @throws d3ShopCompatibilityAdapterException
+     * @throws d3_cfg_mod_exception
+     */
+    public function d3CanCache()
+    {
+        // need function check, because canCache is called before the filters are reset
+        return trim(strtolower(Registry::getRequest()->getRequestEscapedParameter('fnc'))) === 'd3clearfilter' ||
+            ((bool) count($this->d3GetXListController()->getAllSelections())) === false;
     }
 }
