@@ -29,7 +29,20 @@ use OxidEsales\Eshop\Application\Model\Attribute;
 use \OeStatistics_Report_Base;
 use stdClass;
 
-class d3_extsearch_report_base extends OeStatistics_Report_Base
+// @codeCoverageIgnoreStart
+// fallback for non ee editions
+if (false == class_exists("\OeStatistics_Report_Base")) {
+    class d3_OeStatistics_Report_Base
+    {
+        public function render()
+        {}
+    }
+} else {
+    class d3_OeStatistics_Report_Base extends OeStatistics_Report_Base {}
+}
+// @codeCoverageIgnoreEnd
+
+class d3_extsearch_report_base extends d3_OeStatistics_Report_Base
 {
     public $aStatParams = array('type' => 'mostsearches');
     public $sTimeFrom;

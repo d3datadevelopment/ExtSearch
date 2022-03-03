@@ -15,7 +15,11 @@
                     <OPTION class="desc" value="" selected="selected">[{oxmultilang ident="D3_EXTSEARCH_EXT_ATTRIBSNOSELECTION1"}] [{$oAttribute->title}] [{oxmultilang ident="D3_EXTSEARCH_EXT_ATTRIBSNOSELECTION2"}]</OPTION>
                 [{/if}]
                 [{foreach from=$oAttribute->_aList name=attrvalues key=valuekey item=oAttrValue}]
-                    <OPTION class="[{if $oAttrValue->highlighted}]highlight [{/if}]" value="[{$oAttrValue->rawvalue}]" [{if false == $oView->d3AttributeFilterUseMultipleValues($key) && $oAttrValue->selected}] selected[{/if}] [{if false == $oAttrValue->isSelectable}] disabled[{/if}]>[{$oAttrValue->value}] [{if $oAttrValue->count}]([{$oAttrValue->count}])[{/if}]</OPTION>
+                    <OPTION class="[{if $oAttrValue->highlighted}]highlight [{/if}]" value="[{$oAttrValue->rawvalue}]" [{if false == $oView->d3AttributeFilterUseMultipleValues($key) && $oAttrValue->selected}] selected[{/if}] [{if false == $oAttrValue->isSelectable}] disabled[{/if}]>[{$oAttrValue->value}]
+                        [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $oAttrValue->count}]
+                            ([{$oAttrValue->count}])
+                        [{/if}]
+                    </OPTION>
                 [{/foreach}]
             </SELECT>
         [{/block}]
@@ -28,7 +32,7 @@
                     <input name="d3searchattribmulti[[{$key}]][[{$oAttrValue->rawvalue}]]" type="hidden" value="[{$oView->d3GetDeselectValue()}]">
                     <input name="d3searchattribmulti[[{$key}]][[{$oAttrValue->rawvalue}]]" type="checkbox" value="[{$oAttrValue->rawvalue}]" id="cb[{$key}][{$oAttrValue->rawvalue}]" [{if $oAttrValue->selected}] checked[{/if}] [{if false == $oAttrValue->isSelectable}] disabled[{/if}]>
                     <label for="cb[{$key}][{$oAttrValue->rawvalue}]">
-                        [{$oAttrValue->value}] [{if $oAttrValue->count}]([{$oAttrValue->count}])[{/if}]
+                        [{$oAttrValue->value}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $oAttrValue->count}]([{$oAttrValue->count}])[{/if}]
                     </label><br>
                 [{/foreach}]
 

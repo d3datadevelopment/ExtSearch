@@ -21,7 +21,7 @@
             [{include file="d3_inc_ext_search_azure.tpl"}]
         [{/if}]
 
-        [{if $oView->getArticleList()|@count == 0 && $blD3HasSelectedFilters}]
+        [{if (!$oView->getArticleList() || $oView->getArticleList()|@count == 0) && $blD3HasSelectedFilters}]
             <div class="d3searchdeselectform">
                 <form action="[{$oViewConf->getSelfActionLink()}]" method="post" id="d3searchfilterform">
                     [{$oViewConf->getHiddenSid()}]

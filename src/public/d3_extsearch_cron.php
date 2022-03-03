@@ -116,7 +116,7 @@ class d3_extsearch_cron extends CLI
      */
     public function isCLI()
     {
-        return 'cli' == php_sapi_name();
+        return 'cli' == substr(php_sapi_name(), 0, 3);
     }
 
     /**

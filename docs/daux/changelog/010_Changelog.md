@@ -2,12 +2,40 @@
 title: Changelog
 ---
 
+## 7.0.1.0 (2022-03-03)
+### Added
+- Schnellsuche startet Abfrage erst nach 3 Buchstaben (Anzahl ist konfigurierbar)
+- Attribut-zu-Objekt-Einträge werden automatisch gelöscht, wenn Attribut oder Objekt selbst gelöscht wird
+- Anzahl zum Filter gefunde Artikel kann ausgeblendet werden
+- optional können Varianten auch ohne verwendeten Filter gezeigt werden
+- Tests ergänzt
+- installierbar in OXID 6.4
+
+### Changed
+- Variantenartikel verwenden Kategoriezuordnung vom Elternartikel
+- Debug-Modus für Schnellsuche erweitert
+- Variantenartikel werden nur gesucht, wenn Filter verwendet werden (Suche und Kategorien)
+
+### Fixed
+- Parameterhandling korrigiert
+- Timeout in Schnellsuche korrigiert
+- fehlerhaftes Buttonlayout der Filter korrigiert
+- falsche Artikelanzahl bei Variantensuche in Kategorien verhindert Seitennavigation
+- Filter können bei Variantensuche in Kategorien angewandt werden
+- falsche Artikelanzahl in gefilterten Kategorien korrigiert
+
+---
+
 ## 7.0.0.0 (2021-04-30)
 ### Added
 - installierbar in OXID 6.3
 
 ### Changed
+- Datenbankfeldtypen von Bit zu Tinyint wegen Migrationsschwierigkeiten geändert
 - Tests angepasst
+
+### Fixed
+- fehlerhafte Querygenerierung korrigiert
 
 ---
 

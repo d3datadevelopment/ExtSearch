@@ -52,17 +52,30 @@ namespace D3\Extsearch\Modules\Application\Controller
 
 namespace D3\Extsearch\Modules\Application\Model
 {
+    use OxidEsales\Eshop\Application\Model\Attribute;
+    use OxidEsales\Eshop\Application\Model\Category;
+    use OxidEsales\Eshop\Application\Model\Manufacturer;
+    use OxidEsales\Eshop\Application\Model\Vendor;
+    
     class d3_oxsearch_extsearch_parent extends \OxidEsales\Eshop\Application\Model\Search {}
 
     class d3_oxarticle_phonetic_parent extends \OxidEsales\Eshop\Application\Model\Article {}
 
     class d3_oxarticlelist_extsearch_parent extends \OxidEsales\Eshop\Application\Model\ArticleList {}
+    
+    class d3_attribute_extsearch_parent extends Attribute {}
 
     class d3_oxrssfeed_extsearch_parent extends \OxidEsales\Eshop\Application\Model\RssFeed {}
 
     class d3_oxshop_extsearch_parent extends \OxidEsales\Eshop\Application\Model\Shop {}
 
     class d3_basemodel_extsearch_parent extends \OxidEsales\Eshop\Core\Model\BaseModel {}
+
+    class d3_category_extsearch_parent extends Category {}
+
+    class d3_manufacturer_extsearch_parent extends Manufacturer {}
+
+    class d3_vendor_extsearch_parent extends Vendor {}
 }
 
 namespace D3\Extsearch\Modules\Core

@@ -306,7 +306,7 @@ class d3_ext_search extends d3_ext_search_parent
         // send browser plugin status to smarty
         $this->addTplParam('blSearchPluginLink', $this->d3GetSet()->getValue('blExtSearch_enablePluginLink'));
 
-        $this->addTplParam('blD3HasSelectedFilters', $this->d3HasSelectedFilters());
+        $this->addTplParam('blD3HasSelectedFilters', $this->_d3GetOwnSearchHandler()->d3HasSelectedFilters());
     }
 
     /**
@@ -474,7 +474,7 @@ class d3_ext_search extends d3_ext_search_parent
 
         if ($this->d3GetSet()->getValue('blExtSearch_goToUniqueHit')
             && $this->_iAllArtCnt == 1
-            && !count($this->aSearchContentList)
+            && !count($this->d3GetCMSList())
         ) {
             // get key list to detect the first (and once) article in list
             $aArticleList = $this->_aArticleList->getArray();
@@ -1065,6 +1065,12 @@ class d3_ext_search extends d3_ext_search_parent
             $aSorting = $this->_d3GetSearchHandler()->d3GetPriorityAlias();
         }
 
+        if ($this->d3GetSet()->isActive()
+            && !count($aSorting)
+        ) {
+            $aSorting = null;
+        }
+
         if ($aSorting) {
             if (method_exists($this, 'setListOrderBy')) {
                 $this->setListOrderBy($aSorting['sortby']);
@@ -1540,28 +1546,6 @@ class d3_ext_search extends d3_ext_search_parent
     {
         $this->_d3GetSearchHandler()->d3ClearFilters();
         $this->setFncName(null);
-    }
-
-    /**
-     * @return bool
-     * @throws DBALException
-     * @throws DatabaseConnectionException
-     * @throws DatabaseErrorException
-     * @throws StandardException
-     * @throws d3ShopCompatibilityAdapterException
-     * @throws d3_cfg_mod_exception
-     */
-    public function d3HasSelectedFilters()
-    {
-        $oFilterList = $this->_d3GetOwnSearchHandler()->getFilterList();
-        /** @var d3Filter $oFilter */
-        foreach ($oFilterList->getArray() as $oFilter) {
-            if ($oFilter->hasUserSelection()) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**

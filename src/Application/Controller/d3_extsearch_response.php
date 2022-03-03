@@ -73,12 +73,17 @@ class d3_extsearch_response extends BaseController
         ob_start();
 
         // disable displaying debug informations, that will destroy JSON document
-        Registry::getConfig()->setConfigParam('iDebug', 0);
-        Registry::get(ConfigFile::class)->setVar( 'iDebug', 0);
+        // parameter "d3forcedebug=1" enables forced debug mode
+        $forcedDebug = (bool) Registry::getRequest()->getRequestEscapedParameter('d3forcedebug');
+        
+        if (!$forcedDebug) {
+            Registry::getConfig()->setConfigParam('iDebug', 0);
+            Registry::get(ConfigFile::class)->setVar( 'iDebug', 0);
+        }
 
         $outputManager = oxNew(Output::class);
         $outputManager->setCharset(Registry::getConfig()->getActiveView()->getCharSet());
-        $outputManager->setOutputFormat(Output::OUTPUT_FORMAT_JSON);
+        $outputManager->setOutputFormat($forcedDebug ? Output::OUTPUT_FORMAT_HTML : Output::OUTPUT_FORMAT_JSON);
         $outputManager->sendHeaders();
 
         // fetch debug contents and add it after suggest window

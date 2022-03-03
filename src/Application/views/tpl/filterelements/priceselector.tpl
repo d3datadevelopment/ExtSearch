@@ -24,7 +24,11 @@
         <SELECT id="priceselector" name="priceselector" onchange="d3_extsearch_popup.popup.load(); this.form.submit();">
             <OPTION value="[{$sSelectedPriceStep}]" class="desc" selected="selected">[{oxmultilang ident="D3_EXTSEARCH_EXT_CHOOSEPRICE"}]</OPTION>
             [{foreach from=$oView->d3getPriceSteps() item="price"}]
-                <OPTION value="[{$price->addParam}]">[{oxmultilang ident="D3_EXTSEARCH_EXT_PRICEFROM"}] [{$price->iFMin}] [{$currency->sign}] [{oxmultilang ident="D3_EXTSEARCH_EXT_PRICETO"}] [{$price->iFMax}] [{$currency->sign}][{if $price->iCount != ''}] ([{$price->iCount}])[{/if}]</OPTION>
+                <OPTION value="[{$price->addParam}]">[{oxmultilang ident="D3_EXTSEARCH_EXT_PRICEFROM"}] [{$price->iFMin}] [{$currency->sign}] [{oxmultilang ident="D3_EXTSEARCH_EXT_PRICETO"}] [{$price->iFMax}] [{$currency->sign}]
+                    [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $price->iCount != ''}]
+                        ([{$price->iCount}])
+                    [{/if}]
+                </OPTION>
             [{/foreach}]
             [{if $sSelectedPriceStep}]
                 <OPTION value="" class="desc">[{oxmultilang ident="D3_EXTSEARCH_EXT_DESELECTPRICE"}]</OPTION>

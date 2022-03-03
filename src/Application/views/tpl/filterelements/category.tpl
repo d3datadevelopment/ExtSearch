@@ -15,7 +15,11 @@
                 [{else}]
                     <OPTION class="desc" value="" selected="selected">[{oxmultilang ident="D3_EXTSEARCH_EXT_CHOOSECAT"}]</OPTION>
                     [{foreach from=$oView->d3getCategoryList() item="category"}]
-                        <OPTION value="[{$category->getId()}]">[{$category->oxcategories__oxtitle->getRawValue()}][{if $category->getFieldData('counter')}] ([{$category->getFieldData('counter')}])[{/if}]</OPTION>
+                        <OPTION value="[{$category->getId()}]">[{$category->oxcategories__oxtitle->getRawValue()}]
+                            [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $category->getFieldData('counter')}]
+                                ([{$category->getFieldData('counter')}])
+                            [{/if}]
+                        </OPTION>
                     [{/foreach}]
                 [{/if}]
             </SELECT>
@@ -29,7 +33,7 @@
                     <input name="d3searchcategorymulti[[{$oAttrValue->getId()}]]" type="hidden" value="">
                     <input name="d3searchcategorymulti[[{$oAttrValue->getId()}]]" type="checkbox" value="[{$oAttrValue->getId()}]" id="cb[{$key}][{$oAttrValue->getId()}]" [{if $oAttrValue->selected || $oAttrValue->getId() == $sSelectedCategoryId}] checked[{/if}]>
                     <label for="cb[{$key}][{$oAttrValue->getId()}]">
-                        [{$oAttrValue->getTitle()}] [{if $oAttrValue->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
+                        [{$oAttrValue->getTitle()}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $category->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
                     </label><br>
                 [{/foreach}]
 

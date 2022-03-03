@@ -15,7 +15,11 @@
                 [{else}]
                     <OPTION class="desc" value="" selected="selected">[{oxmultilang ident="D3_EXTSEARCH_EXT_CHOOSEMANUFACTURER"}]</OPTION>
                     [{foreach from=$oView->d3getManufacturerList() item="manufacturer"}]
-                        <OPTION value="[{$manufacturer->getId()}]">[{$manufacturer->oxmanufacturers__oxtitle->getRawValue()}][{if $manufacturer->getFieldData('counter')}] ([{$manufacturer->getFieldData('counter')}])[{/if}]</OPTION>
+                        <OPTION value="[{$manufacturer->getId()}]">[{$manufacturer->oxmanufacturers__oxtitle->getRawValue()}]
+                            [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $manufacturer->getFieldData('counter')}]
+                                ([{$manufacturer->getFieldData('counter')}])
+                            [{/if}]
+                        </OPTION>
                     [{/foreach}]
                 [{/if}]
             </SELECT>
@@ -29,7 +33,7 @@
                     <input name="d3searchmanufacturermulti[[{$oAttrValue->getId()}]]" type="hidden" value="">
                     <input name="d3searchmanufacturermulti[[{$oAttrValue->getId()}]]" type="checkbox" value="[{$oAttrValue->getId()}]" id="cb[{$key}][{$oAttrValue->getId()}]" [{if $oAttrValue->selected || $oAttrValue->getId() == $sSelectedManufacturerId}] checked[{/if}]>
                     <label for="cb[{$key}][{$oAttrValue->getId()}]">
-                        [{$oAttrValue->getTitle()}] [{if $oAttrValue->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
+                        [{$oAttrValue->getTitle()}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $manufacturer->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
                     </label><br>
                 [{/foreach}]
 

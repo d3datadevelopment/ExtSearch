@@ -135,6 +135,17 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
+                                <dl>
+                                    <dt>
+                                        <label for="dontShowFilterArticleCount">[{oxmultilang ident="D3_EXTSEARCH_NAVI_DONTSHOWFILTERARTICLECOUNT"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <input type="hidden" name="value[blExtSearch_dontShowFilterArticleCount]" value="0">
+                                        <input id="dontShowFilterArticleCount" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_dontShowFilterArticleCount]" value='1' [{if $edit->getEditValue('blExtSearch_dontShowFilterArticleCount') == 1}]checked[{/if}]>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_NAVI_DONTSHOWFILTERARTICLECOUNT_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
 
                                 [{if $oView->d3UseAlistFilters()}]
                                     [{assign var="blActionRestriction" value=""}]

@@ -29,6 +29,7 @@ $( function() {
             sSelection: null,
             oSelection: null,
             iDelay: 600,  // delay before submit to server, if is already submitted
+            iMinCharCount: 3,  // Number of characters from which the search is made
             sD3SearchBoxDefault: "",
             sWaitMessage: "",
             sParentThemeId: "flow",
@@ -300,13 +301,13 @@ $( function() {
 
             if ($(options.sWaitMsgIdentificator).length === 0) {
                 this.showWaitMessage();
-                options.isSend = window.setTimeout(this.showResult(), 0);
+                options.isSend = setTimeout(function(){ this.showResult(); }.bind(this), options.iDelay);
             } else {
                 this.showWaitMessage();
                 if (options.isSend) {
                     window.clearTimeout(options.isSend);
                 }
-                options.isSend = window.setTimeout(this.showResult(), options.iDelay);
+                options.isSend = setTimeout(function(){ this.showResult(); }.bind(this), options.iDelay);
             }
 
             return null;
@@ -321,6 +322,12 @@ $( function() {
         showResult: function () {
             let options = this.options;
             let el = this.element;
+
+            if (false === Number.isFinite(options.iMinCharCount) || el.val().length < options.iMinCharCount) {
+                this.hideSuggest();
+                return;
+            }
+
             let self = this;
             // don't use oD3SearchJQ.ajax, because it sends one letter per request
             $.get(options.sRequestUrl + "fnc=" + options.sRequestFncName + "&" + options.sSearchParamName + "=" + el.val(), function (data) {

@@ -215,7 +215,7 @@ class d3_xlist_extsearch
     public function setTplParams($oArtList)
     {
         $this->getaListController()->addTplParam( 'blD3ShowFilters', $this->d3CanShowFilters($oArtList) );
-        $this->getaListController()->addTplParam('blD3HasSelectedFilters', $this->d3HasSelectedFilters());
+        $this->getaListController()->addTplParam('blD3HasSelectedFilters', $this->d3GetOwnSearchHandler()->d3HasSelectedFilters());
     }
 
     /**
@@ -250,28 +250,6 @@ class d3_xlist_extsearch
 
         // send browser plugin status to smarty
         $this->getaListController()->addTplParam('blSearchPluginLink', $this->d3GetSet()->getValue('blExtSearch_enablePluginLink'));
-    }
-
-    /**
-     * @return bool
-     * @throws DBALException
-     * @throws DatabaseConnectionException
-     * @throws DatabaseErrorException
-     * @throws StandardException
-     * @throws d3ShopCompatibilityAdapterException
-     * @throws d3_cfg_mod_exception
-     */
-    public function d3HasSelectedFilters()
-    {
-        $oFilterList = $this->d3GetOwnSearchHandler()->getFilterList();
-        /** @var d3Filter $oFilter */
-        foreach ($oFilterList->getArray() as $oFilter) {
-            if ($oFilter->hasUserSelection()) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     /**
