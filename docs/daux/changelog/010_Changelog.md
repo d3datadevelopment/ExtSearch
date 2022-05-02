@@ -2,6 +2,21 @@
 title: Changelog
 ---
 
+## 7.1.0.0 (2022-04-29)
+### Added
+- zusätzliche Templateblöcke zur einfacheren Erweiterbarkeit eingefügt
+- zusätzliche CSS-Defintionen zur einfacheren Formatierbarkeit eingefügt
+
+### Changed
+- "Filter abwählen" findet Checkboxen in tiefer verschachtelten HTML-Elementen
+- noscript Abwahlbutton wird nur an relevanten Auswahlmöglichkeiten gezeigt
+- "nicht wählbare" Attribute werden zu "nicht sicher wählbaren" Attributen
+  - Wenn aktiviert, sind diese nun vom Shopbesucher zur weiteren Filterung nutzbar. In seltenen Fällen kann es jedoch damit zu ungültigen Filterkombinationen führen.
+- Reihenfolge der wählbaren und der "nicht sicher wählbaren" Attribute angepasst
+- "nicht zugeordnet"-Filter sind auswählbar
+
+---
+
 ## 7.0.1.0 (2022-03-03)
 ### Added
 - Schnellsuche startet Abfrage erst nach 3 Buchstaben (Anzahl ist konfigurierbar)

@@ -1,9 +1,11 @@
 [{assign var="sIdKey" value="vendor"}]
 [{assign var="blShowMultipleSelector" value=true}]
-<div class="item vendor [{$cssclass}]">
-    <label for="searchvendor">
-        [{oxmultilang ident="D3_EXTSEARCH_EXT_VENDORS"}]
-    </label><br>
+<div class="item vendor [{$cssclass}]" id="atid_vendor">
+    [{block name="d3_inc_ext_search__filter_vendor_title"}]
+        <label for="searchvendor">
+            [{oxmultilang ident="D3_EXTSEARCH_EXT_VENDORS"}]
+        </label><br>
+    [{/block}]
 
     [{if in_array($sVendorFilterDisplayType, array('combined', 'single'))}]
         [{block name="d3_inc_ext_search__filter_vendor_single"}]
@@ -23,21 +25,31 @@
                     [{/foreach}]
                 [{/if}]
             </SELECT>
+
+            <noscript>
+                <div id="searchvendorsubmit" class="fullitem">
+                    <button type="submit" class="submitButton largeButton btn [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('flow')}]btn-primary [{* for Bootstrap 3 *}][{else}]btn-outline-primary [{* for Bootstrap 4 *}][{/if}] btn-sm" onclick="d3_extsearch_popup.popup.load();">[{oxmultilang ident="D3_EXTSEARCH_EXT_ASSIGNFILTER"}]</button>
+                </div>
+            </noscript>
         [{/block}]
     [{/if}]
 
     [{if in_array($sVendorFilterDisplayType, array('combined', 'multi'))}]
         [{block name="d3_inc_ext_search__filter_vendor_multi"}]
-            <div id="d3searchvendor__multi" style="[{if $sVendorFilterDisplayType == 'combined'}]display: none;[{/if}]">
-                [{foreach from=$oView->d3getVendorList() name=attrvalues key=valuekey item=oAttrValue}]
-                    <input name="d3searchvendormulti[[{$oAttrValue->getId()}]]" type="hidden" value="">
-                    <input name="d3searchvendormulti[[{$oAttrValue->getId()}]]" type="checkbox" value="[{$oAttrValue->getId()}]" id="cb[{$key}][{$oAttrValue->getId()}]" [{if $oAttrValue->selected || $oAttrValue->getId() == $sSelectedVendorId}] checked[{/if}]>
-                    <label for="cb[{$key}][{$oAttrValue->getId()}]">
-                        [{$oAttrValue->getTitle()}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $vendor->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
-                    </label><br>
+            <div class="multiselect" id="d3searchvendor__multi" style="[{if $sVendorFilterDisplayType == 'combined'}]display: none;[{/if}]">
+                [{foreach from=$oView->d3getVendorList() name=attrvalues key=valuekey item=vendor}]
+                    <div class="multiselectvalue" id="d3searchvendor__multi__[{$valuekey}]">
+                        <input name="d3searchvendormulti[[{$vendor->getId()}]]" type="hidden" value="">
+                        <input name="d3searchvendormulti[[{$vendor->getId()}]]" type="checkbox" value="[{$vendor->getId()}]" id="cb[{$key}][{$vendor->getId()}]" [{if $vendor->selected || $vendor->getId() == $sSelectedVendorId}] checked[{/if}]>
+                        <label for="cb[{$key}][{$vendor->getId()}]">
+                            [{$vendor->getTitle()}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $vendor->getFieldData('counter')}]([{$vendor->getFieldData('counter')}])[{/if}]
+                        </label>
+                    </div>
                 [{/foreach}]
 
-                [{include file="d3_ext_search_filter_inc_multibuttons.tpl" type="vendor"}]
+                [{block name="d3_inc_ext_search__filter_vendor_multibuttons"}]
+                    [{include file="d3_ext_search_filter_inc_multibuttons.tpl" type="vendor"}]
+                [{/block}]
             </div>
         [{/block}]
     [{/if}]
@@ -57,6 +69,9 @@
                     if (blChecked) {
                         document.getElementById('d3searchvendor__multi').style.display = 'block';
                         document.getElementById('searchvendor').style.display = 'none';
+                        if (buttonElement = document.getElementById('searchvendorsubmit')) {
+                            buttonElement.style.display = 'none';
+                        }
                         document.getElementById('d3searchvendor__multiselector').style.display = 'none';
                     }
                 }

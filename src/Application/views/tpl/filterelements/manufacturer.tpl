@@ -1,9 +1,11 @@
 [{assign var="sIdKey" value="manufacturer"}]
 [{assign var="blShowMultipleSelector" value=true}]
-<div class="item manufacturer [{$cssclass}]">
-    <label for="searchmanufacturer">
-        [{oxmultilang ident="D3_EXTSEARCH_EXT_MANUFACTURERS"}]
-    </label><br>
+<div class="item manufacturer [{$cssclass}]" id="atid_manufacturer">
+    [{block name="d3_inc_ext_search__filter_manufacturer_title"}]
+        <label for="searchmanufacturer">
+            [{oxmultilang ident="D3_EXTSEARCH_EXT_MANUFACTURERS"}]
+        </label><br>
+    [{/block}]
 
     [{if in_array($sManufacturerFilterDisplayType, array('combined', 'single'))}]
         [{block name="d3_inc_ext_search__filter_manufacturer_single"}]
@@ -23,21 +25,31 @@
                     [{/foreach}]
                 [{/if}]
             </SELECT>
+
+            <noscript>
+                <div id="searchmanufacturersubmit" class="fullitem">
+                    <button type="submit" class="submitButton largeButton btn [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('flow')}]btn-primary [{* for Bootstrap 3 *}][{else}]btn-outline-primary [{* for Bootstrap 4 *}][{/if}] btn-sm" onclick="d3_extsearch_popup.popup.load();">[{oxmultilang ident="D3_EXTSEARCH_EXT_ASSIGNFILTER"}]</button>
+                </div>
+            </noscript>
         [{/block}]
     [{/if}]
 
     [{if in_array($sManufacturerFilterDisplayType, array('combined', 'multi'))}]
         [{block name="d3_inc_ext_search__filter_manufacturer_multi"}]
-            <div id="d3searchmanufacturer__multi" style="[{if $sManufacturerFilterDisplayType == 'combined'}]display: none;[{/if}]">
-                [{foreach from=$oView->d3getManufacturerList() name=attrvalues key=valuekey item=oAttrValue}]
-                    <input name="d3searchmanufacturermulti[[{$oAttrValue->getId()}]]" type="hidden" value="">
-                    <input name="d3searchmanufacturermulti[[{$oAttrValue->getId()}]]" type="checkbox" value="[{$oAttrValue->getId()}]" id="cb[{$key}][{$oAttrValue->getId()}]" [{if $oAttrValue->selected || $oAttrValue->getId() == $sSelectedManufacturerId}] checked[{/if}]>
-                    <label for="cb[{$key}][{$oAttrValue->getId()}]">
-                        [{$oAttrValue->getTitle()}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $manufacturer->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
-                    </label><br>
+            <div class="multiselect" id="d3searchmanufacturer__multi" style="[{if $sManufacturerFilterDisplayType == 'combined'}]display: none;[{/if}]">
+                [{foreach from=$oView->d3getManufacturerList() name=attrvalues key=valuekey item=manufacturer}]
+                    <div class="multiselectvalue" id="d3searchmanufacturer__multi__[{$valuekey}]">
+                        <input name="d3searchmanufacturermulti[[{$manufacturer->getId()}]]" type="hidden" value="">
+                        <input name="d3searchmanufacturermulti[[{$manufacturer->getId()}]]" type="checkbox" value="[{$manufacturer->getId()}]" id="cb[{$key}][{$manufacturer->getId()}]" [{if $manufacturer->selected || $manufacturer->getId() == $sSelectedManufacturerId}] checked[{/if}]>
+                        <label for="cb[{$key}][{$manufacturer->getId()}]">
+                            [{$manufacturer->getTitle()}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $manufacturer->getFieldData('counter')}]([{$manufacturer->getFieldData('counter')}])[{/if}]
+                        </label>
+                    </div>
                 [{/foreach}]
 
-                [{include file="d3_ext_search_filter_inc_multibuttons.tpl" type="manufacturer"}]
+                [{block name="d3_inc_ext_search__filter_manufacturer_multibuttons"}]
+                    [{include file="d3_ext_search_filter_inc_multibuttons.tpl" type="manufacturer"}]
+                [{/block}]
             </div>
         [{/block}]
     [{/if}]
@@ -57,6 +69,9 @@
                     if (blChecked) {
                         document.getElementById('d3searchmanufacturer__multi').style.display = 'block';
                         document.getElementById('searchmanufacturer').style.display = 'none';
+                        if (buttonElement = document.getElementById('searchmanufacturersubmit')) {
+                            buttonElement.style.display = 'none';
+                        }
                         document.getElementById('d3searchmanufacturer__multiselector').style.display = 'none';
                     }
                 }
