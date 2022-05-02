@@ -70,6 +70,7 @@ $aModule = array(
         'd3/extsearch/Application/Model/d3_extsearch_term.php',
         'd3/extsearch/Application/Model/d3_extsearch_synset.php',
         'd3/extsearch/Application/Model/d3_search_generator.php',
+        'd3/extsearch/Application/Model/d3extsearch_attribute2object.php',
         'd3/extsearch/Application/Model/Filters/d3Filter.php',
         'd3/extsearch/Application/Model/Filters/d3FieldIsFilter.php',
         'd3/extsearch/Application/Model/Filters/d3VendorFilter.php',
@@ -108,7 +109,7 @@ $aModule = array(
         'd3/extsearch/public/d3_extsearch_cron.php',
 
         'd3/extsearch/setup/Events.php',
-        
+
         'd3/extsearch/tests/d3extsearch_config.php',
         'd3/extsearch/tests/additional.inc.php',
         'd3/extsearch/tests/integration/assignedFilters/nofilterTest.php',
@@ -143,7 +144,8 @@ $aModule = array(
         'd3/extsearch/tests/unit/d3ExtsearchUnitTestCase.php',
         'd3/extsearch/tests/unit/Application/Model/d3semanticTest.php',
         'd3/extsearch/tests/unit/Application/Model/Filters/d3ManufacturerFilterTest.php',
-        'd3/extsearch/tests/unit/Modules/Application/Model/d3_oxsearch_extsearchTest.php'
+        'd3/extsearch/tests/unit/Modules/Application/Model/d3_oxsearch_extsearchTest.php',
+
     ),
     'd3SetupClasses'    => array(
         ModuleSetup\d3_extsearch_update::class,

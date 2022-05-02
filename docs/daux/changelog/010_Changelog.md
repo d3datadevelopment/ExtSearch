@@ -2,6 +2,35 @@
 title: Changelog
 ---
 
+## 6.7.0.0 (2022-04-29)
+### Added
+- Schnellsuche startet Abfrage erst nach 3 Buchstaben (Anzahl ist konfigurierbar)
+- Attribut-zu-Objekt-Einträge werden automatisch gelöscht, wenn Attribut oder Objekt selbst gelöscht wird
+- optional können Varianten auch ohne verwendeten Filter gezeigt werden
+- zusätzliche Templateblöcke zur einfacheren Erweiterbarkeit eingefügt
+- zusätzliche CSS-Defintionen zur einfacheren Formatierbarkeit eingefügt
+
+### Changed
+- Datenbankfeldtypen von Bit zu Tinyint wegen Migrationsschwierigkeiten geändert
+- Debug-Modus für Schnellsuche erweitert
+- Variantenartikel werden nur gesucht, wenn Filter verwendet werden (Suche und Kategorien)
+- "Filter abwählen" findet Checkboxen in tiefer verschachtelten HTML-Elementen
+- noscript Abwahlbutton wird nur an relevanten Auswahlmöglichkeiten gezeigt
+- "nicht wählbare" Attribute werden zu "nicht sicher wählbaren" Attributen
+  - Wenn aktiviert, sind diese nun vom Shopbesucher zur weiteren Filterung nutzbar. In seltenen Fällen kann es jedoch damit zu ungültigen Filterkombinationen führen.
+- Reihenfolge der wählbaren und der "nicht sicher wählbaren" Attribute angepasst
+- "nicht zugeordnet"-Filter sind auswählbar
+
+### Fixed
+- Parameterhandling korrigiert
+- fehlerhafte Querygenerierung korrigiert
+- Timeout in Schnellsuche korrigiert
+- fehlerhaftes Buttonlayout der Filter korrigiert
+- falsche Artikelanzahl bei Variantensuche in Kategorien verhindert Seitennavigation
+- Filter können bei Variantensuche in Kategorien (Darstellung der Varianten selbst) angewandt werden
+
+---
+
 ## 6.6.2.0 (2021-04-30)
 ### Added
 - installierbar in OXID 6.2.4
@@ -11,11 +40,10 @@ title: Changelog
 
 ### Changed
 - Sonderzeichenoptimierung in Abfrage für semantische Suche
-- fehlende Dateiregsitrierungen eingefügt
+- fehlende Dateiregistrierungen eingefügt
 - Build Pakete aktualisiert
-- 
 
-### fixed
+### Fixed
 - fehlende Sortierdefinition wird leer gesetzt, um Ausführungsfehler zu vermeiden
 
 ---

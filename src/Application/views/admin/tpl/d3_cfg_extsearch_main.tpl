@@ -282,6 +282,17 @@
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
+                                <dl class="variant_options">
+                                    <dt>
+                                        <label for="showVariantsWithoutFilters">[{oxmultilang ident="D3_EXTSEARCH_MAIN_SHOWVARIANTSWITHOUTFILTERS"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <input type="hidden" name="value[blExtSearch_showVariantsWithoutFilters]" value="0">
+                                        <input id="orderByPush" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showVariantsWithoutFilters]" value='1' [{if $edit->getEditValue('blExtSearch_showVariantsWithoutFilters') == 1}]checked[{/if}]>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SHOWVARIANTSWITHOUTFILTERS_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
 
                                 [{if $oView->d3UseAlistFilters()}]
                                     [{assign var="blActionRestriction" value=""}]

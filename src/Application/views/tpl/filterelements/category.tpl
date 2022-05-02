@@ -1,9 +1,11 @@
 [{assign var="sIdKey" value="category"}]
 [{assign var="blShowMultipleSelector" value=true}]
-<div class="item category [{$cssclass}]">
-    <label for="searchcategory">
-        [{oxmultilang ident="D3_EXTSEARCH_EXT_CATEGORIES"}]
-    </label><br>
+<div class="item category [{$cssclass}]" id="atid_category">
+    [{block name="d3_inc_ext_search__filter_category_title"}]
+        <label for="searchcategory">
+            [{oxmultilang ident="D3_EXTSEARCH_EXT_CATEGORIES"}]
+        </label><br>
+    [{/block}]
 
     [{if in_array($sCategoryFilterDisplayType, array('combined', 'single'))}]
         [{block name="d3_inc_ext_search__filter_category_single"}]
@@ -15,25 +17,39 @@
                 [{else}]
                     <OPTION class="desc" value="" selected="selected">[{oxmultilang ident="D3_EXTSEARCH_EXT_CHOOSECAT"}]</OPTION>
                     [{foreach from=$oView->d3getCategoryList() item="category"}]
-                        <OPTION value="[{$category->getId()}]">[{$category->oxcategories__oxtitle->getRawValue()}][{if $category->getFieldData('counter')}] ([{$category->getFieldData('counter')}])[{/if}]</OPTION>
+                        <OPTION value="[{$category->getId()}]">[{$category->oxcategories__oxtitle->getRawValue()}]
+                            [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $category->getFieldData('counter')}]
+                                ([{$category->getFieldData('counter')}])
+                            [{/if}]
+                        </OPTION>
                     [{/foreach}]
                 [{/if}]
             </SELECT>
+
+            <noscript>
+                <div id="searchcategorysubmit" class="fullitem">
+                    <button type="submit" class="submitButton largeButton btn [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('flow')}]btn-primary [{* for Bootstrap 3 *}][{else}]btn-outline-primary [{* for Bootstrap 4 *}][{/if}] btn-sm" onclick="d3_extsearch_popup.popup.load();">[{oxmultilang ident="D3_EXTSEARCH_EXT_ASSIGNFILTER"}]</button>
+                </div>
+            </noscript>
         [{/block}]
     [{/if}]
 
     [{if in_array($sCategoryFilterDisplayType, array('combined', 'multi'))}]
         [{block name="d3_inc_ext_search__filter_category_multi"}]
-            <div id="d3searchcategory__multi" style="[{if $sCategoryFilterDisplayType == 'combined'}]display: none;[{/if}]">
+            <div class="multiselect" id="d3searchcategory__multi" style="[{if $sCategoryFilterDisplayType == 'combined'}]display: none;[{/if}]">
                 [{foreach from=$oView->d3getCategoryList() name=attrvalues key=valuekey item=oAttrValue}]
-                    <input name="d3searchcategorymulti[[{$oAttrValue->getId()}]]" type="hidden" value="">
-                    <input name="d3searchcategorymulti[[{$oAttrValue->getId()}]]" type="checkbox" value="[{$oAttrValue->getId()}]" id="cb[{$key}][{$oAttrValue->getId()}]" [{if $oAttrValue->selected || $oAttrValue->getId() == $sSelectedCategoryId}] checked[{/if}]>
-                    <label for="cb[{$key}][{$oAttrValue->getId()}]">
-                        [{$oAttrValue->getTitle()}] [{if $oAttrValue->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
-                    </label><br>
+                    <div class="multiselectvalue" id="d3searchcategory__multi__[{$valuekey}]">
+                        <input name="d3searchcategorymulti[[{$oAttrValue->getId()}]]" type="hidden" value="">
+                        <input name="d3searchcategorymulti[[{$oAttrValue->getId()}]]" type="checkbox" value="[{$oAttrValue->getId()}]" id="cb[{$key}][{$oAttrValue->getId()}]" [{if $oAttrValue->selected || $oAttrValue->getId() == $sSelectedCategoryId}] checked[{/if}]>
+                        <label for="cb[{$key}][{$oAttrValue->getId()}]">
+                            [{$oAttrValue->getTitle()}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $category->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
+                        </label>
+                    </div>
                 [{/foreach}]
 
-                [{include file="d3_ext_search_filter_inc_multibuttons.tpl" type="category"}]
+                [{block name="d3_inc_ext_search__filter_category_multibuttons"}]
+                    [{include file="d3_ext_search_filter_inc_multibuttons.tpl" type="category"}]
+                [{/block}]
             </div>
         [{/block}]
     [{/if}]
@@ -53,6 +69,9 @@
                     if (blChecked) {
                         document.getElementById('d3searchcategory__multi').style.display = 'block';
                         document.getElementById('searchcategory').style.display = 'none';
+                        if (buttonElement = document.getElementById('searchcategorysubmit')) {
+                            buttonElement.style.display = 'none';
+                        }
                         document.getElementById('d3searchcategory__multiselector').style.display = 'none';
                     }
                 }

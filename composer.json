@@ -37,7 +37,7 @@
     "php": "7.1 - 7.4", "ext-ionCube-Loader": "*",
     "oxid-esales/oxideshop-ce": "6.0 - 6.7",
     "d3/modcfg": "^5.3.4.200",
-    "d3/oxid-sql-logger": "^1.0",
+    "d3/oxid-sql-logger": "^1.2.2",
     "splitbrain/php-cli": "^1.1"
   },
   "autoload": {
