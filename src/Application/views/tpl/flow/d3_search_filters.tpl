@@ -21,49 +21,43 @@
                         <input type="hidden" name="isextsearch" value="search">
 
                         [{block name="d3_inc_ext_search__filter"}]
-                            [{if $oView->d3HasCategoryList()}]
-                                [{block name="d3_inc_ext_search__filter_category"}]
-                                    [{include file="d3_ext_search_filter_category.tpl" cssclass="" sSelectedCategoryId=$sSelectedCategoryId sSelectedCategory=$sSelectedCategory}]
-                                [{/block}]
-                            [{/if}]
-
-                            [{if $oView->d3HasVendorList()}]
-                                [{block name="d3_inc_ext_search__filter_vendor"}]
-                                    [{include file="d3_ext_search_filter_vendor.tpl" cssclass="" sSelectedVendorId=$sSelectedVendorId sSelectedVendor=$sSelectedVendor}]
-                                [{/block}]
-                            [{/if}]
-
-                            [{if $oView->d3HasManufacturerList()}]
-                                [{block name="d3_inc_ext_search__filter_manufacturer"}]
-                                    [{include file="d3_ext_search_filter_manufacturer.tpl" cssclass="" sSelectedManufacturerId=$sSelectedManufacturerId sSelectedManufacturer=$sSelectedManufacturer}]
-                                [{/block}]
-                            [{/if}]
-
-                            [{if $oView->d3HasAttributeList()}]
-                                [{foreach from=$oView->d3GetAttributeList() name=search key=key item=oAttribute}]
-                                    [{block name="d3_inc_ext_search__filter_attribute"}]
-                                        [{include file="d3_ext_search_filter_attribute.tpl" cssclass="" key=$key oAttribute=$oAttribute}]
+                            <div>
+                                [{if $oView->d3HasCategoryList()}]
+                                    [{block name="d3_inc_ext_search__filter_category"}]
+                                        [{include file="d3_ext_search_filter_category.tpl" cssclass="" sSelectedCategoryId=$sSelectedCategoryId sSelectedCategory=$sSelectedCategory}]
                                     [{/block}]
-                                [{/foreach}]
-                            [{/if}]
+                                [{/if}]
 
-                            [{if $oView->d3HasPriceFilter()}]
-                                [{block name="d3_inc_ext_search__filter_price"}]
-                                    [{include file="d3_ext_search_filter_priceselector.tpl" cssclass="" infoMinValue=$oView->d3GetPriceSliderInfoMinValue() infoMaxValue=$oView->d3GetPriceSliderInfoMaxValue() originalMinValue=$oView->d3GetPriceSliderOriginalMinValue() originalMaxValue=$oView->d3GetPriceSliderOriginalMaxValue() inputMinValue=$oView->d3GetPriceSliderInputMinValue() inputMaxValue=$oView->d3GetPriceSliderInputMaxValue() aPriceLimits=$oView->d3getPriceLimits() aPriceSteps=$oView->d3getPriceSteps() precision=$oView->d3getPricePrecision()}]
-                                [{/block}]
-                            [{/if}]
+                                [{if $oView->d3HasVendorList()}]
+                                    [{block name="d3_inc_ext_search__filter_vendor"}]
+                                        [{include file="d3_ext_search_filter_vendor.tpl" cssclass="" sSelectedVendorId=$sSelectedVendorId sSelectedVendor=$sSelectedVendor}]
+                                    [{/block}]
+                                [{/if}]
 
-                            <noscript>
-                                <div class="fullitem">
-                                    <span class="btn">
-                                        <input type="submit" value="[{oxmultilang ident="D3_EXTSEARCH_EXT_START_SEARCH"}]">
-                                    </span>
-                                </div>
-                            </noscript>
+                                [{if $oView->d3HasManufacturerList()}]
+                                    [{block name="d3_inc_ext_search__filter_manufacturer"}]
+                                        [{include file="d3_ext_search_filter_manufacturer.tpl" cssclass="" sSelectedManufacturerId=$sSelectedManufacturerId sSelectedManufacturer=$sSelectedManufacturer}]
+                                    [{/block}]
+                                [{/if}]
+
+                                [{if $oView->d3HasAttributeList()}]
+                                    [{foreach from=$oView->d3GetAttributeList() name=search key=key item=oAttribute}]
+                                        [{block name="d3_inc_ext_search__filter_attribute"}]
+                                            [{include file="d3_ext_search_filter_attribute.tpl" cssclass="" key=$key oAttribute=$oAttribute}]
+                                        [{/block}]
+                                    [{/foreach}]
+                                [{/if}]
+
+                                [{if $oView->d3HasPriceFilter()}]
+                                    [{block name="d3_inc_ext_search__filter_price"}]
+                                        [{include file="d3_ext_search_filter_priceselector.tpl" cssclass="" infoMinValue=$oView->d3GetPriceSliderInfoMinValue() infoMaxValue=$oView->d3GetPriceSliderInfoMaxValue() originalMinValue=$oView->d3GetPriceSliderOriginalMinValue() originalMaxValue=$oView->d3GetPriceSliderOriginalMaxValue() inputMinValue=$oView->d3GetPriceSliderInputMinValue() inputMaxValue=$oView->d3GetPriceSliderInputMaxValue() aPriceLimits=$oView->d3getPriceLimits() aPriceSteps=$oView->d3getPriceSteps() precision=$oView->d3getPricePrecision()}]
+                                    [{/block}]
+                                [{/if}]
+                            </div>
 
                             [{block name="d3_inc_ext_search__filter_clear"}]
                                 <div class="fullitem clearFilter">
-                                    <button type="submit" class="submitButton largeButton btn btn-primary [{* for Bootstrap 3 *}] btn-outline-primary [{* for Bootstrap 4 *}] btn-sm" onclick="document.getElementById('d3searchfilterform').isextsearch.value = false; document.getElementById('d3searchfilterform').fnc.value = 'd3ClearFilter'; d3_extsearch_popup.popup.load();">[{oxmultilang ident="D3_EXTSEARCH_EXT_CLEARFILTER"}]</button>
+                                    <button type="submit" class="submitButton largeButton btn [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('flow')}]btn-primary [{* for Bootstrap 3 *}][{else}]btn-outline-primary [{* for Bootstrap 4 *}][{/if}] btn-sm" onclick="document.getElementById('d3searchfilterform').isextsearch.value = false; document.getElementById('d3searchfilterform').fnc.value = 'd3ClearFilter'; d3_extsearch_popup.popup.load();">[{oxmultilang ident="D3_EXTSEARCH_EXT_CLEARFILTER"}]</button>
                                 </div>
                             [{/block}]
 

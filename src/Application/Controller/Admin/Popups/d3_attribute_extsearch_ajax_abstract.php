@@ -17,6 +17,7 @@
 
 namespace D3\Extsearch\Application\Controller\Admin\Popups;
 
+use D3\Extsearch\Application\Model\d3extsearch_attribute2object;
 use Exception;
 use OxidEsales\Eshop\Application\Controller\Admin\ListComponentAjax;
 use OxidEsales\Eshop\Application\Model\Attribute;
@@ -62,7 +63,9 @@ abstract class d3_attribute_extsearch_ajax_abstract extends ListComponentAjax
         /** @var MultiLanguageModel $oObject */
         $oObject = oxNew($this->getObjectModel());
         $sObjectTable = $oObject->getViewName();
-        $sA2OTable = $this->_getViewName('d3extsearch_attribute2object');
+
+        $oA2O = oxNew(d3extsearch_attribute2object::class);
+        $sA2OTable = $oA2O->getViewName();
 
         if (!$sId) {
             $sQAdd = " from {$sObjectTable}";
@@ -100,7 +103,8 @@ abstract class d3_attribute_extsearch_ajax_abstract extends ListComponentAjax
         $oRequest = Registry::get(Request::class);
         $aChosenObjects = $this->_getActionIds('d3extsearch_attribute2object.oxid');
 
-        $sA2OTable = $this->_getViewName('d3extsearch_attribute2object');
+        $oA2O = oxNew(d3extsearch_attribute2object::class);
+        $sA2OTable = $oA2O->getViewName();
 
         /** @var Attribute $oAttribute */
         $oAttribute = oxNew(Attribute::class);
@@ -146,8 +150,7 @@ abstract class d3_attribute_extsearch_ajax_abstract extends ListComponentAjax
 
         if ($soxId && $soxId != "-1" && is_array($aChosenObjects)) {
             foreach ($aChosenObjects as $sChosenObject) {
-                $oAssignment = oxNew(BaseModel::class);
-                $oAssignment->init('d3extsearch_attribute2object');
+                $oAssignment = oxNew(d3extsearch_attribute2object::class);
                 $oAssignment->assign(
                     array(
                         'oxattributeid' => $soxId,

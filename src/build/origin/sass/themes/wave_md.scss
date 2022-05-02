@@ -27,9 +27,6 @@
                     padding-left: 15px;
                     padding-right: 15px;
 
-                    label {
-                        margin-bottom: 5px;
-                    }
                     select {
                         @extend %body_d3_extsearch_navigation_list_item_select;
                     }

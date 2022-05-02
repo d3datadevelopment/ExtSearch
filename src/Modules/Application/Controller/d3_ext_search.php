@@ -1065,6 +1065,12 @@ class d3_ext_search extends d3_ext_search_parent
             $aSorting = $this->_d3GetSearchHandler()->d3GetPriorityAlias();
         }
 
+        if ($this->d3GetSet()->isActive()
+            && !count($aSorting)
+        ) {
+            $aSorting = null;
+        }
+
         if ($aSorting) {
             if (method_exists($this, 'setListOrderBy')) {
                 $this->setListOrderBy($aSorting['sortby']);
