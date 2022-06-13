@@ -1,0 +1,17 @@
+[{$smarty.block.parent}]
+
+[{d3modcfgcheck modid="d3_extsearch"}][{/d3modcfgcheck}]
+[{if $mod_d3_extsearch && $blD3ShowFilters && !$place}]
+    [{assign var="sTplName" value="d3_list_filters_"|cat:$oModCfg_d3_extsearch->getMappedThemeId()|cat:'.tpl'}]
+
+    [{block name="d3extsearch_alist_filters_general"}]
+        [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('flow') || $oModCfg_d3_extsearch->isThemeIdMappedTo('wave')}]
+            [{capture append="oxidBlock_sidebar"}]
+                [{include file=$sTplName sidebar_class="d3sidebar" themename=$oModCfg_d3_extsearch->getMappedThemeId()}]
+            [{/capture}]
+        [{else}]
+            [{** display filter across articles **}]
+            [{include file=$sTplName sidebar_class="d3topbar"}]
+        [{/if}]
+    [{/block}]
+[{/if}]

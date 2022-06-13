@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html class="no-js" lang="de">
+<head>
+    <title>Synonym-Editor -  erweiterte Suche</title>
+        <meta name="description" content="">
+    <meta name="author" content="D³ Data Development">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/d3/img/favicon.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+    <link href='../themes/d3/css/theme-blue.min.css' rel='stylesheet' type='text/css'><link href='../themes/d3/css/d3.css' rel='stylesheet' type='text/css'>
+            <!-- Tipue Search -->
+        <link href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    <!--[if lt IE 9]>
+    <script src="../themes/d3/js/html5shiv-3.7.3.min.js"></script>
+    <![endif]-->
+</head>
+<body class=" ">
+<div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html"><i class='fab fa-d3 d3fa-color-blue'></i> erweiterte Suche</a>
+
+    <div class="Search">
+        <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+            <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+        </svg>
+        <input type="search" id="tipue_search_input" class="Search__field" placeholder="Suchen..." autocomplete="on"
+               results=25 autosave=text_search>
+    </div>
+
+        <div class="Collapsible__content">
+            <!-- Navigation -->
+            <ul class='Nav'><li class='Nav__item '><a href="../manual/Inhalte.html">Inhalte</a></li><li class='Nav__item '><a href="../manual/Ergebnisanlyse.html">Ergebnisanalyse</a></li><li class='Nav__item '><a href="../manual/optischeAnpassungen.html">optische Anpassungen</a></li><li class='Nav__item  has-children'><a href="../manual/Optionale_Erweiterungen/phonetischer_Index.html" class="folder"><i class="Nav__arrow">&nbsp;</i>Optionale Erweiterungen</a><ul class='Nav'><li class='Nav__item '><a href="../manual/Optionale_Erweiterungen/phonetischer_Index.html">phonetischer Index</a></li></ul></li><li class='Nav__item '><a href="../manual/Statistik.html">Statistik</a></li><li class='Nav__item Nav__item--active'><a href="../manual/Synonym-Editor.html">Synonym-Editor</a></li><li class='Nav__item '><a href="../manual/korrespondierendeAttributswerte.html">korrespondierende Attributwerte</a></li><li class='Nav__item '><a href="../manual/Logging.html">Logging</a></li><li class='Nav__item '><a href="../manual/externeEinstellungen.html">Einstellungen außerhalb des Adminbereichs</a></li><li class='Nav__item '><a href="../manual/Optimierungen.html">Optimierungen</a></li><li class='Nav__item '><a href="../manual/Fragen.html">Grundsätzliche Fragen</a></li><li class='Nav__item '><a href="../manual/Erweiterungsmoeglichkeiten.html">Erweiterungsmöglichkeiten</a></li><li class='Nav__item  has-children'><a href="../manual/technische_Erlaeuterungen/zusaetzliche_Formularfelder.html" class="folder"><i class="Nav__arrow">&nbsp;</i>technische Erlaeuterungen</a><ul class='Nav'><li class='Nav__item '><a href="../manual/technische_Erlaeuterungen/zusaetzliche_Formularfelder.html">zusätzliche Formularfelder</a></li><li class='Nav__item '><a href="../manual/technische_Erlaeuterungen/MultiAttributFilter.html">Attributfilter mit Mehrfachauswahl</a></li><li class='Nav__item '><a href="../manual/technische_Erlaeuterungen/Indexleiste.html">Indexleiste</a></li><li class='Nav__item '><a href="../manual/technische_Erlaeuterungen/Relevanz.html">Relevanz und Wichtigkeiten</a></li><li class='Nav__item '><a href="../manual/technische_Erlaeuterungen/Phonetic-Cronjob.html">Phonetic-Cronjob</a></li></ul></li></ul>
+            
+
+
+            <div class="Links">
+                <hr/>
+                <a href="https://www.oxidmodule.com" target="_blank">Shop</a><br />
+                <a href="https://blog.oxidmodule.com" target="_blank">Blog</a><br />
+                <a href="https://faq.d3data.de" target="_blank">FAQ</a><br />
+                <a href="https://docs.oxidmodule.com" target="_blank">Dokumentationen</a><br />
+                <a href="https://support.oxidmodule.com" target="_blank">D³ Support Center</a><br />
+                <a href="https://www.oxidmodule.com/kontakt" target="_blank">Kontakt</a><br />
+                <a href="https://www.oxidmodule.com/impressum" target="_blank">Impressum</a><br />
+                            </div>
+
+            
+                
+                        </div>
+    </aside>
+    <div class="Columns__right Columns__right--full">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../manual/Synonym-Editor.html">Synonym-Editor</a></h1>
+                <span class="ModifiedDate">
+                        16.06.2022        </span>
+                    </div>
+
+    <div class="s-content">
+        <p>Der Synonym-Editor ist Teil der sinngleichen Suche. Diese ermöglicht es Ihnen, shopweit zu den bestehenden Suchbegriffen zu pflegen.</p>
+<p>Hintergrund dieser Option ist, dass es für einen bestimmten Begriff unterschiedliche Worte oder regionale Abweichungen geben kann.</p>
+<p>Haben Sie in Ihrem Shop zum Beispiel eine Reihe <code>Tassen</code> im Angebot, können diese über den  Suchbegriff <code>Tasse</code> oder <code>Tassen</code> gefunden werden. Sucht Ihr Kunde jedoch beispielsweise nach <code>Pott</code>, erhält er keinen Treffer. Dies lässt sich im Shop zwar lösen, indem Sie den <code>Pott</code> an jedem Tassenartikel als Suchbegriff hinterlegen. Je nach Artikelanzahl kann dies jedoch einen enormen Pflegeaufwand bedeuten. Im Synonym-Editor können Sie die Alternativen artikelunabhängig bearbeiten.</p>
+<p>Um die sinnähnliche Suche zu verwenden, aktivieren Sie diese bitte in den Einstellungen der <strong>erweiterten Suche</strong>.</p>
+<h1 id="page_Verwendung">Verwendung</h1>
+<p>Möchten Sie eine Umschreibung einfügen, wählen Sie im linken Menü des Adminbereichs den Synonym-Editor unter <span class="navi_element">D3 Module</span> -&gt; <span class="navi_element">erweiterte Suche</span> -&gt;  <span class="navi_element">Synonym-Editor</span>.</p>
+<p>Ist in der angezeigten Liste schon ein Eintrag farbig hinterlegt, wählen Sie über <span class="navi_element">Neues Wort / Wortgruppe</span> die Eingabe für einen Neueintrag. Zur Bearbeitung eines bestehenden Eintrages wählen Sie diesen aus der oben gezeigten Liste.</p>
+<p>Hinterlegen Sie dann im Tab <span class="navi_element">Stamm</span> Ihr gewünschtes Suchwort. Das Kommentarfeld können Sie für interne Hinweise zum Begriff verwenden. Stellen Sie weiterhin die Sprache des Begriffs ein.</p>
+<p>Für die Eingabe der alternativen Beschreibungen wechseln Sie bitte in den <span class="navi_element">Synonyme bearbeiten</span>-Tab. Tragen Sie dort einzeln die Alternativen ein und speichern diese jeweils. Diese sind nun automatisch mit Ihrem Stammbegriff verknüpft.</p>
+<h1 id="page_Tab-Stamm">Tab [ Stamm ]</h1>
+<p>Ein Synonym besteht mindestens aus 2 Einträgen, die zueinander zugeordnet sind. Gibt es für Ihre Sinnbeschreibung noch keinen Eintrag, können Sie diesen im Stamm-Reiter anlegen. Auch die Veränderung vorhandener Wörter können Sie dort vornehmen.</p>
+<p>Jede Kombination sinngleicher Worte ist einer gemeinsamen Zahl, der Synonym-ID zugeordnet. Kennen Sie die Synonym-Ident Ihres Begriffes, können Sie diese dort direkt zuordnen.</p>
+<h1 id="page_Tab-Synonyme-bearbeiten">Tab [ Synonyme bearbeiten ]</h1>
+<p>Möchten Sie zu einem bestehenden Begriff eine sinngleiche Umschreibung hinzufügen, suchen Sie sich zuerst aus der Liste das schon registrierte Wort. Im Tab <span class="navi_element">Synonyme bearbeiten</span> können Sie nun weitere sinngleiche Worte hinzufügen, diese bearbeiten oder auch löschen.</p>
+<p>Beachten Sie bitte, dass beim Löschen nur der einzelne Begriff entfernt wird. Andere
+Synonyme dieser Gruppe bleiben weiterhin bestehen.</p>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../manual/Statistik.html">Zurück</a></li>            <li class=Pager--next><a href="../manual/korrespondierendeAttributswerte.html">Weiter</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- JS -->
+<script src="../themes/d3/js/jquery-1.11.3.min.js"></script><script src="../themes/d3/js/highlight.pack.js"></script><script src="../themes/d3/js/daux.js"></script><script src="../themes/d3/js/fontawesome-all.js"></script>
+    <!-- Tipue Search -->
+    <script type="text/javascript" src="../tipuesearch/tipuesearch.js"></script>
+
+    <script>
+        window.onunload = function(){}; // force $(document).ready to be called on back/forward navigation in firefox
+        $(function() {
+            tipuesearch({
+                'base_url': '../'
+            });
+        });
+    </script>
+
+</body>
+</html>

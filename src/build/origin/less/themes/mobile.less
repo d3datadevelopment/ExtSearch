@@ -1,0 +1,42 @@
+.d3extsearch_mobile {
+    h3 {
+        margin-top: 0;
+        padding-left: 17px;
+    }
+
+    .content.list {
+        margin-bottom: 30px;
+
+        li a {
+            line-height: 3;
+        }
+    }
+
+    .message {
+        padding: 17px;
+    }
+
+    &.spacer {
+        margin-top: 17px;
+    }
+
+    .indexlink,
+    .indexlink_usable {
+        background-color: @d3_color_background_white;
+        border: 2px solid @d3_color_gray_light;
+        color: @d3_color_gray_light;
+        float: left;
+        padding: 10px 18px;
+    }
+
+    .indexlink_usable {
+        border: 2px solid @d3_color_azure_medium;
+        color: @d3_color_azure_medium;
+    
+        &.active,
+        &.active a {
+            background-color: @d3_color_azure_medium;
+            color: @d3_color_text_white;
+        }
+    }
+}

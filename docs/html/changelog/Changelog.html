@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html class="no-js" lang="de">
+<head>
+    <title>Changelog -  erweiterte Suche</title>
+        <meta name="description" content="">
+    <meta name="author" content="D³ Data Development">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/d3/img/favicon.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+    <link href='../themes/d3/css/theme-blue.min.css' rel='stylesheet' type='text/css'><link href='../themes/d3/css/d3.css' rel='stylesheet' type='text/css'>
+            <!-- Tipue Search -->
+        <link href="../tipuesearch/tipuesearch.css" rel="stylesheet">
+    
+    <!--[if lt IE 9]>
+    <script src="../themes/d3/js/html5shiv-3.7.3.min.js"></script>
+    <![endif]-->
+</head>
+<body class=" ">
+<div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html"><i class='fab fa-d3 d3fa-color-blue'></i> erweiterte Suche</a>
+
+    <div class="Search">
+        <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+            <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+        </svg>
+        <input type="search" id="tipue_search_input" class="Search__field" placeholder="Suchen..." autocomplete="on"
+               results=25 autosave=text_search>
+    </div>
+
+        <div class="Collapsible__content">
+            <!-- Navigation -->
+            <ul class='Nav'><li class='Nav__item Nav__item--active'><a href="../changelog/Changelog.html">Changelog</a></li></ul>
+            
+
+
+            <div class="Links">
+                <hr/>
+                <a href="https://www.oxidmodule.com" target="_blank">Shop</a><br />
+                <a href="https://blog.oxidmodule.com" target="_blank">Blog</a><br />
+                <a href="https://faq.d3data.de" target="_blank">FAQ</a><br />
+                <a href="https://docs.oxidmodule.com" target="_blank">Dokumentationen</a><br />
+                <a href="https://support.oxidmodule.com" target="_blank">D³ Support Center</a><br />
+                <a href="https://www.oxidmodule.com/kontakt" target="_blank">Kontakt</a><br />
+                <a href="https://www.oxidmodule.com/impressum" target="_blank">Impressum</a><br />
+                            </div>
+
+            
+                
+                        </div>
+    </aside>
+    <div class="Columns__right Columns__right--full">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../changelog/Changelog.html">Changelog</a></h1>
+                <span class="ModifiedDate">
+                        16.06.2022        </span>
+                    </div>
+
+    <div class="s-content">
+        <h2 id="page_7-1-0-0-2022-04-29">7.1.0.0 (2022-04-29)</h2>
+<h3 id="page_Added">Added</h3>
+<ul>
+<li>zusätzliche Templateblöcke zur einfacheren Erweiterbarkeit eingefügt</li>
+<li>zusätzliche CSS-Defintionen zur einfacheren Formatierbarkeit eingefügt</li>
+</ul>
+<h3 id="page_Changed">Changed</h3>
+<ul>
+<li>&quot;Filter abwählen&quot; findet Checkboxen in tiefer verschachtelten HTML-Elementen</li>
+<li>noscript Abwahlbutton wird nur an relevanten Auswahlmöglichkeiten gezeigt</li>
+<li>&quot;nicht wählbare&quot; Attribute werden zu &quot;nicht sicher wählbaren&quot; Attributen
+<ul>
+<li>Wenn aktiviert, sind diese nun vom Shopbesucher zur weiteren Filterung nutzbar. In seltenen Fällen kann es jedoch damit zu ungültigen Filterkombinationen führen.</li>
+</ul>
+</li>
+<li>Reihenfolge der wählbaren und der &quot;nicht sicher wählbaren&quot; Attribute angepasst</li>
+<li>&quot;nicht zugeordnet&quot;-Filter sind auswählbar</li>
+</ul>
+<hr />
+<h2 id="page_7-0-1-0-2022-03-03">7.0.1.0 (2022-03-03)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Schnellsuche startet Abfrage erst nach 3 Buchstaben (Anzahl ist konfigurierbar)</li>
+<li>Attribut-zu-Objekt-Einträge werden automatisch gelöscht, wenn Attribut oder Objekt selbst gelöscht wird</li>
+<li>Anzahl zum Filter gefunde Artikel kann ausgeblendet werden</li>
+<li>optional können Varianten auch ohne verwendeten Filter gezeigt werden</li>
+<li>Tests ergänzt</li>
+<li>installierbar in OXID 6.4</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Variantenartikel verwenden Kategoriezuordnung vom Elternartikel</li>
+<li>Debug-Modus für Schnellsuche erweitert</li>
+<li>Variantenartikel werden nur gesucht, wenn Filter verwendet werden (Suche und Kategorien)</li>
+</ul>
+<h3 id="page_Fixed">Fixed</h3>
+<ul>
+<li>Parameterhandling korrigiert</li>
+<li>Timeout in Schnellsuche korrigiert</li>
+<li>fehlerhaftes Buttonlayout der Filter korrigiert</li>
+<li>falsche Artikelanzahl bei Variantensuche in Kategorien verhindert Seitennavigation</li>
+<li>Filter können bei Variantensuche in Kategorien angewandt werden</li>
+<li>falsche Artikelanzahl in gefilterten Kategorien korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_7-0-0-0-2021-04-30">7.0.0.0 (2021-04-30)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>installierbar in OXID 6.3</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Datenbankfeldtypen von Bit zu Tinyint wegen Migrationsschwierigkeiten geändert</li>
+<li>Tests angepasst</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>fehlerhafte Querygenerierung korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_6-6-2-0-2021-04-30">6.6.2.0 (2021-04-30)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>installierbar in OXID 6.2.4</li>
+<li>zusätzliche Tests eingefügt</li>
+<li>Cachechecks sind auch in Community und Professional Editions nutzbar</li>
+<li>Controller steuern Cachestatus im psCache Modul</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Sonderzeichenoptimierung in Abfrage für semantische Suche</li>
+<li>fehlende Dateiregsitrierungen eingefügt</li>
+<li>Build Pakete aktualisiert</li>
+<li></li>
+</ul>
+<h3 id="page_fixed">fixed</h3>
+<ul>
+<li>fehlende Sortierdefinition wird leer gesetzt, um Ausführungsfehler zu vermeiden</li>
+</ul>
+<hr />
+<h2 id="page_6-6-1-2-2021-03-03">6.6.1.2 (2021-03-03)</h2>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>Queryfehler durch unzugeordnetes oxtimestamp-Feld korrigiert</li>
+<li>fehlerhaften Tabellennamengenerierung bei Abfrage in Nicht-Standardsprache korrigiert</li>
+<li>zu große Artikelanzahl bei mit ähnlichen Artikeln aufgefüllte Trefferliste korrigiert</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>phonetischer Hash wird ausschließlich in der Datenbank generiert, um Differenzen zwischen PHP- und mySQL-Verhalten zu vermeiden (führte zu ungültigen Updateanforderungen)</li>
+<li>Phonetischer Index wird nicht generiert, wenn kein Generator eingestellt ist</li>
+<li>Bevorzugen der Filtermehrfachauswahl, wenn auch Einfachauswahl gesetzt ist (verhindert ungültige Wertkombinationen)</li>
+<li>Admin-Icon verwendet feste Breite</li>
+</ul>
+<hr />
+<h2 id="page_6-6-1-1-2020-12-09">6.6.1.1 (2020-12-09)</h2>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>fehlerhaften Tabellennamengenerierung bei Abfrage in Nicht-Standardsprache korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_6-6-1-0-2020-12-03">6.6.1.0 (2020-12-03)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>installierbar in OXID 6.2.3</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>fehlende Übersetzungsbausteine in Sprache Englisch nachgetragen</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>Indexgenerierung läuft in manchen Fällen in eine Endlosschleife</li>
+<li>fehlerhaften Feldnamen bei Datenbankabfrage in Phonetic Light korrigiert</li>
+<li>Testlauf verwendet keinen Debugmode</li>
+</ul>
+<hr />
+<h2 id="page_6-6-0-1-2020-11-09">6.6.0.1 (2020-11-09)</h2>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>unnötige Redirect-Prävention im Falle eines Einzeltreffers beim Debug-Modus entfernt</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>ungültige Tabellenname/Feldname-Kombination in SQL Query korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_6-6-0-0-2020-11-06">6.6.0.0 (2020-11-06)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Wartungsaufgaben über CLI aufrufbar</li>
+<li>Cronjobaufruf generiert fehlende oxartextends-Einträge selbst</li>
+<li>CLI komplett übersetzt und übersetzbar</li>
+<li>Status der Indexgenerierung wird aus Inhalten anstelle des letzten Generierungsdatums ermittelt</li>
+<li>Metadaten mehrsprachig verfügbar</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>Theme-Weichen für passende Produktdarstellung im Wave-Theme korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_6-5-2-2-2020-09-29">6.5.2.2 (2020-09-29)</h2>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Suggest: Submit bei markiertem Eintrag sendet Formular ab, anstatt den Eintrag zu zeigen</li>
+<li>JavaScripts verwenden Strict Mode</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>optimiertes Decoding verhindert SQL Injections</li>
+</ul>
+<hr />
+<h2 id="page_6-5-2-1-2020-08-20">6.5.2.1 (2020-08-20)</h2>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>fehlerhaften BaseConfKey getauscht</li>
+</ul>
+<hr />
+<h2 id="page_6-5-2-0-2020-07-20">6.5.2.0 (2020-07-20)</h2>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>unnötige Maskierung des Suchbegriffes entfernt
+<ul>
+<li>führte bei Verwendung von Sonderzeichen zu fehlerhaften Ergebnissen</li>
+</ul>
+</li>
+<li>Build-Komponenten aktualisiert
+<ul>
+<li>vermeidet Verwendung unsicherer Pakete</li>
+</ul>
+</li>
+<li>Benennung des Source-Verzeichnisses wird automatisch ermittelt
+<ul>
+<li>so kann dieses Verzeichnis auch anders benannt oder an anderer Stelle abgelegt sein</li>
+</ul>
+</li>
+<li>kleine Layoutanpassungen im Flow- und Wavetheme</li>
+<li>Dokumentation aktualisiert</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>fehlende Datenbankfelder in Abfrage ergänzt
+<ul>
+<li>führte in Verwendung der Indexbuchstaben in bestimmter Konstellation zu Fehlern bei der Abfrage</li>
+</ul>
+</li>
+<li>bei entsprechender Einstellung werden leere Kategorien nicht in Filtern gezeigt</li>
+</ul>
+<hr />
+<h2 id="page_6-5-1-0-2020-05-04">6.5.1.0 (2020-05-04)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Artikellisten (Kategorien, Hersteller, Lieferanten) können ebenfalls Varianten zeigen und zur Filterung verwenden</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>ungültige Filterkombinationen zeigen in Artikellisten entsprechende Hinweise und ermöglichen ein Zurücksetzen der gesetzten Filter</li>
+</ul>
+<hr />
+<h2 id="page_6-5-0-0-2020-03-31">6.5.0.0 (2020-03-31)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Kompatibilität zu OXID 6.2 hergestellt</li>
+<li>strukturierte Daten für Suchaktion eingefügt</li>
+<li>erzeuge JS-Fehler, wenn kein Eingabeelement für Suggest gefunden wird</li>
+<li>Build-Umgebung aktualisiert</li>
+<li>Ergebnis-Feld-Analyse in Dokumentation aufgenommen</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>verhindere wählbarer Attributfilter von Variantenartikeln in Kategorieansicht</li>
+<li>ändere JS Event-Eigenschaft</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>Datenbankabfragen für abgewählte Attributsfilter korrigiert</li>
+<li>doppelt selektrierte Felder in Datenbankabfrage korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_6-4-0-0-2019-10-21">6.4.0.0 (2019-10-21)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Support für OXID Wave Theme</li>
+<li>Critical CSS (above the fold) eingefügt (erfordert Generierung im finalen Shop durch Grunt)</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Query-Manipulation für die Fälle angepasst, in denen weitere count(*) aus anderen Tabellen außer oxarticles abgefragt werden</li>
+<li>Grunt-Module aktualisiert</li>
+<li>CSS-Optimierung auf PostCSS und NanoCSS umgestellt</li>
+<li>Anordnung der Produktboxen im MD-Viewport des Flow-Themes optimiert</li>
+<li>JavaScript-Dateien erhalten Lizenz-Header</li>
+<li>Slider-CSS in Theme-CSS integriert, spart Requests beim Seitenaufbau</li>
+<li>Generierung des Critical CSS (above the fold) auf criticalcss Plugin umgestellt</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>fehlerhaft verwendete HTML-Element-IDs in Klassen korrigert</li>
+</ul>
+<hr />
+<h2 id="page_6-3-1-0-2019-09-24">6.3.1.0 (2019-09-24)</h2>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>gefilterte Seiten werden nicht im Dynamic Content Cache aufgenommen</li>
+<li>Debug-Ausgaben von der Browser-Ausgabe zur Browser-Konsole verschoben</li>
+<li>Suggest (Schnellsuche) verwendet ArticleList-Objekt statt natives Array</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>setze passende Leerwerte, wenn jeweiliger Filter nicht aktiviert ist, vermeidet warning-Meldungen im Log</li>
+</ul>
+<hr />
+<h2 id="page_6-3-0-0-2019-07-22">6.3.0.0 (2019-07-22)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>korrespondierende Attributwerte implementiert</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Response-Script ermittelt Pfad der Bootstrap-Datei dynamisch</li>
+<li>Abfrage-Veränderungen für Aggrosoft WaWi-Modul-Anpassungen optimiert</li>
+<li>Unit-Tests angepasst</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>fehlende Datei im Dateiregister nachgetragen</li>
+</ul>
+<hr />
+<h2 id="page_6-2-1-1-2019-06-04">6.2.1.1 (2019-06-04)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Dokumentation um Erklärung zur Cache-Verhinderung ergänzt</li>
+<li>Offset-Option für Suggest-Fenster integriert</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>feste Position des Suggest-Fensters im Azure-Theme geändert</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>fehlende Styles für Azure-Theme nachgetragen</li>
+<li>fehlende Netto-/Bruttopreisumrechnung in Artikellisten korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_6-2-1-0-2019-04-25">6.2.1.0 (2019-04-25)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Suggest-Suche verhindert die Anzeige veralteter Anfrageergebnisse</li>
+</ul>
+<hr />
+<h2 id="page_6-2-0-1-2019-03-21">6.2.0.1 (2019-03-21)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Build-Ressourcen als <code>export-ignore</code> markiert, können bei Bedarf mit <code>--prefer-source</code> nachgeladen werden</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Dokumentation bereinigt</li>
+<li>Einstellungen für Variantensuche wird auch in Artikelnummernsuche berücksichtigt</li>
+<li>semantische Begriffe werden mit Platzhaltern gesucht - Synonymbestandteile wurden nicht gefunden</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>Formularparameter werden encoded</li>
+<li>unnötiges UTF8-Decoding entfernt - verhinderte Schnelltreffer mit Sonderzeichen</li>
+<li>phonetischer Index wird schon bei Neuanlage der Artikel generiert</li>
+<li>Notices auf Grund &quot;undefinierten Index&quot; behoben</li>
+</ul>
+<hr />
+<h2 id="page_6-2-0-0-2018-12-14">6.2.0.0 (2018-12-14)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>individuelle Zuordnung der Filterattribute zu Kategorien ermöglicht</li>
+<li>Kategoriefilter verwendet nur den Artikeln zugeordnete Hauptkategorien</li>
+<li>Optionen werden im Admin ausgeblendet, wenn Feature deaktiviert ist</li>
+<li>Tests hinzugefügt</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Korrektur für Verwendung von hochpräzisen Preisangaben (vielfache Nachkommastellen) integriert</li>
+<li>Preisslider verwendet Formatierung der aktuell gewählten Währung</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>unvollständige Feldliste in Abfragen der RSS-Seiten ergänzt</li>
+</ul>
+<hr />
+<h2 id="page_6-1-3-0-2018-11-12">6.1.3.0 (2018-11-12)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>zusätzliche Formatieroptionen zur Suggest-Suche hinzugefügt</li>
+<li>Suggest-Suche wird nur im MD- und LG-Viewport gezeigt</li>
+<li>prepared statements integriert</li>
+<li>Preisslider erhält zufällige ID für mögliche Mehrfachimplementierung</li>
+<li>Relevanzberechnung berücksichtigt auch Synonyme</li>
+<li>Synonyme werden auch zur Ermittlung von Herstellern und Lieferanten verwendet</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Analyse-Tool verwendet Klartext-Bezeichnung für Wertespalten</li>
+<li>Preisslider für Brutto/Nettopreise optimiert</li>
+<li>verwende oxescape für zeichensatzabhängiges Maskieren</li>
+<li>Modul verwendet ausschließlich Loglevel-Konstanten</li>
+<li>Dokumentation zum HTML-Format geändert</li>
+<li>Adminhilfetexte aus Dokumentation in den Adminbereich verschoben</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>Exception in Analysetool bei inaktivem Modul vermieden</li>
+<li>Datenbankstruktur korrigiert, um Artikel kopieren zu ermöglichen</li>
+<li>Sidebar wird nur hinzugefügt, wenn Modul aktiv ist</li>
+<li>Query-Generierung bei Verwendung des oxtimestamp-Feldes als Sortierkriterium angepasst</li>
+<li>Klartext-Klassennamen zu Namespaces konvertiert</li>
+<li>Anforderungsdefinition angepasst</li>
+<li>doppelte TPL-Blocknamen aufgelöst</li>
+</ul>
+<hr />
+<h2 id="page_6-1-2-0-2018-08-30">6.1.2.0 (2018-08-30)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>installierbar in OXID Compilation 6.1</li>
+<li>critical CSS (above the fold) - Generierung und Implementierung</li>
+<li>Anzeigeformat der Filter ist einstellbar</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>erweitert nur existierende Klassen</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>#7384: Bug: Anzeige aller Attribute des Shops als Filter in Artikelliste</li>
+<li>#7471: falsche Preisspannen im Slider bei Eingabe von Nettopreisen</li>
+<li>Mehrfachauswahl der Filter war nur mit Attributfilteroption nutzbar</li>
+</ul>
+<hr />
+<h2 id="page_6-1-1-0-2018-02-20">6.1.1.0 (2018-02-20)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>installierbar in OXID eShop 6.1</li>
+<li>Query-Cache-Prüfung integriert</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Syntaxgenerierung der Datenbank-Queries optimiert</li>
+</ul>
+<h3 id="page_Fixed-2">Fixed</h3>
+<ul>
+<li>auf leeren Artikellistenseiten werden Filter nicht generiert</li>
+<li>Datenbank-Abfragen für CMS-Texte korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_6-1-0-0-2017-12-15">6.1.0.0 (2017-12-15)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Installation via Composer</li>
+<li>Neueinträge bei Synonymen verwenden die Admin-Anmeldesprache</li>
+</ul>
+<hr />
+<h2 id="page_6-0-0-0-2017-11-24"><a href="https://blog.oxidmodule.com/archives/676-Neues-Upgrade-fuer-Modul-Erweiterte-Suche-auf-Version-6.0.0.0.html" class="Link--external">6.0.0.0</a> (2017-11-24)</h2>
+<h3 id="page_Added-2">Added</h3>
+<ul>
+<li>Synonym-Wortgruppen werden auch bei Einzelwortsuche gefunden und als Einzelworte in die Suchparameter eingefügt</li>
+<li>Weiterleitungen sind für jeden Datentyp einzeln einstellbar</li>
+<li>Filter werden (sofern verfügbar) in der Sidebar angezeigt (flow-Theme)</li>
+<li>CSS-Generierung auf Less umgestellt, ermöglicht Erstellung individueller CSS-Dateien</li>
+</ul>
+<h3 id="page_Changed-2">Changed</h3>
+<ul>
+<li>Umarbeitung für OXID 6</li>
+<li>Layout der Suggest-Suche angepasst</li>
+</ul>
+<hr />
+<h2 id="page_5-6-4-2-2017-10-20"><a href="https://blog.oxidmodule.com/archives/665-Neuer-Patch-fuer-Modul-Erweiterte-Suche-auf-Version-5.6.4.2.html" class="Link--external">5.6.4.2</a> (2017-10-20)</h2>
+<ul>
+<li>Fehler beim Auftrennen kombinierter Suchbegriffe bei der Verwendung der &quot;Ähnlichkeitssuche für Kurzworte&quot; und Multibyte-Zeichen korrigiert</li>
+<li>leere Hersteller- und Lieferantenlisten korrigiert (#6617)</li>
+<li>fehlerhafte Artikellisten bei Artikellistenergänzung korrigiert (#6812)</li>
+</ul>
+<hr />
+<h2 id="page_5-6-4-1-2017-07-25">5.6.4.1 (2017-07-25)</h2>
+<ul>
+<li>fehlende Sortierung der Suchergebnisse korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_5-6-4-0-2017-07-10">5.6.4.0 (2017-07-10)</h2>
+<ul>
+<li>sinngleiche Suche wird auch bei Suche in Kategorienamen verwendet</li>
+<li>Synonym-Wortgruppen werden auch bei Einzelwortsuche gefunden und als Einzelworte in die Suchparameter eingefügt</li>
+<li>zusätzliche Templateblöcke für Filter integriert</li>
+<li>fehlende Template-Parameter ergänzt</li>
+<li>Preisschiebegregler für Nettopreise angepasst</li>
+<li>Attributfilterbereinigung optimiert</li>
+<li>Preisstepberechnung korigiert</li>
+<li>Mehrfachfilter werden in Artikellisten</li>
+<li>Bugfix: gewählte Mehrfachfilter werden in Artikellisten-Seiten zurückgegeben</li>
+</ul>
+<hr />
+<h2 id="page_5-6-3-0-2017-03-14"><a href="https://blog.oxidmodule.com/archives/644-Neues-Update-fuer-Modul-Erweiterte-Suche-auf-Version-5.6.3.0.html" class="Link--external">5.6.3.0</a> (2017-03-14)</h2>
+<ul>
+<li>isextsearch-Parameter wird nur bei verwendeter Filterung gesetzt</li>
+<li>mehrfache Kategoriefilter auch in Suchergebnissen verfügbar</li>
+<li>Support für Content-Einstellungen im Visual CMS-Modul (Version 1.0.0) (#6103)</li>
+<li>fehlenden Kategoriefilter in Artikellistenfilter nachgetragen</li>
+<li>Testlizenzen enthalten Artikellistenfilter</li>
+<li>kleine Fehler in der Query-Generierung korrigiert</li>
+<li>Exception bei deaktiviertem Modul korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_5-6-2-1-2016-10-21"><a href="https://blog.oxidmodule.com/archives/630-Neue-Version-fuer-Modul-Erweiterte-Suche-5.6.2.1.html" class="Link--external">5.6.2.1</a> (2016-10-21)</h2>
+<ul>
+<li>Locator auf der Detailansicht korrigiert, wenn Artikel aus direkter Anzeige einer 1-Treffer-Liste stammt (#5554)</li>
+<li>korrigiert: Mehrfachfilter wurden ausgeblendet, wenn Auswahl nur 1 Treffer enthielt (#5552)</li>
+<li>modulspezifische Theme-Mapping-Variablen eingefügt</li>
+</ul>
+<hr />
+<h2 id="page_5-6-2-0-2016-10-10">5.6.2.0 (2016-10-10)</h2>
+<ul>
+<li>verwendet Theme-Mapping</li>
+<li>Schnellsuche-Anfragen werden ebenfalls ins Log geschrieben</li>
+<li>.htaccess-Beschränkungen für Apache 2.4 angepasst</li>
+<li>gemeinsame Erweiterung der *list-Klassen aufgelöst</li>
+<li>Funktionsaufrufe für Ajax-Calls geändert</li>
+<li>als &quot;deprecated&quot; gekennzeichnete Methodenaufrufe ersetzt</li>
+<li>Scripts für passende Darstellung des Adminmenütitels im Browser angepasst</li>
+<li>fehlende Template-Erweiterungen für &quot;Flow&quot; nachgetragen</li>
+<li>fehlende Componenten-Klasse in oxwarticledetails-Widget ergänzt</li>
+<li>falschen Formularparameter korrigiert</li>
+<li>Bugfix für fehlerhafte Datenbankabfrage bei aktivierter Variantensuche</li>
+<li>undokumentierte Parameter im Handbuch nachgetragen</li>
+</ul>
+<hr />
+<h2 id="page_5-6-1-0-2016-08-10"><a href="https://blog.oxidmodule.com/archives/614-Neues-Update-fuer-Modul-Erweiterte-Suche-auf-Version-5.6.1.0.html" class="Link--external">5.6.1.0</a> (2016-08-10)</h2>
+<ul>
+<li>Kompatibilität mit OXID-eShop Version 4.10.x / 5.3.x hergestellt</li>
+<li>Template-Anpassungen für &quot;Flow&quot; eingefügt</li>
+</ul>
+<hr />
+<h2 id="page_5-6-0-1-2017-07-10">5.6.0.1 (2017-07-10)</h2>
+<hr />
+<h2 id="page_5-6-0-0-2016-06-27"><a href="https://blog.oxidmodule.com/archives/605-Neues-Update-fuer-Modul-Erweiterte-Suche-auf-Version-5.6.0.0.html" class="Link--external">5.6.0.0</a> (2016-06-27)</h2>
+<ul>
+<li>Marken- und Lieferantenfilter sind nun mehrfach wählbar</li>
+</ul>
+<hr />
+<h2 id="page_5-5-4-0-2016-03-14"><a href="https://blog.oxidmodule.com/archives/588-Neues-Update-fuer-Modul-Erweiterte-Suche-auf-Version-5.5.4.0.html" class="Link--external">5.5.4.0</a> (2016-03-14)</h2>
+<ul>
+<li>Filter für Preiskategorien eingefügt</li>
+<li>Artikellisten verwenden Sortierung der Zuordnungstabellen</li>
+<li>Artikelposition innerhalb der Detailseiten-Listennavigation angepasst</li>
+<li>Installation korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_5-5-3-1-2016-02-17"><a href="https://blog.oxidmodule.com/archives/578-Neuer-Patch-fuer-Modul-Erweiterte-Suche-auf-Version-5.5.3.1.html" class="Link--external">5.5.3.1</a> (2016-02-17)</h2>
+<ul>
+<li>Bugfix für fehlerhafte Datenbankabfrage bei Suche ohne definierte Sortierung</li>
+</ul>
+<hr />
+<h2 id="page_5-5-3-0-2016-02-16"><a href="https://blog.oxidmodule.com/archives/577-Neues-Update-fuer-Modul-Erweiterte-Suche-auf-Version-5.5.3.0.html" class="Link--external">5.5.3.0</a> (2016-02-16)</h2>
+<ul>
+<li>alternative Sortierung bei identischen Relevanzwerten einstellbar</li>
+<li>versteckte Kategorien werden in Attributfilter berücksichtigt</li>
+<li>Attributfilter speichert Auswahl sprachabhängig</li>
+<li>Direktsuche mit leerem Suchparameter korrigiert</li>
+<li>Suggestsuche bei aktiviertem EE-Backend-Cache korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_5-5-2-0-2016-01-21"><a href="https://blog.oxidmodule.com/archives/571-Neues-Update-fuer-Modul-Erweiterte-Suche-auf-Version-5.5.2.0.html" class="Link--external">5.5.2.0</a> (2016-01-21)</h2>
+<ul>
+<li>semantische Datenbank bereinigt</li>
+<li>semantische Suche verwendet gewählte Sprache zur Auswahl der Alternativbegriffe</li>
+<li>Datenbankabfragen optimiert</li>
+<li>modulspezifische Logging-Auswertung eingefügt</li>
+<li>statistische Auswertungen (ohne grafische Auswertung)auch für EE-Installationen verfügbar gemacht</li>
+<li>Handbuch überarbeitet</li>
+<li>Relevanz-Abfrage wird bei leerer Suchabfrage nicht erstellt</li>
+<li>4.7 / 5.0-Templates entfernt</li>
+<li>4.9 / 5.2-Templates eingefügt</li>
+<li>vermeide Überladung der Listennavigation bei deaktiviertem aList-Filter</li>
+<li>fehlende PageId in Response-Klasse nachgetragen</li>
+<li>fehlende Template-Blocks nachgetragen</li>
+<li>Hilfelinks korrigiert</li>
+<li>fehlerhafte BreadCrumb auf Artikeldetailseite bei Verwendung des aListFilters korrigiert</li>
+<li>selektive Funktion des Preisschiebereglers in Markenlisten korrigiert</li>
+<li>überlaufender Preisschieberegler bei identischer Selektion korrigiert</li>
+<li>leere Artikellisten bei 0-bis-0-Euro Preisselektion korrigiert</li>
+<li>unvollständige Listennavigation korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_5-5-1-1-2015-12-21"><a href="https://blog.oxidmodule.com/archives/565-Neuer-Patch-fuer-Modul-Erweiterte-Suche-auf-Version-5.5.1.1.html" class="Link--external">5.5.1.1</a> (2015-12-21)</h2>
+<ul>
+<li>RSS-Feed-Controller auf neue Filter angepasst</li>
+<li>vermeidet Warnungen bei unvollständig übergebenen Formularen</li>
+</ul>
+<hr />
+<h2 id="page_5-5-1-0-2015-12-14"><a href="https://blog.oxidmodule.com/archives/563-Neues-Update-fuer-Modul-Erweiterte-Suche-auf-Version-5.5.1.0.html" class="Link--external">5.5.1.0</a> (2015-12-14)</h2>
+<ul>
+<li>Preisschieberegler verwendet als Auswahl nur den Preisbereich gefundener Artikel</li>
+<li>Preisschieberegler behält initialen Preisbereich für Deselektion auch bei weiterer Einschränkung bei</li>
+<li>Preisfilter verwendet bei Varianten nicht deren 0-Euro-Preis, sondern den Preis der Elternartikel</li>
+<li>Semantic-Tabellen werden in automatischer Installation angelegt -&gt; Semantic auch ohne Lexikon nutzbar</li>
+<li>Synonym-Editor legt Neueinträge passend an</li>
+<li>semantische Begriffe werden optimaler gruppiert</li>
+<li>fehlende JavaScript-Variable bei Nichtanzeige des Preisschiebereglers korrigiert</li>
+<li>Fehlervermeidung bei inaktivem Modul</li>
+<li>Navigationsparamter korrigiert</li>
+<li>Groß-/Kleinschreibung in Synonym-Tabellen korrigiert</li>
+<li>Relevanz-Analyse-Popup ist vergrößerbar</li>
+</ul>
+<hr />
+<h2 id="page_5-5-0-1-2015-09-01">5.5.0.1 (2015-09-01)</h2>
+<ul>
+<li>optimierte Zeichensatzbehandlung innerhalb der Suggestsuche</li>
+<li>Artikellistenfilterung verwendet Schnellsortierung der Kategorien</li>
+<li>optionale Parameter der Suggest-Suchlinks deaktivierbar (config-Parameter)</li>
+<li>Fehler bei Extraktion der Log-Parameter in Statistik korrigiert</li>
+<li>vermeidet Warnungen bei unvollständig übergebenen Formularen</li>
+</ul>
+<hr />
+<h2 id="page_5-5-0-0-2015-08-27"><a href="https://blog.oxidmodule.com/archives/537-Neue-Versionen-5.5.0.0-und-5.5.0.1-fuer-Modul-Erweiterte-Suche.html" class="Link--external">5.5.0.0</a> (2015-08-27)</h2>
+<ul>
+<li>Filter können in Kategorie-, Hersteller- und Markenansicht genutzt werden</li>
+<li>bei Attributen können mehrere Filterwerte gewählt werden</li>
+<li>Filter-Löschen-Option eingefügt</li>
+<li>selektierte Attributsfilter werden intern gespeichert, keine Parameterübergabe nötig</li>
+<li>Erweiterbarkeit verbessert (TPL-Block, CSS)</li>
+<li>Mobile-Support auch für Shopversion 4.7 / 5.0</li>
+</ul>
+<hr />
+<h2 id="page_5-4-0-3-2015-08-27"><a href="https://blog.oxidmodule.com/archives/536-Neuer-Patch-fuer-Modul-Erweiterte-Suche-auf-Version-5.4.0.3.html" class="Link--external">5.4.0.3</a> (2015-08-27)</h2>
+<ul>
+<li>unvollständig zusammengeführte Templates ergänzt</li>
+</ul>
+<hr />
+<h2 id="page_5-4-0-2-2015-08-05"><a href="https://blog.oxidmodule.com/archives/534-Neuer-Patch-fuer-Modul-Erweiterte-Suche-auf-Version-5.4.0.2.html" class="Link--external">5.4.0.2</a> (2015-08-05)</h2>
+<ul>
+<li>fehlende Navigationsparameter für Startseite nachgetragen</li>
+<li>Sortierrichtung für Hersteller- und Lieferantenfilter korrigiert</li>
+<li>Inhaltssuche wird nur mit gesetztem Suchparameter ausgeführt</li>
+<li>ModCfg-Prüf-Blöcke korrigiert</li>
+<li>Datenbankabfrage für attributgefilterte Variantenliste korrigiert</li>
+<li>fehlendes getSortId() für ältere Shopversionen nachgetragen</li>
+</ul>
+<hr />
+<h2 id="page_5-4-0-1-2015-07-14"><a href="https://blog.oxidmodule.com/archives/524-Neuer-Patch-fuer-Modul-Erweiterte-Suche-auf-Version-5.4.0.1.html" class="Link--external">5.4.0.1</a> (2015-07-14)</h2>
+<ul>
+<li>Groß-/Kleinschreibung der Felder der semantischen Datenbank korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_5-4-0-0-2015-02-04"><a href="https://blog.oxidmodule.com/archives/499-Neues-Update-fuer-Modul-Erweiterte-Suche-auf-Version-5.4.0.0.html" class="Link--external">5.4.0.0</a> (2015-02-04)</h2>
+<ul>
+<li>Kategorien können von Verwendung in Suche ausgeschlossen werden</li>
+<li>zusätzlicher Phonetic-Generator für besseres Handling mit Vokalen integriert</li>
+<li>phonetischer Index optimiert</li>
+<li>JavaScript-Code auf bessere Kompatibilität angepasst</li>
+<li>Template der Schnellsuche ist über Template-Block erweiterbar</li>
+<li>kleine Fehler in Abfrage-Generierung behoben</li>
+</ul>
+<hr />
+<h2 id="page_5-3-0-0">5.3.0.0</h2>
+<ul>
+<li>Unterstützung für OXID Mobile Theme hinzugefügt</li>
+<li>Querygenerierung in Statistikanzeige korrigiert</li>
+<li>Kompatibilität für eShop 4.7.0 + 4.7.1 erweitert</li>
+</ul>
+<hr />
+<h2 id="page_5-2-1-0">5.2.1.0</h2>
+<ul>
+<li>Attributsortierung in Filtern ermöglicht</li>
+<li>Indexgenerierung prüft vorab auf konsistente oxarticle-oxartextends-Daten</li>
+<li>Hauptsynonyme sind nun auch löschbar</li>
+<li>&quot;Einfügungen und Auslassungen erlauben&quot; auch bei kurzen Suchbegriffen ermöglicht</li>
+<li>explizite Prüfung auf inaktiven Vaterartikel integriert</li>
+<li>kleinere Textkorrekturen und Logikfehler beseitigt</li>
+</ul>
+<hr />
+<h2 id="page_5-2-0-2">5.2.0.2</h2>
+<ul>
+<li>korrigiert: Abfragegenerierung ohne vorgegebene Artikelsortierung</li>
+<li>korrigiert: inaktives Modul erzeugt Fehler bzgl. mangelnder Ressourcen</li>
+</ul>
+<hr />
+<h2 id="page_5-2-0-1">5.2.0.1</h2>
+<ul>
+<li>Precheck aktualisiert</li>
+<li>für 4.7.0 + 4.7.1: fehlende getSortIdent-Methode eingefügt</li>
+<li>fehlende Tabellendefinition in Query nachgetragen</li>
+</ul>
+<hr />
+<h2 id="page_5-2-0-0">5.2.0.0</h2>
+<ul>
+<li>Wortrelevanz wird in Relevanzermittlung zusätzlich berücksichtigt</li>
+<li>Ähnlichkeitssuche berücksichtigt Mehrzahlformen auch bei kurzen Suchworten</li>
+</ul>
+<hr />
+<h2 id="page_5-1-1-1">5.1.1.1</h2>
+<ul>
+<li>fehlerhafte Datenbankabfrage bei Kombination von &quot;Variantensuche&quot; und Feldern in &quot;oxartextends&quot; korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_5-1-1-0">5.1.1.0</h2>
+<ul>
+<li>optionales Popup während des Suchvorgangs eingefügt</li>
+<li>DirectShow verwendet nur suchbare Artikel</li>
+<li>Kompatibilität zu OXID eShop 4.8 / 5.0 hergestellt</li>
+</ul>
+<hr />
+<h2 id="page_5-1-0-2">5.1.0.2</h2>
+<ul>
+<li>Datenbankabfragen korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_5-1-0-1">5.1.0.1</h2>
+<ul>
+<li>Phonetic-Generator tickerte falsch</li>
+<li>Semantic-Editor war aufgrund undefinierter Sortierung nicht aufrufbar</li>
+<li>fehlendes Template korrigiert</li>
+<li>Attributsortierung geändert</li>
+</ul>
+<hr />
+<h2 id="page_5-1-0-0">5.1.0.0</h2>
+<ul>
+<li>Attribute können mehrfach gefiltert werden</li>
+<li>nicht zu Attributen zugeordnete Artikel können gefiltert werden</li>
+<li>Templates wurden für einfachere Erweiterung mit Blöcken ausgerüstet</li>
+<li>kleinere Bugfixes</li>
+</ul>
+<hr />
+<h2 id="page_5-0-0-1">5.0.0.1</h2>
+<ul>
+<li>Query für Attributlisten korrigiert</li>
+<li>Smarty-Variable in Schnellsuche ergänzt</li>
+<li>nicht ausführbarer Debug-Modus unter mySQL 5.5 korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_5-0-0-0">5.0.0.0</h2>
+<ul>
+<li>Performanceoptimierung bei großen Suchergebnislisten</li>
+<li>Optimierung auf Cluster</li>
+<li>Statistikauswertungen erweitert</li>
+<li>Suchsyntax optimiert</li>
+</ul>
+<hr />
+<h2 id="page_4-0-2-0">4.0.2.0</h2>
+<ul>
+<li>eigene Suchformularfelder suchen nun auch in Bereich (von / bis-Suche)</li>
+<li>kleiner Fehler bei der Verarbeitung der eigenen Suchformularfelder beseitigt</li>
+</ul>
+<hr />
+<h2 id="page_4-0-1-1">4.0.1.1</h2>
+<ul>
+<li>OXID-Bug in Artikelsortierung behoben</li>
+</ul>
+<hr />
+<h2 id="page_4-0-1-0">4.0.1.0</h2>
+<ul>
+<li>automatische Installation korrigiert</li>
+<li>Suchparameter bei Direktanzeige korrigiert</li>
+<li>zusätzliche Modul-Aktiv-Prüfungen integriert</li>
+<li>Treffer in Suggest-List zeigt auf Shopmandant</li>
+<li>&quot;einfügen/auslassen&quot;-Abfrage korrigiert</li>
+<li>Erweiterbarkeit verbessert</li>
+<li>Similar-Light-Suche korrigiert</li>
+<li>Ergebnis-Feld-Analyse eingefügt</li>
+<li>fehlerhafte Suchbegriff-Verknüpfung korrigiert</li>
+<li>fehlerhafte Hersteller-Relevanz korrigiert</li>
+</ul>
+<hr />
+<h2 id="page_4-0-0-1">4.0.0.1</h2>
+<ul>
+<li>Korrektur auf neue SQL-Query-Syntax</li>
+</ul>
+<hr />
+<h2 id="page_4-0-0-0">4.0.0.0</h2>
+<ul>
+<li>Umsetzung in neuer Dateistruktur des OXID 4.7 (PE) / 5.0 (EE)</li>
+</ul>
+<hr />
+<h2 id="page_3-12-1">3.12.1</h2>
+<ul>
+<li>geänderte Logik für OXID 4.6.4: Navigationslinks der Suchergebnisseite enthielten unzureichende Parameter</li>
+</ul>
+<hr />
+<h2 id="page_3-12-0">3.12.0</h2>
+<ul>
+<li>bei gruppierten Variantenartikeln wird Kategoriefilter vom Vaterartikel generiert</li>
+<li>bei gruppierten Variantenartikeln wird Preisfilter von ungruppierten Varianten generiert,
+Anzahl wird auf Grund differierender Treffermengen am Filter ausgeblendet</li>
+<li>Eingabe des Markennamens im Suchfeld findet Markenartikel (analog Kategorienamen, auch für Lieferanten)</li>
+<li>Schnellsuche findet auch Contents, Marken, Lieferanten und Kategorien</li>
+<li>Artikel der Schnellsuche sind nach Relevanz sortiert</li>
+<li>Direktsuche findet auch Marken und Lieferanten</li>
+<li>Fehler in Ermittlung der phonetischen Länge des Suchbegriffs gefixt</li>
+<li>alte DB-Feldbezeichnungen im Semantic-Editor verhindert Speicherung -&gt; behoben</li>
+<li>Existenzprüfung &quot;getSortingSql&quot; integriert</li>
+<li>getDb()-Syntax-Änderungen aus 4.6.0 eingefügt</li>
+<li>Semantic prüft auch auf leeres Term-Level (nicht nur NULL)</li>
+<li>Templates bis Shopversion 4.6.X</li>
+</ul>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../index.html">Zurück</a></li>            <li class=Pager--next><a href="../editions/Editionen.html">Weiter</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- JS -->
+<script src="../themes/d3/js/jquery-1.11.3.min.js"></script><script src="../themes/d3/js/highlight.pack.js"></script><script src="../themes/d3/js/daux.js"></script><script src="../themes/d3/js/fontawesome-all.js"></script>
+    <!-- Tipue Search -->
+    <script type="text/javascript" src="../tipuesearch/tipuesearch.js"></script>
+
+    <script>
+        window.onunload = function(){}; // force $(document).ready to be called on back/forward navigation in firefox
+        $(function() {
+            tipuesearch({
+                'base_url': '../'
+            });
+        });
+    </script>
+
+</body>
+</html>

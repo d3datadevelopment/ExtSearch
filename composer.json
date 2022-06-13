@@ -1,0 +1,50 @@
+{
+  "name": "d3/extsearch",
+  "description": "Extended search module for OXID eShop.",
+  "type": "oxideshop-module",
+  "keywords": [
+    "oxid",
+    "modules",
+    "eShop",
+    "d3",
+    "search"
+  ],
+  "authors": [
+    {
+        "name": "D3 Data Development (Inh. Thomas Dartsch)",
+        "email": "info@shopmodule.com",
+        "homepage": "https://www.d3data.de",
+        "role": "Owner"
+    }
+  ],
+  "support": {
+    "email": "support@shopmodule.com"
+  },
+  "homepage": "https://www.oxidmodule.com/",
+  "license": [
+    "proprietary"
+  ],
+  "suggest": {
+    "oxid-projects/statistics-module": "allows the graphical evaluation of statistics"
+  },
+  "extra": {
+    "oxideshop": {
+      "source-directory": "/src",
+      "target-directory": "d3/extsearch"
+    }
+  },
+  "require": {
+    "php": "^8.0",
+    "ext-sourceguardian": "*",
+    "oxid-esales/oxideshop-ce": "6.8 - 6.10",
+    "d3/modcfg": "^6.0",
+    "d3/oxid-sql-logger": "^1.2.2",
+    "splitbrain/php-cli": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "D3\\Extsearch\\": "../../../source/modules/d3/extsearch"
+    }
+  },
+  "bin": ["src/bin/d3_extsearch_cron"]
+}

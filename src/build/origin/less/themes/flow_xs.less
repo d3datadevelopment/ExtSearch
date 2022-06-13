@@ -1,0 +1,55 @@
+body {
+    .d3_extsearch_navigation {
+        &.d3theme_@{d3_class_themeid} {
+            &.d3sidebar {
+                #d3searchfilterform .item {
+                    .make-xs-column(@grid-columns);
+                }
+            }
+        }
+        .list {
+            .item {
+                > label {
+                    font-size: 16px;
+                }
+                .filterselector,
+                .multiselectvalue {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                    margin: 0 4px 4px 0;
+
+                    label {
+                        margin-bottom: 0;
+                    }
+                }
+                .filterselector {
+                    margin: 4px 0;
+                }
+                input[type="checkbox"] {
+                    margin: 1px 4px 0 0;
+                    line-height: normal;
+                }
+            }
+        }
+    }
+
+    &.cl-alist,
+    &.cl-manufacturerlist,
+    &.cl-vendorlist {
+        #sidebar {
+            .box {
+                display: none !important;
+
+                &.d3sidebar {
+                    display: block !important;
+
+                    .box {
+                        display: block !important;
+                    }
+                }
+            }
+        }
+    }
+}

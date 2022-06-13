@@ -1,0 +1,22 @@
+body {
+    &.cl-search,
+    &.cl-alist,
+    &.cl-manufacturerlist,
+    &.cl-vendorlist {
+        .list-container {
+            .productData {
+                .row {
+                    > div {
+                        /* reset md viewport fix, set product box alignment to side */
+                        &.col-md-5 {
+                            .make-md-column((@grid-columns / 12) * 5);
+                        }
+                        &.col-md-7 {
+                            .make-md-column((@grid-columns / 12) * 7);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
