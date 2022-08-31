@@ -405,6 +405,7 @@
                                         <select id="orderAttributeList" class="editinput" name="value[sExtSearch_orderAttributeList]" size="1">
                                             <option value="counter"[{if $edit->getEditValue('sExtSearch_orderAttributeList') == 'counter'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_COUNT"}]</option>
                                             <option value="oxpos"[{if $edit->getEditValue('sExtSearch_orderAttributeList') == 'oxpos'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_POS"}]</option>
+                                            <option value="title"[{if $edit->getEditValue('sExtSearch_orderAttributeList') == 'title'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_TITLE"}]</option>
                                         </select>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_DESC"}]
                                     </dd>

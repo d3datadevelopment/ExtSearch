@@ -2,6 +2,25 @@
 title: Changelog
 ---
 
+## 7.1.1.0 (2022-08-30)
+### Added
+- installierbar in OXID 6.5.x (CE 6.12)
+- Attributwerte können nach Titel sortiert werden
+
+### Changed
+- Tests angepasst
+- Erweiterbarkeit der Abfragen für Lieferanten- und Hersteller optimiert
+- Abfragen optimiert
+
+### Fixed
+- fehlende Berücksichtigung der eingestellten Sortierung in den Suchergebnissen korrigiert
+- Anzahl der Artikelboxen pro Zeile korrigiert, wenn keine Sidebar angezeigt wird
+- nicht funktionierender Absendelink in Suggestsuche korrigiert (Wave-Theme)
+- fehlende Sortierreihenfolge bei deaktiviertem Modul korrigiert
+- Artikelsortierung korrigiert
+
+---
+
 ## 7.1.0.0 (2022-04-29)
 ### Added
 - zusätzliche Templateblöcke zur einfacheren Erweiterbarkeit eingefügt

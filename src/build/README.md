@@ -7,7 +7,7 @@ install ``grunt`` and run ``grunt's`` default task to regenerate all minimized
 
 1. To use `grunt`, `npm` is required. Check ``nodejs`` website for 
    installation instructions (https://nodejs.org/en/download/package-manager/). 
-   Please make sure you have the latest version of `npm` installed. 
+   Please make sure you have the LTS version of `npm` installed. 
    After this, install ``grunt`` globally. 
 
 2. Go to "build" directory and install all related `grunt` plugins:

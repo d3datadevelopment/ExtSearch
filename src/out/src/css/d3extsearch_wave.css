@@ -431,8 +431,12 @@ body.cl-search .d3_extsearch_navigation.d3theme_wave.baseframe div.content.list 
     max-width: 100%; }
   body.cl-search .content .col.text-right, body.cl-alist .content .col.text-right, body.cl-manufacturerlist .content .col.text-right, body.cl-vendorlist .content .col.text-right {
     flex-grow: 1.4; }
-  body.cl-search .list-container .row .productData.col-md-4, body.cl-alist .list-container .row .productData.col-md-4, body.cl-manufacturerlist .list-container .row .productData.col-md-4, body.cl-vendorlist .list-container .row .productData.col-md-4 {
-    /* fix three columned product boxes to two columned */
+  body.cl-search .sidebarleft .list-container .row .productData.col-md-4,
+  body.cl-search .sidebarright .list-container .row .productData.col-md-4, body.cl-alist .sidebarleft .list-container .row .productData.col-md-4,
+  body.cl-alist .sidebarright .list-container .row .productData.col-md-4, body.cl-manufacturerlist .sidebarleft .list-container .row .productData.col-md-4,
+  body.cl-manufacturerlist .sidebarright .list-container .row .productData.col-md-4, body.cl-vendorlist .sidebarleft .list-container .row .productData.col-md-4,
+  body.cl-vendorlist .sidebarright .list-container .row .productData.col-md-4 {
+    /* fix three columned product boxes to two columned if sidebar is displayed */
     flex: 0 0 50%;
     max-width: 50%; } }
 

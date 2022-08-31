@@ -9,7 +9,7 @@
         [{/strip}][{/capture}]
 
         [{capture assign="replace"}][{strip}]
-            name="search" id="search" onSubmit="d3_extsearch_popup.popup.load();" autocomplete="off" spellcheck="false"
+            name="search" id="searchForm" onSubmit="d3_extsearch_popup.popup.load();" autocomplete="off" spellcheck="false"
         [{/strip}][{/capture}]
 
         [{$content|replace:$search:$replace}]
