@@ -299,7 +299,7 @@ class d3_extsearch_cron extends CLI
             $this->parseOptions();
             $this->handleDefaultOptions();
             $this->setupLogging();
-            $this->checkArgments();
+            $this->checkArguments();
             $this->execute();
         }
     }

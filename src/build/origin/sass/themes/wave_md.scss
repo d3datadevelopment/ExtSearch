@@ -72,11 +72,14 @@
                 }
             }
 
-            .list-container {
-                .row {
-                    .productData.col-md-4 {
-                        /* fix three columned product boxes to two columned */
-                        @include make-col($grid-columns * 0.5)
+            .sidebarleft,
+            .sidebarright {
+                .list-container {
+                    .row {
+                        .productData.col-md-4 {
+                            /* fix three columned product boxes to two columned if sidebar is displayed */
+                            @include make-col($grid-columns * 0.5)
+                        }
                     }
                 }
             }

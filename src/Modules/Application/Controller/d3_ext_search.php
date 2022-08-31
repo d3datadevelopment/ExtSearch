@@ -1056,6 +1056,10 @@ class d3_ext_search extends d3_ext_search_parent
      */
     public function getSorting($sCnid)
     {
+        if (false === $this->d3GetSet()->isActive()) {
+            return parent::getSorting($sCnid);
+        }
+
         $aSorting = parent::getSorting($sCnid) ?: [];
 
         if ($this->d3GetSet()->isActive()

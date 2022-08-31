@@ -34,7 +34,7 @@ $( function() {
             sWaitMessage: "",
             sParentThemeId: "flow",
             sRequestUrl: null,
-            sSearchFormId: "search",
+            sSearchFormId: "searchForm",
             sCloseBtnId: "d3extsearch_suggest_closebtn",
             sResultListId: "#searchItemList",
             sResultItemClass: ".d3QSItem",

@@ -233,6 +233,7 @@ $aLang = array(
     'D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT'            => 'attribute values sort by',
     'D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_COUNT'      => 'count of related articles',
     'D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_POS'        => 'adjustable attribute list position',
+    'D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_TITLE'      => 'attribute value title',
     'D3_EXTSEARCH_NAVI_ATTRIBUTELIST_SORT_DESC'       => 'Here you define the order of the displayed attribute values. <br> <br> The attribute list position can be stored in the database. Unfortunately, the OXID shop does not offer a standard way to change these values in the backend.',
     'D3_EXTSEARCH_NAVI_NOATTRIBUTEARTS'               => 'allow filter for articles, wich aren\'t assigned to this attribute',
     'D3_EXTSEARCH_NAVI_NOATTRIBUTEARTS_DESC'          => 'With this option, the attribute filters offer the option of filtering for items that are e.g. expressly assigned to no color or material.',

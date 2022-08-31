@@ -25,6 +25,7 @@
     "proprietary"
   ],
   "suggest": {
+    "d3/prg-redirects": "prevents unwanted reloading of filtered results when using the Browsers Back function, improves the user experience",
     "oxid-projects/statistics-module": "allows the graphical evaluation of statistics"
   },
   "extra": {
@@ -36,10 +37,10 @@
   "require": {
     "php": "^8.0",
     "ext-sourceguardian": "*",
-    "oxid-esales/oxideshop-ce": "6.8 - 6.10",
+    "oxid-esales/oxideshop-ce": "6.8 - 6.12",
     "d3/modcfg": "^6.0",
     "d3/oxid-sql-logger": "^1.2.2",
-    "splitbrain/php-cli": "^1.1"
+    "splitbrain/php-cli": "^1.2.0"
   },
   "autoload": {
     "psr-4": {
