@@ -33,7 +33,7 @@ use ProudSourcing\psCache\Core\CacheCore;
 /**
  * Metadata version
  */
-$sMetadataVersion = '2.0';
+$sMetadataVersion = '2.1';
 $sLogo = '<img src="https://logos.oxidmodule.com/d3logo.svg" alt="(D3)" style="height:1em;width:1em"> ';
 
 $sModuleId = 'd3_extsearch';
@@ -52,7 +52,7 @@ $aModule = [
         'en' => 'Provides error-tolerant search and other filter options. Please always activate the module entries and control the module activity exclusively in the admin area of the module.',
     ],
     'thumbnail'   => 'picture.png',
-    'version'     => '7.1.1.0',
+    'version'     => '7.1.3.0',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'http://www.oxidmodule.com/',
@@ -298,16 +298,28 @@ $aModule = [
     ]
 ];
 
-if (class_exists(VisualCmsAdmin::class)) {
-    $aModule['extend'][VisualCmsAdmin::class] = ModuleExtControllerAdmin\d3_ddoevisualcmsadmin_extsearch::class;
-}
+// is not in OXID Composer copy to source process
+if (!in_array(
+    1,
+    array_map(
+        function ($traceStep) {
+            return isset($traceStep['class']) 
+                && $traceStep['class'] === \OxidEsales\ComposerPlugin\Installer\Package\ModulePackageInstaller::class;
+        },
+        debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
+    )
+)) {
+    if ( class_exists( VisualCmsAdmin::class ) ) {
+        $aModule['extend'][ VisualCmsAdmin::class ] = ModuleExtControllerAdmin\d3_ddoevisualcmsadmin_extsearch::class;
+    }
 
-if (class_exists(OeStatistics_Report_Base::class)) {
-    $aModule['controllers']['d3_extsearch_report_base']         = ModuleControllerAdmin\Reports\d3_extsearch_report_base::class;
-    $aModule['controllers']['d3_extsearch_report_hitless']      = ModuleControllerAdmin\Reports\d3_extsearch_report_hitless::class;
-    $aModule['controllers']['d3_extsearch_report_mostsearches'] = ModuleControllerAdmin\Reports\d3_extsearch_report_mostsearches::class;
-}
+    if ( class_exists( OeStatistics_Report_Base::class ) ) {
+        $aModule['controllers']['d3_extsearch_report_base']         = ModuleControllerAdmin\Reports\d3_extsearch_report_base::class;
+        $aModule['controllers']['d3_extsearch_report_hitless']      = ModuleControllerAdmin\Reports\d3_extsearch_report_hitless::class;
+        $aModule['controllers']['d3_extsearch_report_mostsearches'] = ModuleControllerAdmin\Reports\d3_extsearch_report_mostsearches::class;
+    }
 
-if (class_exists(CacheCore::class)) {
-    $aModule['extend'][CacheCore::class]    = d3_CacheCore_extsearch::class;
+    if ( class_exists( CacheCore::class ) ) {
+        $aModule['extend'][ CacheCore::class ] = d3_CacheCore_extsearch::class;
+    }
 }

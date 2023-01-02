@@ -30,9 +30,13 @@ Mit Hilfe der zusätzlichen Formularfelder können Sie nun in das Template `modu
   <option value="BETWEEN_36_AND_40_" [{if $aD3SearchIs.myShoeSize == " BETWEEN_36_AND_40_"}]selected[{/if}]> von Größe 36 bis 40 </option>
   <option value="BETWEEN_41_AND__" [{if $aD3SearchIs.myShoeSize == " BETWEEN_41_AND__"}]selected[{/if}]> ab Größe 41 </option>
 </select>
-```
 
-Im Quelltext sind wichtige Stellen farbig markiert:
+<input type="hidden" name="d3searchbitset[bitfield][]" value="">
+<input type="checkbox" name="d3searchbitset[bitfield][]" value="1" [{if $aD3SearchBitSet.bitfield && '1'|in_array:$aD3SearchBitSet.bitfield}]checked[{/if}]>1<br>
+<input type="checkbox" name="d3searchbitset[bitfield][]" value="2" [{if $aD3SearchBitSet.bitfield && '2'|in_array:$aD3SearchBitSet.bitfield}]checked[{/if}]>2<br>
+<input type="checkbox" name="d3searchbitset[bitfield][]" value="4" [{if $aD3SearchBitSet.bitfield && '4'|in_array:$aD3SearchBitSet.bitfield}]checked[{/if}]>4<br>
+<input type="checkbox" name="d3searchbitset[bitfield][]" value="8" [{if $aD3SearchBitSet.bitfield && '8'|in_array:$aD3SearchBitSet.bitfield}]checked[{/if}]>8<br>
+```
 
 ### d3searchlike
 
@@ -53,6 +57,7 @@ Die beiden Werte sind optional, einer der beiden Werte muss jedoch zwingend ange
 - `BETWEEN_21_AND__` - Alle Werte ab einschließlich 21 werden gefunden
 
 Statt Ganzzahlen können Sie auch Dezimalzahlen angeben. Die Schreibweise muss jedoch den Datenbankwerten entsprechen.
+- d3searchbitset: Der vom Feld übergebene Ganzzahlwert muss einem im Feld gesetzten Bitwert entsprechen. Ist das Bit nicht gesetzt, wird der Artikel ausgefiltert.
 
 Ein Beispiel für die verwendete Syntax finden Sie weiter oben und in den beiliegenden Modultemplates.
 

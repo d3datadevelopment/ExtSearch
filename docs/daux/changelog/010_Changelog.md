@@ -2,7 +2,35 @@
 title: Changelog
 ---
 
-## 7.1.1.0 (2022-08-30)
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/7.1.3.0...rel_7.x)
+
+## [7.1.3.0](https://git.d3data.de/D3Private/Extsearch/compare/7.1.2.0...7.1.3.0) - 2023-01-02
+### Added
+- installierbar in OXID 6.5.1 (CE 6.13)
+
+### Changed
+- verhindert Autoload Fehler beim Composer Kopierprozess
+- Changelog optimiert
+
+## [7.1.2.0](https://git.d3data.de/D3Private/Extsearch/compare/7.1.1.0...7.1.2.0) - 2022-09-26
+### Added
+- eigene Suchfelder können auch nach gesetzten Bitwerten suchen
+
+### Changed
+- Mehrfachwerte in eigenen Suchfeldern werden mit AND oder OR entsprechend der Shopeinstellung verknüpft
+
+### Fixed
+- fehlerhafte Zugriffseinschränkungen für JS und CSS Dateien korrigiert
+- Ursachen für Warnungsmeldungen korrigiert
+- ungültige Datenbankabfragen korrigiert
+
+## [7.1.1.0](https://git.d3data.de/D3Private/Extsearch/compare/7.1.0.0...7.1.1.0) - 2022-08-30
 ### Added
 - installierbar in OXID 6.5.x (CE 6.12)
 - Attributwerte können nach Titel sortiert werden
@@ -19,9 +47,7 @@ title: Changelog
 - fehlende Sortierreihenfolge bei deaktiviertem Modul korrigiert
 - Artikelsortierung korrigiert
 
----
-
-## 7.1.0.0 (2022-04-29)
+## [7.1.0.0](https://git.d3data.de/D3Private/Extsearch/compare/7.0.1.0...7.1.0.0) - 2022-04-29
 ### Added
 - zusätzliche Templateblöcke zur einfacheren Erweiterbarkeit eingefügt
 - zusätzliche CSS-Defintionen zur einfacheren Formatierbarkeit eingefügt
@@ -34,9 +60,7 @@ title: Changelog
 - Reihenfolge der wählbaren und der "nicht sicher wählbaren" Attribute angepasst
 - "nicht zugeordnet"-Filter sind auswählbar
 
----
-
-## 7.0.1.0 (2022-03-03)
+## [7.0.1.0](https://git.d3data.de/D3Private/Extsearch/compare/7.0.0.0...7.0.1.0) - 2022-03-03
 ### Added
 - Schnellsuche startet Abfrage erst nach 3 Buchstaben (Anzahl ist konfigurierbar)
 - Attribut-zu-Objekt-Einträge werden automatisch gelöscht, wenn Attribut oder Objekt selbst gelöscht wird
@@ -58,9 +82,7 @@ title: Changelog
 - Filter können bei Variantensuche in Kategorien angewandt werden
 - falsche Artikelanzahl in gefilterten Kategorien korrigiert
 
----
-
-## 7.0.0.0 (2021-04-30)
+## [7.0.0.0](https://git.d3data.de/D3Private/Extsearch/compare/6.6.2.0...7.0.0.0) - 2021-04-30
 ### Added
 - installierbar in OXID 6.3
 
