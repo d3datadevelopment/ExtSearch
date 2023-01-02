@@ -74,6 +74,7 @@ $aModule = array(
         'd3/extsearch/Application/Model/d3extsearch_attribute2object.php',
         'd3/extsearch/Application/Model/Filters/d3Filter.php',
         'd3/extsearch/Application/Model/Filters/d3FieldIsFilter.php',
+        'd3/extsearch/Application/Model/Filters/d3FieldBitSetFilter.php',
         'd3/extsearch/Application/Model/Filters/d3VendorFilter.php',
         'd3/extsearch/Application/Model/Filters/d3FilterList.php',
         'd3/extsearch/Application/Model/Filters/d3IndexFilter.php',

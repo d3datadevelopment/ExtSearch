@@ -17,6 +17,7 @@ namespace D3\Extsearch\Modules\Application\Controller;
 
 use D3\Extsearch\Application\Model\Filters\d3AttributeFilter;
 use D3\Extsearch\Application\Model\Filters\d3CategoryFilter;
+use D3\Extsearch\Application\Model\Filters\d3FieldBitSetFilter;
 use D3\Extsearch\Application\Model\Filters\d3FieldIsFilter;
 use D3\Extsearch\Application\Model\Filters\d3FieldLikeFilter;
 use D3\Extsearch\Application\Model\Filters\d3IndexFilter;
@@ -1671,6 +1672,17 @@ class d3_ext_search extends d3_ext_search_parent
     public function d3getFieldLikeFilter()
     {
         return $this->d3GetXListController()->d3GetOwnSearchHandler()->getFilterList()->getFieldLikeFilter();
+    }
+
+    /**
+     * @return d3FieldBitSetFilter
+     * @throws DBALException
+     * @throws DatabaseConnectionException
+     * @throws DatabaseErrorException
+     */
+    public function d3getFieldBitsetFilter()
+    {
+        return $this->d3GetXListController()->d3GetOwnSearchHandler()->getFilterList()->getFieldBitsetFilter();
     }
 
     /**

@@ -42,6 +42,12 @@
                 <option value="BETWEEN_3_AND_8.7_" [{if $aD3SearchIs.oxprice == 'BETWEEN_3_AND_8.7_'}] selected[{/if}]>von 3,00 bis 8,70</option>
                 <option value="BETWEEN_8.71_AND__" [{if $aD3SearchIs.oxprice == 'BETWEEN_8.71_AND__'}] selected[{/if}]>ab 8,71</option>
             </select><br>
+            [{oxmultilang ident="D3_CUSTOMFIELDTEXT_BITSET"}]
+            <input type="hidden" name="d3searchbitset[bitfield][]" value="">
+            <input type="checkbox" name="d3searchbitset[bitfield][]" value="1" [{if $aD3SearchBitSet.bitfield && '1'|in_array:$aD3SearchBitSet.bitfield}]checked[{/if}] onchange="d3_extsearch_popup.popup.load(); this.form.submit();"> 1<br>
+            <input type="checkbox" name="d3searchbitset[bitfield][]" value="2" [{if $aD3SearchBitSet.bitfield && '2'|in_array:$aD3SearchBitSet.bitfield}]checked[{/if}] onchange="d3_extsearch_popup.popup.load(); this.form.submit();"> 2<br>
+            <input type="checkbox" name="d3searchbitset[bitfield][]" value="4" [{if $aD3SearchBitSet.bitfield && '4'|in_array:$aD3SearchBitSet.bitfield}]checked[{/if}] onchange="d3_extsearch_popup.popup.load(); this.form.submit();"> 4<br>
+            <input type="checkbox" name="d3searchbitset[bitfield][]" value="8" [{if $aD3SearchBitSet.bitfield && '8'|in_array:$aD3SearchBitSet.bitfield}]checked[{/if}] onchange="d3_extsearch_popup.popup.load(); this.form.submit();"> 8<br>
         [{/block}]
     [{/if}]
 [{else}]

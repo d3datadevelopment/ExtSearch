@@ -314,6 +314,7 @@ $aLang = array(
     'D3_EXTSEARCH_STAT_TYPES_MANUFACTURER'            => 'brand',
     'D3_EXTSEARCH_STAT_TYPES_OWNLIKE'                 => 'own search field (LIKE)',
     'D3_EXTSEARCH_STAT_TYPES_OWNIS'                   => 'own search field (IS)',
+    'D3_EXTSEARCH_STAT_TYPES_OWNBITSET'               => 'own search field (BITSET)',
     'D3_EXTSEARCH_STAT_TYPES_OWNVALUE'                => '%s => "%s"',
     'D3_EXTSEARCH_STAT_TYPES_ATTRIBUTE'               => 'attributes',
     'D3_EXTSEARCH_STAT_TYPES_INDEXLETTER'             => 'index letter',
