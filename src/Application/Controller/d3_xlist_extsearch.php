@@ -517,6 +517,8 @@ class d3_xlist_extsearch
                 }
             }
 
+            $sRet = in_array($sRet, ['&amp;', '&']) ? '' : $sRet;
+
             if (false == strstr($sBase, $sSeparator.'isextsearch=')
                 && (strlen($sRet) || $this->d3GetOwnSearchHandler()->getFilterList()->getAttributeFilter()->d3HasAttributeValues())
             ) {
