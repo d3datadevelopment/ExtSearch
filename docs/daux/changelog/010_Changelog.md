@@ -8,7 +8,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/7.1.3.0...rel_7.x)
+## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/7.1.5.0...rel_7.x)
+
+## [7.1.5.0](https://git.d3data.de/D3Private/Extsearch/compare/7.1.4.0...7.1.5.0) - 2023-05-16
+### Changed
+- verhindert isExtsearch URL Parameter in Abfragen ohne gesetzten Filter
+
+## [7.1.4.0](https://git.d3data.de/D3Private/Extsearch/compare/7.1.3.0...7.1.4.0) - 2023-04-06
+### Added
+- installierbar in OXID 6.5.2 (CE 6.14)
 
 ## [7.1.3.0](https://git.d3data.de/D3Private/Extsearch/compare/7.1.2.0...7.1.3.0) - 2023-01-02
 ### Added

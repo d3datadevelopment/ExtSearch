@@ -856,6 +856,8 @@ class d3_ext_search extends d3_ext_search_parent
                 $sURLAdd .= $oFilter->getNavigationParameterString();
             }
 
+            $sURLAdd = in_array($sURLAdd, ['&amp;', '&']) ? '' : $sURLAdd;
+
             if ((strlen($sURLAdd) || $this->d3getAttributeFilter()->d3HasAttributeValues()) &&
                 false == strstr($sURL, 'isextsearch=') &&
                 ($sExtSearchFlag = Registry::get(Request::class)->getRequestEscapedParameter('isextsearch'))
