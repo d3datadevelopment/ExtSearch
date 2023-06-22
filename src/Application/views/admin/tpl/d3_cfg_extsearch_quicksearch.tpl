@@ -87,7 +87,7 @@
 
     [{if $oView->getValueStatus() == 'error'}]
         <b>[{oxmultilang ident="D3_EXTSEARCH_MAIN_NOCONFIG_DESC"}]</b><br>
-        <input type="submit" value="[{oxmultilang ident="D3_EXTSEARCH_MAIN_NOCONFIG_BTN"}]">
+        <input type="submit" value="[{oxmultilang ident="D3_EXTSEARCH_MAIN_NOCONFIG_BTN"}]" [{$readonly}]>
     [{else}]
         <table style="border: 0; width: 98%;">
             <tr>
@@ -108,7 +108,7 @@
                                         </dt>
                                         <dd>
                                             <input type="hidden" name="value[blExtSearch_enableAjaxSearch]" value="0">
-                                            <input id="enableAjaxSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_enableAjaxSearch]" value='1' [{if $edit->getEditValue('blExtSearch_enableAjaxSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_enableAjaxSearch" sToggleOptionClass=".suggest_options"}]'>
+                                            <input id="enableAjaxSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_enableAjaxSearch]" value='1' [{if $edit->getEditValue('blExtSearch_enableAjaxSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_enableAjaxSearch" sToggleOptionClass=".suggest_options"}]' [{$readonly}]>
                                             [{oxinputhelp ident="D3_EXTSEARCH_QUICK_ACTIVE_DESC"}]
                                         </dd>
                                         <dd class="spacer"></dd>
@@ -119,7 +119,7 @@
                                         </dt>
                                         <dd>
                                             <input type="hidden" name="value[blExtSearch_ajaxSearchLoadFullObjects]" value="0">
-                                            <input id="ajaxSearchLoadFullObjects" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_ajaxSearchLoadFullObjects]" value='1' [{if $edit->getEditValue('blExtSearch_ajaxSearchLoadFullObjects') == 1}]checked[{/if}]>
+                                            <input id="ajaxSearchLoadFullObjects" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_ajaxSearchLoadFullObjects]" value='1' [{if $edit->getEditValue('blExtSearch_ajaxSearchLoadFullObjects') == 1}]checked[{/if}] [{$readonly}]>
                                             [{oxinputhelp ident="D3_EXTSEARCH_QUICK_FULLOBJECTS_DESC"}]
                                         </dd>
                                         <dd class="spacer"></dd>
@@ -129,7 +129,7 @@
                                             <label for="QuickSearchMaxArticles">[{oxmultilang ident="D3_EXTSEARCH_QUICK_COUNT"}]</label>
                                         </dt>
                                         <dd>
-                                            <input id="QuickSearchMaxArticles" size="6" maxlength="5" class="edittext ext_edittext" type="text" name="value[sExtSearch_QuickSearchMaxArticles]" value="[{if $edit->getEditValue('sExtSearch_QuickSearchMaxArticles')}][{$edit->getEditValue('sExtSearch_QuickSearchMaxArticles')}][{else}]200[{/if}]">
+                                            <input id="QuickSearchMaxArticles" size="6" maxlength="5" class="edittext ext_edittext" type="text" name="value[sExtSearch_QuickSearchMaxArticles]" value="[{if $edit->getEditValue('sExtSearch_QuickSearchMaxArticles')}][{$edit->getEditValue('sExtSearch_QuickSearchMaxArticles')}][{else}]200[{/if}]" [{$readonly}]>
                                             [{oxinputhelp ident="D3_EXTSEARCH_QUICK_COUNT_DESC"}]
                                         </dd>
                                         <dd class="spacer"></dd>
@@ -140,7 +140,7 @@
                                         </dt>
                                         <dd>
                                             <input type="hidden" name="value[blExtSearch_QuickSearchLoadCategories]" value="0">
-                                            <input id="QuickSearchLoadCategories" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_QuickSearchLoadCategories]" value='1' [{if $edit->getEditValue('blExtSearch_QuickSearchLoadCategories') == 1}]checked[{/if}]>
+                                            <input id="QuickSearchLoadCategories" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_QuickSearchLoadCategories]" value='1' [{if $edit->getEditValue('blExtSearch_QuickSearchLoadCategories') == 1}]checked[{/if}] [{$readonly}]>
                                             [{oxinputhelp ident="D3_EXTSEARCH_QUICK_LOADCATEGORIES_DESC"}]
                                         </dd>
                                         <dd class="spacer"></dd>
@@ -151,7 +151,7 @@
                                         </dt>
                                         <dd>
                                             <input type="hidden" name="value[blExtSearch_QuickSearchLoadManufacturers]" value="0">
-                                            <input id="QuickSearchLoadManufacturers" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_QuickSearchLoadManufacturers]" value='1' [{if $edit->getEditValue('blExtSearch_QuickSearchLoadManufacturers') == 1}]checked[{/if}]>
+                                            <input id="QuickSearchLoadManufacturers" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_QuickSearchLoadManufacturers]" value='1' [{if $edit->getEditValue('blExtSearch_QuickSearchLoadManufacturers') == 1}]checked[{/if}] [{$readonly}]>
                                             [{oxinputhelp ident="D3_EXTSEARCH_QUICK_LOADMANUFACTURERS_DESC"}]
                                         </dd>
                                         <dd class="spacer"></dd>
@@ -162,7 +162,7 @@
                                         </dt>
                                         <dd>
                                             <input type="hidden" name="value[blExtSearch_QuickSearchLoadVendors]" value="0">
-                                            <input id="QuickSearchLoadVendors" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_QuickSearchLoadVendors]" value='1' [{if $edit->getEditValue('blExtSearch_QuickSearchLoadVendors') == 1}]checked[{/if}]>
+                                            <input id="QuickSearchLoadVendors" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_QuickSearchLoadVendors]" value='1' [{if $edit->getEditValue('blExtSearch_QuickSearchLoadVendors') == 1}]checked[{/if}] [{$readonly}]>
                                             [{oxinputhelp ident="D3_EXTSEARCH_QUICK_LOADVENDORS_DESC"}]
                                         </dd>
                                         <dd class="spacer"></dd>
@@ -173,7 +173,7 @@
                                         </dt>
                                         <dd>
                                             <input type="hidden" name="value[blExtSearch_QuickSearchLoadContent]" value="0">
-                                            <input id="QuickSearchLoadContent" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_QuickSearchLoadContent]" value='1' [{if $edit->getEditValue('blExtSearch_QuickSearchLoadContent') == 1}]checked[{/if}]>
+                                            <input id="QuickSearchLoadContent" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_QuickSearchLoadContent]" value='1' [{if $edit->getEditValue('blExtSearch_QuickSearchLoadContent') == 1}]checked[{/if}] [{$readonly}]>
                                             [{oxinputhelp ident="D3_EXTSEARCH_QUICK_LOADCONTENT_DESC"}]
                                         </dd>
                                         <dd class="spacer"></dd>
@@ -196,7 +196,7 @@
                                         </dt>
                                         <dd>
                                             <input type="hidden" name="value[blExtSearch_ShowIAS]" value="0">
-                                            <input id="ShowIAS" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_ShowIAS]" value='1' [{if $edit->getEditValue('blExtSearch_ShowIAS') == 1}]checked[{/if}]>
+                                            <input id="ShowIAS" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_ShowIAS]" value='1' [{if $edit->getEditValue('blExtSearch_ShowIAS') == 1}]checked[{/if}] [{$readonly}]>
                                             [{oxinputhelp ident="D3_EXTSEARCH_QUICK_SHOWIAS_DESC"}]
                                         </dd>
                                         <dd class="spacer"></dd>
@@ -210,7 +210,7 @@
                         <tr>
                             <td class="edittext ext_edittext" style="text-align: left;"><br>
                                 <span class="d3modcfg_btn icon d3color-green">
-                                    <button type="submit" name="save">
+                                    <button type="submit" name="save" [{$readonly}]>
                                         <i class="fa fa-check-circle fa-inverse"></i>[{oxmultilang ident="D3_EXTSEARCH_QUICK_SAVE"}]
                                     </button>
                                 </span>

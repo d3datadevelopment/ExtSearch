@@ -50,6 +50,9 @@
                                         [{/foreach}]
                                     [{/if}]
 
+                                    [{block name="d3_inc_ext_search__filter_other"}]
+                                    [{/block}]
+
                                     [{if $oView->d3HasPriceFilter()}]
                                         [{block name="d3_inc_ext_search__filter_price"}]
                                             [{include file="d3_ext_search_filter_priceselector.tpl" cssclass="" infoMinValue=$oView->d3GetPriceSliderInfoMinValue() infoMaxValue=$oView->d3GetPriceSliderInfoMaxValue() originalMinValue=$oView->d3GetPriceSliderOriginalMinValue() originalMaxValue=$oView->d3GetPriceSliderOriginalMaxValue() inputMinValue=$oView->d3GetPriceSliderInputMinValue() inputMaxValue=$oView->d3GetPriceSliderInputMaxValue() aPriceLimits=$oView->d3getPriceLimits() aPriceSteps=$oView->d3getPriceSteps() precision=$oView->d3getPricePrecision()}]

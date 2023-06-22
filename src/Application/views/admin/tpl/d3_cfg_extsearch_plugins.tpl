@@ -74,7 +74,7 @@
         <input type="hidden" name="editval[oxid]" value="[{$oxid}]">
 
         <b>[{oxmultilang ident="D3_EXTSEARCH_MAIN_NOCONFIG_DESC"}]</b><br>
-        <input type="submit" value="[{oxmultilang ident="D3_EXTSEARCH_MAIN_NOCONFIG_BTN"}]">
+        <input type="submit" value="[{oxmultilang ident="D3_EXTSEARCH_MAIN_NOCONFIG_BTN"}]" [{$readonly}]>
     </form>
 [{else}]
 
@@ -96,7 +96,7 @@
                         </td>
                         <td class="edittext ext_edittext">
                             <input type="hidden" name="value[blExtSearch_enablePluginBrowserInstall]" value="0">
-                            <input id="enablePluginBrowserInstall" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_enablePluginBrowserInstall]" value='1' [{if $edit->getEditValue('blExtSearch_enablePluginBrowserInstall') == 1}]checked[{/if}]>
+                            <input id="enablePluginBrowserInstall" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_enablePluginBrowserInstall]" value='1' [{if $edit->getEditValue('blExtSearch_enablePluginBrowserInstall') == 1}]checked[{/if}] [{$readonly}]>
                             [{oxinputhelp ident="D3_EXTSEARCH_PLUGIN_SEARCHACTIVE_DESC"}]
                         </td>
                     </tr>
@@ -107,7 +107,7 @@
                         </td>
                         <td class="edittext ext_edittext">
                             <input type="hidden" name="value[blExtSearch_enablePluginLink]" value="0">
-                            <input id="enablePluginLink" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_enablePluginLink]" value='1' [{if $edit->getEditValue('blExtSearch_enablePluginLink') == 1}]checked[{/if}]>
+                            <input id="enablePluginLink" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_enablePluginLink]" value='1' [{if $edit->getEditValue('blExtSearch_enablePluginLink') == 1}]checked[{/if}] [{$readonly}]>
                             [{oxinputhelp ident="D3_EXTSEARCH_PLUGIN_INSTALLLINK_DESC"}]
                         </td>
                     </tr>
@@ -116,7 +116,7 @@
                               <label for="PluginIcon">[{oxmultilang ident="D3_EXTSEARCH_PLUGIN_SEARCHICON"}]</label>
                         </td>
                         <td class="edittext ext_edittext">
-                            <input id="PluginIcon" class="edittext ext_edittext" type="file" name="value[sExtSearch_PluginIcon]" value='[{$edit->getEditValue('sExtSearch_PluginIcon')}]'><br>
+                            <input id="PluginIcon" class="edittext ext_edittext" type="file" name="value[sExtSearch_PluginIcon]" value='[{$edit->getEditValue('sExtSearch_PluginIcon')}]' [{$readonly}]><br>
                             [{if $edit->getEditValue('sExtSearch_PluginIcon')}][{$edit->getEditValue('sExtSearch_PluginIcon')}] <img src="[{$oViewConf->getBaseDir()}][{$edit->getEditValue('sExtSearch_PluginIcon')}]" style="margin-top: 3px;">[{else}][{oxmultilang ident="D3_EXTSEARCH_PLUGIN_CHOOSEICON"}][{/if}]
                             [{oxinputhelp ident="D3_EXTSEARCH_PLUGIN_SEARCHICON_DESC"}]
                         </td>
@@ -130,7 +130,7 @@
             <tr>
                 <td class="edittext ext_edittext" style="text-align: left;"><br>
                     <span class="d3modcfg_btn icon d3color-green">
-                        <button type="submit" name="save">
+                        <button type="submit" name="save" [{$readonly}]>
                             <i class="fa fa-check-circle fa-inverse"></i>[{oxmultilang ident="D3_EXTSEARCH_PLUGIN_SAVE"}]
                         </button>
                     </span>
@@ -155,7 +155,7 @@
             <span class="d3modcfg_btn d3color-blue">
                 [{assign var="escapedCl" value=$oViewConf->getActiveClassName()|oxescape:"url"}]
                 [{assign var="clParam" value="cl="|cat:$escapedCl}]
-                <input type="submit" name="save" value="[{oxmultilang ident="D3_EXTSEARCH_PLUGIN_STARTGENERATING"}]" onclick="window.open('[{$oViewConf->getSelfLink()}]&sid=[{$shop->sid}]&[{$clParam}]&fnc=generatePluginFile', 'generate_plugin', 'width=300, height=300, left=100'); return false;">
+                <input type="submit" name="save" value="[{oxmultilang ident="D3_EXTSEARCH_PLUGIN_STARTGENERATING"}]" onclick="window.open('[{$oViewConf->getSelfLink()}]&sid=[{$shop->sid}]&[{$clParam}]&fnc=generatePluginFile', 'generate_plugin', 'width=300, height=300, left=100'); return false;" [{$readonly}]>
             </span>
             <br><br>
             [{oxmultilang ident="D3_EXTSEARCH_PLUGIN_GENERATENOTICE"}]
