@@ -70,7 +70,7 @@
                             <label for="term__word">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_WORD"}]</label>
                         </td>
                         <td class="edittext">
-                            <input type="text" class="editinput" size="32" maxlength="[{$edit->d3_extsearch_term__word->fldmax_length}]" id="term__word" name="editval[d3_extsearch_term__word]" value="[{$edit->getFieldData('word')}]">
+                            <input type="text" class="editinput" size="32" maxlength="[{$edit->d3_extsearch_term__word->fldmax_length}]" id="term__word" name="editval[d3_extsearch_term__word]" value="[{$edit->getFieldData('word')}]" [{$readonly}]>
                             [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_WORD_DESC"}]
                         </td>
                     </tr>
@@ -79,7 +79,7 @@
                             <label for="term__user_comment">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_COMMENT"}]</label>
                         </td>
                         <td class="edittext">
-                            <input type="text" class="editinput" size="32" maxlength="[{$edit->d3_extsearch_term__user_comment->fldmax_length}]" id="term__user_comment" name="editval[d3_extsearch_term__user_comment]" value="[{$edit->getFieldData('user_comment')}]">
+                            <input type="text" class="editinput" size="32" maxlength="[{$edit->d3_extsearch_term__user_comment->fldmax_length}]" id="term__user_comment" name="editval[d3_extsearch_term__user_comment]" value="[{$edit->getFieldData('user_comment')}]" [{$readonly}]>
                             [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_COMMENT_DESC"}]
                         </td>
                     </tr>
@@ -94,7 +94,7 @@
                         </td>
                         <td class="edittext">
                             [{if $oxid != '-1'}]
-                                <input type="text" class="editinput" size="32" maxlength="[{$edit->d3_extsearch_term__synset_id->fldmax_length}]" id="term__synset_id" name="editval[d3_extsearch_term__synset_id]" value="[{$edit->getFieldData('synset_id')}]">
+                                <input type="text" class="editinput" size="32" maxlength="[{$edit->d3_extsearch_term__synset_id->fldmax_length}]" id="term__synset_id" name="editval[d3_extsearch_term__synset_id]" value="[{$edit->getFieldData('synset_id')}]" [{$readonly}]>
                             [{else}]
                                 [{$oView->getNextSynsetId()}]
                             [{/if}]
@@ -120,9 +120,11 @@
                         </td>
                         <td class="edittext">
                             <input type="hidden" name="synset[d3_extsearch_synset__useforterms]" value="0">
-                            <input id="synUseForTerms" class="edittext ext_edittext" type="checkbox" name="synset[d3_extsearch_synset__useforterms]" value="1" [{if $synset->getFieldData('useForTerms') == 1}]checked[{/if}]> <label for="synUseForTerms">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORTERMS"}]</label> [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORTERMS_DESC"}]<br>
+                            <input id="synUseForTerms" class="edittext ext_edittext" type="checkbox" name="synset[d3_extsearch_synset__useforterms]" value="1" [{if $synset->getFieldData('useForTerms') == 1}]checked[{/if}] [{$readonly}]>
+                            <label for="synUseForTerms">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORTERMS"}]</label> [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORTERMS_DESC"}]<br>
                             <input type="hidden" name="synset[d3_extsearch_synset__useforattributes]" value="0">
-                            <input id="synUseForAttributes" class="edittext ext_edittext" type="checkbox" name="synset[d3_extsearch_synset__useforattributes]" value="1" [{if $synset->getFieldData('useForAttributes') == 1}]checked[{/if}]> <label for="synUseForAttributes">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORATTRIBUTES"}]</label> [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORATTRIBUTES_DESC"}]<br>
+                            <input id="synUseForAttributes" class="edittext ext_edittext" type="checkbox" name="synset[d3_extsearch_synset__useforattributes]" value="1" [{if $synset->getFieldData('useForAttributes') == 1}]checked[{/if}] [{$readonly}]>
+                            <label for="synUseForAttributes">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORATTRIBUTES"}]</label> [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_SYNONYMUSEFORATTRIBUTES_DESC"}]<br>
                         </td>
                     </tr>
                 </table>
@@ -134,7 +136,7 @@
             <td class="edittext ext_edittext" style="text-align: left;" colspan="2">
                 <br>
                 <span class="d3modcfg_btn icon d3color-green">
-                    <button type="submit" name="save">
+                    <button type="submit" name="save" [{$readonly}]>
                         <i class="fa fa-check-circle fa-inverse"></i>[{oxmultilang ident="D3_EXTSEARCH_MAIN_SAVE"}]
                     </button>
                 </span>

@@ -114,7 +114,7 @@
                         <tr>
                             <td>
                                 <label for="stattype">[{oxmultilang ident="D3_EXTSEARCH_STAT_TYPE"}]</label>
-                                <select id="stattype" name="statparams[type]">
+                                <select id="stattype" name="statparams[type]" [{$readonly}]>
                                     [{if $aTimes|count}]
                                         <option value="hitless" [{if $aParams.type == 'hitless'}]selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_STAT_TYPEHITLESS"}]</option>
                                         <option value="mosthits" [{if $aParams.type == 'mosthits'}]selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_STAT_TYPEMOSTHITS"}]</option>
@@ -126,7 +126,7 @@
                             </td>
                             <td>
                                 <label for="statlang">[{oxmultilang ident="D3_EXTSEARCH_STAT_LANG"}]</label>
-                                <select id="statlang" name="statparams[lang]">
+                                <select id="statlang" name="statparams[lang]" [{$readonly}]>
                                     [{foreach from=$oView->getLangList() item="oLang"}]
                                         <option value="[{$oLang->id}]" [{if $aParams.lang == $oLang->id}]selected[{/if}]>[{$oLang->name}]</option>
                                     [{/foreach}]
@@ -134,7 +134,7 @@
                             </td>
                             <td>
                                 <label for="stattime">[{oxmultilang ident="D3_EXTSEARCH_STAT_TIME"}]</label>
-                                <select id="stattime" name="statparams[time]">
+                                <select id="stattime" name="statparams[time]" [{$readonly}]>
                                     [{if $aTimes|count}]
                                         [{foreach from=$aTimes item="aTime"}]
                                             <option value="[{$aTime.value}]" [{if $aParams.time == $aTime.value}]selected[{/if}]>[{$aTime.output}]</option>
@@ -146,7 +146,7 @@
                             </td>
                             <td>
                                 <span class="d3modcfg_btn">
-                                    <input [{if !$aTimes|count}] disabled [{/if}] type="submit" name="save" value="[{oxmultilang ident="D3_EXTSEARCH_STAT_GENERATESTAT"}]">
+                                    <input [{if !$aTimes|count}] disabled [{/if}] type="submit" name="save" value="[{oxmultilang ident="D3_EXTSEARCH_STAT_GENERATESTAT"}]" [{$readonly}]>
                                 </span>
                             </td>
 

@@ -124,7 +124,7 @@
                         <br>
                         <br>
                         <span class="d3modcfg_btn fixed icon d3color-orange">
-                            <button type="submit">
+                            <button type="submit" [{$readonly}]>
                                 <i class="fa fa-warning fa-inverse"></i>[{oxmultilang ident="D3_CFG_MOD_GENERAL_NOCONFIG_BTN"}]
                             </button>
                         </span>
@@ -146,10 +146,10 @@
                                         [{/if}]
                                     </dt>
                                     <dd>
-                                        <textarea id="similarSearchFields" class="confinput" name="valuearr[aExtSearch_similarSearchFields]">[{$edit->getEditValue('aExtSearch_similarSearchFields')}]</textarea>
+                                        <textarea id="similarSearchFields" class="confinput" name="valuearr[aExtSearch_similarSearchFields]" [{$readonly}]>[{$edit->getEditValue('aExtSearch_similarSearchFields')}]</textarea>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_FIELDLIST_DESC"}]
                                         [{assign var="clParam" value="cl="|cat:$oViewConf->getActiveClassName()}]
-                                        <input type="button" value="[{oxmultilang ident="D3_EXTSEARCH_MAIN_SORTDEBUG"}]" onclick="window.open('[{$oViewConf->getSelfLink()|oxaddparams:$clParam|oxaddparams:"fnc=startSortAnalysis"}]', 'startSortAnalysis', 'width=800, height=300, left=100, scrollbars=yes, resizable=yes'); return false;">
+                                        <input type="button" value="[{oxmultilang ident="D3_EXTSEARCH_MAIN_SORTDEBUG"}]" onclick="window.open('[{$oViewConf->getSelfLink()|oxaddparams:$clParam|oxaddparams:"fnc=startSortAnalysis"}]', 'startSortAnalysis', 'width=800, height=300, left=100, scrollbars=yes, resizable=yes'); return false;" [{$readonly}]>
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
@@ -169,7 +169,7 @@
                                         <label for="MultiSearchwordUsage">[{oxmultilang ident="D3_EXTSEARCH_MAIN_MULIPLEWORDS"}]</label>
                                     </dt>
                                     <dd>
-                                        <SELECT id="MultiSearchwordUsage" class="edittext ext_edittext" name="value[sExtSearch_MultiSearchwordUsage]">
+                                        <SELECT id="MultiSearchwordUsage" class="edittext ext_edittext" name="value[sExtSearch_MultiSearchwordUsage]" [{$readonly}]>
                                             <OPTION value="singleWord"[{if $edit->getEditValue('sExtSearch_MultiSearchwordUsage') == 'singleWord'}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_MULIPLEWORDS_SINGLE"}]</option>
                                             <OPTION value="wholeParam"[{if $edit->getEditValue('sExtSearch_MultiSearchwordUsage') == 'wholeParam'}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_MULIPLEWORDS_WHOLE"}]</option>
                                             <OPTION value="syntax"[{if $edit->getEditValue('sExtSearch_MultiSearchwordUsage') == 'syntax'}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_MULIPLEWORDS_SYNTAX"}]</option>
@@ -184,7 +184,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_findPutInAndLeaveOut]" value="0">
-                                        <input id="findPutInAndLeaveOut" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_findPutInAndLeaveOut]" value='1' [{if $edit->getEditValue('blExtSearch_findPutInAndLeaveOut') == 1}]checked[{/if}]>
+                                        <input id="findPutInAndLeaveOut" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_findPutInAndLeaveOut]" value='1' [{if $edit->getEditValue('blExtSearch_findPutInAndLeaveOut') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_PUTINLEAVEOUT_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -195,7 +195,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_ShowPopup]" value="0">
-                                        <input id="ShowPopup" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_ShowPopup]" value='1' [{if $edit->getEditValue('blExtSearch_ShowPopup') == 1}]checked[{/if}]>
+                                        <input id="ShowPopup" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_ShowPopup]" value='1' [{if $edit->getEditValue('blExtSearch_ShowPopup') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SHOW_POPUP_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -218,7 +218,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_orderByPriority]" value="0">
-                                        <input id="orderByPriority" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_orderByPriority]" value='1' [{if $edit->getEditValue('blExtSearch_orderByPriority') == 1}]checked[{/if}]>
+                                        <input id="orderByPriority" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_orderByPriority]" value='1' [{if $edit->getEditValue('blExtSearch_orderByPriority') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_ORDERBYPRIORITY_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -229,7 +229,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_orderByPush]" value="0">
-                                        <input id="orderByPush" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_orderByPush]" value='1' [{if $edit->getEditValue('blExtSearch_orderByPush') == 1}]checked[{/if}]>
+                                        <input id="orderByPush" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_orderByPush]" value='1' [{if $edit->getEditValue('blExtSearch_orderByPush') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_ORDERBYPUSH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -239,9 +239,9 @@
                                         <label for="orderByAlternative">[{oxmultilang ident="D3_EXTSEARCH_MAIN_ORDERBYALTERNATIVE"}]</label>
                                     </dt>
                                     <dd>
-                                        <input id="orderByAlternative" class="editinput" type="text" size="10" maxlength="50" name="value[sExtSearch_orderByAlternative]" value='[{if $edit->getEditValue('sExtSearch_orderByAlternative')}][{$edit->getEditValue('sExtSearch_orderByAlternative')}][{else}]oxtitle[{/if}]'>&nbsp;
-                                        <input type="radio" class="editinput" name="value[sExtSearch_orderDirAlternative]" value="asc" [{if $edit->getEditValue('sExtSearch_orderDirAlternative') == "asc" || false == $edit->getEditValue('sExtSearch_orderByAlternative')}]checked[{/if}]>[{oxmultilang ident="CATEGORY_MAIN_ASC"}]
-                                        <input type="radio" class="editinput" name="value[sExtSearch_orderDirAlternative]" value="desc" [{if $edit->getEditValue('sExtSearch_orderDirAlternative') == "desc"}]checked[{/if}]>[{oxmultilang ident="CATEGORY_MAIN_DESC"}]
+                                        <input id="orderByAlternative" class="editinput" type="text" size="10" maxlength="50" name="value[sExtSearch_orderByAlternative]" value='[{if $edit->getEditValue('sExtSearch_orderByAlternative')}][{$edit->getEditValue('sExtSearch_orderByAlternative')}][{else}]oxtitle[{/if}]' [{$readonly}]>&nbsp;
+                                        <input type="radio" class="editinput" name="value[sExtSearch_orderDirAlternative]" value="asc" [{if $edit->getEditValue('sExtSearch_orderDirAlternative') == "asc" || false == $edit->getEditValue('sExtSearch_orderByAlternative')}]checked[{/if}] [{$readonly}]>[{oxmultilang ident="CATEGORY_MAIN_ASC"}]
+                                        <input type="radio" class="editinput" name="value[sExtSearch_orderDirAlternative]" value="desc" [{if $edit->getEditValue('sExtSearch_orderDirAlternative') == "desc"}]checked[{/if}] [{$readonly}]>[{oxmultilang ident="CATEGORY_MAIN_DESC"}]
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_ORDERBYALTERNATIVE_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -264,7 +264,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_VariantSearch]" value="0">
-                                        <input id="VariantSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_VariantSearch]" value='1' [{if $edit->getEditValue('blExtSearch_VariantSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_VariantSearch" sToggleOptionClass=".variant_options"}]'>
+                                        <input id="VariantSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_VariantSearch]" value='1' [{if $edit->getEditValue('blExtSearch_VariantSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_VariantSearch" sToggleOptionClass=".variant_options"}]' [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_VARIANTSEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -274,7 +274,7 @@
                                         <label for="VariantUsage">[{oxmultilang ident="D3_EXTSEARCH_MAIN_VARIANTUSAGE"}]</label>
                                     </dt>
                                     <dd>
-                                        <SELECT id="VariantUsage" class="edittext ext_edittext" name="value[sExtSearch_VariantUsage]">
+                                        <SELECT id="VariantUsage" class="edittext ext_edittext" name="value[sExtSearch_VariantUsage]" [{$readonly}]>
                                             <OPTION value="showParent"[{if $edit->getEditValue('sExtSearch_VariantUsage') == 'showParent'}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_VARIANTUSAGE_SHOWPARENT"}]</option>
                                             <OPTION value="showVariant"[{if $edit->getEditValue('sExtSearch_VariantUsage') == 'showVariant'}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_VARIANTUSAGE_SHOWVARIANT"}]</option>
                                         </SELECT>
@@ -288,7 +288,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showVariantsWithoutFilters]" value="0">
-                                        <input id="orderByPush" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showVariantsWithoutFilters]" value='1' [{if $edit->getEditValue('blExtSearch_showVariantsWithoutFilters') == 1}]checked[{/if}]>
+                                        <input id="orderByPush" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showVariantsWithoutFilters]" value='1' [{if $edit->getEditValue('blExtSearch_showVariantsWithoutFilters') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SHOWVARIANTSWITHOUTFILTERS_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -306,7 +306,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_VariantInAList]" value="0" [{$blActionRestriction}]>
-                                        <input id="VariantInAList" class="edittext ext_edittext" type="checkbox" [{$blActionRestriction}] name="value[blExtSearch_VariantInAList]" value='1' [{if !$blRestricted && $edit->getEditValue('blExtSearch_VariantInAList') == 1}]checked[{/if}]>
+                                        <input id="VariantInAList" class="edittext ext_edittext" type="checkbox" [{$blActionRestriction}] name="value[blExtSearch_VariantInAList]" value='1' [{if !$blRestricted && $edit->getEditValue('blExtSearch_VariantInAList') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_VARIANTINALIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -317,7 +317,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_VariantCheckParentActive]" value="0">
-                                        <input id="VariantCheckParentActive" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_VariantCheckParentActive]" value='1' [{if $edit->getEditValue('blExtSearch_VariantCheckParentActive') == 1}]checked[{/if}]>
+                                        <input id="VariantCheckParentActive" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_VariantCheckParentActive]" value='1' [{if $edit->getEditValue('blExtSearch_VariantCheckParentActive') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_VARIANTCHECKPARENTACTIVE_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -343,7 +343,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_similarSearch]" value="0">
-                                        <input id="similarSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_similarSearch]" value='1' [{if $edit->getEditValue('blExtSearch_similarSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_similarSearch" sToggleOptionClass=".phonetic_options"}]'>
+                                        <input id="similarSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_similarSearch]" value='1' [{if $edit->getEditValue('blExtSearch_similarSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_similarSearch" sToggleOptionClass=".phonetic_options"}]' [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SIMILARSEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -353,7 +353,7 @@
                                         <label for="langFile">[{oxmultilang ident="D3_EXTSEARCH_MAIN_PHONETICLANG"}]</label>
                                     </dt>
                                     <dd>
-                                        <select id="langFile" name="value[sExtSearch_langFile]" class="editinput">
+                                        <select id="langFile" name="value[sExtSearch_langFile]" class="editinput" [{$readonly}]>
                                             [{foreach from=$oView->getPhoneticLanguages() item=aLang}]
                                                 <option value="[{$aLang.file}]" [{if $edit->getEditValue('sExtSearch_langFile') == $aLang.file}]selected>&bull; [{else}]>[{/if}][{$aLang.name}] ([{$aLang.file}])</option>
                                             [{/foreach}]
@@ -368,8 +368,9 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_similarExtList]" value="0">
-                                        <input id="blsimilarExtList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_similarExtList]" value='1' [{if $edit->getEditValue('blExtSearch_similarExtList') == 1}]checked[{/if}]>
-                                        <input id="isimilarExtList" type="text" class="editinput" size="8" maxlength="5" name="value[iExtSearch_similarExtList]" value="[{if $edit->getEditValue('iExtSearch_similarExtList')}][{$edit->getEditValue('iExtSearch_similarExtList')}][{else}]10[{/if}]">    <label for="isimilarExtList">[{oxmultilang ident="D3_EXTSEARCH_MAIN_SIMILAREXTLIST_2"}]</label>
+                                        <input id="blsimilarExtList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_similarExtList]" value='1' [{if $edit->getEditValue('blExtSearch_similarExtList') == 1}]checked[{/if}] [{$readonly}]>
+                                        <input id="isimilarExtList" type="text" class="editinput" size="8" maxlength="5" name="value[iExtSearch_similarExtList]" value="[{if $edit->getEditValue('iExtSearch_similarExtList')}][{$edit->getEditValue('iExtSearch_similarExtList')}][{else}]10[{/if}]" [{$readonly}]>
+                                        <label for="isimilarExtList">[{oxmultilang ident="D3_EXTSEARCH_MAIN_SIMILAREXTLIST_2"}]</label>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SIMILAREXTLIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -379,7 +380,7 @@
                                         <label for="minPhonLength">[{oxmultilang ident="D3_EXTSEARCH_MAIN_MINPHONLENGTH"}]</label>
                                     </dt>
                                     <dd>
-                                        <SELECT id="minPhonLength" class="edittext ext_edittext" name="value[iExtSearch_minPhonLength]">
+                                        <SELECT id="minPhonLength" class="edittext ext_edittext" name="value[iExtSearch_minPhonLength]" [{$readonly}]>
                                             <OPTION value="2"[{if $edit->getEditValue('iExtSearch_minPhonLength') == 2}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_MINPHONLENGTH_LESS"}]</option>
                                             <OPTION value="3"[{if $edit->getEditValue('iExtSearch_minPhonLength') == 3}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_MINPHONLENGTH_REG"}]</option>
                                             <OPTION value="4"[{if $edit->getEditValue('iExtSearch_minPhonLength') == 4}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_MINPHONLENGTH_MORE"}]</option>
@@ -409,7 +410,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_semanticSearch]" value="0">
-                                        <input id="semanticSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_semanticSearch]" value='1' [{if $edit->getEditValue('blExtSearch_semanticSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_semanticSearch" sToggleOptionClass=".semantic_options"}]'>
+                                        <input id="semanticSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_semanticSearch]" value='1' [{if $edit->getEditValue('blExtSearch_semanticSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_semanticSearch" sToggleOptionClass=".semantic_options"}]' [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SEMANTICSEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -420,7 +421,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_semanticUsePhonetic]" value="[{if $edit->getEditValue('blExtSearch_similarSearch') != 1}][{$edit->getEditValue('blExtSearch_semanticUsePhonetic')}][{else}]0[{/if}]">
-                                        <input id="semanticUsePhonetic" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_semanticUsePhonetic]" value='1' [{if $edit->getEditValue('blExtSearch_semanticUsePhonetic') == 1}]checked[{/if}] [{if $edit->getEditValue('blExtSearch_similarSearch') != 1}]disabled[{/if}]>
+                                        <input id="semanticUsePhonetic" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_semanticUsePhonetic]" value='1' [{if $edit->getEditValue('blExtSearch_semanticUsePhonetic') == 1}]checked[{/if}] [{if $edit->getEditValue('blExtSearch_similarSearch') != 1}]disabled[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_SEMANTICUSEPHONETIC_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -443,7 +444,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_catSearch]" value="0">
-                                        <input id="catSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_catSearch]" value='1' [{if $edit->getEditValue('blExtSearch_catSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_catSearch" sToggleOptionClass=".category_options"}]'>
+                                        <input id="catSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_catSearch]" value='1' [{if $edit->getEditValue('blExtSearch_catSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_catSearch" sToggleOptionClass=".category_options"}]' [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_CATEGORY_SEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -464,7 +465,7 @@
                                         <label for="showCatArticles">[{oxmultilang ident="D3_EXTSEARCH_MAIN_CATEGORY_ARTHANDLING"}]</label>
                                     </dt>
                                     <dd>
-                                        <SELECT id="showCatArticles" class="edittext ext_edittext" name="value[sExtSearch_showCatArticles]">
+                                        <SELECT id="showCatArticles" class="edittext ext_edittext" name="value[sExtSearch_showCatArticles]" [{$readonly}]>
                                             <OPTION selected value="artincat"[{if $edit->getEditValue('sExtSearch_showCatArticles') == 'artincat' || $edit->getEditValue('sExtSearch_showCatArticles') == ''}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_CATEGORY_ARTINCAT"}]</option>
                                             <OPTION value="catinlist"[{if $edit->getEditValue('sExtSearch_showCatArticles') == 'catinlist__'}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_CATEGORY_CATINLIST"}]</option>
                                         </SELECT>
@@ -476,7 +477,7 @@
                                         <label for="catPrio">[{oxmultilang ident="D3_EXTSEARCH_MAIN_CATEGORY_PRIORITY"}]</label>
                                     </dt>
                                     <dd>
-                                        <input id="catPrio" type="text" class="editinput" size="8" maxlength="5" name="value[iExtSearch_catPrio]" value="[{if $edit->getEditValue('iExtSearch_catPrio')}][{$edit->getEditValue('iExtSearch_catPrio')}][{else}]50[{/if}]">
+                                        <input id="catPrio" type="text" class="editinput" size="8" maxlength="5" name="value[iExtSearch_catPrio]" value="[{if $edit->getEditValue('iExtSearch_catPrio')}][{$edit->getEditValue('iExtSearch_catPrio')}][{else}]50[{/if}]" [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_CATEGORY_PRIORITY_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -499,7 +500,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_manufacturerSearch]" value="0">
-                                        <input id="manufacturerSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_manufacturerSearch]" value='1' [{if $edit->getEditValue('blExtSearch_manufacturerSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_manufacturerSearch" sToggleOptionClass=".manufacturer_options"}]'>
+                                        <input id="manufacturerSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_manufacturerSearch]" value='1' [{if $edit->getEditValue('blExtSearch_manufacturerSearch') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_manufacturerSearch" sToggleOptionClass=".manufacturer_options"}]' [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_MANUFACTURER_SEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -520,7 +521,7 @@
                                         <label for="manufacturerPrio">[{oxmultilang ident="D3_EXTSEARCH_MAIN_MANUFACTURER_PRIORITY"}]</label>
                                     </dt>
                                     <dd>
-                                        <input id="manufacturerPrio" type="text" class="editinput" size="8" maxlength="5" name="value[iExtSearch_manufacturerPrio]" value="[{if $edit->getEditValue('iExtSearch_manufacturerPrio')}][{$edit->getEditValue('iExtSearch_manufacturerPrio')}][{else}]50[{/if}]">
+                                        <input id="manufacturerPrio" type="text" class="editinput" size="8" maxlength="5" name="value[iExtSearch_manufacturerPrio]" value="[{if $edit->getEditValue('iExtSearch_manufacturerPrio')}][{$edit->getEditValue('iExtSearch_manufacturerPrio')}][{else}]50[{/if}]" [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_MANUFACTURER_PRIORITY_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -543,7 +544,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showContentList]" value="0">
-                                        <input id="showContentList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showContentList]" value='1' [{if $edit->getEditValue('blExtSearch_showContentList') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showContentList" sToggleOptionClass=".content_options"}]'>
+                                        <input id="showContentList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showContentList]" value='1' [{if $edit->getEditValue('blExtSearch_showContentList') == 1}]checked[{/if}] onclick='[{include file="d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showContentList" sToggleOptionClass=".content_options"}]' [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_CONTENTLIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -554,7 +555,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_contentSearchLongtext]" value="0">
-                                        <input id="contentSearchLongtext" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_contentSearchLongtext]" value='1' [{if $edit->getEditValue('blExtSearch_contentSearchLongtext') == 1}]checked[{/if}]>
+                                        <input id="contentSearchLongtext" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_contentSearchLongtext]" value='1' [{if $edit->getEditValue('blExtSearch_contentSearchLongtext') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_CONTENTLONG_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -577,7 +578,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_useArtNumSearch]" value="0">
-                                        <input id="useArtNumSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_useArtNumSearch]" value='1' [{if $edit->getEditValue('blExtSearch_useArtNumSearch') == 1}]checked[{/if}]>
+                                        <input id="useArtNumSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_useArtNumSearch]" value='1' [{if $edit->getEditValue('blExtSearch_useArtNumSearch') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_USEARTNUMSEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -588,7 +589,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_goToUniqueHit]" value="0">
-                                        <input id="goToUniqueHit" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_goToUniqueHit]" value='1' [{if $edit->getEditValue('blExtSearch_goToUniqueHit') == 1}]checked[{/if}]>
+                                        <input id="goToUniqueHit" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_goToUniqueHit]" value='1' [{if $edit->getEditValue('blExtSearch_goToUniqueHit') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_UNIQUEHIT_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -599,7 +600,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_goToUniqueContentHit]" value="0">
-                                        <input id="goToUniqueContentHit" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_goToUniqueContentHit]" value='1' [{if $edit->getEditValue('blExtSearch_goToUniqueContentHit') == 1}]checked[{/if}]>
+                                        <input id="goToUniqueContentHit" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_goToUniqueContentHit]" value='1' [{if $edit->getEditValue('blExtSearch_goToUniqueContentHit') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_UNIQUECONTENTHIT_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -610,7 +611,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_goToUniqueVendorHit]" value="0">
-                                        <input id="goToUniqueVendorHit" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_goToUniqueVendorHit]" value='1' [{if $edit->getEditValue('blExtSearch_goToUniqueVendorHit') == 1}]checked[{/if}]>
+                                        <input id="goToUniqueVendorHit" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_goToUniqueVendorHit]" value='1' [{if $edit->getEditValue('blExtSearch_goToUniqueVendorHit') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_UNIQUEVENDORHIT_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -621,7 +622,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_goToUniqueManufacturerHit]" value="0">
-                                        <input id="goToUniqueManufacturerHit" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_goToUniqueManufacturerHit]" value='1' [{if $edit->getEditValue('blExtSearch_goToUniqueManufacturerHit') == 1}]checked[{/if}]>
+                                        <input id="goToUniqueManufacturerHit" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_goToUniqueManufacturerHit]" value='1' [{if $edit->getEditValue('blExtSearch_goToUniqueManufacturerHit') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_UNIQUEMANUFACTURERHIT_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -644,7 +645,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_logHitless]" value="0">
-                                        <input id="logHitless" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_logHitless]" value='1' [{if $edit->getEditValue('blExtSearch_logHitless') == 1}]checked[{/if}]>
+                                        <input id="logHitless" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_logHitless]" value='1' [{if $edit->getEditValue('blExtSearch_logHitless') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_LOGHITLESS_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -655,7 +656,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_generallyLogForSearch]" value="0">
-                                        <input id="generallyLogForSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_generallyLogForSearch]" value='1' [{if $edit->getEditValue('blExtSearch_generallyLogForSearch') == 1}]checked[{/if}]>
+                                        <input id="generallyLogForSearch" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_generallyLogForSearch]" value='1' [{if $edit->getEditValue('blExtSearch_generallyLogForSearch') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_LOGFORSEARCH_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -678,7 +679,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_adminShowVariants]" value="0">
-                                        <input id="adminShowVariants" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_adminShowVariants]" value='1' [{if $edit->getEditValue('blExtSearch_adminShowVariants') == 1}]checked[{/if}]>
+                                        <input id="adminShowVariants" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_adminShowVariants]" value='1' [{if $edit->getEditValue('blExtSearch_adminShowVariants') == 1}]checked[{/if}] [{$readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_ADMINSHOWVARIANTS_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -692,7 +693,7 @@
                             <td class="edittext ext_edittext" style="text-align: left;">
                                 <br>
                                 <span class="d3modcfg_btn icon d3color-green">
-                                    <button type="submit" name="save">
+                                    <button type="submit" name="save" [{$readonly}]>
                                         <i class="fa fa-check-circle fa-inverse"></i>[{oxmultilang ident="D3_EXTSEARCH_MAIN_SAVE"}]
                                     </button>
                                 </span>
@@ -714,7 +715,7 @@
                                 </dl>
                                 <dl>
                                     <dt>
-                                        <input id="articlesPerTick" type="text" class="editinput" size="4" maxlength="3" name="value[iExtSearch_articlesPerTick]" value="[{$oView->getArticleCountPerTick()}]">
+                                        <input id="articlesPerTick" type="text" class="editinput" size="4" maxlength="3" name="value[iExtSearch_articlesPerTick]" value="[{$oView->getArticleCountPerTick()}]" [{$readonly}]>
                                         <label for="articlesPerTick">[{oxmultilang ident="D3_EXTSEARCH_MAIN_INDEXARTCNT"}]</label>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_INDEXARTCNT_DESC"}]
                                     </dt>
@@ -737,7 +738,7 @@
                                     </dt>
                                     <dd>
                                         <span class="d3modcfg_btn icon d3color-orange">
-                                            <button type="submit" name="save" onclick="window.open('[{$oViewConf->getSelfLink()|oxaddparams:$clParam|oxaddparams:"fnc=generatePhoneticStrings"}]', 'generate_phonetic', 'width=300, height=300, left=100'); return false;">
+                                            <button type="submit" name="save" onclick="window.open('[{$oViewConf->getSelfLink()|oxaddparams:$clParam|oxaddparams:"fnc=generatePhoneticStrings"}]', 'generate_phonetic', 'width=300, height=300, left=100'); return false;" [{$readonly}]>
                                                 <i class="fa fa-warning fa-inverse"></i>[{oxmultilang ident="D3_EXTSEARCH_MAIN_GENINDEXCMPL"}]
                                             </button>
                                         </span>
@@ -752,7 +753,7 @@
                                     </dt>
                                     <dd>
                                         <span class="d3modcfg_btn icon d3color-orange">
-                                            <button type="submit" name="save" onclick="window.open('[{$oViewConf->getSelfLink()|oxaddparams:$clParam|oxaddparams:"fnc=generatePhoneticSemantic"}]', 'generate_phoneticsemantic', 'width=300, height=300, left=100'); return false;">
+                                            <button type="submit" name="save" onclick="window.open('[{$oViewConf->getSelfLink()|oxaddparams:$clParam|oxaddparams:"fnc=generatePhoneticSemantic"}]', 'generate_phoneticsemantic', 'width=300, height=300, left=100'); return false;" [{$readonly}]>
                                                 <i class="fa fa-warning fa-inverse"></i>[{oxmultilang ident="D3_EXTSEARCH_MAIN_GENSEMANTICINDEX"}]
                                             </button>
                                         </span>

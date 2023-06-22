@@ -99,13 +99,17 @@
                     [{assign var="listclass" value="listitem"|cat:$blWhite}]
                     <tr>
                         <td class="edittext [{$listclass}]" style="text-align: center;">
-                            <a href="JavaScript:editThis('[{$termid}]');"><img src="[{$oViewConf->getImageUrl()}]editvariant.gif" style="width:15px;height:15px;border:0;vertical-align: middle" alt=""></a>
+                            [{if !$readonly}]
+                                <a href="JavaScript:editThis('[{$termid}]');"><img src="[{$oViewConf->getImageUrl()}]editvariant.gif" style="width:15px;height:15px;border:0;vertical-align: middle" alt=""></a>
+                            [{/if}]
                         </td>
                         <td class="edittext [{$listclass}]">
                             [{$sSynonym}]
                         </td>
                         <td class="edittext [{$listclass}]" style="width: 15px;">
-                            <a href="Javascript:deleteThis('[{$termid}]');" class="delete"></a>
+                            [{if !$readonly}]
+                                <a href="Javascript:deleteThis('[{$termid}]');" class="delete"></a>
+                            [{/if}]
                         </td>
                     </tr>
                     [{if $blWhite == "2"}]
@@ -129,8 +133,8 @@
                         <td class="edittext [{$listclass}]">
                         </td>
                         <td class="edittext [{$listclass}]" colspan="2">
-                            <input class="editinput" type="text" name="editval[d3_extsearch_term__word]" size="32" maxlength="[{$edit->d3_extsearch_term__word->fldmax_length}]">
-                            <input value="[{oxmultilang ident="D3_EXTSEARCH_SYNED_SAVENEWSYN"}]" type="submit" class="editinput">
+                            <input class="editinput" type="text" name="editval[d3_extsearch_term__word]" size="32" maxlength="[{$edit->d3_extsearch_term__word->fldmax_length}]" [{$readonly}]>
+                            <input value="[{oxmultilang ident="D3_EXTSEARCH_SYNED_SAVENEWSYN"}]" type="submit" class="editinput" [{$readonly}]>
                             [{oxinputhelp ident="D3_EXTSEARCH_SYNED_SAVENEWSYN_DESC"}]
                         </td>
                     </tr>
