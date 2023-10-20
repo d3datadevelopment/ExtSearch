@@ -72,7 +72,7 @@
     <div class="Page__header">
         <h1><a href="../../manual/technische_Erlaeuterungen/zusaetzliche_Formularfelder.html">technische Erlaeuterungen</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../manual/technische_Erlaeuterungen/zusaetzliche_Formularfelder.html">zusätzliche Formularfelder</a></h1>
                 <span class="ModifiedDate">
-                        22.06.2023        </span>
+                        20.10.2023        </span>
                     </div>
 
     <div class="s-content">
@@ -134,8 +134,8 @@
 <p>Die Werte im <code>value</code>-Attribute sind die in der Datenbank abgefragten Werte. In Textfeldern vergeben Sie keine Standardwerte. Im Normalfall (Datenbank-Kollation ist <code>case-insensitiv</code>) ist die Groß-/Kleinschreibung der Werte egal.</p>
 <p>Leereinträge werden von der Suche so behandelt, dass derjenige Filter nicht verwendet wird. Damit können Sie also eine Möglichkeit schaffen, eine Filterung komplett zu vermeiden. Im Beispiel der Schuhgrößen würde die Auswahl der ersten Option <code>alle Größen</code> alle Schuhe unabhängig der Größe liefern.</p>
 <p>In den Variablen <code>$aD3SearchIs</code> und <code>$aD3SearchLike</code> sind die Werte enthalten, die der Kunden vorab gewählt hatte. Als Parameter übergeben Sie den Feldnamen. Damit können Sie Ihren Formularfeldern die vom Kunden gewählte Auswahl wieder als Standard setzen.</p>
-<p>In der Praxis hat sich auch bewährt, an prominenter Stelle im Shop ein kleines Suchformular anzubieten und auf einer speziellen Seite Ihrem Kunden ein umfangreiches Suchformular mit vielen Suchkriterien zur Verfügung zu stellen. Kopieren Sie in diesem Fall das komplette Formular aus dem Template <code>inc/d3_extsearch_form.tpl</code> in Ihre spezielle Seite und füllen dies mit den möglichen Suchfeldern entsprechend der vorangegangen Beschreibung.</p>
-<p>Beachten Sie bitte, dass zur Auswertung dieser beschriebenen Suchfelder unbedingt die Option <code>auf zusätzliche Formularfelder prüfen</code> aktiviert sein muss.</p>
+<p>In der Praxis hat sich auch bewährt, an prominenter Stelle im Shop ein kleines Suchformular anzubieten und auf einer speziellen Seite Ihrem Kunden ein umfangreiches Suchformular mit vielen Suchkriterien zur Verfügung zu stellen. Kopieren Sie in diesem Fall das komplette Formular aus dem Template <code>modules/d3/extsearch/Application/views/blocks/widget/header/d3_extsearch_searchfield.tpl</code> in Ihre spezielle Seite und füllen dies mit den möglichen Suchfeldern entsprechend der vorangegangen Beschreibung.</p>
+<p>Beachten Sie bitte, dass zur Auswertung dieser beschriebenen Suchfelder unbedingt die Option <code>individuelle Filterfelder nutzen</code> aktiviert sein muss.</p>
     </div>
 
         <nav>

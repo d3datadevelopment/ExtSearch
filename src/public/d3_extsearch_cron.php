@@ -24,6 +24,7 @@ use OxidEsales\Eshop\Core\Registry;
 use splitbrain\phpcli\CLI;
 use splitbrain\phpcli\Exception;
 use splitbrain\phpcli\Options;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 // @codeCoverageIgnoreStart
 
@@ -56,11 +57,23 @@ if (!(file_exists($bootstrapFileName) && !is_dir($bootstrapFileName))) {
     die($message);
 }
 
-if (false === defined('OXID_PHP_UNIT')) {
+function willCompiled()
+{
+    return in_array(true,
+        array_map(
+            function ($traceItem) {
+                return isset($traceItem['class'])
+                    && $traceItem['class'] === ContainerBuilder::class;
+            },
+            debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
+        )
+    );
+}
+
+if (!willCompiled() && !defined('OXID_PHP_UNIT')) {
     require_once($bootstrapFileName);
 
-    // required for recalculating order and generating pdf
-    define('OX_IS_ADMIN', true);
+    define( 'OX_IS_ADMIN', true );
 }
 
 if (false == function_exists('isAdmin')) {

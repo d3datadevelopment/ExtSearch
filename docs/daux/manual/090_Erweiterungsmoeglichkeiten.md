@@ -12,7 +12,7 @@ Die Schnellsuche stellt ein per Ajax-Technologie erstelltes Trefferfenster zur V
 
 # Filter-Auswahl
 
-Die Filter-Auswahl wird oberhalb der Trefferliste angezeigt. Je nach Einstellung werden Ihnen hier Kategorien, Hersteller oder auch die Indexleiste gezeigt. Diese Elemente sind im Template `modules/d3/extsearch/Application/views/tpl/[theme]/d3_inc_extsearch.tpl` definiert. Um die Auswahlfelder der Indexleiste anzupassen, verwenden Sie die include- Aufrufe, die Sie beispielhaft im Template finden. Um die Logik müssen Sie sich hierbei nicht kümmern. Weitere Details zu den Feldern der Indexleiste finden Sie in den "!!!!!Technischen Erläuterungen" dieses Handbuchs.
+Die Filter-Auswahl wird oberhalb oder neben der Trefferliste angezeigt. Je nach Einstellung werden Ihnen hier Kategorien, Hersteller oder auch die Indexleiste gezeigt. Diese Elemente sind im Template `modules/d3/extsearch/Application/views/tpl/[theme]/d3_inc_extsearch.tpl` definiert. Um die Auswahlfelder der Indexleiste anzupassen, verwenden Sie die include- Aufrufe, die Sie beispielhaft im Template finden. Um die Logik müssen Sie sich hierbei nicht kümmern. Weitere Details zu den Feldern der Indexleiste finden Sie in den [Technischen Erläuterungen](100_technische_Erlaeuterungen/030_Indexleiste.md) dieses Handbuchs.
 
 # Trefferhervorhebungen
 
@@ -20,4 +20,4 @@ Welches Format die Hervorhebung der gesuchten Begriffe hat, legen Sie im Templat
 
 # Zusätzliche Formularfelder
 
-Diese Funktion ist ausführlich in den "!!!!!!Technischen Erläuterungen" beschrieben.
+Diese Funktion ist ausführlich in den [Technischen Erläuterungen](100_technische_Erlaeuterungen/010_zusaetzliche_Formularfelder.md) beschrieben.

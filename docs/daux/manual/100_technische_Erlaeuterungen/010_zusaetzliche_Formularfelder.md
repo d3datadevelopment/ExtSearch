@@ -70,6 +70,6 @@ Leereinträge werden von der Suche so behandelt, dass derjenige Filter nicht ver
 
 In den Variablen `$aD3SearchIs` und `$aD3SearchLike` sind die Werte enthalten, die der Kunden vorab gewählt hatte. Als Parameter übergeben Sie den Feldnamen. Damit können Sie Ihren Formularfeldern die vom Kunden gewählte Auswahl wieder als Standard setzen.
 
-In der Praxis hat sich auch bewährt, an prominenter Stelle im Shop ein kleines Suchformular anzubieten und auf einer speziellen Seite Ihrem Kunden ein umfangreiches Suchformular mit vielen Suchkriterien zur Verfügung zu stellen. Kopieren Sie in diesem Fall das komplette Formular aus dem Template `inc/d3_extsearch_form.tpl` in Ihre spezielle Seite und füllen dies mit den möglichen Suchfeldern entsprechend der vorangegangen Beschreibung.
+In der Praxis hat sich auch bewährt, an prominenter Stelle im Shop ein kleines Suchformular anzubieten und auf einer speziellen Seite Ihrem Kunden ein umfangreiches Suchformular mit vielen Suchkriterien zur Verfügung zu stellen. Kopieren Sie in diesem Fall das komplette Formular aus dem Template `modules/d3/extsearch/Application/views/blocks/widget/header/d3_extsearch_searchfield.tpl` in Ihre spezielle Seite und füllen dies mit den möglichen Suchfeldern entsprechend der vorangegangen Beschreibung.
 
-Beachten Sie bitte, dass zur Auswertung dieser beschriebenen Suchfelder unbedingt die Option `auf zusätzliche Formularfelder prüfen` aktiviert sein muss.
+Beachten Sie bitte, dass zur Auswertung dieser beschriebenen Suchfelder unbedingt die Option `individuelle Filterfelder nutzen` aktiviert sein muss.

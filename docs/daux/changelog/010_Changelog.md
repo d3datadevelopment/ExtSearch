@@ -8,7 +8,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.0...rel_7.x)
+## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.1...rel_7.x)
+
+## [7.1.6.1](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.0...7.1.6.1) - 2023-10-20
+### Fixed
+- Abfragefehler bei mehrfacher Kategoriefilterselektion
+- Abfragefehler bei deaktivierten Datenbankviews
+- verhintert das Ändern des "isAdmin" Status bei der Kompilierung für den Injection Container
+- weise Artikeldaten nur bei existierendem Abfrageergebnis zu
+- Generierungsfehler bei Artikeln mit leerem Titel
 
 ## [7.1.6.0](https://git.d3data.de/D3Private/Extsearch/compare/7.1.5.0...7.1.6.0) - 2023-06-21
 ### Added
