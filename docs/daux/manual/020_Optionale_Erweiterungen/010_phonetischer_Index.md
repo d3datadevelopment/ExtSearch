@@ -8,4 +8,4 @@ Für die fehlertolerante Suche haben wir einen umfangreichen Algorithmus entwick
 
 Grundsätzlich ist anzumerken, dass, je ähnlicher eine Sprache zum Deutschen ist, umso zuverlässiger auch die deutsche Version der Ähnlichkeitssuche damit funktioniert. Für die englische Sprache wird also die Standardinstallation ein möglicherweise sinnvolles Ergebnis liefern. Spezielle Feinheiten der jeweiligen Sprache werden jedoch nur von dem dafür vorgesehenen Indizierungsschlüssel berücksichtigt.
 Für die englische Sprache haben wir die Erweiterung für das Modul schon vorbereitet. Kontaktieren Sie uns bei Bedarf bitte für ein Angebot. Diese Erweiterungen sind nicht standardmäßig im Modul enthalten.
-Setzen Sie in Ihrem Shop mehr als eine Sprache ein, können Sie für jede Shopsprache den dafür passenden Indizierungsschlüssel definieren (siehe !!!!!Konfigurationsmöglichkeiten).
+Setzen Sie in Ihrem Shop mehr als eine Sprache ein, können Sie für jede Shopsprache den dafür passenden Indizierungsschlüssel definieren (siehe Konfigurationsmöglichkeiten im Admin).
