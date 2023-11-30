@@ -8,13 +8,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.1...rel_7.x)
+## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.2...rel_7.x)
+
+## [7.1.6.2](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.1...7.1.6.2) - 2023-11-30
+### Added
+- Suchfelder werden auf abweichende Kollationen geprüft
+- Aktivstatus der Synonymgruppen kann im Backend geändert werden
+### Fixed
+- Extraktion der Suchbegriffe optimiert
+- Kombination von Mehr-Wort-Synonymen korrigiert
+- Kategoriefilter behalten Reihenfolge bei
+- Abfragefehler für Kategorien bei Verwendung von Artikelvarianten
+- Abfragefehler bei Filterung auf Hauptkategorien
+
 
 ## [7.1.6.1](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.0...7.1.6.1) - 2023-10-20
 ### Fixed
 - Abfragefehler bei mehrfacher Kategoriefilterselektion
 - Abfragefehler bei deaktivierten Datenbankviews
-- verhintert das Ändern des "isAdmin" Status bei der Kompilierung für den Injection Container
+- verhindert das Ändern des "isAdmin" Status bei der Kompilierung für den Injection Container
 - weise Artikeldaten nur bei existierendem Abfrageergebnis zu
 - Generierungsfehler bei Artikeln mit leerem Titel
 

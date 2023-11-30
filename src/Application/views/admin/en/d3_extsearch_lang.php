@@ -165,6 +165,8 @@ $aLang = array(
     'D3_EXTSEARCH_MAIN_GENERATOR_WAIT'                => 'Please wait...',
     'D3_EXTSEARCH_MAIN_GENERATOR_CLOSEWND'            => 'close window',
     'D3_EXTSEARCH_MAIN_GENERATOR_EXCEPTION'           => 'Generation error, the index can unfortunately not be created.',
+    'D3_EXTSEARCH_MAIN_COLLATIONERROR'                => 'The following fields use different collations and should not be used for the search: %1$s.',
+    'D3_EXTSEARCH_MAIN_NOTEXISTINGFIELDS'             => 'The following fields do not exist and cannot be used for the search: %1$s.',
 
     'D3_EXTSEARCH_NAVI_MAINSETTINGS'                  => 'Common Settings',
     'D3_EXTSEARCH_NAVI_DISPTYPE'                      => 'Type of filter display',
@@ -379,6 +381,8 @@ $aLang = array(
     'D3_EXTSEARCH_SYNED_MAIN_COMMENT_DESC'            => 'The comment serves exclusively to make further internal explanations to the term. It is not used for the search.',
     'D3_EXTSEARCH_SYNED_MAIN_SYNSETID'                => 'Synonym ID:',
     'D3_EXTSEARCH_SYNED_MAIN_SYNSETID_DESC'           => 'In a uniform synonym ID, all terms with the same meaning are stored. New entries will automatically be assigned a new ID. If a term has been mistakenly assigned the wrong meaning, choose the synonym ID from the appropriate meaning and change it to your term.',
+    'D3_EXTSEARCH_SYNED_MAIN_ISVISIBLE'               => 'active:',
+    'D3_EXTSEARCH_SYNED_MAIN_ISVISIBLE_DESC'          => 'If you do not want to use the synonym group (at present), remove the checkmark.',
     'D3_EXTSEARCH_SYNED_MAIN_LANGUAGE'                => 'language:',
     'D3_EXTSEARCH_SYNED_MAIN_LANGUAGE_DESC'           => 'Determine from this, from which language the selected term originates and in which this is to be used. Only the languages activated in the shop are available.',
     'D3_EXTSEARCH_SYNED_MAIN_LANGUAGE_DISABLED'       => '(disabled)',
