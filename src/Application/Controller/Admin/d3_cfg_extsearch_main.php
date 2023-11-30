@@ -19,6 +19,7 @@ use D3\Extsearch\Application\Model\d3_search_generator;
 use D3\Extsearch\Core\d3_extsearch_conf;
 use D3\Extsearch\Modules\Application\Model\d3_oxsearch_extsearch;
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_main;
+use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
 use D3\ModCfg\Application\Model\d3utils;
 use D3\ModCfg\Application\Model\d3database;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
@@ -79,7 +80,9 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
             $this->_iUnindexedArticles = 0;
             startProfile(__METHOD__);
 
-            $this->_iUnindexedArticles = $this->d3getGenerator()->getMaxUpdatePos();
+            try {
+                $this->_iUnindexedArticles = $this->d3getGenerator()->getMaxUpdatePos();
+            } catch (DatabaseErrorException $e) {}
 
             stopProfile(__METHOD__);
         }
@@ -101,6 +104,8 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         startProfile(__METHOD__);
 
         $this->addTplParam("oConfig", Registry::getConfig());
+
+        $this->assertSearchFields();
 
         $sRet = parent::render();
 
@@ -483,6 +488,60 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         }
 
         stopProfile(__METHOD__);
+    }
+
+    protected function assertSearchFields()
+    {
+        $fields = d3_cfg_mod::get($this->_sModId)->getValue('aExtSearch_similarSearchFields');
+
+        $sSelectOa = 'SHOW FULL COLUMNS FROM '. DatabaseProvider::getDb()->quoteIdentifier(oxNew(Article::class)->getCoreTableName());
+        $sSelectOae = 'SHOW FULL COLUMNS FROM '. DatabaseProvider::getDb()->quoteIdentifier('oxartextends');
+        $records = array_merge(
+            DatabaseProvider::getDb(DatabaseProvider::FETCH_MODE_ASSOC)->getAll($sSelectOae),
+            DatabaseProvider::getDb(DatabaseProvider::FETCH_MODE_ASSOC)->getAll($sSelectOa)
+        );
+
+        $usedCollation = null;
+        $differentCollationFields = [];
+        $missingFields = [];
+
+        array_walk($records, function($item) use (&$usedCollation) {
+            if ($item['Field'] === 'OXTITLE') {
+                $usedCollation = $item['Collation'];
+            }
+        });
+
+        foreach ($fields as $fieldname) {
+            $exists = false;
+            $re = '/(\d+\s*=>\s*)?(.*)\s?/m';
+            preg_match($re, $fieldname, $matches);
+            $fieldname = trim($matches[2]);
+            reset($records);
+            array_walk($records, function($item) use ($usedCollation, $fieldname, &$exists, &$differentCollationFields) {
+                if ($item['Field'] === strtoupper($fieldname)) $exists = true;
+                if ($item['Field'] === strtoupper($fieldname) && $item['Collation'] !== null && $item['Collation'] !== $usedCollation) {
+                    $differentCollationFields[] = $fieldname;
+                }
+            });
+            if (!$exists) $missingFields[] = $fieldname;
+        }
+
+        if (count($differentCollationFields)) {
+            Registry::getUtilsView()->addErrorToDisplay(
+                sprintf(
+                    Registry::getLang()->translateString('D3_EXTSEARCH_MAIN_COLLATIONERROR'),
+                    '"'.implode('", "', array_unique($differentCollationFields)).'"'
+                )
+            );
+        }
+        if (count($missingFields)) {
+            Registry::getUtilsView()->addErrorToDisplay(
+                sprintf(
+                    Registry::getLang()->translateString('D3_EXTSEARCH_MAIN_NOTEXISTINGFIELDS'),
+                    '"'.implode('", "', array_unique($missingFields)).'"'
+                )
+            );
+        }
     }
 
     /**

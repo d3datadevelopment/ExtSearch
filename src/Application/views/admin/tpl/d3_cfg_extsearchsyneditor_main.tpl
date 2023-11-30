@@ -103,6 +103,16 @@
                     </tr>
                     <tr>
                         <td class="edittext" style="width:120px;">
+                            <label for="synIsVisible">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_ISVISIBLE"}]</label>
+                        </td>
+                        <td class="edittext">
+                            <input type="hidden" name="synset[d3_extsearch_synset__is_visible]" value="0">
+                            <input id="synIsVisible" class="edittext ext_edittext" type="checkbox" name="synset[d3_extsearch_synset__is_visible]" value="1" [{if $synset->getFieldData('is_Visible') == 1}]checked[{/if}] [{$readonly}]>
+                            [{oxinputhelp ident="D3_EXTSEARCH_SYNED_MAIN_ISVISIBLE_DESC"}]
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="edittext" style="width:120px;">
                             <label for="term__language_id">[{oxmultilang ident="D3_EXTSEARCH_SYNED_MAIN_LANGUAGE"}]</label>
                         </td>
                         <td class="edittext">

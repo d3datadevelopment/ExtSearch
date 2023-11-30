@@ -165,6 +165,8 @@ $aLang = array(
     'D3_EXTSEARCH_MAIN_GENERATOR_WAIT'                => 'Bitte warten...',
     'D3_EXTSEARCH_MAIN_GENERATOR_CLOSEWND'            => 'Fenster schließen',
     'D3_EXTSEARCH_MAIN_GENERATOR_EXCEPTION'           => 'Generierungsfehler, der Index kann leider nicht erstellt werden.',
+    'D3_EXTSEARCH_MAIN_COLLATIONERROR'                => 'Folgende Felder verwenden abweichende Collations und sollten nicht für die Suche verwendet werden: %1$s.',
+    'D3_EXTSEARCH_MAIN_NOTEXISTINGFIELDS'             => 'Folgende Felder existieren nicht und können nicht für die Suche verwendet werden: %1$s.',
 
     'D3_EXTSEARCH_NAVI_MAINSETTINGS'                  => 'allgemeine Einstellungen',
     'D3_EXTSEARCH_NAVI_DISPTYPE'                      => 'Art der Filter-Anzeige',
@@ -379,6 +381,8 @@ $aLang = array(
     'D3_EXTSEARCH_SYNED_MAIN_COMMENT_DESC'            => 'Der Kommentar dient ausschließlich dazu, weitere interne Erklärungen zum Begriff ablegen zu können. Er wird für die Suche nicht verwendet.',
     'D3_EXTSEARCH_SYNED_MAIN_SYNSETID'                => 'Synonym-ID:',
     'D3_EXTSEARCH_SYNED_MAIN_SYNSETID_DESC'           => 'Unter einer einheitlichen Synonym-ID werden alle Begriffe mit gleicher Bedeutung abgelegt. Bei Neueinträgen wird automatisch eine neue ID vergeben. Wurde ein Begriff versehentlich der falschen Bedeutung zugewiesen, suchen Sie sich aus der passenden Bedeutung die Synonym-Id und ändern diese an Ihrem Begriff.',
+    'D3_EXTSEARCH_SYNED_MAIN_ISVISIBLE'               => 'aktiv:',
+    'D3_EXTSEARCH_SYNED_MAIN_ISVISIBLE_DESC'          => 'Möchten Sie die Synonymgruppe (derzeit) nicht verwenden, entfernen Sie den Haken.',
     'D3_EXTSEARCH_SYNED_MAIN_LANGUAGE'                => 'Sprache:',
     'D3_EXTSEARCH_SYNED_MAIN_LANGUAGE_DESC'           => 'Bestimmen Sie hieran, aus welcher Sprache der ausgewählte Begriff stammt und in welcher dieser verwendet werden soll. Es stehen nur die im Shop aktivierten Sprachen zur Verfügung.',
     'D3_EXTSEARCH_SYNED_MAIN_LANGUAGE_DISABLED'       => '(deaktiviert)',
