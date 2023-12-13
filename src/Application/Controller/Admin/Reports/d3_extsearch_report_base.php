@@ -254,7 +254,7 @@ class d3_extsearch_report_base extends d3_OeStatistics_Report_Base
         }
 
         foreach ($aDataX as $sKey => $sValue) {
-            $aDataVals{$sKey} = round($sValue / $iMax * 100);
+            $aDataVals[$sKey] = round($sValue / $iMax * 100);
         }
 
         return $aDataVals;

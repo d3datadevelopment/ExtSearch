@@ -29,7 +29,7 @@ class d3_cfg_extsearchsyneditor extends d3_cfg_mod_
     public function render()
     {
         $this->addTplParam('sListClass', d3_cfg_extsearchsyneditor_list::class);
-        $this->addTplParam('sMainClass', d3_cfg_extsearchsyneditor_Main::class);
+        $this->addTplParam( 'sMainClass', d3_cfg_extsearchsyneditor_main::class);
         return parent::render();
     }
 }
