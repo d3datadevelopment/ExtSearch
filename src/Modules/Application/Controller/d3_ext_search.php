@@ -38,8 +38,8 @@ use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use D3\ModCfg\Application\Model\Log\d3log;
 use Doctrine\DBAL\DBALException;
-use exception;
-use oxCategoryList;
+use Exception;
+use oxcategorylist;
 use OxidEsales\Eshop\Application\Model\CategoryList;
 use OxidEsales\Eshop\Application\Model\VendorList;
 use OxidEsales\Eshop\Application\Model\ManufacturerList;
@@ -344,7 +344,7 @@ class d3_ext_search extends d3_ext_search_parent
         $aPriorityAlias      = array();
 
         if (method_exists($this->_d3GetSearchHandler(), 'd3getPriorityAlias')) {
-            $aPriorityAlias = $this->_d3GetSearchHandler()->d3getPriorityAlias();
+            $aPriorityAlias = $this->_d3GetSearchHandler()->d3GetPriorityAlias();
         }
 
         if ($this->d3GetSet()->isActive()
