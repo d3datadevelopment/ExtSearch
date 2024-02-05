@@ -1,0 +1,102 @@
+From 8d837c54c7d3d4dff313cae6a6e06807b5d8c6e1 Mon Sep 17 00:00:00 2001
+From: Daniel Seifert <ds@shopmodule.com>
+Date: Thu, 9 Nov 2023 10:35:52 +0100
+Subject: [PATCH 1/3] HTML structure of search article list aligned to category
+
+---
+ tpl/page/search/search.html.twig | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
+
+diff --git a/tpl/page/search/search.html.twig b/tpl/page/search/search.html.twig
+index a0266c2..aaddd34 100644
+--- a/tpl/page/search/search.html.twig
++++ b/tpl/page/search/search.html.twig
+@@ -38,16 +38,18 @@
+             {% else %}
+                 <p class="alert alert-info">{{ translate({ ident: "NO_ITEMS_FOUND" }) }}</p>
+             {% endif %}
+-            {% if oView.getArticleList() %}
+-                {% for product in oView.getArticleList() %}
+-                    {% include "widget/product/list.html.twig" with {type: oView.getListDisplayType(), listId: "searchList", products: oView.getArticleList(), showMainLink: true} %}
+-                {% endfor %}
+-            {% endif %}
+-            {% if oView.getArticleCount() %}
+-                {% block search_bottom_listlocator %}
+-                    {% include "widget/locator/listlocator.html.twig" with {locator: oView.getPageNavigationLimitedBottom(), place: "bottom"} %}
+-                {% endblock %}
+-            {% endif %}
++            <div class="row">
++                {% if oView.getArticleList() %}
++                    {% for product in oView.getArticleList() %}
++                        {% include "widget/product/list.html.twig" with {type: oView.getListDisplayType(), listId: "searchList", products: oView.getArticleList(), showMainLink: true} %}
++                    {% endfor %}
++                {% endif %}
++                {% if oView.getArticleCount() %}
++                    {% block search_bottom_listlocator %}
++                        {% include "widget/locator/listlocator.html.twig" with {locator: oView.getPageNavigationLimitedBottom(), place: "bottom"} %}
++                    {% endblock %}
++                {% endif %}
++            </div>
+         </div>
+     {% endblock %}
+     </div>
+-- 
+2.26.1.windows.1
+
+
+From 1c003af89fb2c0f4a4cbe8c21a5ff6a94c8e7583 Mon Sep 17 00:00:00 2001
+From: Daniel Seifert <ds@shopmodule.com>
+Date: Thu, 9 Nov 2023 10:40:34 +0100
+Subject: [PATCH 2/3] removed unnecessary loop
+
+---
+ tpl/page/search/search.html.twig | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/tpl/page/search/search.html.twig b/tpl/page/search/search.html.twig
+index aaddd34..573ae75 100644
+--- a/tpl/page/search/search.html.twig
++++ b/tpl/page/search/search.html.twig
+@@ -40,9 +40,7 @@
+             {% endif %}
+             <div class="row">
+                 {% if oView.getArticleList() %}
+-                    {% for product in oView.getArticleList() %}
+-                        {% include "widget/product/list.html.twig" with {type: oView.getListDisplayType(), listId: "searchList", products: oView.getArticleList(), showMainLink: true} %}
+-                    {% endfor %}
++                    {% include "widget/product/list.html.twig" with {type: oView.getListDisplayType(), listId: "searchList", products: oView.getArticleList(), showMainLink: true} %}
+                 {% endif %}
+                 {% if oView.getArticleCount() %}
+                     {% block search_bottom_listlocator %}
+-- 
+2.26.1.windows.1
+
+
+From 682c676c4f8bec884af38c25e8c8f85fbdc513f9 Mon Sep 17 00:00:00 2001
+From: Daniel Seifert <ds@shopmodule.com>
+Date: Thu, 9 Nov 2023 10:43:31 +0100
+Subject: [PATCH 3/3] template block added for better extensibility (as in
+ article list)
+
+---
+ tpl/page/search/search.html.twig | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/tpl/page/search/search.html.twig b/tpl/page/search/search.html.twig
+index 573ae75..473b205 100644
+--- a/tpl/page/search/search.html.twig
++++ b/tpl/page/search/search.html.twig
+@@ -40,7 +40,9 @@
+             {% endif %}
+             <div class="row">
+                 {% if oView.getArticleList() %}
+-                    {% include "widget/product/list.html.twig" with {type: oView.getListDisplayType(), listId: "searchList", products: oView.getArticleList(), showMainLink: true} %}
++                    {% block search_list_productlist %}
++                        {% include "widget/product/list.html.twig" with {type: oView.getListDisplayType(), listId: "searchList", products: oView.getArticleList(), showMainLink: true} %}
++                    {% endblock %}
+                 {% endif %}
+                 {% if oView.getArticleCount() %}
+                     {% block search_bottom_listlocator %}
+-- 
+2.26.1.windows.1
+
