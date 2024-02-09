@@ -1,0 +1,13 @@
+<div class="clearfix"></div>
+<button type="submit" class="submitButton largeButton btn {% if oModCfg_d3_extsearch.isThemeIdMappedTo('wave') %}btn-outline-primary {# for Bootstrap 4 #}{% elseif oModCfg_d3_extsearch.isThemeIdMappedTo('apex') %}btn-outline-primary {# for Bootstrap 5 #}{% endif %} btn-sm" onclick="d3_extsearch_popup.popup.load();">{{ translate({ ident: "D3_EXTSEARCH_EXT_ASSIGNFILTER" }) }}</button>
+
+<button id="d3search{{ type }}__multiclear__{{ sIdKey }}" type="submit" class="submitButton largeButton btn {% if oModCfg_d3_extsearch.isThemeIdMappedTo('wave') %}btn-outline-secondary {# for Bootstrap 4 #}{% elseif oModCfg_d3_extsearch.isThemeIdMappedTo('apex') %}btn-light {# for Bootstrap 5 #}{% endif %} btn-sm" onclick="d3_extsearch_popup.popup.load();">{{ translate({ ident: "D3_EXTSEARCH_EXT_UNASSIGNFILTER" }) }}</button>
+
+{% set d3JsFnc %}{% apply spaceless %}
+    document.querySelector('#d3search{{ type }}__multiclear__{{ sIdKey }}').addEventListener("click", (event) => {
+        event.target.parentNode.querySelectorAll('input[type=checkbox]').forEach((element) => {
+            element.checked = false;
+        });
+    });
+{% endapply %}{% endset %}
+{{ script({ add: d3JsFnc.__toString(), dynamic: __oxid_include_dynamic }) }}

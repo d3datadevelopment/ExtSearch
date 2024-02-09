@@ -1,0 +1,51 @@
+{% extends "page/list/list.html.twig" %}
+
+{% block page_list_listbody %}
+    {% d3modcfgcheck modid="d3_extsearch" %}{% endd3modcfgcheck %}
+    {% set articleList = oView.getArticleList() %}
+
+    {% if mod_d3_extsearch and (not articleList or articleList|length == 0) and blD3HasSelectedFilters %}
+        <div class="d3searchdeselectform">
+            <form action="{{ oViewConf.getSelfActionLink()|raw }}" method="post" id="d3searchfilterform">
+                {{ oViewConf.getHiddenSid()|raw }}
+                <input type="hidden" name="cl" value="{{ oViewConf.getActiveClassName() }}">
+                <input type="hidden" name="searchparam" value="{{ oView.getSearchParamForHtml() }}">
+                <input type="hidden" name="fnc" value="">
+                {% for keyname, value in oView.getNavigationParams() %}
+                    {% if keyname != 'searchcnid' and keyname != 'searchvendor' and keyname != 'searchmanufacturer' %}
+                        <input type="hidden" name="{{ keyname }}" value="{{ value }}">
+                    {% endif %}
+                {% endfor %}
+                <input type="hidden" name="isextsearch" value="alist">
+
+                {% block d3_inc_ext_search__filter_message %}
+                    <div class="alert alert-info">
+                        {{ translate({ ident: "D3_EXTSEARCH_EXT_NOARTDESELECT" }) }}
+                    </div>
+                {% endblock %}
+
+                {% block d3_inc_ext_search__filter_clear %}
+                    <div class="fullitem clearFilter">
+                        <button type="submit" class="submitButton largeButton btn {% if oModCfg_d3_extsearch.isThemeIdMappedTo('wave') %}btn-outline-primary {# for Bootstrap 4 #}{% elseif oModCfg_d3_extsearch.isThemeIdMappedTo('apex') %}btn-highlight {# for Bootstrap 5 #}{% endif %}  btn-sm" onclick="document.getElementById('d3searchfilterform').isextsearch.value = false; document.getElementById('d3searchfilterform').fnc.value = 'd3ClearFilter'; d3_extsearch_popup.popup.load();">{{ translate({ ident: "D3_EXTSEARCH_EXT_CLEARFILTER" }) }}</button>
+                    </div>
+                {% endblock %}
+            </form>
+        </div>
+    {% endif %}
+
+    {{ parent() }}
+
+{% endblock %}
+
+{% block page_list_productlist %}
+
+    {% d3modcfgcheck modid="d3_extsearch" %}{% endd3modcfgcheck %}
+{# #productList must resized to 9 of 12 via Sass and CSS #}
+    {# Smarty based themes can add sidebar contents via "capture append" #}
+    {% if mod_d3_extsearch and not place %}
+        {% set sTplName = "@d3_extsearch/"|cat(oModCfg_d3_extsearch.getMappedThemeId())|cat("/d3_list_filters.html.twig") %}
+        {% include sTplName with {sidebar_class: "d3sidebar", themename: oModCfg_d3_extsearch.getMappedThemeId()} %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

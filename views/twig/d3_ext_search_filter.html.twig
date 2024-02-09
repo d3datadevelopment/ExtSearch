@@ -1,0 +1,13 @@
+{% block d3_cfg_extsearch_indexletter %}
+    {% if oView.isHitForIndexLetter(d3fparam) %}
+        <div class="indexlink_usable{% if sSelectedIndexLetter == d3fparam %} active{% endif %} letter_{{ d3fparam }}">
+            <a href="{{ seo_url({ ident: oView.generatePageNavigationUrl()|add_url_parameters("d3searchindexletter=" ~ d3fparam) }) }}" onclick="d3_extsearch_popup.popup.load();">
+                {{ d3fdesc ? d3fdesc : d3fparam }}
+            </a>
+        </div>
+    {% else %}
+        <div class="indexlink letter_{{ d3fparam }}">
+            {{ d3fdesc ? d3fdesc : d3fparam }}
+        </div>
+    {% endif %}
+{% endblock %}

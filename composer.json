@@ -1,0 +1,58 @@
+{
+  "name": "d3/extsearch",
+  "description": "Extended search module for OXID eShop.",
+  "type": "oxideshop-module",
+  "keywords": [
+    "oxid",
+    "modules",
+    "eShop",
+    "d3",
+    "search"
+  ],
+  "authors": [
+    {
+        "name": "D3 Data Development (Inh. Thomas Dartsch)",
+        "email": "info@shopmodule.com",
+        "homepage": "https://www.d3data.de",
+        "role": "Owner"
+    }
+  ],
+  "support": {
+    "email": "support@shopmodule.com"
+  },
+  "homepage": "https://www.oxidmodule.com/",
+  "license": [
+    "proprietary"
+  ],
+  "suggest": {
+    "d3/prg-redirects": "prevents unwanted reloading of filtered results when using the Browsers Back function, improves the user experience",
+    "oxid-projects/statistics-module": "allows the graphical evaluation of statistics"
+  },
+  "require": {
+    "php": "^8.0",
+    "ext-sourceguardian": "^14",
+    "oxid-esales/oxideshop-ce": "7.0 - 7.0",
+    "d3/modcfg": "^7.0",
+    "d3/oxid-sql-logger": "^2.0.0",
+    "splitbrain/php-cli": "^1.2.0",
+    "szepeviktor/package-path": "^0.3"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "~3.13.0",
+    "phpstan/phpstan": "^1.10",
+    "boxblinkracer/phpunuhi": "^1.12"
+  },
+  "autoload": {
+    "psr-4": {
+      "D3\\Extsearch\\": ""
+    }
+  },
+  "bin": ["bin/d3_extsearch_cron"],
+  "scripts": {
+    "phpunit": "./vendor/bin/phpunit --bootstrap=source/bootstrap.php --config=vendor/d3/extsearch --no-coverage",
+    "phpunit_coverage": "./vendor/bin/phpunit --bootstrap=source/bootstrap.php --config=vendor/d3/extsearch",
+    "phpstan": "./vendor/bin/phpstan analyse -c./vendor/d3/extsearch/phpstan.neon",
+    "php-cs-fixer_audit": "./vendor/bin/php-cs-fixer list-files --config=./vendor/d3/extsearch/.php-cs-fixer.php",
+    "php-cs-fixer_fix": "./vendor/bin/php-cs-fixer fix --config=./vendor/d3/extsearch/.php-cs-fixer.php"
+  }
+}

@@ -1,0 +1,24 @@
+{% extends "article_extend.html.twig" %}
+
+{% block admin_article_extend_form %}
+{# Apex + Wave admin theme #}
+
+    {{ parent() }}
+
+    <tr>
+        <td class="edittext" style="width:120px">
+            <label for="d3push">{{ translate({ ident: "D3_EXTSEARCH_PUSH" }) }}</label>
+        </td>
+        <td class="edittext">
+            <select id="d3push" class="edittext" name="editval[oxarticles__d3push]" size="1">
+                <option value="1"
+                {% if edit.oxarticles__d3push.value == 1 %}selected{% endif %}>{{ translate({ ident: "D3_EXTSEARCH_PUSH_1" }) }}</option>
+                <option value="2"
+                {% if edit.oxarticles__d3push.value == 2 %}selected{% endif %}>{{ translate({ ident: "D3_EXTSEARCH_PUSH_2" }) }}</option>
+                <option value="3"
+                {% if edit.oxarticles__d3push.value == 3 %}selected{% endif %}>{{ translate({ ident: "D3_EXTSEARCH_PUSH_3" }) }}</option>
+            </select>
+            {% include "inputhelp.html.twig" with {'sHelpId': help_id("D3_EXTSEARCH_PUSH_DESC"), 'sHelpText': help_text("D3_EXTSEARCH_PUSH_DESC")} %}
+        </td>
+    </tr>
+{% endblock %}

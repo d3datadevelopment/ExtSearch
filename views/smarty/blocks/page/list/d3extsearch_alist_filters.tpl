@@ -1,0 +1,20 @@
+[{$smarty.block.parent}]
+
+[{d3modcfgcheck modid="d3_extsearch"}][{/d3modcfgcheck}]
+[{if $mod_d3_extsearch && $blD3ShowFilters && !$place}]
+
+    [{* ToDo: enable sidebar via sidebar="left" template variable *}]
+    [{assign var="sTplName" value='@d3_extsearch/'|cat:$oModCfg_d3_extsearch->getMappedThemeId()|cat:"/d3_list_filters.tpl"}]
+
+    [{block name="d3extsearch_alist_filters_general"}]
+        [{if $oModCfg_d3_extsearch->isThemeIdMappedTo('wave')}]
+            [{capture append="oxidBlock_sidebar"}]
+                [{assign var="sidebar" value="left"}]
+                [{include file=$sTplName sidebar_class="d3sidebar" themename=$oModCfg_d3_extsearch->getMappedThemeId()}]
+            [{/capture}]
+        [{else}]
+            [{** display filter across articles **}]
+            [{include file=$sTplName sidebar_class="d3topbar"}]
+        [{/if}]
+    [{/block}]
+[{/if}]

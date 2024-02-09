@@ -1,0 +1,24 @@
+{% extends "widget/product/listitem_grid.html.twig" %}
+
+{% block widget_product_listitem_infogrid_titlebox %}
+
+    {% d3modcfgcheck modid="d3_extsearch" %}{% endd3modcfgcheck %}
+    {% if mod_d3_extsearch and (oModCfg_d3_extsearch.isThemeIdMappedTo('wave')) %}
+        <div class="title">
+            <a id="{{ testid }}" href="{{ _productLink }}" class="title" title="{{ product.oxarticles__oxtitle.value }} {{ product.oxarticles__oxvarselect.value }}">
+                <span>{{ product.oxarticles__oxtitle.value|d3_extsearch_highlight }} {{ product.oxarticles__oxvarselect.value|d3_extsearch_highlight }}</span>
+            </a>
+            {% if product.blIsSimilar %}<span class='similar'>{{ translate({ ident: "D3_EXTSEARCH_EXT_SIMILAR" }) }}</span>{% endif %}
+            {% if product.isD3CatHit %}<span class='similar'>{{ translate({ ident: "D3_EXTSEARCH_EXT_CATHIT" }) }}</span>{% endif %}
+        </div>
+    {% elseif mod_d3_extsearch and (oModCfg_d3_extsearch.isThemeIdMappedTo('apex')) %}
+        <div class="h5 card-title">
+            {{ product.oxarticles__oxtitle.value|d3_extsearch_highlight }} {{ product.oxarticles__oxvarselect.value|d3_extsearch_highlight }}
+            {% if product.blIsSimilar %}<span class='similar'>{{ translate({ ident: "D3_EXTSEARCH_EXT_SIMILAR" }) }}</span>{% endif %}
+            {% if product.isD3CatHit %}<span class='similar'>{{ translate({ ident: "D3_EXTSEARCH_EXT_CATHIT" }) }}</span>{% endif %}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+{% endblock %}

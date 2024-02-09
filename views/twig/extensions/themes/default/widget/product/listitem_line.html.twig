@@ -1,0 +1,85 @@
+{% extends "widget/product/listitem_line.html.twig" %}
+
+{% block widget_product_listitem_line_titlebox %}
+
+    {% d3modcfgcheck modid="d3_extsearch" %}{% endd3modcfgcheck %}
+
+    {% if mod_d3_extsearch and oModCfg_d3_extsearch.isThemeIdMappedTo('apex') %}
+        <a class="h5 card-title" href="{{ _productLink|raw }}" title="{{ product.oxarticles__oxtitle.value }} {{ product.oxarticles__oxvarselect.value }}">
+            {{ product.oxarticles__oxtitle.value|d3_extsearch_highlight }} {{ product.oxarticles__oxvarselect.value|d3_extsearch_highlight }}
+        </a>
+    {% endif %}
+
+{% endblock %}
+
+{% block widget_product_listitem_line_selections %}
+
+    {% d3modcfgcheck modid="d3_extsearch" %}{% endd3modcfgcheck %}
+
+    {% if mod_d3_extsearch and oModCfg_d3_extsearch.isThemeIdMappedTo('wave') %}
+        <div class="info">
+            <a id="{{ testid }}" href="{{ _productLink }}" class="title" title="{{ product.oxarticles__oxtitle.value }} {{ product.oxarticles__oxvarselect.value }}">
+                <span>{{ product.oxarticles__oxtitle.value|d3_extsearch_highlight }} {{ product.oxarticles__oxvarselect.value|d3_extsearch_highlight }}</span>
+            </a>
+            {% if product.blIsSimilar %}<span class='similar'>{{ translate({ ident: "D3_EXTSEARCH_EXT_SIMILAR" }) }}</span>{% endif %}
+            {% if product.isD3CatHit %}<span class='similar'>{{ translate({ ident: "D3_EXTSEARCH_EXT_CATHIT" }) }}</span>{% endif %}
+            <div class="variants">
+                {% if aVariantSelections and aVariantSelections.selections %}
+                    <div id="variantselector_{{ testid }}" class="selectorsBox js-fnSubmit clear">
+                        {% for iKey, oSelectionList in aVariantSelections.selections %}
+                        {% include "widget/product/selectbox.html.twig" with {oSelectionList: oSelectionList, sJsAction: "js-fnSubmit"} %}
+                        {% endfor %}
+                    </div>
+                {% elseif oViewConf.showSelectListsInList() %}
+                    {% set oSelections = product.getSelections(1) %}
+                    {% if oSelections %}
+                        <div id="selectlistsselector_{{ testid }}" class="selectorsBox js-fnSubmit clear">
+                            {% for oList in oSelections %}
+                                {% include "widget/product/selectbox.html.twig" with {oSelectionList: oList, sFieldName: "sel", iKey: loop.index0, blHideDefault: true, sSelType: "seldrop", sJsAction: "js-fnSubmit"} %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+{% endblock %}
+
+{% block widget_product_listitem_line_description %}
+
+    {% d3modcfgcheck modid="d3_extsearch" %}{% endd3modcfgcheck %}
+
+    {% if mod_d3_extsearch and oModCfg_d3_extsearch.isThemeIdMappedTo('apex') %}
+
+        <div class="card-text">
+            {% if recommid %}
+                {{ product.text|d3_extsearch_highlight }}
+            {% else %}
+                {% hasrights { ident: "SHOWSHORTDESCRIPTION" } %}
+                    {{ product.oxarticles__oxshortdesc.value|d3_extsearch_highlight }}
+                {% endhasrights %}
+            {% endif %}
+        </div>
+
+    {% elseif mod_d3_extsearch and oModCfg_d3_extsearch.isThemeIdMappedTo('wave') %}
+
+        <div class="description">
+            {% if recommid %}
+                <div>{{ product.text|truncate(160, "...")|d3_extsearch_highlight }}</div>
+            {% else %}
+                {% hasrights { ident: "SHOWSHORTDESCRIPTION" } %}
+                    {{ product.oxarticles__oxshortdesc.value|truncate(160, "...")|d3_extsearch_highlight }}
+                {% endhasrights %}
+            {% endif %}
+        </div>
+
+    {% else %}
+
+        {{ parent() }}
+
+    {% endif %}
+
+{% endblock %}

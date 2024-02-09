@@ -1,0 +1,96 @@
+{% set sIdKey = "manufacturer" %}
+{% set blShowMultipleSelector = true %}
+<div class="item manufacturer {{ cssclass }}" id="atid_manufacturer">
+    {% block d3_inc_ext_search__filter_manufacturer_title %}
+        <label for="searchmanufacturer">
+            {{ translate({ ident: "D3_EXTSEARCH_EXT_MANUFACTURERS" }) }}
+        </label><br>
+    {% endblock %}
+
+    {% set displayTypes = { "combined" : "combined", "single" : "single" } %}
+    {% if sManufacturerFilterDisplayType in displayTypes %}
+        {% block d3_inc_ext_search__filter_manufacturer_single %}
+            <SELECT class="form-select" id="searchmanufacturer" name="searchmanufacturer" onchange="d3_extsearch_popup.popup.load(); this.form.submit();">
+                {% if sSelectedManufacturerId %}
+                    {% set blShowMultipleSelector = false %}
+                    <OPTION class="desc" value="">{{ translate({ ident: "D3_EXTSEARCH_EXT_SEARCHINMANUFACTURERS" }) }}</OPTION>
+                    <OPTION value="{{ sSelectedManufacturerId }}" selected="selected">{{ sSelectedManufacturer }}</OPTION>
+                {% else %}
+                    <OPTION class="desc" value="" selected="selected">{{ translate({ ident: "D3_EXTSEARCH_EXT_CHOOSEMANUFACTURER" }) }}</OPTION>
+                    {% for manufacturer in oView.d3getManufacturerList() %}
+                        <OPTION value="{{ manufacturer.getId() }}">{{ manufacturer.oxmanufacturers__oxtitle.getRawValue() }}
+                            {% if not oModCfg_d3_extsearch.getValue('blExtSearch_dontShowFilterArticleCount') and manufacturer.getFieldData('counter') %}
+                                ({{ manufacturer.getFieldData('counter') }})
+                            {% endif %}
+                        </OPTION>
+                    {% endfor %}
+                {% endif %}
+            </SELECT>
+
+            <noscript>
+                <div id="searchmanufacturersubmit" class="fullitem">
+                    <button type="submit" class="submitButton largeButton btn {% if oModCfg_d3_extsearch.isThemeIdMappedTo('wave') %}btn-outline-primary {# for Bootstrap 4 #}{% endif %} btn-sm" onclick="d3_extsearch_popup.popup.load();">{{ translate({ ident: "D3_EXTSEARCH_EXT_ASSIGNFILTER" }) }}</button>
+                </div>
+            </noscript>
+        {% endblock %}
+    {% endif %}
+
+    {% set displayTypes = { "combined" : "combined", "multi" : "multi" } %}
+    {% if sManufacturerFilterDisplayType in displayTypes %}
+        {% block d3_inc_ext_search__filter_manufacturer_multi %}
+            <div class="multiselect" id="d3searchmanufacturer__multi" style="{% if sManufacturerFilterDisplayType == 'combined' %}display: none;{% endif %}">
+                {% for valuekey, manufacturer in oView.d3getManufacturerList() %}
+                    <div class="multiselectvalue" id="d3searchmanufacturer__multi__{{ valuekey }}">
+                        <input name="d3searchmanufacturermulti[{{ manufacturer.getId() }}]" type="hidden" value="">
+                        <input name="d3searchmanufacturermulti[{{ manufacturer.getId() }}]" type="checkbox" class="form-check-input" value="{{ manufacturer.getId() }}" id="cb{{ key }}{{ manufacturer.getId() }}" {% if manufacturer.selected or manufacturer.getId() == sSelectedManufacturerId %} checked{% endif %}>
+                        <label for="cb{{ key }}{{ manufacturer.getId() }}">
+                            {{ manufacturer.getTitle() }} {% if not oModCfg_d3_extsearch.getValue('blExtSearch_dontShowFilterArticleCount') and manufacturer.getFieldData('counter') %}({{ manufacturer.getFieldData('counter') }}){% endif %}
+                        </label>
+                    </div>
+                {% endfor %}
+
+                {% block d3_inc_ext_search__filter_manufacturer_multibuttons %}
+                    {% include "@d3_extsearch/filterelements/inc/multibuttons.html.twig" with {type: "manufacturer"} %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    {% endif %}
+
+    {% block d3_inc_ext_search__filter_manufacturer_multiselector %}
+        {% if sManufacturerFilterDisplayType == 'combined' %}
+            <div id="d3searchmanufacturer__multiselector" class="filterselector {% if false == blShowMultipleSelector %}filterselector_hidden{% endif %}">
+                <input type="checkbox" class="form-check-input" name="d3searchmanufacturermultiselector" id="d3searchmanufacturermultiselector" onclick="toggleMultiManufacturer(this.checked);">
+                <label for="d3searchmanufacturermultiselector">
+                    {% set manufacturertranslation = "MANUFACTURERS"|translate %}
+                    {{ oView.d3GetMultipleSelectionTranslation(manufacturertranslation) }}
+                </label>
+            </div>
+
+            {% set d3JsFnc %}{% apply spaceless %}
+                function toggleMultiManufacturer(blChecked) {
+                    if (blChecked) {
+                        document.getElementById('d3searchmanufacturer__multi').style.display = 'block';
+                        document.getElementById('searchmanufacturer').style.display = 'none';
+                        if (buttonElement = document.getElementById('searchmanufacturersubmit')) {
+                            buttonElement.style.display = 'none';
+                        }
+                        document.getElementById('d3searchmanufacturer__multiselector').style.display = 'none';
+                    }
+                }
+            {% endapply %}{% endset %}
+            {{ script({ add: d3JsFnc.__toString(), dynamic: __oxid_include_dynamic }) }}
+
+            {% if oView.d3ManufacturerFilterUseMultipleValues() %}
+                {% set d3JsFnc %}{% apply spaceless %}
+                    toggleMultiManufacturer(true);
+                    document.getElementById('d3searchmanufacturermultiselector').checked = 'checked';
+                {% endapply %}{% endset %}
+                {{ script({ add: d3JsFnc.__toString(), dynamic: __oxid_include_dynamic }) }}
+            {% endif %}
+        {% elseif sManufacturerFilterDisplayType == 'single' %}
+            <input type="hidden" value="" name="d3searchmanufacturermultiselector" id="d3searchmanufacturermultiselector">
+        {% elseif sManufacturerFilterDisplayType == 'multi' %}
+            <input type="hidden" value="on" name="d3searchmanufacturermultiselector" id="d3searchmanufacturermultiselector">
+        {% endif %}
+    {% endblock %}
+</div>

@@ -1,0 +1,44 @@
+{
+  "name": "d3extsearch",
+  "version": "2.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "keywords": [],
+  "author": "D3 Data Development (Inh. Thomas Dartsch)",
+  "devDependencies": {
+    "@lodder/grunt-postcss": "^3.1.1",
+    "bootstrap4": "npm:bootstrap@^4.6.2",
+    "bootstrap5": "npm:bootstrap@^5.2.3",
+    "cssnano": "^6.0.1",
+    "cssnano-preset-advanced": "^6.0.1",
+    "grunt": "^1.6.1",
+    "grunt-contrib-clean": "^2.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^3.2.0",
+    "grunt-contrib-uglify-es": "^3.3.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-critical": "^3.0.1",
+    "grunt-criticalcss": "^2.1.0",
+    "grunt-sass": "^3.1.0",
+    "jquery": "^3.6.0",
+    "load-grunt-config": "^3.0.2",
+    "node-sass": "^9.0.0",
+    "popper.js": "^1.16.1",
+    "time-grunt": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d3datadevelopment/ExtSearch"
+  },
+  "license": "UNLICENSED",
+  "browserslist": [
+    "last 10 versions",
+    "> 0.2%",
+    "> 0.1% in DE",
+    "maintained node versions",
+    "not dead"
+  ],
+  "dependencies": {
+    "nouislider": "^15.7.1"
+  }
+}

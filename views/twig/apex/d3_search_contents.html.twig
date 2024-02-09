@@ -1,0 +1,64 @@
+{% if not oView.getArticleCount() %}
+    {% block d3_cfg_extsearch_search_noarticlemessage %}
+        <h3>{% include_content 'd3extsearch_noarticlefound' %}</h3>
+        {% include_content 'd3extsearch_noarticlefound' %}
+    {% endblock %}
+{% endif %}
+
+{% if oView.d3GetCMSList() %}
+    {% block d3_cfg_extsearch_search_cms_results %}
+        <div class="box d3_extsearch_navigation d3theme_{{ themename }} baseframe">
+            <h3>
+                {{ translate({ ident: "D3_EXTSEARCH_EXT_CMSHEADLINE" }) }}
+            </h3>
+            <div class="content list">
+                {% for oContent in oView.d3GetCMSList() %}
+                    {% set TitleCharCount = oContent.oxcontents__oxtitle.value|length %}
+                    {% set iTextLength = 100-TitleCharCount %}
+                    <div class="item">
+                        <a href="{{ oContent.getLink() }}">{{ oContent.oxcontents__oxtitle.value }}</a>
+                    </div>
+                {% endfor %}
+                <div class="clearitem"></div>
+            </div>
+        </div>
+    {% endblock %}
+{% endif %}
+
+{% if blSearchPluginLink == 1 %}
+    {% block d3_cfg_extsearch_search_plugin %}
+        <div class="box d3_extsearch_navigation d3theme_{{ themename }} baseframe">
+            <h3>
+                {{ translate({ ident: "D3_EXTSEARCH_EXT_PLUGINHEADLINE" }) }}
+            </h3>
+            <div class="content list">
+                <SCRIPT type="text/javascript">
+                    function installSearchEngine() {
+                        if (window.external && ("AddSearchProvider" in window.external)) {
+                            window.external.AddSearchProvider("{{ sSearchPluginURL }}");
+                        } else {
+                            alert('{{ translate({ ident: "D3_EXTSEARCH_EXT_PLUGINBROWSERERROR" }) }}');
+                        }
+                    }
+                </SCRIPT>
+                {{ translate({ ident: "D3_EXTSEARCH_EXT_PLUGININSTALLMSG" }) }}
+                <div style="text-align: center; padding-top: 5px;"><a class="login_button" style="padding: 2px;" onclick="installSearchEngine();">{{ translate({ ident: "D3_EXTSEARCH_EXT_PLUGININSTALLBTN" }) }}</a></div>
+            </div>
+        </div>
+    {% endblock %}
+{% endif %}
+
+{% set similarSearch = oView.getSearchResultStatusMessage() %}
+{% if similarSearch %}
+    {% block d3_cfg_extsearch_search_similar_messages %}
+        <div class="d3_extsearch_navigation d3theme_{{ themename }} baseframe">
+            <div class="message">
+                {% if similarSearch == 'similar' %}
+                    {{ translate({ ident: "D3_EXTSEARCH_EXT_NOARTMSG" }) }} {{ oView.getUsedParams() }}
+                {% elseif similarSearch == 'combined' %}
+                    {{ translate({ ident: "D3_EXTSEARCH_EXT_LESSARTMSG" }) }}
+                {% endif %}
+            </div>
+        </div>
+    {% endblock %}
+{% endif %}

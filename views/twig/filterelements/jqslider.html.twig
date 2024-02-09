@@ -1,0 +1,56 @@
+{% block d3_cfg_extsearch_jqsliderscript %}
+    {% set elementId = "d3extsearch_"|cat(sliderId) %}
+    {% set fieldMinId = "d3extsearch_"|cat(sliderId)|cat("fieldMinId") %}
+    {% set fieldMaxId = "d3extsearch_"|cat(sliderId)|cat("fieldMaxId") %}
+
+    {% block d3_cfg_extsearch_jqsliderscript_touchjs %}
+        {{ script({ include: oViewConf.getModuleUrl('d3_extsearch', 'out/src/js/nouislider.min.js'), dynamic: __oxid_include_dynamic }) }}
+        {{ script({ include: oViewConf.getModuleUrl('d3_extsearch', 'out/src/js/apex/d3extsearch_slider.min.js'), dynamic: __oxid_include_dynamic }) }}
+    {% endblock %}
+
+    <div id="{{ elementId }}"></div>
+
+    {% set d3script %}{% apply spaceless %}
+        document.addEventListener("DOMContentLoaded", () => {
+            try {
+                new d3ExtsearchSlider({
+                    elementId: '{{ elementId }}',
+                    priceStepsMin: {{ aPriceSteps.min }},
+                    priceStepsMax: {{ aPriceSteps.max }},
+                    rangeMin: {{ aPriceLimits.min }},
+                    rangeMax: {{ aPriceLimits.max }},
+                    fieldMinId: '{{ fieldMinId }}',
+                    fieldMaxId: '{{ fieldMaxId }}',
+                    currencySign: '{{ currency.sign }}',
+                });
+            } catch (e) {
+                console.error(e.message);
+            }
+        });
+    {% endapply %}{% endset %}
+    {{ script({ add: d3script.__toString(), dynamic: __oxid_include_dynamic }) }}
+{% endblock %}
+
+{% block d3_cfg_extsearch_alist_jqsliderfields %}
+    {% set fieldMinId = "d3extsearch_"|cat(sliderId)|cat("fieldMinId") %}
+    {% set fieldMaxId = "d3extsearch_"|cat(sliderId)|cat("fieldMaxId") %}
+    {% set psovFieldName = psovFieldName|default("d3psov") %}
+    {% set selectorFieldName = selectorFieldName|default("priceselector") %}
+
+    <div style="display: block;" id="d3extsearch{{ sliderId }}fields">
+        <input type="hidden" name="{{ psovFieldName }}[min]" value="{{ originalMinValue }}">
+        <input type="hidden" name="{{ psovFieldName }}[max]" value="{{ originalMaxValue }}">
+        <input size="10" maxlength="20" type="text" name="{{ selectorFieldName }}[min]" value="{{ inputMinValue }}" id="{{ fieldMinId }}" style="width: 50px;"> {{ currency.sign }} -
+        <input size="10" maxlength="20" type="text" name="{{ selectorFieldName }}[max]" value="{{ inputMaxValue }}" id="{{ fieldMaxId }}" style="width: 50px;"> {{ currency.sign }}
+    </div>
+
+    {% set d3script %}{% apply spaceless %}
+        document.getElementById('d3extsearch{{ sliderId }}fields').style.display = 'none';
+    {% endapply %}{% endset %}
+    {{ script({ add: d3script.__toString(), dynamic: __oxid_include_dynamic }) }}
+
+    <div id="{{ "d3extsearch_"|cat(sliderId) }}" class="ui-slider">
+        <div class="ui-slider-handle" id="d3extsearch_priceslider1"></div>
+        <div class="ui-slider-handle" id="d3extsearch_priceslider2" style="right:0;"></div>
+    </div>
+{% endblock %}

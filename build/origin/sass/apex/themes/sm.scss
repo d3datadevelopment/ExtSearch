@@ -1,0 +1,28 @@
+@include media-breakpoint-up(sm) {
+
+}
+
+@include media-breakpoint-only(sm) {
+  body {
+    .d3_extsearch_navigation {
+      &.d3sidebar {
+        .list {
+          #d3searchfilterform {
+            .item {
+              @include make-col($grid-columns /2);
+              float: left;
+
+              &.index {
+                @include make-col($grid-columns);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+
+}

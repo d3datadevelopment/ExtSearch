@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset={{ sCharSet }}">
+        <title>{{ translate({ ident: "D3_EXTSEARCH_MAIN_SORTDEBUG" }) }}</title>
+    </head>
+    <body style='font: 12px Trebuchet MS,Tahoma,Verdana,Arial,Helvetica,sans-serif;'>
+        <form action="{{ sFormUrl|raw }}" style="float: left; margin-right: 5px;">
+            {{ sHiddenSid|raw }}
+            <input type="hidden" name="cl" value="{{ sClass }}">
+            <input type="hidden" name="fnc" value="{{ sFnc }}">
+            <input type="text" name="searchparam" value="{{ sSearchParam }}">
+            <input type="submit" value="{{ translate({ ident: "D3_EXTSEARCH_MAIN_SORTDEBUG_START" }) }}">
+        </form>
+
+        {{ translate({ ident: "D3_EXTSEARCH_MAIN_SORTDEBUG_DESC" }) }}
+
+        <hr style="clear: both; float: none;">
+
+        {% if aAllList|length %}
+            <table style='font-size: 10px; border: 1px solid silver;'>
+                {% set fieldNameLine %}
+                    <tr>
+                        <td style='font-weight: bold; padding: 2px; border: 1px solid black; '>No:</td>
+                        {% for sFieldName in aFieldNames %}
+                            <td style='font-weight: bold; padding: 2px; border: 1px solid black; '>{{ sFieldName }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endset %}
+
+                {{ fieldNameLine }}
+
+                {% for aItem in aAllList %}
+                    <tr>
+                        <td style='border: 1px solid silver;'>{{ loop.index }}</td>
+                        {% for sKey, sItem in aItem %}
+                            {% if sKey in aUsedFields %}
+                                <td style='border: 1px solid silver;'>{{ sItem }}</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+
+                    {% if loop.index % 20 == 0 %}
+                        {{ fieldNameLine }}
+                    {% endif %}
+                {% endfor %}
+
+            </table>
+        {% endif %}
+    </body>
+</html>

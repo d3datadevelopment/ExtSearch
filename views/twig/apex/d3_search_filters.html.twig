@@ -1,0 +1,118 @@
+{% if oView.d3HasFilters() %}
+    {% block d3_cfg_extsearch_search_filters %}
+        <div class="box d3_extsearch_navigation d3theme_{{ themename }} {{ sidebar_class }} baseframe">
+            {% block d3_cfg_extsearch_search_filters_headline %}
+                <h3>
+                    {{ translate({ ident: "D3_EXTSEARCH_EXT_SEARCHBOX" }) }}
+                </h3>
+            {% endblock %}
+
+            {% block d3_cfg_extsearch_search_filters_content %}
+                <div class="content list">
+                    <form action="{{ oViewConf.getSelfActionLink() }}" method="post" id="d3searchfilterform" autocomplete="off" spellcheck="false">
+                        {{ oViewConf.getHiddenSid()|raw }}
+                        <input type="hidden" name="cl" value="{{ oViewConf.getActiveClassName() }}">
+                        <input type="hidden" name="fnc" value="">
+                        {% for keyname, value in oView.getNavigationParams() %}
+                            {% if keyname != 'searchcnid' and keyname != 'searchvendor' and keyname != 'searchmanufacturer' %}
+                                <input type="hidden" name="{{ keyname }}" value="{{ value }}">
+                            {% endif %}
+                        {% endfor %}
+                        <input type="hidden" name="isextsearch" value="search">
+
+                        {% block d3_inc_ext_search__filter %}
+                            <div>
+                                {% if oView.d3HasCategoryList() %}
+                                    {% block d3_inc_ext_search__filter_category %}
+                                        {% include "@d3_extsearch/filterelements/category.html.twig" with {cssclass: "", sSelectedCategoryId: sSelectedCategoryId, sSelectedCategory: sSelectedCategory} %}
+                                    {% endblock %}
+                                {% endif %}
+
+                                {% if oView.d3HasVendorList() %}
+                                    {% block d3_inc_ext_search__filter_vendor %}
+                                        {% include "@d3_extsearch/filterelements/vendor.html.twig" with {cssclass: "", sSelectedVendorId: sSelectedVendorId, sSelectedVendor: sSelectedVendor} %}
+                                    {% endblock %}
+                                {% endif %}
+
+                                {% if oView.d3HasManufacturerList() %}
+                                    {% block d3_inc_ext_search__filter_manufacturer %}
+                                        {% include "@d3_extsearch/filterelements/manufacturer.html.twig" with {cssclass: "", sSelectedManufacturerId: sSelectedManufacturerId, sSelectedManufacturer: sSelectedManufacturer} %}
+                                    {% endblock %}
+                                {% endif %}
+
+                                {% if oView.d3HasAttributeList() %}
+                                    {% for key, oAttribute in oView.d3GetAttributeList() %}
+                                        {% block d3_inc_ext_search__filter_attribute %}
+                                            {% include "@d3_extsearch/filterelements/attribute.html.twig" with {cssclass: "", key: key, oAttribute: oAttribute} %}
+                                        {% endblock %}
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% block d3_inc_ext_search__filter_other %}
+                                {% endblock %}
+
+                                {% if oView.d3HasPriceFilter() %}
+                                    {% block d3_inc_ext_search__filter_price %}
+                                        {% include "@d3_extsearch/filterelements/priceselector.html.twig" with {cssclass: "", infoMinValue: oView.d3GetPriceSliderInfoMinValue(), infoMaxValue: oView.d3GetPriceSliderInfoMaxValue(), originalMinValue: oView.d3GetPriceSliderOriginalMinValue(), originalMaxValue: oView.d3GetPriceSliderOriginalMaxValue(), inputMinValue: oView.d3GetPriceSliderInputMinValue(), inputMaxValue: oView.d3GetPriceSliderInputMaxValue(), aPriceLimits: oView.d3getPriceLimits(), aPriceSteps: oView.d3getPriceSteps(), precision: oView.d3getPricePrecision()} %}
+                                    {% endblock %}
+                                {% endif %}
+                            </div>
+
+                            {% block d3_inc_ext_search__filter_clear %}
+                                <div class="fullitem clearFilter">
+                                    <button type="submit" class="submitButton largeButton btn {% if oModCfg_d3_extsearch.isThemeIdMappedTo('wave') %}btn-outline-primary {# for Bootstrap 4 #}{% elseif oModCfg_d3_extsearch.isThemeIdMappedTo('apex') %}btn-highlight {# for Bootstrap 5 #}{% endif %} btn-sm" onclick="document.getElementById('d3searchfilterform').isextsearch.value = false; document.getElementById('d3searchfilterform').fnc.value = 'd3ClearFilter'; d3_extsearch_popup.popup.load();">{{ translate({ ident: "D3_EXTSEARCH_EXT_CLEARFILTER" }) }}</button>
+                                </div>
+                            {% endblock %}
+
+                            <div class="clearitem"></div>
+                        {% endblock %}
+
+                        {% if oView.d3HasIndexList() %}
+                            {% block d3_cfg_extsearch_search_index %}
+                                <div class="item index" id="atid_index">
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fdesc: "D3_EXTSEARCH_EXT_ALL"|translate, d3fparam: "all"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "A"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "B"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "C"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "D"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "E"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "F"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "G"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "H"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "I"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "J"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "K"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "L"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "M"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "N"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "O"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "P"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "Q"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "R"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "S"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "T"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "U"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "V"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "W"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "X"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "Y"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "Z"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "1"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "2"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "3"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "4"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "5"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "6"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "7"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "8"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "9"} %}
+                                    {% include "@d3_extsearch/d3_ext_search_filter.html.twig" with {d3fparam: "0"} %}
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+                    </form>
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endif %}

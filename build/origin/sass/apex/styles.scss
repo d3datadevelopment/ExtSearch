@@ -1,0 +1,14 @@
+@import '../../../node_modules/bootstrap5/scss/functions';
+@import '../../../node_modules/bootstrap5/scss/variables';
+@import '../../../node_modules/bootstrap5/scss/mixins';
+
+@import 'ressources/copyright';
+@import "ressources/includes";
+
+@import "ressources/variables";
+@import "ressources/mixins";
+
+@import "layout/default";
+@import "themes/theme";
+
+@import "../../../node_modules/nouislider/dist/nouislider";

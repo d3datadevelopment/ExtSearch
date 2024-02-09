@@ -1,0 +1,31 @@
+production:
+  - "jshint:module"
+  - "sass:module"
+  - "postcss:module_unminified"
+  - "postcss:module_minified"
+  - "uglify:module"
+  - "clean:clear_tmp"
+  - "clean:clear_critical"
+  - "copy:nouislider"
+  - "copy:vendorToSource"
+
+production_critical:
+  - "criticalcss:wave_category"
+  - "criticalcss:wave_search"
+  - "postcss:critical_minified"
+
+development:
+  - "jshint:module"
+  - "sass:module_sourcemap"
+  - "postcss:module_unminified"
+  - "uglify:module_unminified"
+  - "clean:clear_tmp"
+  - "copy:nouislider"
+  - "copy:vendorToSource"
+
+test:
+  - "copy:sourcemaped_css"
+
+
+default:
+  - "production"

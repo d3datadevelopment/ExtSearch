@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OX>
+    <OXMENU id="d3mxd3modules">
+        <MAINMENU id="D3MXEXTSEARCH">
+            <SUBMENU id="D3MXEXTSEARCH_SETTINGS" cl="d3_cfg_extsearch" list="d3_cfg_extsearch_list">
+                <TAB id="D3TBCLEXTSEARCH_SETTINGS_RESULTS" cl="d3_cfg_extsearch_main" />
+                <TAB id="D3TBCLEXTSEARCH_SETTINGS_NAVIGATION" cl="d3_cfg_extsearch_navigation" />
+                <TAB id="D3TBCLEXTSEARCH_SETTINGS_QUICK" cl="d3_cfg_extsearch_quicksearch" />
+                <TAB id="D3TBCLEXTSEARCH_SETTINGS_BROWSER" cl="d3_cfg_extsearch_plugins" />
+                <TAB id="d3tbcl_licence" cl="d3_cfg_extsearch_licence" />
+            </SUBMENU>
+            <SUBMENU id="D3MXEXTSEARCH_STATISTIC" cl="d3_cfg_extsearchstat" list="d3_cfg_extsearchstat_list">
+                <TAB id="D3TBCLEXTSEARCH_SETTINGS_STATISTIK" cl="d3_cfg_extsearch_statistik" />
+            </SUBMENU>
+            <SUBMENU id="D3MXEXTSEARCH_SYNEDITOR" cl="d3_cfg_extsearchsyneditor" list="d3_cfg_extsearchsyneditor_list">
+                <TAB id="D3TBCLEXTSEARCH_SYNEDITOR_MAIN" cl="d3_cfg_extsearchsyneditor_main" />
+                <TAB id="D3TBCLEXTSEARCH_SYNEDITOR_MANAGE" cl="d3_cfg_extsearchsyneditor_manage" />
+            </SUBMENU>
+            <SUBMENU id ="d3mxlog" cl="d3_cfg_extsearchlog" list="d3_cfg_extsearchlog_list">
+                <TAB id="d3tbcllog_main" cl="d3_cfg_log_main" />
+            </SUBMENU>
+        </MAINMENU>
+    </OXMENU>
+
+    <OXMENU id="NAVIGATION_ESHOPADMIN">
+        <MAINMENU id="mxmanageprod">
+            <SUBMENU id="mxattributes" cl="attribute" list="attribute_list">
+                <TAB id="tbclattribute_extsearch" cl="d3_attribute_extsearch" />
+            </SUBMENU>
+            <SUBMENU id="mxcategories" cl="category" list="category_list">
+                <TAB id="tbclcategory_extsearch" cl="d3_category_extsearch" />
+            </SUBMENU>
+        </MAINMENU>
+    </OXMENU>
+</OX>

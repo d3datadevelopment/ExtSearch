@@ -1,0 +1,96 @@
+@include media-breakpoint-up(md) {
+    %body_d3_extsearch_navigation_list_item_select {
+        width: 100%;
+    }
+
+    body {
+        .d3_extsearch_navigation {
+            &.d3theme_#{$d3_class_themeid} {
+                &.d3sidebar {
+                    h3 {
+                        margin-top: 20px;
+                        margin-bottom: 10px;
+                    }
+                    #d3searchfilterform .item {
+                        @include make-col(($grid-columns / 12) * 6);
+                        float: left;
+                    }
+                }
+            }
+            .list {
+                .item {
+                    margin-bottom: 10px;
+                    float: left;
+                    width: 100%;
+                    position: relative;
+                    min-height: 1px;
+                    padding-left: 15px;
+                    padding-right: 15px;
+
+                    select {
+                        @extend %body_d3_extsearch_navigation_list_item_select;
+                    }
+                }
+            }
+        }
+
+        #d3searchfilterform {
+            .item {
+                select {
+                    @extend %body_d3_extsearch_navigation_list_item_select;
+                }
+            }
+        }
+
+        .xajax_resp_#{$d3_class_themeid} {
+            &.suggestVisible {
+                display: block;
+            }
+        }
+
+        &.cl-search,
+        &.cl-alist,
+        &.cl-manufacturerlist,
+        &.cl-vendorlist {
+            .content-box {
+                .row {
+                    > div {
+                        &.col-md-3,
+                        &.col-md-9 {
+                            /* fix bad sidebar position from left to top */
+                            @include make-col($grid-columns)
+                        }
+                    }
+                }
+            }
+
+            .content {
+                .col {
+                    &.text-right {
+                        flex-grow: 1.4;
+                    }
+                }
+            }
+
+            .sidebarleft,
+            .sidebarright {
+                .list-container {
+                    .row {
+                        .productData.col-md-4 {
+                            /* fix three columned product boxes to two columned if sidebar is displayed */
+                            @include make-col($grid-columns * 0.5)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-only(md) {
+
+}
+
+@include media-breakpoint-down(md) {
+
+}

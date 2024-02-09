@@ -1,0 +1,206 @@
+{% include "headitem.html.twig" with {title: "D3TBCLEXTSEARCH_SETTINGS_STATISTIK"|translate} %}
+
+<script type="text/javascript">
+    <!--
+    {% if updatelist == 1 %}
+        UpdateList('{{ oxid }}');
+    {% endif %}
+
+    function UpdateList( sID)
+    {
+        let oSearch = parent.list.document.getElementById("search");
+        oSearch.oxid.value=sID;
+        oSearch.fnc.value='';
+        oSearch.submit();
+    }
+
+    -->
+</script>
+
+<style type="text/css">
+    <!--
+    fieldset {
+        border:           1px inset black;
+        background-color: #F0F0F0;
+    }
+
+    legend {
+        font-weight: bold;
+    }
+
+    dl dt {
+        font-weight: normal;
+        width:       55%;
+    }
+
+    .edittext select.editinput {
+        width: auto;
+    }
+
+    .fa-stack.disabled {
+        color: silver;
+    }
+    -->
+</style>
+
+{% if readonly %}
+    {% set readonly = "readonly disabled" %}
+{% else %}
+    {% set readonly = "" %}
+{% endif %}
+
+<form name="transfer" id="transfer" action="{{ oViewConf.getSelfLink()|raw}}" method="post">
+    {{ oViewConf.getHiddenSid()|raw }}
+    <input type="hidden" name="oxid" value="{{ oxid }}">
+    <input type="hidden" name="cl" value="{{ oViewConf.getActiveClassName() }}">
+    <input type="hidden" name="actshop" value="{{ shop.id }}">
+    <input type="hidden" name="editlanguage" value="{{ editlanguage }}">
+</form>
+
+<form name="popuptransfer" id="popuptransfer" action="{{ oViewConf.getSelfLink()|raw}}" target="" method="post">
+    {{ oViewConf.getHiddenSid()|raw }}
+    <input type="hidden" name="oxid" value="{{ oxid }}">
+    <input type="hidden" name="cl" value="{{ oViewConf.getActiveClassName() }}">
+    <input type="hidden" name="fnc" value="">
+    <input type="hidden" name="actshop" value="{{ shop.id }}">
+    <input type="hidden" name="editlanguage" value="{{ editlanguage }}">
+    <input type="hidden" name="statparams[type]" value="{{ aParams.type }}">
+    <input type="hidden" name="statparams[time]" value="{{ aParams.time }}">
+    <input type="hidden" name="searchword" value="">
+    <input type="hidden" name="searchparams" value="">
+    <input type="hidden" name="lang" value="">
+</form>
+
+<form name="myedit" id="myedit" action="{{ oViewConf.getSelfLink()|raw}}" method="post">
+    {{ oViewConf.getHiddenSid()|raw }}
+    <input type="hidden" name="cl" value="{{ oViewConf.getActiveClassName() }}">
+    <input type="hidden" name="fnc" value="generateStatList">
+    <input type="hidden" name="oxid" value="{{ oxid }}">
+    <input type="hidden" name="editval[oxid]" value="{{ oxid }}">
+
+<table style="border: 0; width:98%;">
+    <tr>
+        <td style="vertical-align: top;" class="edittext">
+            {% if edit.getErrorMessage() %}
+                <div class="extension_error">
+                    {{ edit.getErrorMessage() }}
+                </div>
+            {% endif %}
+
+            {% if oView.getValueStatus() == 'error' %}
+                <span style="font-weight: bold;">{{ translate({ ident: "D3_EXTSEARCH_MAIN_NOCONFIG_DESC" }) }}</span><br>
+                <span class="d3modcfg_btn">
+                    <input type="submit" name="save" value="{{ translate({ ident: "D3_EXTSEARCH_MAIN_NOCONFIG_BTN" }) }}">
+                </span>
+            {% else %}
+                <fieldset>
+                    <table style="width: 100%;padding:0;border:0">
+                        <colgroup>
+                            <col style="width:35%">
+                            <col style="width:35%">
+                            <col style="width:30%">
+                        </colgroup>
+                        <tr>
+                            <td>
+                                <label for="stattype">{{ translate({ ident: "D3_EXTSEARCH_STAT_TYPE" }) }}</label>
+                                <select id="stattype" name="statparams[type]" {{ readonly }}>
+                                    {% if aTimes|length %}
+                                        <option value="hitless" {% if aParams.type == 'hitless' %}selected{% endif %}>{{ translate({ ident: "D3_EXTSEARCH_STAT_TYPEHITLESS" }) }}</option>
+                                        <option value="mosthits" {% if aParams.type == 'mosthits' %}selected{% endif %}>{{ translate({ ident: "D3_EXTSEARCH_STAT_TYPEMOSTHITS" }) }}</option>
+                                        <option value="mostsearches" {% if aParams.type == 'mostsearches' %}selected{% endif %}>{{ translate({ ident: "D3_EXTSEARCH_STAT_TYPEMOSTSEARCHES" }) }}</option>
+                                    {% else %}
+                                        <option value="" disabled>{{ translate({ ident: "D3_EXTSEARCH_STAT_NOHITS" }) }}</option>
+                                    {% endif %}
+                                </select>
+                            </td>
+                            <td>
+                                <label for="statlang">{{ translate({ ident: "D3_EXTSEARCH_STAT_LANG" }) }}</label>
+                                <select id="statlang" name="statparams[lang]" {{ readonly }}>
+                                    {% for oLang in oView.getLangList() %}
+                                        <option value="{{ oLang.id }}" {% if aParams.lang == oLang.id %}selected{% endif %}>{{ oLang.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <label for="stattime">{{ translate({ ident: "D3_EXTSEARCH_STAT_TIME" }) }}</label>
+                                <select id="stattime" name="statparams[time]" {{ readonly }}>
+                                    {% if aTimes|length %}
+                                        {% for aTime in aTimes %}
+                                            <option value="{{ aTime.value }}" {% if aParams.time == aTime.value %}selected{% endif %}>{{ aTime.output }}</option>
+                                        {% endfor %}
+                                    {% else %}
+                                        <option value="" disabled>{{ translate({ ident: "D3_EXTSEARCH_STAT_NOHITS" }) }}</option>
+                                    {% endif %}
+                                </select>
+                            </td>
+                            <td>
+                                <span class="d3modcfg_btn">
+                                    <input {% if not aTimes|length %} disabled {% endif %} type="submit" name="save" value="{{ translate({ ident: "D3_EXTSEARCH_STAT_GENERATESTAT" }) }}" {{ readonly }}>
+                                </span>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td colspan="4"><hr></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold;">
+                                {{ translate({ ident: "D3_EXTSEARCH_STAT_SEARCHWORD" }) }}
+                            </td>
+                            <td style="font-weight: bold;">
+                                {% if aParams.type == 'mosthits' %}{{ translate({ ident: "D3_EXTSEARCH_STAT_HITS" }) }}{% else %}{{ translate({ ident: "D3_EXTSEARCH_STAT_SEARCHES" }) }}{% endif %}
+                            </td>
+                            <td style="font-weight: bold;" colspan="2" />
+                        </tr>
+                        {% if oView.getStatList() %}
+                            {% set blWhite = "" %}
+                            {% set _cnt = 0 %}
+                            {% for searchword in oView.getStatList() %}
+                                {% set _cnt = _cnt+1 %}
+                                {% if listitem.blacklist == 1 %}
+                                    {% set listclass = "listitem3" %}
+                                {% else %}
+                                    {% set listclass = "listitem"|cat(blWhite) %}
+                                {% endif %}
+                                <tr>
+                                    <td class="{{ listclass }}" style="vertical-align: top;">
+                                        <b>{{ searchword.sWord }}</b>
+                                        {% if searchword.aFilters %}{# oxmultilang ident="D3_EXTSEARCH_STATISTIC_FURTHERFILTERS" #}
+                                            {% for oFilter in searchword.aFilters %}
+                                                <div style="padding-left: 10px;">{{ oFilter.desc }}: {{ oFilter.value }}</div>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </td>
+                                    <td class="{{ listclass }}" style="vertical-align: top;">
+                                        {{ searchword.iCount }}
+                                    </td>
+                                    <td class="{{ listclass }}" style="vertical-align: top;" colspan="2" />
+                                </tr>
+                                {% if blWhite == "2" %}
+                                    {% set blWhite = "" %}
+                                {% else %}
+                                    {% set blWhite = "2" %}
+                                {% endif %}
+                            {% endfor %}
+                        {% elseif aParams %}
+                            <tr>
+                                <td colspan="3" class="listitem" style="text-align: center;">
+                                    {{ translate({ ident: "D3_EXTSEARCH_STAT_NOITEMS" }) }} {% include "inputhelp.html.twig" with {'sHelpId': help_id("D3_EXTSEARCH_STAT_NOITEMS_DESC"), 'sHelpText': help_text("D3_EXTSEARCH_STAT_NOITEMS_DESC")} %}
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3" class="listitem" style="text-align: center;">
+                                    {{ translate({ ident: "D3_EXTSEARCH_STAT_SELECTFILTER" }) }}
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </table>
+                </fieldset>
+            {% endif %}
+        </td>
+    </tr>
+</table>
+</form>
+
+{% include "@d3modcfg_lib/admin/inc/inc.html.twig" %}

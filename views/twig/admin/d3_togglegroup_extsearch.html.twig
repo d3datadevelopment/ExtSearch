@@ -1,0 +1,9 @@
+{% apply spaceless %}
+    {{ script({ include: "js/libs/jquery.min.js", dynamic: __oxid_include_dynamic }) }}
+    {{ script({ add: 'var jQ = $.noConflict();', dynamic: __oxid_include_dynamic }) }}
+    {% if not edit.getEditValue(sToggleOptionName) %}
+        {{ script({ add: 'jQ("'|cat(sToggleOptionClass)|cat('").hide();'), dynamic: __oxid_include_dynamic }) }}
+    {% endif %}
+
+    jQ("{{ sToggleOptionClass }}").toggle();
+{% endapply %}

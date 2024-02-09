@@ -1,0 +1,51 @@
+{% block d3_cfg_extsearch_visualcms %}
+
+{%  set sOxidContent %}{% apply spaceless %}
+    {% include sOriginalTplName %}
+{% endapply %}{% endset %}
+
+{%  set sSearchContent %}{% apply spaceless %}
+<div role="tabpanel" class="tab-pane" id="tab_settings_advanced">
+{% endapply %}{% endset %}
+
+{% set sModuleContent %}
+<div role="tabpanel" class="tab-pane" id="tab_settings_advanced">
+    <div class="form-group">
+        <label>{{ translate({ ident: "D3_EXTSEARCH_TRANSL" }) }}</label>
+        <div class="checkbox">
+            <label>
+                <input type="hidden" name="editval[oxcontents__d3issearchable]" value="0">
+                <input type="checkbox" name="editval[oxcontents__d3issearchable]" id="elm_edit_d3issearchable" value="1" />
+                {{ translate({ ident: "D3_EXTSEARCH_CONTENT_SEARCHABLE" }) }}
+            </label>
+        </div>
+    </div>
+{% endset %}
+
+{{ sOxidContent|replace(sSearchContent, sModuleContent) }}
+
+{%  set d3JsFnc %}{% apply spaceless %}
+    $('ul.nav-tabs').find('li a[href="#tab_settings_advanced"]').click(function() {
+        var CmsId = $('div.selectize-input').find('div.item').attr('data-value');
+        var isNewItem = $('#elm_edit_new').is(":checked");
+
+        if (CmsId != 'CMSFOLDER_NONE' && !isNewItem) {
+            sURI = "{{ oViewConf.getSelfLink()|raw}}" + "&cl={{ oViewConf.getActiveClassName() }}&fnc=d3GetIsSearchStatus" + "&id=" + encodeURIComponent(CmsId);
+            sURI = sURI.replace(/&amp;/g, '&');
+
+            $.ajax({
+                url: sURI,
+                type: "GET",
+                success: function (a) {
+                    $('#elm_edit_d3issearchable').prop("checked", a == 'true');
+                }
+            })
+        } else {
+            $('#elm_edit_d3issearchable').prop("checked", false);
+        }
+    });
+{% endapply %}{% endset %}
+{{ script({ add: d3JsFnc.__toString(), dynamic: __oxid_include_dynamic }) }}
+{{ script({ dynamic: __oxid_include_dynamic }) }}
+
+{% endblock %}

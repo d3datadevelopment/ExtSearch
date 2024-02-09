@@ -1,0 +1,43 @@
+// *** paths ***
+
+$d3_current_theme_folder: "apex" !default;
+$d3_imgpath_bg: "../bg" !default;
+$d3_imgpath_img: "../../img" !default;
+
+// *** theme dependend class name
+
+$d3_class_themeid: apex !default;
+
+// *** colors ***
+
+$d3_color_white: #FFF !default;
+$d3_color_gray_light: #E2E2E2 !default;
+$d3_color_gray_medium: #999 !default;
+$d3_color_gray_dark: #545454 !default;
+$d3_color_black: #000 !default;
+$d3_color_orange: $secondary !default;
+$d3_color_red: #D11104 !default;
+$d3_color_azure_medium: $primary !default;
+$d3_color_azure_light: lighten($d3_color_azure_medium, 10%) !default;
+$d3_color_azure_dark: darken($d3_color_azure_medium, 10%) !default;
+
+$d3_transparency_shadow: 60% !default;
+
+// *** elements ***
+
+$d3_color_text_black: $d3_color_black !default;
+$d3_color_text_white: $d3_color_white !default;
+$d3_color_border_black: $d3_color_black !default;
+$d3_color_border_white: $d3_color_white !default;
+$d3_color_background_black: $d3_color_black !default;
+$d3_color_background_white: $d3_color_white !default;
+
+$d3_color_suggest_item_active: $d3_color_gray_light !default;
+
+$d3_color_index: $d3_color_gray_light !default;
+
+$d3_color_iasbox: $d3_color_orange !default;
+$d3_color_iasbox_shadow: $d3_color_gray_dark !default;
+
+$d3_color_suggestbox_shadow: fade($d3_color_azure_medium, $d3_transparency_shadow) !default;
+

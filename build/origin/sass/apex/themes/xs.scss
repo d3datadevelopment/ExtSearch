@@ -1,0 +1,117 @@
+@include media-breakpoint-up(xs) {
+    body {
+        .d3_extsearch_navigation {
+            &.d3theme_#{$d3_class_themeid} {
+                &.baseframe {
+                    width: 100%;
+                    background-color: $d3_color_background_white;
+                }
+
+                &.d3sidebar {
+                    #d3searchfilterform {
+                        width: 100%;
+
+                        .item {
+                            @include make-col($grid-columns);
+                            float: none;
+                        }
+                    }
+                }
+            }
+
+            .list {
+                .item {
+                    > label {
+                        font-size: 16px;
+                    }
+
+                    .filterselector,
+                    .multiselectvalue {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: flex-start;
+                        align-items: flex-start;
+                        margin: 0 4px 4px 0;
+
+                        label {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    .filterselector {
+                        margin: 4px 0;
+                    }
+
+                    input[type="checkbox"] {
+                        margin: 1px 4px 0 0;
+                        line-height: normal;
+                    }
+                }
+            }
+        }
+
+        &.cl-search,
+        &.cl-alist,
+        &.cl-manufacturerlist,
+        &.cl-vendorlist {
+            .d3sidebar {
+                .box {
+                    display: none !important;
+
+                    &.d3sidebar {
+                        display: block !important;
+
+                        .box {
+                            display: block !important;
+                        }
+                    }
+                }
+
+                .noUi-target {
+                    margin: 5px 14px 27px;
+
+                    .noUi-connect {
+                        background-color: $light;
+                    }
+
+                    .noUi-handle {
+                        border-color: #A0A0A0;
+                        &::before,
+                        &::after {
+                            background: #A0A0A0;
+                        }
+                    }
+
+                    .noUi-tooltip {
+                        top: 30px;
+                        height: 27px;
+                    }
+                }
+            }
+        }
+
+        &.cl-search {
+            .d3_extsearch_navigation {
+                &.d3theme_#{$d3_class_themeid} {
+                    &.baseframe {
+                        div {
+                            &.content {
+                                &.list {
+                                    display: block;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-only(xs) {
+
+}
+
+@include media-breakpoint-down(xs) {
+
+}

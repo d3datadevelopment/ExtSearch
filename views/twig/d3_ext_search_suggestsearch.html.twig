@@ -1,0 +1,152 @@
+{% block d3extsearch_suggest_main %}
+    <div id="d3_extsearch_quicksearch" class="{% if blStartSearch %}searchWaitMsg{% endif %}">
+        <div class="headline">
+            {% block d3extsearch_suggest_headline %}
+                {% if blStartSearch %}
+                    {{ translate({ ident: "D3_EXTSEARCH_QUICK_SEARCH" }) }}
+                {% else %}
+                    <a title="{{ translate({ ident: "D3_EXTSEARCH_QUICK_CLOSE" }) }}" href="#" class="closebtn" id="d3extsearch_suggest_closebtn"></a>
+                    {% if useMultipleObjectTypes %}
+                        {{ translate({ ident: "D3_EXTSEARCH_QUICK_MULTIPLEHITS" }) }}
+                    {% else %}
+                        {{ iHitCount }} {% if similar %}{{ translate({ ident: "D3_EXTSEARCH_QUICK_SIMILARHITS" }) }}{% else %}{{ translate({ ident: "D3_EXTSEARCH_QUICK_HITS" }) }}{% endif %} "{{ sSearchparam }}"
+                    {% endif %}
+                {% endif %}
+            {% endblock %}
+        </div>
+
+        {% set sCssClasses %}{% apply spaceless %}
+            {% if not blStartSearch %}
+                {% if oHitList and oHitList.count() %} hasArticleItems{% endif %}
+                {% if oCatHitList and oCatHitList.count() %} hasCategoryItems{% endif %}
+                {% if oManHitList and oManHitList.count() %} hasManufacturerItems{% endif %}
+                {% if oVendorHitList and oVendorHitList.count() %} hasVendorItems{% endif %}
+                {% if oContentHitList and oContentHitList.count() %} hasContentItems{% endif %}
+            {% endif %}
+        {% endapply %}{% endset %}
+
+        {% apply spaceless %}
+            {% if not blStartSearch %}
+                {% block d3extsearch_suggest_list %}
+                    <div class="list {% if useMultipleObjectTypes %}small{% endif %} {{ sCssClasses }}" id="searchItemList">
+
+                        {% if oHitList.count() %}
+                            {% block d3extsearch_suggest_list_article %}
+                                <div class="d3extsearch_suggest articlebox" id="d3extsearch_suggest_articlebox">
+                                    <h3>{{ translate({ ident: "PRODUCTS" }) }}</h3>
+                                    {% for oHit in oHitList %}
+                                        {% block d3extsearch_suggest_listitem_article %}
+                                            {% apply spaceless %}
+                                                <a class="item_inact d3QSItem article" data-object-type="article" id="a{{ oHit.getId()|replace({".": ""}) }}" href="{{ oHit.getLink() }}">
+                                                    <div class="imgframe"><img src="{{ oHit.getIconUrl() }}" alt="{{ oHit.getFieldData('oxtitle') }}"></div>
+                                                    {{ oHit.getFieldData('oxtitle') }}
+                                                    {% if oHit.getFieldData('oxvarselect') %} {{ oHit.getFieldData('oxvarselect') }}{% endif %}
+                                                </a>
+                                            {% endapply %}
+                                        {% endblock %}
+                                    {% endfor %}
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+
+                        {% if useMultipleObjectTypes and oCatHitList.count() %}
+                            {% block d3extsearch_suggest_list_category %}
+                                <div class="d3extsearch_suggest categorybox" id="d3extsearch_suggest_categorybox">
+                                    <h3>{{ translate({ ident: "CATEGORIES" }) }}</h3>
+                                    {% for oHit in oCatHitList %}
+                                        {% block d3extsearch_suggest_listitem_category %}
+                                            {% apply spaceless %}
+                                                {% if oHit.getIsVisible() %}
+                                                    <a class="item_inact d3QSItem category" data-object-type="category" id="c{{ oHit.getId()|replace({".": ""}) }}" href="{{ oHit.getLink() }}">
+                                                        {{ oHit.getFieldData('oxtitle') }}
+                                                    </a>
+                                                {% endif %}
+                                            {% endapply %}
+                                        {% endblock %}
+                                    {% endfor %}
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+
+                        {% if useMultipleObjectTypes and oManHitList.count() %}
+                            {% block d3extsearch_suggest_list_manufacturer %}
+                                <div class="d3extsearch_suggest manufacturerbox" id="d3extsearch_suggest_manufacturerbox">
+                                    <h3>{{ translate({ ident: "MANUFACTURERS" }) }}</h3>
+                                    {% for oHit in oManHitList %}
+                                        {% block d3extsearch_suggest_listitem_manufacturer %}
+                                            {% apply spaceless %}
+                                                <a class="item_inact d3QSItem manufacturer" data-object-type="manufacturer" id="m{{ oHit.getId()|replace({".": ""}) }}" href="{{ oHit.getLink() }}">
+                                                    {{ oHit.getFieldData('oxtitle') }}
+                                                </a>
+                                            {% endapply %}
+                                        {% endblock %}
+                                    {% endfor %}
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+
+                        {% if useMultipleObjectTypes and oVendorHitList.count() %}
+                            {% block d3extsearch_suggest_list_vendor %}
+                                <div class="d3extsearch_suggest vendorbox" id="d3extsearch_suggest_vendorbox">
+                                    <h3>{{ translate({ ident: "DISTRIBUTORS" }) }}</h3>
+                                    {% for oHit in oVendorHitList %}
+                                        {% block d3extsearch_suggest_listitem_vendor %}
+                                            {% apply spaceless %}
+                                                <a class="item_inact d3QSItem vendor" data-object-type="vendor" id="v{{ oHit.getId()|replace({".": ""}) }}" href="{{ oHit.getLink() }}">
+                                                    {{ oHit.getFieldData('oxtitle') }}
+                                                </a>
+                                            {% endapply %}
+                                        {% endblock %}
+                                    {% endfor %}
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+
+                        {% if useMultipleObjectTypes and oContentHitList.count() %}
+                            {% block d3extsearch_suggest_list_content %}
+                                <div class="d3extsearch_suggest contentbox" id="d3extsearch_suggest_contentbox">
+                                    <h3>{{ translate({ ident: "SERVICES" }) }}</h3>
+                                    {% for oHit in oContentHitList %}
+                                        {% block d3extsearch_suggest_listitem_content %}
+                                            {% apply spaceless %}
+                                                <a class="item_inact d3QSItem content" data-object-type="content" id="t{{ oHit.getId()|replace({".": ""}) }}" href="{{ oHit.getLink() }}">
+                                                    {{ oHit.getFieldData('oxtitle') }}
+                                                </a>
+                                            {% endapply %}
+                                        {% endblock %}
+                                    {% endfor %}
+                                </div>
+                            {% endblock %}
+                        {% endif %}
+
+                        {% block d3extsearch_suggest_furtherlinks %}
+                            {% if blToMuchHits %}
+                                <a href="#" onclick="document.getElementById('search').submit(); return false;" class="item_inact">
+                                    {{ translate({ ident: "D3_EXTSEARCH_QUICK_TOMUCHHITS" }) }}
+                                </a>
+                            {% elseif not oHitList and oHitList.count() and
+                                oCatHitList and oCatHitList.count() and
+                                oManHitList and oManHitList.count() and
+                                oVendorHitList and oVendorHitList.count() and
+                                oContentHitList and oContentHitList.count()  %}
+                                <a href="#" onclick="$('#xajax_resp').css({'display' : 'none'}); return false;" class="item_inact">
+                                    {{ translate({ ident: "D3_EXTSEARCH_QUICK_NOHIT" }) }}
+                                </a>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+
+                {% if oHitList.count() %}
+                    {% block d3extsearch_suggest_searchbutton %}
+                        <div class="d3_extsearch_footer">
+                            <a id="d3extsearch_suggest_startsearch" href="#" class="">
+                                {{ translate({ ident: "D3_EXTSEARCH_QUICK_STARTSEARCH" }) }}
+                            </a>
+                        </div>
+                    {% endblock %}
+                {% endif %}
+            {% endif %}
+        {% endapply %}
+    </div>
+{% endblock %}

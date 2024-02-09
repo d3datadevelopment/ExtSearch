@@ -1,0 +1,100 @@
+{% set sIdKey = key|replace({".":".", "":""}) %}
+{% set blShowMultipleSelector = true %}
+<div class="item attribute {{ cssclass }}" id="atid_{{ key }}">
+    {% block d3_inc_ext_search__filter_attribute_title %}
+        <label for="d3searchattrib__{{ key }}">
+            {{ oAttribute.title }}:
+        </label><br>
+    {% endblock %}
+
+    {% set displayTypes = { "combined": "combined", "single": "single" } %}
+
+    {% if sAttributeFilterDisplayType in displayTypes %}
+        {% block d3_inc_ext_search__filter_attribute_single %}
+            <SELECT class="form-select" id="d3searchattrib__{{ key }}" name="d3searchattrib[{{ key }}]" onchange="d3_extsearch_popup.popup.load(); this.form.submit();">
+                {% if oAttribute.selected %}
+                    {% set blShowMultipleSelector = false %}
+                    <OPTION class="desc" value="{{ oView.d3GetDeselectValue() }}">{{ translate({ ident: "D3_EXTSEARCH_EXT_ATTRIBSDESELECT" })|format(oAttribute.title) }}</OPTION>
+                {% else %}
+                    <OPTION class="desc" value="" selected="selected">{{ translate({ ident: "D3_EXTSEARCH_EXT_ATTRIBSNOSELECTION" })|format(oAttribute.title) }}</OPTION>
+                {% endif %}
+                {% for valuekey, oAttrValue in oAttribute._aList %}
+                    <OPTION class="{% if oAttrValue.highlighted %}highlight {% endif %}" value="{{ oAttrValue.rawvalue }}" {% if false == oView.d3AttributeFilterUseMultipleValues(key) and oAttrValue.selected %} selected{% endif %} {% if false == oAttrValue.isSelectable %} disabled{% endif %}>{{ oAttrValue.value }}
+                        {% if not oModCfg_d3_extsearch.getValue('blExtSearch_dontShowFilterArticleCount') and oAttrValue.count %}
+                            ({{ oAttrValue.count }})
+                        {% endif %}
+                    </OPTION>
+                {% endfor %}
+            </SELECT>
+            
+            <noscript>
+                <div id="d3searchattribsubmit__{{ key }}" class="fullitem">
+                    <button type="submit" class="submitButton largeButton btn {% if oModCfg_d3_extsearch.isThemeIdMappedTo('wave') %}btn-outline-primary {# for Bootstrap 4 #}{% endif %} btn-sm" onclick="d3_extsearch_popup.popup.load();">{{ translate({ ident: "D3_EXTSEARCH_EXT_ASSIGNFILTER" }) }}</button>
+                </div>
+            </noscript>
+        {% endblock %}
+    {% endif %}
+
+    {% set displayTypes = { "combined": "combined", "multi": "multi" } %}
+
+    {% if sAttributeFilterDisplayType in displayTypes %}
+        {% block d3_inc_ext_search__filter_attribute_multi %}
+            <div class="multiselect" id="d3searchattrib__multi__{{ key }}" style="{% if sAttributeFilterDisplayType == 'combined' %}display: none;{% endif %}">
+                {% for valuekey, oAttrValue in oAttribute._aList %}
+                    <div class="multiselectvalue" id="d3searchattrib__multi__{{ key }}__{{ valuekey }}">
+                        <input name="d3searchattribmulti[{{ key }}][{{ oAttrValue.rawvalue }}]" type="hidden" value="{{ oView.d3GetDeselectValue() }}">
+                        <input name="d3searchattribmulti[{{ key }}][{{ oAttrValue.rawvalue }}]" class="form-check-input" type="checkbox" value="{{ oAttrValue.rawvalue }}" id="cb{{ key }}{{ oAttrValue.rawvalue }}" {% if oAttrValue.selected %} checked{% endif %} {% if false == oAttrValue.isSelectable %} disabled{% endif %}>
+                        <label for="cb{{ key }}{{ oAttrValue.rawvalue }}">
+                            {{ oAttrValue.value }} {% if not oModCfg_d3_extsearch.getValue('blExtSearch_dontShowFilterArticleCount') and oAttrValue.count %}({{ oAttrValue.count }}){% endif %}
+                        </label>
+                    </div>
+                {% endfor %}
+
+                {% block d3_inc_ext_search__filter_attribute_multibuttons %}
+                    {% include "@d3_extsearch/filterelements/inc/multibuttons.html.twig" with {type: "attrib"} %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    {% endif %}
+
+    {% block d3_inc_ext_search__filter_attribute_multiselector %}
+        {% if sAttributeFilterDisplayType == 'combined' %}
+            <div id="d3searchattrib__multiselector__{{ key }}" class="filterselector {% if false == blShowMultipleSelector %}filterselector_hidden{% endif %}">
+                <input type="checkbox" class="form-check-input" name="d3searchattribmultiselector[{{ key }}]" id="d3searchattribmultiselector[{{ key }}]" onclick="toggleMultiAttrib(this.checked, '{{ key }}');">
+                <label for="d3searchattribmultiselector[{{ key }}]">
+                    {{ oView.d3GetMultipleSelectionTranslation(oAttribute.title) }}
+                </label>
+            </div>
+
+            {% set d3JsFnc %}{% apply spaceless %}
+                function toggleMultiAttrib(blChecked, sId) {
+                    if (blChecked) {
+                        document.getElementById('d3searchattrib__multi__' + sId).style.display = 'block';
+                        document.getElementById('d3searchattrib__' + sId).style.display = 'none';
+                        if (buttonElement = document.getElementById('d3searchattribsubmit__' + sId)) {
+                            buttonElement.style.display = 'none';
+                        }
+                        if (selectorElement = document.getElementById('d3searchattrib__multiselector__' + sId)) {
+                            selectorElement.style.display = 'none';
+                        }
+                    }
+                }
+            {% endapply %}{% endset %}
+            {{ script({ add: d3JsFnc.__toString(), dynamic: __oxid_include_dynamic }) }}
+
+            {% if oView.d3AttributeFilterUseMultipleValues(key) %}
+                {% set d3JsFnc %}{% apply spaceless %}
+                    toggleMultiAttrib(true, '{{ key }}');
+                    if (selectorElement = document.getElementById('d3searchattribmultiselector[{{ key }}]')) {
+                        selectorElement.checked = 'checked';
+                    }
+                {% endapply %}{% endset %}
+                {{ script({ add: d3JsFnc.__toString(), dynamic: __oxid_include_dynamic }) }}
+            {% endif %}
+        {% elseif sAttributeFilterDisplayType == 'single' %}
+            <input type="hidden" value="" name="d3searchattribmultiselector[{{ key }}]" id="d3searchattribmultiselector[{{ key }}]">
+        {% elseif sAttributeFilterDisplayType == 'multi' %}
+            <input type="hidden" value="on" name="d3searchattribmultiselector[{{ key }}]" id="d3searchattribmultiselector[{{ key }}]">
+        {% endif %}
+    {% endblock %}
+</div>

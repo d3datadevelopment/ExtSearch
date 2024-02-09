@@ -1,0 +1,54 @@
+@include media-breakpoint-up(lg) {
+
+  body {
+      .d3_extsearch_navigation {
+          &.d3theme_#{$d3_class_themeid} {
+              &.d3sidebar {
+                  #d3searchfilterform .item {
+                    @include make-col($grid-columns);
+                    float: none;
+                  }
+              }
+          }
+      }
+
+      &.cl-search,
+      &.cl-alist,
+      &.cl-manufacturerlist,
+      &.cl-vendorlist {
+          .content-box {
+              .row {
+                  /* reset md viewport fix, move sidebar from top to left */
+                  > div.col-md-3 {
+                      @include make-col(($grid-columns / 12) * 3)
+                  }
+                  > div.col-md-9 {
+                      @include make-col(($grid-columns / 12) * 9)
+                  }
+              }
+          }
+
+          .list-container {
+              .productData {
+                  .row {
+                      > div {
+                          &.col-lg-5,
+                          &.col-lg-7 {
+                              /* fix bad product alignment from alignment from side to top of each other */
+                              @include make-col($grid-columns)
+                          }
+                      }
+                  }
+              }
+          }
+      }
+    }
+}
+
+@include media-breakpoint-only(lg) {
+
+}
+
+@include media-breakpoint-down(lg) {
+
+}

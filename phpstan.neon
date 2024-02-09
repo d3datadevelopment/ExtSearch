@@ -1,0 +1,19 @@
+parameters:
+    scanFiles:
+        - IntelliSenseHelper.php
+        - ../../oxid-esales/oxideshop-ce/source/bootstrap.php
+        - ../../oxid-esales/oxideshop-ce/source/oxfunctions.php
+        - ../../oxid-esales/oxideshop-ce/source/overridablefunctions.php
+    paths:
+        - .
+    excludePaths:
+        - build
+        - docs
+        - resources
+        - tests
+        - IntelliSenseHelper.php
+    level: 4
+    phpVersion: 80300
+    checkMissingIterableValueType: false
+    featureToggles:
+        disableRuntimeReflectionProvider: true
