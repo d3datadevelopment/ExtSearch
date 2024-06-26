@@ -586,4 +586,4 @@
 
 </form>
 
-[{include file="@d3modcfg_lib/admin/inc/inc.tpl}]
+[{include file="@d3modcfg_lib/admin/inc/inc.tpl"}]

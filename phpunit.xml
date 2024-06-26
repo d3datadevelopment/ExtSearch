@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          backupGlobals="true"
-         backupStaticAttributes="false"
+         bootstrap="../../../source/bootstrap.php"
          colors="false"
+         backupStaticAttributes="false"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="false"
          convertWarningsToExceptions="true"
@@ -12,27 +13,31 @@
          stopOnFailure="false"
          stopOnIncomplete="false"
          stopOnSkipped="false"
+         beStrictAboutTestsThatDoNotTestAnything="false"
          verbose="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
->
-  <coverage processUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">Application</directory>
-      <directory suffix=".php">Core</directory>
-      <directory suffix=".php">Modules</directory>
-      <directory suffix=".php">public</directory>
-      <directory suffix=".php">setup</directory>
-    </include>
-  </coverage>
-  <testsuites>
-    <testsuite name="Unit">
-      <directory suffix="Test.php">tests/unit</directory>
-    </testsuite>
-    <testsuite name="Integration">
-      <directory suffix="Test.php">tests/integration</directory>
-    </testsuite>
-  </testsuites>
-  <logging>
-    <junit outputFile="tests/reports/logfile.xml"/>
-  </logging>
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>tests/unit</directory>
+        </testsuite>
+        <testsuite name="Integration">
+            <directory>tests/integration</directory>
+        </testsuite>
+    </testsuites>
+    <coverage includeUncoveredFiles="true" processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">Application</directory>
+            <directory suffix=".php">Core</directory>
+            <directory suffix=".php">Modules</directory>
+            <directory suffix=".php">public</directory>
+            <directory suffix=".php">setup</directory>
+        </include>
+        <exclude>
+            <file>../.php-cs-fixer.php</file>
+            <file>../IntelliSenseHelper.php</file>
+        </exclude>
+    </coverage>
+    <php>
+        <const name="OXID_PHP_UNIT" value="true"/>
+    </php>
 </phpunit>

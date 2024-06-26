@@ -6,7 +6,7 @@
 
     {% set blockParent = parent() %}
 
-    {% if mod_d3_extsearch and false == oModCfg_d3_extsearch.isThemeIdMappedTo('mobile') %}
+    {% if mod_d3_extsearch %}
         {% block widget_header_search_form_replacement %}
             {% capture assign = "content" %}{{ blockParent|raw }}{% endcapture %}
 
@@ -30,7 +30,7 @@
 
     {% d3modcfgcheck modid="d3_extsearch" %}{% endd3modcfgcheck %}
 
-    {% if mod_d3_extsearch and false == oModCfg_d3_extsearch.isThemeIdMappedTo('mobile') %}
+    {% if mod_d3_extsearch %}
 
         {% capture assign = "content" %}{{ parent() }}{% endcapture %}
 

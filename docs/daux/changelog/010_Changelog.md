@@ -8,7 +8,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/8.0.0.0...rel_7.x)
+## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/8.0.1.0...rel_8.x)
+
+## [8.0.1.0](https://git.d3data.de/D3Private/Extsearch/compare/8.0.0.0...8.0.1.0) - 2024-06-25
+### Added
+- installierbar in OXID 7.1.x
+### Changed
+- Extraktion der Suchbegriffe optimiert
+### Fixed
+- Kombination von Mehr-Wort-Synonymen korrigiert
+- falscher Methodenname bei der Verwendung semantischer Entsprechungen
+### Removed
+- veralteter Code
+- Prüfung auf veraltetes Mobile-Theme
 
 ## [8.0.0.0](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.1...8.0.0.0) - 2024-02-08
 ### Added
@@ -17,6 +29,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - nicht installierbar in OXID < 7.0
 - nicht verfügbar mit PHP < 8.0
+
+## [7.1.6.3](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.2...7.1.6.3) - 2023-12-13
+### Fixed
+- falscher Methodenname bei der Verwendung semantischer Entsprechungen
+
+## [7.1.6.2](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.1...7.1.6.2) - 2023-11-30
+### Added
+- Suchfelder werden auf abweichende Kollationen geprüft
+- Aktivstatus der Synonymgruppen kann im Backend geändert werden
+### Fixed
+- Extraktion der Suchbegriffe optimiert
+- Kombination von Mehr-Wort-Synonymen korrigiert
+- Kategoriefilter behalten Reihenfolge bei
+- Abfragefehler für Kategorien bei Verwendung von Artikelvarianten
+- Abfragefehler bei Filterung auf Hauptkategorien
 
 ## [7.1.6.1](https://git.d3data.de/D3Private/Extsearch/compare/7.1.6.0...7.1.6.1) - 2023-10-20
 ### Fixed

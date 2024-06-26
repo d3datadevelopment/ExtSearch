@@ -42,7 +42,7 @@
 
     {% d3modcfgcheck modid="d3_extsearch" %}{% endd3modcfgcheck %}
 
-    {% if mod_d3_extsearch and false == oModCfg_d3_extsearch.isThemeIdMappedTo('mobile') %}
+    {% if mod_d3_extsearch %}
         {% if blUseSuggestSearch %}
             {% apply spaceless %}
                 {% block d3_extsearch_js__suggest %}
