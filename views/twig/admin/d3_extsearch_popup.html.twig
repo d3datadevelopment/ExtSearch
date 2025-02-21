@@ -20,13 +20,9 @@
 
         {% if iProgressPercent %}
             <br>
-            <div style='position: relative; background-color:#B4D2F5; border:1px solid #000000; height:15px; margin:auto auto auto 10px; width:100px;'>
-                <div style='background-color:#1A4782; height:15px; width:{{ iProgressPercent }}px;'></div>
-                <div style='border-style: none; color: white; line-height:15px; position:absolute; text-align:center; top:0; width:100px;'>
-                    {% set sText = "D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING2"|translate %}
-                    {{ sText|format(iProgressPercent)|raw }}
-                </div>
-            </div>
+            {% set sText = "D3_EXTSEARCH_MAIN_GENERATOR_PROCESSING2"|translate %}
+            <label for="progress">{{ sText|format(iProgressPercent)|raw }}</label><br>
+            <progress id="progress" value="{{ iProgressPercent }}" max="100"> {{ sText|format(iProgressPercent)|raw }} </progress>
         {% endif %}
 
         {% if blWait %}

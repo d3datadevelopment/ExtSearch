@@ -23,11 +23,11 @@ use D3\Extsearch\Modules\Application\Controller\Admin as ModuleExtControllerAdmi
 use D3\Extsearch\Modules\Application\Controller as ModuleExtController;
 use D3\Extsearch\Modules\Application\Model as ModuleExtModel;
 use D3\Extsearch\Modules\PsCache\Core\d3_CacheCore_extsearch;
-use OxidEsales\VisualCmsModule\Application\Controller\Admin\VisualCmsAdmin as VisualCMSAdmin;
 use OxidEsales\Eshop\Application\Controller as OxidController;
 use OxidEsales\Eshop\Application\Model as OxidModel;
 use OxidEsales\Eshop\Application\Component as OxidComponent;
 use OxidEsales\Eshop\Core as OxidCore;
+use OxidEsales\VisualCmsModule\Controller\Admin\VisualCmsAdmin;
 use ProudSourcing\psCache\Core\CacheCore;
 
 /**
@@ -52,7 +52,7 @@ $aModule = [
         'en' => 'Provides error-tolerant search and other filter options. Please always activate the module entries and control the module activity exclusively in the admin area of the module.',
     ],
     'thumbnail'   => 'picture.svg',
-    'version'     => '8.0.1.0',
+    'version'     => '8.1.0.0',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'https://www.oxidmodule.com/',
@@ -143,7 +143,6 @@ $aModule = [
 
         '@' . Constants::OXID_MODULE_ID . '/filterelements/inc/d3_ext_search_filter_inc_multibuttons.tpl' => 'views/smarty/filterelements/inc/multibuttons.tpl',
 
-        '@' . Constants::OXID_MODULE_ID . '/d3_ddeovisualcmsadmin_extsearch.tpl'        => 'views/smarty/d3_ddoevisualcmsadmin_extsearch.tpl',
         '@' . Constants::OXID_MODULE_ID . '/admin/d3_togglegroup_extsearch.tpl'         => 'views/smarty/admin/d3_togglegroup_extsearch.tpl',
     ],
     'events'      => [

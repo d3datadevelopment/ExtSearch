@@ -412,7 +412,7 @@ class d3_alist_extsearch extends d3_alist_extsearch_parent
      */
     public function d3GetAttributeList(): array
     {
-        return $this->d3GetXListController()->d3GetAttributeList();
+        return (array) $this->d3GetXListController()->d3GetAttributeList();
     }
 
     /**

@@ -137,7 +137,7 @@ class d3_ext_search extends d3_ext_search_parent
         // mustn'd be getRequestEscapedParameter!
         $sTmP = Registry::get(Request::class)->getRequestParameter('searchparam');
         if (mb_detect_encoding($sTmP) !== "UTF-8" || false === mb_check_encoding($sTmP, "UTF-8")) {
-            $sTmP = utf8_encode($sTmP);
+            $sTmP = mb_convert_encoding($sTmP, 'UTF-8', 'ISO-8859-1');
 
             if (strlen(trim($sTmP))) {
                 isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'POST' ?

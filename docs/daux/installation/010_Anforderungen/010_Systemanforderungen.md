@@ -3,7 +3,7 @@ title: Systemanforderungen
 ---
 
 * PHP Version
-    * 8.0.x bis 8.2.x
+    * 8.x
 * PHP Decoder
     * installierter SourceGuardian Loader
 * Shopeditionen

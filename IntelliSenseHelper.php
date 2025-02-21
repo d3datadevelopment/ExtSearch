@@ -42,7 +42,7 @@ namespace D3\Extsearch\Modules\Application\Component
 namespace D3\Extsearch\Modules\Application\Controller\Admin
 {
     use OxidEsales\Eshop\Application\Controller\Admin\ArticleList;
-    use OxidEsales\VisualCmsModule\Application\Controller\Admin\VisualCmsAdmin;
+    use OxidEsales\VisualCmsModule\Controller\Admin\VisualCmsAdmin;
 
     class d3_article_list_extsearch_parent extends ArticleList
     {

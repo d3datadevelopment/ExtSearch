@@ -7,7 +7,9 @@
     "modules",
     "eShop",
     "d3",
-    "search"
+    "search",
+    "d3dependencycheck",
+    "id_d3_extsearch"
   ],
   "authors": [
     {
@@ -31,7 +33,7 @@
   "require": {
     "php": "^8.0",
     "ext-sourceguardian": ">=14",
-    "oxid-esales/oxideshop-ce": "7.0 - 7.1",
+    "oxid-esales/oxideshop-ce": "7.0 - 7.2",
     "d3/modcfg": "^7.1",
     "d3/oxid-sql-logger": "^2.0.0",
     "splitbrain/php-cli": "^1.2.0",

@@ -1,3 +1,7 @@
+![stability mature](https://img.shields.io/badge/stability-mature-008000.svg)
+[![latest tag](https://img.shields.io/packagist/v/d3/extsearch?label=release)](https://packagist.org/packages/d3/extsearch)
+![License](https://img.shields.io/packagist/l/d3/extsearch)
+
 # D³ erweiterte Suche für OXID eShop
 fehlertolerante Suche mit zusätzlichen Filter- und Anzeigemöglichkeiten
 

@@ -22,18 +22,6 @@ use OxidEsales\Eshop\Core\Request;
 
 class d3_ddoevisualcmsadmin_extsearch extends d3_ddoevisualcmsadmin_extsearch_parent
 {
-    public function render()
-    {
-        // @phpstan-ignore-next-line
-        $sRet = parent::render();
-
-        // @phpstan-ignore-next-line
-        $this->addTplParam('sOriginalTplName', $sRet);
-        $sRet = '@'.Constants::OXID_MODULE_ID.'/d3_ddeovisualcmsadmin_extsearch';
-
-        return $sRet;
-    }
-
     public function d3GetIsSearchStatus()
     {
         $oContent = oxNew(Content::class);
@@ -45,6 +33,6 @@ class d3_ddoevisualcmsadmin_extsearch extends d3_ddoevisualcmsadmin_extsearch_pa
             echo "false";
         }
 
-        die();
+        exit();
     }
 }

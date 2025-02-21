@@ -105,7 +105,7 @@ class d3_xlist_extsearch
      */
     public function addAListFilters($oCategory)
     {
-        if (false == $this->_d3UseAlistFilters()) {
+        if (!$this->d3GetSet()->isActive() || !$this->_d3UseAlistFilters()) {
             return;
         }
 
@@ -213,6 +213,10 @@ class d3_xlist_extsearch
      */
     protected function _d3AddAllTplParams()
     {
+        if (!$this->d3GetSet()->isActive()) {
+            return;
+        }
+
         $sSeparator = htmlspecialchars(ini_get('arg_separator.output'));
 
         // set TPL parameter, if category and vendor selectlists on frontends left side shouldn't changed
@@ -250,7 +254,7 @@ class d3_xlist_extsearch
      */
     public function d3CanShowFilters($oArtList)
     {
-        if ($oArtList->count() == 0) {
+        if (!$this->d3GetSet()->isActive() || $oArtList->count() == 0) {
             return false;
         }
 
@@ -331,7 +335,9 @@ class d3_xlist_extsearch
      */
     public function d3GetCategoryList()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getCategoryFilter()->getFilterList();
+        return $this->d3GetSet()->isActive() ?
+            $this->d3GetOwnSearchHandler()->getFilterList()->getCategoryFilter()->getFilterList() :
+            oxNew(CategoryList::class);
     }
 
     /**
@@ -345,7 +351,8 @@ class d3_xlist_extsearch
      */
     public function d3HasCategoryList()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getCategoryFilter()->canShowFilter();
+        return $this->d3GetSet()->isActive() &&
+               $this->d3GetOwnSearchHandler()->getFilterList()->getCategoryFilter()->canShowFilter();
     }
 
     /**
@@ -360,7 +367,9 @@ class d3_xlist_extsearch
      */
     public function d3GetVendorList()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getVendorFilter()->getFilterList();
+        return $this->d3GetSet()->isActive() ?
+            $this->d3GetOwnSearchHandler()->getFilterList()->getVendorFilter()->getFilterList():
+            oxNew(VendorList::class);
     }
 
     /**
@@ -374,7 +383,8 @@ class d3_xlist_extsearch
      */
     public function d3HasVendorList()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getVendorFilter()->canShowFilter();
+        return $this->d3GetSet()->isActive() &&
+               $this->d3GetOwnSearchHandler()->getFilterList()->getVendorFilter()->canShowFilter();
     }
 
     /**
@@ -389,7 +399,9 @@ class d3_xlist_extsearch
      */
     public function d3GetManufacturerList()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getManufacturerFilter()->getFilterList();
+        return $this->d3GetSet()->isActive() ?
+            $this->d3GetOwnSearchHandler()->getFilterList()->getManufacturerFilter()->getFilterList():
+            oxNew(ManufacturerList::class);
     }
 
     /**
@@ -403,7 +415,8 @@ class d3_xlist_extsearch
      */
     public function d3HasManufacturerList()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getManufacturerFilter()->canShowFilter();
+        return $this->d3GetSet()->isActive() &&
+               $this->d3GetOwnSearchHandler()->getFilterList()->getManufacturerFilter()->canShowFilter();
     }
 
     /**
@@ -419,7 +432,9 @@ class d3_xlist_extsearch
      */
     public function d3GetAttributeList()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getAttributeFilter()->getFilterList();
+        return $this->d3GetSet()->isActive() ?
+            $this->d3GetOwnSearchHandler()->getFilterList()->getAttributeFilter()->getFilterList():
+            [];
     }
 
     /**
@@ -433,7 +448,8 @@ class d3_xlist_extsearch
      */
     public function d3HasAttributeList()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getAttributeFilter()->canShowFilter();
+        return $this->d3GetSet()->isActive() &&
+               $this->d3GetOwnSearchHandler()->getFilterList()->getAttributeFilter()->canShowFilter();
     }
 
     /**
@@ -450,7 +466,9 @@ class d3_xlist_extsearch
      */
     public function d3getPriceSteps()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getPriceFilter()->getFilterList();
+        return $this->d3GetSet()->isActive() ?
+            $this->d3GetOwnSearchHandler()->getFilterList()->getPriceFilter()->getFilterList() :
+            [];
     }
 
     /**
@@ -464,7 +482,8 @@ class d3_xlist_extsearch
      */
     public function d3HasjQuerySlider()
     {
-        return $this->d3GetOwnSearchHandler()->getFilterList()->getPriceFilter()->canHaveMultipleSelection();
+        return $this->d3GetSet()->isActive() &&
+               $this->d3GetOwnSearchHandler()->getFilterList()->getPriceFilter()->canHaveMultipleSelection();
     }
 
     /**
