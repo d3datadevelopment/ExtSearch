@@ -14,7 +14,7 @@ Options -Indexes
     </IfModule>
 </FilesMatch>
 
-<FilesMatch "\.(png|jpe?g|gif)$">
+<FilesMatch "\.(png|jpe?g|gif|css|js)$">
     <IfModule mod_authz_core.c>
         # Apache 2.4
         Require all granted

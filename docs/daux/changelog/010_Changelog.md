@@ -2,6 +2,27 @@
 title: Changelog
 ---
 
+## 6.7.1.0 (2022-09-07)
+### Added
+- eigene Suchfelder können auch nach gesetzten Bitwerten suchen
+- PRG redirect als empfohlenes Paket ergänzt
+
+### Changed
+- unnötige Gruppierung in DB-Abfrage entfernt (Performance)
+- unnötige Felder in DB-Abfrage entfernt (Performance)
+- verwendet keine zusätzliche Gruppierung, wenn kein "Artikel in Attributen" Zähler benötigt wird
+- QueryBuilder für Hersteller- und Lieferantenzähler für bessere Erweiterbarkeit extrahiert
+- korrigierten Methodenaufruf in CLI nachgezogen
+- Mehrfachwerte in eigenen Suchfeldern werden mit AND oder OR entsprechend der Shopeinstellung verknüpft
+
+### Fixed
+- fehlerhafte Zugriffseinschränkungen für JS und CSS Dateien korrigiert
+- Ursachen für Warnungsmeldungen korrigiert
+- fehlerhafter Variablennamen in Smarty Template korrigiert
+- Abfrage "allSearchArticles" darf keine Sortierung nach Priorität haben
+
+---
+
 ## 6.7.0.0 (2022-04-29)
 ### Added
 - Schnellsuche startet Abfrage erst nach 3 Buchstaben (Anzahl ist konfigurierbar)

@@ -42,7 +42,7 @@
                         <input name="d3searchcategorymulti[[{$oAttrValue->getId()}]]" type="hidden" value="">
                         <input name="d3searchcategorymulti[[{$oAttrValue->getId()}]]" type="checkbox" value="[{$oAttrValue->getId()}]" id="cb[{$key}][{$oAttrValue->getId()}]" [{if $oAttrValue->selected || $oAttrValue->getId() == $sSelectedCategoryId}] checked[{/if}]>
                         <label for="cb[{$key}][{$oAttrValue->getId()}]">
-                            [{$oAttrValue->getTitle()}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $category->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
+                            [{$oAttrValue->getTitle()}] [{if !$oModCfg_d3_extsearch->getValue('blExtSearch_dontShowFilterArticleCount') && $oAttrValue->getFieldData('counter')}]([{$oAttrValue->getFieldData('counter')}])[{/if}]
                         </label>
                     </div>
                 [{/foreach}]
