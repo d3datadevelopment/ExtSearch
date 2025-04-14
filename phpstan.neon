@@ -1,0 +1,14 @@
+parameters:
+    scanFiles:
+        - ./src/IntelliSenseHelper.php
+        - ../../oxid-esales/oxideshop-ce/source/oxfunctions.php
+        - ../../oxid-esales/oxideshop-ce/source/overridablefunctions.php
+    paths:
+        - ./src
+    excludePaths:
+        - ./src/build
+        - ./src/tests
+        - ./src/IntelliSenseHelper.php
+    level: 0
+    phpVersion: 70300
+    checkMissingIterableValueType: false

@@ -43,7 +43,7 @@ if (false == class_exists(d3_extsearch_report_hitless::class)) {
          */
         public function render()
         {
-            $oSmarty = $this->getSmarty();
+            $oSmarty = $this->getSmarty();  // @phpstan-ignore-line
             $oSmarty->assign("aStats", array());
 
             $this->hitlessmonth();
@@ -61,7 +61,7 @@ if (false == class_exists(d3_extsearch_report_hitless::class)) {
             $aDataX = array();
             $aDataY = array();
 
-            $oSmarty         = $this->getSmarty();
+            $oSmarty         = $this->getSmarty();  // @phpstan-ignore-line
             $this->sTimeFrom = date("Ym", strtotime($oSmarty->_tpl_vars['time_from']));
             $this->sTimeType = 'month';
             $this->aFilters  = base64_decode(Registry::get(Request::class)->getRequestEscapedParameter('searchparams'));
@@ -115,7 +115,7 @@ if (false == class_exists(d3_extsearch_report_hitless::class)) {
             $aDataX = array();
             $aDataY = array();
 
-            $oSmarty         = $this->getSmarty();
+            $oSmarty         = $this->getSmarty();  // @phpstan-ignore-line
             $this->sTimeFrom = date("Y", strtotime($oSmarty->_tpl_vars['time_from']));
             $this->sTimeType = 'year';
             $this->aFilters  = base64_decode(Registry::get(Request::class)->getRequestEscapedParameter('searchparams'));

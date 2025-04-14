@@ -180,17 +180,6 @@
                                 </dl>
                                 <dl>
                                     <dt>
-                                        <label for="findPutInAndLeaveOut">[{oxmultilang ident="D3_EXTSEARCH_MAIN_PUTINLEAVEOUT"}]</label>
-                                    </dt>
-                                    <dd>
-                                        <input type="hidden" name="value[blExtSearch_findPutInAndLeaveOut]" value="0">
-                                        <input id="findPutInAndLeaveOut" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_findPutInAndLeaveOut]" value='1' [{if $edit->getEditValue('blExtSearch_findPutInAndLeaveOut') == 1}]checked[{/if}] [{$readonly}]>
-                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_PUTINLEAVEOUT_DESC"}]
-                                    </dd>
-                                    <dd class="spacer"></dd>
-                                </dl>
-                                <dl>
-                                    <dt>
                                         <label for="ShowPopup">[{oxmultilang ident="D3_EXTSEARCH_MAIN_SHOW_POPUP"}]</label>
                                     </dt>
                                     <dd>
@@ -386,6 +375,17 @@
                                             <OPTION value="4"[{if $edit->getEditValue('iExtSearch_minPhonLength') == 4}] selected>&bull; [{else}]>[{/if}][{oxmultilang ident="D3_EXTSEARCH_MAIN_MINPHONLENGTH_MORE"}]</option>
                                         </SELECT>
                                         [{oxinputhelp ident="D3_EXTSEARCH_MAIN_MINPHONLENGTH_DESC"}]
+                                    </dd>
+                                    <dd class="spacer"></dd>
+                                </dl>
+                                <dl>
+                                    <dt>
+                                        <label for="findPutInAndLeaveOut">[{oxmultilang ident="D3_EXTSEARCH_MAIN_PUTINLEAVEOUT"}]</label>
+                                    </dt>
+                                    <dd>
+                                        <input type="hidden" name="value[blExtSearch_findPutInAndLeaveOut]" value="0">
+                                        <input id="findPutInAndLeaveOut" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_findPutInAndLeaveOut]" value='1' [{if $edit->getEditValue('blExtSearch_findPutInAndLeaveOut') == 1}]checked[{/if}] [{$readonly}]>
+                                        [{oxinputhelp ident="D3_EXTSEARCH_MAIN_PUTINLEAVEOUT_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
                                 </dl>
