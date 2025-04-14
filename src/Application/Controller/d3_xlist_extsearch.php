@@ -123,11 +123,11 @@ class d3_xlist_extsearch
         ) {
             $sControllerClassName = strtolower($this->getaListController()->getClassKey());
 
-            if (in_array($sControllerClassName, array(ArticleListController::class, alist::class))) {
+            if (in_array($sControllerClassName, array(ArticleListController::class, alist::class))) {   // @phpstan-ignore-line
                 $_POST["searchcnid"] = Registry::get(Request::class)->getRequestEscapedParameter('cnid');
-            } elseif (in_array($sControllerClassName, array(ManufacturerListController::class, manufacturerlistAlias::class))) {
+            } elseif (in_array($sControllerClassName, array(ManufacturerListController::class, manufacturerlistAlias::class))) {    // @phpstan-ignore-line
                 $_POST["searchmanufacturer"] = Registry::get(Request::class)->getRequestEscapedParameter('mnid');
-            } elseif (in_array($sControllerClassName, array(VendorListController::class, vendorlistAlias::class))) {
+            } elseif (in_array($sControllerClassName, array(VendorListController::class, vendorlistAlias::class))) {    // @phpstan-ignore-line
                 $sActCat = Registry::get(Request::class)->getRequestEscapedParameter('cnid');
                 /** @var StrMb $oStrMb */
                 $oStrMb = getStr();
@@ -140,11 +140,11 @@ class d3_xlist_extsearch
 
             $aExclude = array();
 
-            if (in_array($sControllerClassName, array(ArticleListController::class, alist::class))) {
+            if (in_array($sControllerClassName, array(ArticleListController::class, alist::class))) {   // @phpstan-ignore-line
                 $aExclude[] = d3FilterList::CategoryFilterId;
-            } elseif (in_array($sControllerClassName, array(VendorListController::class, vendorlistAlias::class))) {
+            } elseif (in_array($sControllerClassName, array(VendorListController::class, vendorlistAlias::class))) {    // @phpstan-ignore-line
                 $aExclude[] = d3FilterList::VendorFilterId;
-            } elseif (in_array($sControllerClassName, array(ManufacturerListController::class, manufacturerlistAlias::class))) {
+            } elseif (in_array($sControllerClassName, array(ManufacturerListController::class, manufacturerlistAlias::class))) {    // @phpstan-ignore-line
                 $aExclude[] = d3FilterList::ManufacturerFilterId;
             }
 
