@@ -8,7 +8,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/8.1.0.0...rel_8.x)
+## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/8.2.0.0...rel_8.x)
+
+## [8.2.0.0](https://git.d3data.de/D3Private/Extsearch/compare/8.1.0.0...8.2.0.0) - 2025-10-20
+### Fixed
+- manufacturer filter items will get from category name based results too
+### Added
+- Word separators can be changed
+- add alternative sorting to phonetic search
+- installable in OXID 7.3
 
 ## [8.1.0.0](https://git.d3data.de/D3Private/Extsearch/compare/8.0.1.0...8.1.0.0) - 2025-02-21
 ### Added

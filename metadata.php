@@ -52,7 +52,7 @@ $aModule = [
         'en' => 'Provides error-tolerant search and other filter options. Please always activate the module entries and control the module activity exclusively in the admin area of the module.',
     ],
     'thumbnail'   => 'picture.svg',
-    'version'     => '8.1.0.0',
+    'version'     => '8.2.0.0',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'https://www.oxidmodule.com/',
