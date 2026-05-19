@@ -16,6 +16,7 @@
 namespace D3\Extsearch\Application\Controller\Admin;
 
 use D3\Extsearch\Application\Model\Constants;
+use D3\Extsearch\Application\Model\Filters\d3ManufacturerFilter;
 use D3\Extsearch\Core\d3_extsearch_conf;
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_main;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
@@ -49,5 +50,10 @@ class d3_cfg_extsearch_navigation extends d3_cfg_mod_main
     public function d3UseAlistFilters()
     {
         return $this->d3GetSet()->getLicenseConfigData(d3_extsearch_conf::SERIAL_BIT_HAS_FILTERS_IN_ALIST, false) || $this->d3GetSet()->isDemo();
+    }
+
+    public function canUseManufacturerFilter()
+    {
+        return (oxNew(d3ManufacturerFilter::class, $this->d3GetSet()))->canBeUsed(1);
     }
 }

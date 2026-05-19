@@ -20,6 +20,13 @@ let d3ExtsearchSuggest = (function ()
 {
     'use strict';
 
+    class MissingInputFieldInfo extends Error {
+        constructor(inputFieldId) {
+            super(`extsearch: no DOM element with id "${inputFieldId}" found`);
+            this.name = 'MissingInputFieldInfo';
+        }
+    }
+
     function Constructor (initOptions)
     {
         let options = {
@@ -547,20 +554,29 @@ let d3ExtsearchSuggest = (function ()
                 throw new Error('Error: Please provide a valid input field selector');
             }
             if (!document.querySelector("#" + options.inputFieldId)) {
-                throw new Error('Error: extsearch: no DOM element with id "' + options.inputFieldId + '" found');
+                throw new MissingInputFieldInfo(options.inputFieldId);
             }
             document.querySelector("#" + options.inputFieldId).addEventListener("keyup", (event) => keyHandler(event));
         };
 
         let init = function (initOptions)
         {
-            console.debug('initialized');
-            options = {
-                ...options,
-                ...initOptions
-            };
-            addResponseElement();
-            addEventHandler();
+            try {
+                console.debug('initialized');
+                options = {
+                    ...options,
+                    ...initOptions
+                };
+                addResponseElement();
+                addEventHandler();
+            } catch (error) {
+                if (error instanceof MissingInputFieldInfo) {
+                    console.warning(error.message);
+                    return;
+                }
+
+                throw error;
+            }
         };
 
         init(initOptions);

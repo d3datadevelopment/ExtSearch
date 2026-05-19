@@ -10,23 +10,31 @@
 
     <div id="{{ elementId }}"></div>
 
+    {% set sliderOptions = {
+        filterFormId: filterFormId|default("d3searchfilterform"),
+        elementId: elementId,
+        priceStepsMin: aPriceSteps.min,
+        priceStepsMax: aPriceSteps.max,
+        rangeMin: aPriceLimits.min,
+        rangeMax: aPriceLimits.max,
+        fieldMinId: fieldMinId,
+        fieldMaxId: fieldMaxId,
+        currencySign: currency.sign
+    } %}
+    {% if extraSliderOptions is defined %}
+        {% set sliderOptions = sliderOptions|merge(extraSliderOptions) %}
+    {% endif %}
+
     {% set d3script %}{% apply spaceless %}
-        document.addEventListener("DOMContentLoaded", () => {
-            try {
-                new d3ExtsearchSlider({
-                    elementId: '{{ elementId }}',
-                    priceStepsMin: {{ aPriceSteps.min }},
-                    priceStepsMax: {{ aPriceSteps.max }},
-                    rangeMin: {{ aPriceLimits.min }},
-                    rangeMax: {{ aPriceLimits.max }},
-                    fieldMinId: '{{ fieldMinId }}',
-                    fieldMaxId: '{{ fieldMaxId }}',
-                    currencySign: '{{ currency.sign }}',
-                });
-            } catch (e) {
-                console.error(e.message);
-            }
-        });
+        {% block d3_cfg_extsearch_jqsliderscript_script %}
+            document.addEventListener("DOMContentLoaded", () => {
+                try {
+                    new d3ExtsearchSlider({{ sliderOptions|json_encode|raw }});
+                } catch (e) {
+                    console.error(e.message);
+                }
+            });
+        {% endblock %}
     {% endapply %}{% endset %}
     {{ script({ add: d3script.__toString(), dynamic: __oxid_include_dynamic }) }}
 {% endblock %}

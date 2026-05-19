@@ -19,6 +19,7 @@ namespace D3\Extsearch\Application\Controller\Admin\Popups;
 
 use D3\Extsearch\Application\Model\Constants;
 use D3\Extsearch\Application\Model\d3extsearch_attribute2object;
+use D3\ModCfg\Application\Model\d3database;
 use Exception;
 use OxidEsales\Eshop\Application\Controller\Admin\ListComponentAjax;
 use OxidEsales\Eshop\Application\Model\Attribute;
@@ -26,8 +27,6 @@ use OxidEsales\Eshop\Core\Exception\DatabaseConnectionException;
 use OxidEsales\Eshop\Core\Model\MultiLanguageModel;
 use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
-use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
-use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -58,7 +57,7 @@ abstract class d3_attribute_extsearch_ajax_abstract extends ListComponentAjax
      */
     protected function getQuery()
     {
-        $connection = ContainerFactory::getInstance()->getContainer()->get(ConnectionProviderInterface::class)->get();
+        $connection = d3database::getInstance()->getDBConnection();
         $oRequest = Registry::get(Request::class);
         $sId = $oRequest->getRequestEscapedParameter('oxid');
         $sSynchId = $oRequest->getRequestEscapedParameter('synchoxid');
@@ -105,7 +104,7 @@ abstract class d3_attribute_extsearch_ajax_abstract extends ListComponentAjax
      */
     public function removeAttributeObject()
     {
-        $connection = ContainerFactory::getInstance()->getContainer()->get(ConnectionProviderInterface::class)->get();
+        $connection = d3database::getInstance()->getDBConnection();
         $oRequest = Registry::get(Request::class);
         $aChosenObjects = $this->getActionIds('d3extsearch_attribute2object.oxid');
 

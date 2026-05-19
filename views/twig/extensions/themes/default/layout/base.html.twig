@@ -43,7 +43,7 @@
     {% d3modcfgcheck modid="d3_extsearch" %}{% endd3modcfgcheck %}
 
     {% if mod_d3_extsearch %}
-        {% if blUseSuggestSearch %}
+        {% if blUseSuggestSearch and not oView.getIsOrderStep() %}
             {% apply spaceless %}
                 {% block d3_extsearch_js__suggest %}
                     {% block d3_extsearch_js__suggest_jsfile %}

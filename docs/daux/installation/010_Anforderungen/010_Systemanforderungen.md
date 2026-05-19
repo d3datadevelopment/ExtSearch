@@ -17,6 +17,7 @@ title: Systemanforderungen
         * 7.1.x
         * 7.2.x
         * 7.3.x
+        * 7.4.x
 * Themes
     * Apex
     * Wave

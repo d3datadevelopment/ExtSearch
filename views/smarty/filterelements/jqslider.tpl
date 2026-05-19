@@ -14,24 +14,27 @@
         [{oxscript include=$oViewConf->getModuleUrl('d3_extsearch', 'out/src/js/nouislider.min.js')}]
         [{oxscript include=$oViewConf->getModuleUrl('d3_extsearch', 'out/src/js/wave/d3extsearch_slider.min.js')}]
     [{/block}]
-    
+
     [{capture name="d3script"}][{strip}]
-        document.addEventListener("DOMContentLoaded", () => {
-            try {
-                new d3ExtsearchSlider({
-                    elementId: '[{$elementId}]',
-                    priceStepsMin: [{$aPriceSteps.min}],
-                    priceStepsMax: [{$aPriceSteps.max}],
-                    rangeMin: [{$aPriceLimits.min}],
-                    rangeMax: [{$aPriceLimits.max}],
-                    fieldMinId: '[{$fieldMinId}]',
-                    fieldMaxId: '[{$fieldMaxId}]',
-                    currencySign: '[{$currency->sign}]',
-                });
-            } catch (e) {
-                console.error(e.message);
-            }
-        });
+        [{block name="d3_cfg_extsearch_jqsliderscript_script"}]
+            document.addEventListener("DOMContentLoaded", () => {
+                try {
+                    new d3ExtsearchSlider({
+                        filterFormId: '[{$filterFormId|default:"d3searchfilterform"}]',
+                        elementId: '[{$elementId}]',
+                        priceStepsMin: [{$aPriceSteps.min}],
+                        priceStepsMax: [{$aPriceSteps.max}],
+                        rangeMin: [{$aPriceLimits.min}],
+                        rangeMax: [{$aPriceLimits.max}],
+                        fieldMinId: '[{$fieldMinId}]',
+                        fieldMaxId: '[{$fieldMaxId}]',
+                        currencySign: '[{$currency->sign}]',
+                    });
+                } catch (e) {
+                    console.error(e.message);
+                }
+            });
+        [{/block}]
     [{/strip}][{/capture}]
     [{oxscript add=$smarty.capture.d3script}]
 [{/block}]

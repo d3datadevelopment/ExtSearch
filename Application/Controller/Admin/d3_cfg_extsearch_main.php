@@ -21,6 +21,7 @@ use D3\Extsearch\Core\d3_extsearch_conf;
 use D3\Extsearch\Modules\Application\Model\d3_oxsearch_extsearch;
 use D3\ModCfg\Application\Controller\Admin\d3_cfg_mod_main;
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
+use D3\ModCfg\Application\Model\d3database;
 use D3\ModCfg\Application\Model\d3utils;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
@@ -37,7 +38,6 @@ use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\Output;
 use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
-use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Database\QueryBuilderFactoryInterface;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRenderer;
 use OxidEsales\EshopCommunity\Internal\Framework\Templating\TemplateRendererBridgeInterface;
@@ -147,7 +147,7 @@ class d3_cfg_extsearch_main extends d3_cfg_mod_main
         $oD3Utils = Registry::get(d3utils::class);
 
         $iArtPos = $this->d3getGenerator()->getArtPos();
-$iProcessedArticles = $this->d3getGenerator()->updateArticles();
+
         // bestimmt die maximal zu updatende Anzahl Artikel
         $iMaxPos = Registry::get(Request::class)->getRequestEscapedParameter('iMaxPos');
         if (!$iMaxPos) {
@@ -520,7 +520,7 @@ $iProcessedArticles = $this->d3getGenerator()->updateArticles();
     protected function assertSearchFields()
     {
         $fields = d3_cfg_mod::get($this->_sModId)->getValue('aExtSearch_similarSearchFields');
-        $connection = ContainerFactory::getInstance()->getContainer()->get(ConnectionProviderInterface::class)->get();
+        $connection = d3database::getInstance()->getDBConnection();
 
         $sSelectOa = 'SHOW FULL COLUMNS FROM '. $connection->quoteIdentifier(oxNew(Article::class)->getCoreTableName());
         $sSelectOae = 'SHOW FULL COLUMNS FROM '. $connection->quoteIdentifier('oxartextends');

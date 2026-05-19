@@ -72,7 +72,7 @@
     <div class="Page__header">
         <h1><a href="../manual/externeEinstellungen.html">Einstellungen außerhalb des Adminbereichs</a></h1>
                 <span class="ModifiedDate">
-                        20.10.2025        </span>
+                        19.05.2026        </span>
                     </div>
 
     <div class="s-content">
@@ -85,6 +85,11 @@
 <p>Die folgende Option verhindert, dass Artikeladressen innerhalb der Schnellsuche um Suchparameter ergänzt werden:</p>
 <pre><code>$this-&gt;bld3ExtSearchSuggestForceHideUrlParams = true;
 </code></pre>
+<h1 id="page_experimentell-Ausfuhrungsplan-der-Datenbank-festschreiben">experimentell: Ausführungsplan der Datenbank festschreiben</h1>
+<p>Das Modul verwendet Datenbankabfragen, die die Erstellung eines effektiven Ausführungsplans in bestimmten Fällen verhindern. Hierfür lassen sich die Abfragen für einen alternativen Abfrageweg umbauen:</p>
+<pre><code>$this-&gt;d3ExtSearchUseStraightJoin = true;
+</code></pre>
+<p>Erstellen Sie vor und nach der Anwendung dieser Option Performancevergleiche mit lang laufenden Abfragen. Diese Option muss nicht zwingend die Abfragen verbessern. Nutzen Sie je nach Ergebnis die performantere Variante.</p>
     </div>
 
         <nav>

@@ -19,3 +19,13 @@ Die folgende Option verhindert, dass Artikeladressen innerhalb der Schnellsuche 
 ```
 $this->bld3ExtSearchSuggestForceHideUrlParams = true;
 ```
+
+# experimentell: Ausführungsplan der Datenbank festschreiben
+
+Das Modul verwendet Datenbankabfragen, die die Erstellung eines effektiven Ausführungsplans in bestimmten Fällen verhindern. Hierfür lassen sich die Abfragen für einen alternativen Abfrageweg umbauen:
+
+```
+$this->d3ExtSearchUseStraightJoin = true;
+```
+
+Erstellen Sie vor und nach der Anwendung dieser Option Performancevergleiche mit lang laufenden Abfragen. Diese Option muss nicht zwingend die Abfragen verbessern. Nutzen Sie je nach Ergebnis die performantere Variante.

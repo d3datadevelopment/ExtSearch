@@ -285,6 +285,13 @@
                     <div class="groupExp">
                         <div class="">
                             [{block name="d3_cfg_extsearch_navigation__manufacturerfilter"}]
+
+                                [{if $readonly || !$oView->canUseManufacturerFilter()}]
+                                    [{assign var="manufacturer_readonly" value="readonly disabled"}]
+                                [{else}]
+                                    [{assign var="manufacturer_readonly" value=""}]
+                                [{/if}]
+
                                 <a class="rc" onclick="_groupExp(this); return false;" href="#">
                                     <b>
                                         [{oxmultilang ident="D3_EXTSEARCH_NAVI_MANUFACTURERFILTER"}]
@@ -296,7 +303,7 @@
                                     </dt>
                                     <dd>
                                         <input type="hidden" name="value[blExtSearch_showManufacturerList]" value="0">
-                                        <input id="showManufacturerList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showManufacturerList]" value='1' [{if $edit->getEditValue('blExtSearch_showManufacturerList') == 1}]checked[{/if}] onclick='[{include file="@d3_extsearch/admin/d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showManufacturerList" sToggleOptionClass=".manufacturer_options"}]' [{$readonly}]>
+                                        <input id="showManufacturerList" class="edittext ext_edittext" type="checkbox" name="value[blExtSearch_showManufacturerList]" value='1' [{if $edit->getEditValue('blExtSearch_showManufacturerList') == 1}]checked[{/if}] onclick='[{include file="@d3_extsearch/admin/d3_togglegroup_extsearch.tpl" sToggleOptionName="blExtSearch_showManufacturerList" sToggleOptionClass=".manufacturer_options"}]' [{$manufacturer_readonly}]>
                                         [{oxinputhelp ident="D3_EXTSEARCH_NAVI_MANUFACTURERLIST_DESC"}]
                                     </dd>
                                     <dd class="spacer"></dd>
@@ -306,7 +313,7 @@
                                         <label for="orderManufacturerList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_MANUFACTURERLIST_SORT"}]</label>
                                     </dt>
                                     <dd>
-                                        <select id="orderManufacturerList" class="editinput" name="value[sExtSearch_orderManufacturerList]" size="1" [{$readonly}]>
+                                        <select id="orderManufacturerList" class="editinput" name="value[sExtSearch_orderManufacturerList]" size="1" [{$manufacturer_readonly}]>
                                             <option value="counter"[{if $edit->getEditValue('sExtSearch_orderManufacturerList') == 'counter'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_MANUFACTURERLIST_SORT_COUNT"}]</option>
                                             <option value="oxtitle"[{if $edit->getEditValue('sExtSearch_orderManufacturerList') == 'oxtitle'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_MANUFACTURERLIST_SORT_ALPHA"}]</option>
                                         </select>
@@ -319,7 +326,7 @@
                                         <label for="displaytypeManufacturerList">[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE"}]</label>
                                     </dt>
                                     <dd>
-                                        <select id="displaytypeManufacturerList" class="editinput" name="value[sExtSearch_displaytypeManufacturerList]" size="1" [{$readonly}]>
+                                        <select id="displaytypeManufacturerList" class="editinput" name="value[sExtSearch_displaytypeManufacturerList]" size="1" [{$manufacturer_readonly}]>
                                             <option value="combined"[{if $edit->getEditValue('sExtSearch_displaytypeManufacturerList') == 'combined'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_COMBINED"}]</option>
                                             <option value="single"[{if $edit->getEditValue('sExtSearch_displaytypeManufacturerList') == 'single'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_SINGLE"}]</option>
                                             <option value="multi"[{if $edit->getEditValue('sExtSearch_displaytypeManufacturerList') == 'multi'}] selected[{/if}]>[{oxmultilang ident="D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_MULTI"}]</option>

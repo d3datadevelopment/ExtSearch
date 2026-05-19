@@ -16,6 +16,7 @@
 namespace D3\Extsearch\Modules\Application\Controller\Admin;
 
 use D3\ModCfg\Application\Model\Configuration\d3_cfg_mod;
+use D3\ModCfg\Application\Model\d3database;
 use D3\ModCfg\Application\Model\Exception\d3_cfg_mod_exception;
 use D3\ModCfg\Application\Model\Exception\d3ShopCompatibilityAdapterException;
 use Doctrine\DBAL\Exception as DBALException;
@@ -28,8 +29,6 @@ use OxidEsales\Eshop\Core\Registry;
 use OxidEsales\Eshop\Core\Request;
 use OxidEsales\Eshop\Core\Str;
 use OxidEsales\Eshop\Core\StrMb;
-use OxidEsales\EshopCommunity\Internal\Container\ContainerFactory;
-use OxidEsales\EshopCommunity\Internal\Framework\Database\ConnectionProviderInterface;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 
@@ -102,16 +101,18 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
             && $this->d3IsSearch()
         ) {
             $sViewName = $oListObject->getViewName();
-            $connection = ContainerFactory::getInstance()->getContainer()->get(ConnectionProviderInterface::class)->get();
+            $connection = d3database::getInstance()->getDBConnection();
 
             $aReplSearch = [
                 'from ' . $sViewName,
                 ", " . $connection->quoteIdentifier("{$sViewName}.oxtitle"),
                 ", " . $connection->quoteIdentifier("{$sViewName}.oxvarselect"),
             ];
+            
+            $join = Registry::getConfig()->getConfigParam('d3ExtSearchUseStraightJoin') ? ' STRAIGHT_JOIN ': ' LEFT JOIN ';
 
             $aReplReplacement = [
-                'from ' . $sViewName . ' LEFT JOIN ' . $oListObject->getViewName() . ' oxp ON ' . $sViewName . '.oxparentid = oxp.oxid',
+                'from ' . $sViewName . $join . $oListObject->getViewName() . ' oxp ON ' . $sViewName . '.oxparentid = oxp.oxid',
                 ", if($sViewName.oxparentid, CONCAT(oxp.oxtitle,' ', $sViewName.oxvarselect), $sViewName.oxtitle) as oxtitle",
                 ", if($sViewName.oxparentid, CONCAT(oxp.oxtitle,' ', $sViewName.oxvarselect), $sViewName.oxvarselect) as oxvarselect",
             ];
@@ -151,7 +152,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
             $aReplSearch      = [" and " . $oArticle->getViewName() . ".oxparentid = '' "];
             $aReplReplacement = [''];
 
-            $connection = ContainerFactory::getInstance()->getContainer()->get(ConnectionProviderInterface::class)->get();
+            $connection = d3database::getInstance()->getDBConnection();
             $sSearchKey    = strtolower($oArticle->getViewName()) . '.oxtitle';
             $aLowerWhere   = array_change_key_case( $whereQuery);
             $aKeys         = array_keys($aLowerWhere);
@@ -199,7 +200,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
             && $this->d3GetSet()->getValue('blExtSearch_adminShowVariants')
             && $this->d3IsSearch()
         ) {
-            $connection = ContainerFactory::getInstance()->getContainer()->get(ConnectionProviderInterface::class)->get();
+            $connection = d3database::getInstance()->getDBConnection();
             $sArtCat = Registry::get(Request::class)->getRequestEscapedParameter("art_category");
             if ($sArtCat && strstr($sArtCat, "@@") !== false) {
                 [$sType, $sValue] = explode("@@", $sArtCat);
@@ -221,11 +222,12 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
                     $oStr     = Str::getStr();
                     $oO2C = oxNew(Object2Category::class);
                     $sO2CView = $oO2C->getViewName();
+                    $join = Registry::getConfig()->getConfigParam('d3ExtSearchUseStraightJoin') ? ' STRAIGHT_JOIN ': ' LEFT JOIN ';
                     // d3 sumatch added again (\\1)
                     $sLJAdd = strstr(
                         $query,
                         $sO2CView
-                    ) ? '' : " LEFT JOIN $sO2CView ON $sTable.oxid = $sO2CView.oxobjectid ";
+                    ) ? '' : $join . "$sO2CView ON $sTable.oxid = $sO2CView.oxobjectid ";
                     // 2012-07-04 changed to lowercase, because OXID regexp doesn't match uppercase :(
                     $sInsert = "from $sTable \\1 $sLJAdd where ".$connection->quoteIdentifier("{$sO2CView}.oxcatnid")." = " .
                         $connection->quote(

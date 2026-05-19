@@ -10,6 +10,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased](https://git.d3data.de/D3Private/Extsearch/compare/8.2.0.0...rel_8.x)
 
+## [8.2.1.0](https://git.d3data.de/D3Private/Extsearch/compare/8.2.0.0...8.2.1.0) - 2026-05-15
+### Added
+- installable in OXID 7.4
+- price slider init can define an option subset as argument
+- force mysql execution plan to defined table order (optional performance option)
+### changed
+- prevent duplicate synonyms in query
+- improve query execution for bulk updates (phonetic index generator)
+- clear cache via activate and deactivate event
+- make manufacturer setting readonly if loading manufacturerlist is disabled
+### fixed
+- ambiguous column name in query
+
 ## [8.2.0.0](https://git.d3data.de/D3Private/Extsearch/compare/8.1.0.0...8.2.0.0) - 2025-10-20
 ### Fixed
 - manufacturer filter items will get from category name based results too

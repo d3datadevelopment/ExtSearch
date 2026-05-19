@@ -3,7 +3,7 @@
 [{d3modcfgcheck modid="d3_extsearch"}][{/d3modcfgcheck}]
 
 [{if $mod_d3_extsearch && false == $oModCfg_d3_extsearch->isThemeIdMappedTo('mobile')}]
-    [{if $blUseSuggestSearch}]
+    [{if $blUseSuggestSearch && !$oView->getIsOrderStep() }]
         [{strip}]
             [{block name="d3_extsearch_js__suggest"}]
                 [{block name="d3_extsearch_js__suggest_jsfile"}]
