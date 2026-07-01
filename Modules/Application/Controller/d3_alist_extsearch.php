@@ -1,18 +1,16 @@
 <?php
 
 /**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
+ * Copyright (c) D3 Data Development (Inh. Thomas Dartsch)
  *
- * Any unauthorized use of this software without a valid license
- * is a violation of the license agreement and will be prosecuted by
- * civil and criminal law.
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
  *
- * http://www.shopmodule.com
+ * https://www.d3data.de
  *
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
- * @link      http://www.oxidmodule.com
+ * @author    D3 Data Development - Daniel Seifert <info@shopmodule.com>
+ * @link      https://www.oxidmodule.com
  */
 
 namespace D3\Extsearch\Modules\Application\Controller;
@@ -72,13 +70,13 @@ class d3_alist_extsearch extends d3_alist_extsearch_parent
      */
     protected function loadArticles($manufacturer)
     {
-        $oArtList = parent::loadArticles( $manufacturer);
+        $oArtList = parent::loadArticles($manufacturer);
 
         /** @var int $pageCount */
         $pageCount = $this->_iCntPages;
 
         if ($pageCount || $oArtList->count()) {
-            $this->d3GetXListController()->addAListFilters( $manufacturer);
+            $this->d3GetXListController()->addAListFilters($manufacturer);
         }
 
         $this->d3GetXListController()->setTplParams($oArtList);
@@ -135,15 +133,15 @@ class d3_alist_extsearch extends d3_alist_extsearch_parent
     protected function addPageNrParam($url, $currentPage, $languageId = null)
     {
         if (false == $this->d3UseAlistFilters()) {
-            return parent::addPageNrParam( $url, $currentPage, $languageId);
+            return parent::addPageNrParam($url, $currentPage, $languageId);
         }
 
-        $url = parent::addPageNrParam( $url, $currentPage, $languageId);
+        $url = parent::addPageNrParam($url, $currentPage, $languageId);
 
         $sUrlAdd = $this->getViewDataElement('additionalparams');
 
         if ($sUrlAdd) {
-            $url .= (( strpos( $url, '?') === false) ? '?' : '') . $sUrlAdd;
+            $url .= ((strpos($url, '?') === false) ? '?' : '') . $sUrlAdd;
         }
 
         return $url;

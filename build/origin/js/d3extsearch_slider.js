@@ -55,11 +55,11 @@ let d3ExtsearchSlider = (function ()
             let slider = options.element;
 
             noUiSlider.create(slider, {
-                start: [options.priceStepsMin, options.priceStepsMax],
+                start: [Number(options.priceStepsMin), Number(options.priceStepsMax)],
                 connect: options.connect,
                 range: {
-                    'min': options.rangeMin,
-                    'max': options.rangeMax
+                    'min': Number(options.rangeMin),
+                    'max': Number(options.rangeMax)
                 },
                 step: options.step,
                 behaviour: options.behaviour,

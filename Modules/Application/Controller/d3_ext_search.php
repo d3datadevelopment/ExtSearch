@@ -1,16 +1,16 @@
 <?php
 
 /**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
- * Any unauthorized use of this software without a valid license
- * is a violation of the license agreement and will be prosecuted by
- * civil and criminal law.
- * http://www.shopmodule.com
+ * Copyright (c) D3 Data Development (Inh. Thomas Dartsch)
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * https://www.d3data.de
  *
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
- * @link      http://www.oxidmodule.com
+ * @author    D3 Data Development - Daniel Seifert <info@shopmodule.com>
+ * @link      https://www.oxidmodule.com
  */
 
 namespace D3\Extsearch\Modules\Application\Controller;
@@ -72,7 +72,7 @@ class d3_ext_search extends d3_ext_search_parent
     protected $_iAllArtCnt = 0;
 
     /** @var float */
-    protected $_iCntPages = null;   /** @phpstan-ignore-line */
+    protected $_iCntPages = null;
 
     protected $_sD3AdditionalParams = null;
 
@@ -841,7 +841,7 @@ class d3_ext_search extends d3_ext_search_parent
      */
     protected function getRequestParams($addPageNumber = true)
     {
-        $sURL = parent::getRequestParams( $addPageNumber);
+        $sURL = parent::getRequestParams($addPageNumber);
         $sURLAdd = '';
 
         if ($this->d3GetSet()->isActive()) {
@@ -1059,10 +1059,10 @@ class d3_ext_search extends d3_ext_search_parent
     public function getSorting($sortIdent)
     {
         if (! $this->d3GetSet()->isActive()) {
-            return parent::getSorting( $sortIdent);
+            return parent::getSorting($sortIdent);
         }
 
-        $aSorting = parent::getSorting( $sortIdent) ?: [];
+        $aSorting = parent::getSorting($sortIdent) ?: [];
 
         if (!count($aSorting)
             && $this->d3GetSet()->getValue('blExtSearch_orderByPriority')

@@ -1,16 +1,16 @@
 <?php
 
 /**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
- * Any unauthorized use of this software without a valid license
- * is a violation of the license agreement and will be prosecuted by
- * civil and criminal law.
- * http://www.shopmodule.com
+ * Copyright (c) D3 Data Development (Inh. Thomas Dartsch)
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ *
+ * https://www.d3data.de
  *
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
- * @link      http://www.oxidmodule.com
+ * @author    D3 Data Development - Daniel Seifert <info@shopmodule.com>
+ * @link      https://www.oxidmodule.com
  */
 
 namespace D3\Extsearch\Modules\Application\Controller\Admin;
@@ -108,8 +108,8 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
                 ", " . $connection->quoteIdentifier("{$sViewName}.oxtitle"),
                 ", " . $connection->quoteIdentifier("{$sViewName}.oxvarselect"),
             ];
-            
-            $join = Registry::getConfig()->getConfigParam('d3ExtSearchUseStraightJoin') ? ' STRAIGHT_JOIN ': ' LEFT JOIN ';
+
+            $join = Registry::getConfig()->getConfigParam('d3ExtSearchUseStraightJoin') ? ' STRAIGHT_JOIN ' : ' LEFT JOIN ';
 
             $aReplReplacement = [
                 'from ' . $sViewName . $join . $oListObject->getViewName() . ' oxp ON ' . $sViewName . '.oxparentid = oxp.oxid',
@@ -141,7 +141,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
      */
     protected function prepareWhereQuery($whereQuery, $fullQuery)
     {
-        $fullQuery = parent::prepareWhereQuery( $whereQuery, $fullQuery);
+        $fullQuery = parent::prepareWhereQuery($whereQuery, $fullQuery);
 
         // wenn für Admin Variantensuche
         if ($this->d3GetSet()->isActive()
@@ -154,9 +154,9 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
 
             $connection = d3database::getInstance()->getDBConnection();
             $sSearchKey    = strtolower($oArticle->getViewName()) . '.oxtitle';
-            $aLowerWhere   = array_change_key_case( $whereQuery);
+            $aLowerWhere   = array_change_key_case($whereQuery);
             $aKeys         = array_keys($aLowerWhere);
-            $aOrgKeys      = array_keys( $whereQuery);
+            $aOrgKeys      = array_keys($whereQuery);
             $sIdent        = array_search($sSearchKey, $aKeys);
             $sOrgSearchKey = $aOrgKeys[$sIdent];
             $sQuotedOrgSearchKey = $connection->quoteIdentifier($sOrgSearchKey);
@@ -167,7 +167,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
                                       $connection->quoteIdentifier("oxp.oxtitle") . " LIKE '" . $whereQuery[ $sOrgSearchKey] . "' )";
             }
 
-            $fullQuery = str_replace( $aReplSearch, $aReplReplacement, $fullQuery);
+            $fullQuery = str_replace($aReplSearch, $aReplReplacement, $fullQuery);
         }
 
         return $fullQuery;
@@ -190,7 +190,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
      */
     protected function changeselect($query)
     {
-        $query = parent::changeselect( $query);
+        $query = parent::changeselect($query);
 
         $sType  = false;
         $sValue = false;
@@ -222,7 +222,7 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
                     $oStr     = Str::getStr();
                     $oO2C = oxNew(Object2Category::class);
                     $sO2CView = $oO2C->getViewName();
-                    $join = Registry::getConfig()->getConfigParam('d3ExtSearchUseStraightJoin') ? ' STRAIGHT_JOIN ': ' LEFT JOIN ';
+                    $join = Registry::getConfig()->getConfigParam('d3ExtSearchUseStraightJoin') ? ' STRAIGHT_JOIN ' : ' LEFT JOIN ';
                     // d3 sumatch added again (\\1)
                     $sLJAdd = strstr(
                         $query,
@@ -234,15 +234,15 @@ class d3_article_list_extsearch extends d3_article_list_extsearch_parent
                             $sValue
                         ) . " AND ";
                     // D3 pattern changed
-                    $query = $oStr->preg_replace( "/$sPattern/i", $sInsert, $query);
+                    $query = $oStr->preg_replace("/$sPattern/i", $sInsert, $query);
                     break;
                     // add category
                 case 'mnf':
-                    $query .= " and $sTable.oxmanufacturerid = " . $connection->quote( $sValue);
+                    $query .= " and $sTable.oxmanufacturerid = " . $connection->quote($sValue);
                     break;
                     // add vendor
                 case 'vnd':
-                    $query .= " and $sTable.oxvendorid = " . $connection->quote( $sValue);
+                    $query .= " and $sTable.oxvendorid = " . $connection->quote($sValue);
                     break;
             }
         }

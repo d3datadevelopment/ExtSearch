@@ -1,18 +1,16 @@
 <?php
 
 /**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
+ * Copyright (c) D3 Data Development (Inh. Thomas Dartsch)
  *
- * Any unauthorized use of this software without a valid license
- * is a violation of the license agreement and will be prosecuted by
- * civil and criminal law.
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
  *
- * http://www.shopmodule.com
+ * https://www.d3data.de
  *
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
- * @link      http://www.oxidmodule.com
+ * @author    D3 Data Development - Daniel Seifert <info@shopmodule.com>
+ * @link      https://www.oxidmodule.com
  */
 
 namespace D3\Extsearch\Modules\Application\Controller;
@@ -71,12 +69,12 @@ class d3_manufacturerlist_extsearch extends d3_manufacturerlist_extsearch_parent
      */
     protected function loadArticles($oManufacturer)
     {
-        $aRet = parent::loadArticles( $oManufacturer);
+        $aRet = parent::loadArticles($oManufacturer);
 
         [$oArtList, $iArtCnt] = $aRet;
 
         if ($this->_iCntPages || $iArtCnt) {
-            $this->d3GetXListController()->addAListFilters( $oManufacturer);
+            $this->d3GetXListController()->addAListFilters($oManufacturer);
         }
 
         $this->d3GetXListController()->setTplParams($oArtList);

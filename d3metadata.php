@@ -1,18 +1,16 @@
 <?php
 
 /**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
+ * Copyright (c) D3 Data Development (Inh. Thomas Dartsch)
  *
- * Any unauthorized use of this software without a valid license
- * is a violation of the license agreement and will be prosecuted by
- * civil and criminal law.
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
  *
- * http://www.shopmodule.com
+ * https://www.d3data.de
  *
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
- * @link      http://www.oxidmodule.com
+ * @author    D3 Data Development - Daniel Seifert <info@shopmodule.com>
+ * @link      https://www.oxidmodule.com
  */
 
 use D3\Extsearch\setup as ModuleSetup;
@@ -50,9 +48,6 @@ $aModule = [
         'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchsyneditor.php',
         'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchsyneditor_list.php',
         'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchlog.php',
-        'd3/extsearch/Application/Controller/Admin/Reports/d3_extsearch_report_hitless.php',
-        'd3/extsearch/Application/Controller/Admin/Reports/d3_extsearch_report_base.php',
-        'd3/extsearch/Application/Controller/Admin/Reports/d3_extsearch_report_mostsearches.php',
         'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchlog_list.php',
         'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchsyneditor_manage.php',
         'd3/extsearch/Application/Controller/Admin/d3_cfg_extsearchstat.php',

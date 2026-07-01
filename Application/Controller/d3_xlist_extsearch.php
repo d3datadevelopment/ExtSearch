@@ -1,17 +1,16 @@
 <?php
+
 /**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
+ * Copyright (c) D3 Data Development (Inh. Thomas Dartsch)
  *
- * Any unauthorized use of this software without a valid license
- * is a violation of the license agreement and will be prosecuted by
- * civil and criminal law.
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
  *
- * http://www.shopmodule.com
+ * https://www.d3data.de
  *
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
- * @link      http://www.oxidmodule.com
+ * @author    D3 Data Development - Daniel Seifert <info@shopmodule.com>
+ * @link      https://www.oxidmodule.com
  */
 
 namespace D3\Extsearch\Application\Controller;
@@ -368,7 +367,7 @@ class d3_xlist_extsearch
     public function d3GetVendorList()
     {
         return $this->d3GetSet()->isActive() ?
-            $this->d3GetOwnSearchHandler()->getFilterList()->getVendorFilter()->getFilterList():
+            $this->d3GetOwnSearchHandler()->getFilterList()->getVendorFilter()->getFilterList() :
             oxNew(VendorList::class);
     }
 
@@ -400,7 +399,7 @@ class d3_xlist_extsearch
     public function d3GetManufacturerList()
     {
         return $this->d3GetSet()->isActive() ?
-            $this->d3GetOwnSearchHandler()->getFilterList()->getManufacturerFilter()->getFilterList():
+            $this->d3GetOwnSearchHandler()->getFilterList()->getManufacturerFilter()->getFilterList() :
             oxNew(ManufacturerList::class);
     }
 
@@ -433,7 +432,7 @@ class d3_xlist_extsearch
     public function d3GetAttributeList()
     {
         return $this->d3GetSet()->isActive() ?
-            $this->d3GetOwnSearchHandler()->getFilterList()->getAttributeFilter()->getFilterList():
+            $this->d3GetOwnSearchHandler()->getFilterList()->getAttributeFilter()->getFilterList() :
             [];
     }
 

@@ -1,18 +1,16 @@
 <?php
 
 /**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
+ * Copyright (c) D3 Data Development (Inh. Thomas Dartsch)
  *
- * Any unauthorized use of this software without a valid license
- * is a violation of the license agreement and will be prosecuted by
- * civil and criminal law.
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
  *
- * http://www.shopmodule.com
+ * https://www.d3data.de
  *
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
- * @link      http://www.oxidmodule.com
+ * @author    D3 Data Development - Daniel Seifert <info@shopmodule.com>
+ * @link      https://www.oxidmodule.com
  */
 
 use D3\Extsearch\Application\Controller\Admin as ModuleControllerAdmin;
@@ -34,7 +32,6 @@ use ProudSourcing\psCache\Core\CacheCore;
  * Metadata version
  */
 $sMetadataVersion = '2.1';
-$sLogo = '<img src="https://logos.oxidmodule.com/d3logo.svg" alt="(D3)" style="height:1em;width:1em"> ';
 
 $sModuleId = 'd3_extsearch';
 
@@ -44,15 +41,15 @@ $sModuleId = 'd3_extsearch';
 $aModule = [
     'id'          => $sModuleId,
     'title'       => [
-        'de'    => $sLogo . 'Erweiterte Suche',
-        'en'    => $sLogo . 'Extended Search'
+        'de'    => '(D3) Erweiterte Suche',
+        'en'    => '(D3) Extended Search',
     ],
     'description' => [
         'de' => 'Stellt fehlertolerante Suche und weitere Filterm&ouml;glichkeiten zur Verf&uuml;gung.<br>Aktivieren Sie die Moduleintr&auml;ge bitte immer und steuern Sie die Modulaktivit&auml;t ausschlie&szlig;lich im Adminbereich des Moduls.',
         'en' => 'Provides error-tolerant search and other filter options. Please always activate the module entries and control the module activity exclusively in the admin area of the module.',
     ],
     'thumbnail'   => 'picture.svg',
-    'version'     => '8.2.1.0',
+    'version'     => '8.2.2.0',
     'author'      => 'D&sup3; Data Development (Inh.: Thomas Dartsch)',
     'email'       => 'support@shopmodule.com',
     'url'         => 'https://www.oxidmodule.com/',
@@ -116,8 +113,6 @@ $aModule = [
         '@' . Constants::OXID_MODULE_ID . '/admin/d3_cfg_extsearchsyneditor_list.tpl'       => 'views/smarty/admin/d3_cfg_extsearchsyneditor_list.tpl',
         '@' . Constants::OXID_MODULE_ID . '/admin/d3_cfg_extsearchsyneditor_main.tpl'       => 'views/smarty/admin/d3_cfg_extsearchsyneditor_main.tpl',
         '@' . Constants::OXID_MODULE_ID . '/admin/d3_cfg_extsearchsyneditor_manage.tpl'     => 'views/smarty/admin/d3_cfg_extsearchsyneditor_manage.tpl',
-        '@' . Constants::OXID_MODULE_ID . '/admin/reports/d3_extsearch_report_hitless.tpl'  => 'views/smarty/admin/reports/d3_extsearch_report_hitless.tpl',
-        '@' . Constants::OXID_MODULE_ID . '/admin/reports/d3_extsearch_report_mostsearches.tpl' => 'views/smarty/admin/reports/d3_extsearch_report_mostsearches.tpl',
         '@' . Constants::OXID_MODULE_ID . '/admin/d3_extsearch_plugin.tpl'                   => 'views/smarty/admin/d3_extsearch_plugin.tpl',
         '@' . Constants::OXID_MODULE_ID . '/admin/d3_extsearch_popup.tpl'                    => 'views/smarty/admin/d3_extsearch_popup.tpl',
 
@@ -154,14 +149,14 @@ $aModule = [
             'group'     => 'd3thememapping_module',
             'name'      => 'd3custParentThemeMappedToApex_'.$sModuleId,
             'type'      => 'str',
-            'value'     => ''
+            'value'     => '',
         ],
         [
             'group'     => 'd3thememapping_module',
             'name'      => 'd3custParentThemeMappedToWave_'.$sModuleId,
             'type'      => 'str',
-            'value'     => ''
-        ]
+            'value'     => '',
+        ],
     ],
     'blocks'      => [
         [
@@ -262,7 +257,7 @@ $aModule = [
         ],
     ],
     'smartyPluginDirectories' => [
-        'Core/Smarty/Plugins'
+        'Core/Smarty/Plugins',
     ],
 ];
 
@@ -271,23 +266,17 @@ if (!in_array(
     1,
     array_map(
         function ($traceStep) {
-            return isset($traceStep['class']) 
+            return isset($traceStep['class'])
                 && $traceStep['class'] === \OxidEsales\ComposerPlugin\Installer\Package\ModulePackageInstaller::class;
         },
         debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)
     )
 )) {
-    if ( class_exists( VisualCmsAdmin::class ) ) {
+    if (class_exists(VisualCmsAdmin::class)) {
         $aModule['extend'][ VisualCmsAdmin::class ] = ModuleExtControllerAdmin\d3_ddoevisualcmsadmin_extsearch::class;
     }
 
-    if ( class_exists( OeStatistics_Report_Base::class ) ) {
-        $aModule['controllers']['d3_extsearch_report_base']         = ModuleControllerAdmin\Reports\d3_extsearch_report_base::class;
-        $aModule['controllers']['d3_extsearch_report_hitless']      = ModuleControllerAdmin\Reports\d3_extsearch_report_hitless::class;
-        $aModule['controllers']['d3_extsearch_report_mostsearches'] = ModuleControllerAdmin\Reports\d3_extsearch_report_mostsearches::class;
-    }
-
-    if ( class_exists( CacheCore::class ) ) {
+    if (class_exists(CacheCore::class)) {
         $aModule['extend'][ CacheCore::class ] = d3_CacheCore_extsearch::class;
     }
 }

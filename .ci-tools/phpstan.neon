@@ -1,0 +1,26 @@
+parameters:
+    scanFiles:
+        - ../../../autoload.php
+        - ../../../oxid-esales/oxideshop-ce/source/bootstrap.php
+        - ../../../oxid-esales/oxideshop-ce/source/oxfunctions.php
+        - ../../../oxid-esales/oxideshop-ce/source/overridablefunctions.php
+        - ../IntelliSenseHelper.php
+    paths:
+        - ../Application
+        - ../assets
+        - ../bin
+        - ../Core
+        - ../Modules
+        - ../setup
+        - ../views
+        - ../metadata.php
+        - ../d3metadata.php
+    excludePaths:
+        - ../docs
+        - ../tests
+        - ./.php-cs-fixer.php
+    level: 1
+    phpVersion: 80300
+    ignoreErrors:
+        # Call to an undefined static method D3\Extsearch\Modules\Application\Controller\d3_manufacturerlist_extsearch_parent::canCache().
+        - identifier: staticMethod.notFound

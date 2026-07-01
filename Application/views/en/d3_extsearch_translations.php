@@ -1,18 +1,16 @@
 <?php
 
 /**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
+ * Copyright (c) D3 Data Development (Inh. Thomas Dartsch)
  *
- * Any unauthorized use of this software without a valid license
- * is a violation of the license agreement and will be prosecuted by
- * civil and criminal law.
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
  *
- * http://www.shopmodule.com
+ * https://www.d3data.de
  *
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
- * @link      http://www.oxidmodule.com
+ * @author    D3 Data Development - Daniel Seifert <info@shopmodule.com>
+ * @link      https://www.oxidmodule.com
  */
 
 // @codeCoverageIgnoreStart
@@ -84,7 +82,7 @@ return [
     'D3_EXTSEARCH_MAIN_VARIANTUSAGE_SHOWPARENT'       => '... there parent article in list',
     'D3_EXTSEARCH_MAIN_VARIANTUSAGE_SHOWVARIANT'      => '... the variant itself in list',
     'D3_EXTSEARCH_MAIN_SHOWVARIANTSWITHOUTFILTERS'    => 'show variants even without filtering',
-    'D3_EXTSEARCH_MAIN_SHOWVARIANTSWITHOUTFILTERS_DESC'=> 'Displaying variant articles is usually only useful when filtering specifically for them. If the variant articles should also be shown without filtering, activate this option. The article lists can then become more extensive. This option affects search results and (if active) also categories.',
+    'D3_EXTSEARCH_MAIN_SHOWVARIANTSWITHOUTFILTERS_DESC' => 'Displaying variant articles is usually only useful when filtering specifically for them. If the variant articles should also be shown without filtering, activate this option. The article lists can then become more extensive. This option affects search results and (if active) also categories.',
     'D3_EXTSEARCH_MAIN_VARIANTINALIST'                => 'special variant handling are also used in article lists',
     'D3_EXTSEARCH_MAIN_VARIANTCHECKPARENTACTIVE'      => 'check parent article active status explicitly',
     'D3_EXTSEARCH_MAIN_VARIANTUSAGE_DESC'             => '<p>Set here whether, in the case of a variant found, this variant itself or its parent article should be shown in the result list. When displaying the parent article instead of the variant, please note that the parent articles must also be active and selectable. An additional check for this only takes place if it has been explicitly configured.</p><p>When the parent articles are displayed, the number of matching variants is still shown at the usable filters, as these are the basis for the filters. This discrepancy can confuse the shop visitor. In this case, deactivate the display of the number of articles found for the filter.',
@@ -192,7 +190,7 @@ return [
     'D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_DESC'       => 'Set how the filters are to be shown to the shopper.<br><br>Single selection displays a DropDown, which submits the single entry immediately after selection. Another entry from this filter is not selectable.<br><br>Multi selection displays all entries as checkboxes. The customer can select all desired entries and submit them off altogether.',
     'D3_EXTSEARCH_NAVI_FILTER_MORE_DESC'              => 'Further settings for attribute filters can be found directly at the respective attributes in the tab for the search settings.',
     'D3_EXTSEARCH_NAVI_CATLISTMAINCATEGORIESONLY'     => 'only show main categories of the articles',
-    'D3_EXTSEARCH_NAVI_CATLISTMAINCATEGORIESONLY_DESC'=> 'The option prevents listing additional assigned categories as filters. Only the main categories of the found items are shown.',
+    'D3_EXTSEARCH_NAVI_CATLISTMAINCATEGORIESONLY_DESC' => 'The option prevents listing additional assigned categories as filters. Only the main categories of the found items are shown.',
     'D3_EXTSEARCH_NAVI_VENDORFILTER'                  => 'Vendor Filter',
     'D3_EXTSEARCH_NAVI_VENDORLIST'                    => 'show vendor list',
     'D3_EXTSEARCH_NAVI_VENDORLIST_DESC'               => 'Just as for the categories, there is also the option of filtering the hit list once again for the vendors. You switch this on here.',
@@ -264,7 +262,7 @@ return [
     'D3_EXTSEARCH_NAVI_HIGHLIGHT'                     => 'highlight found contents in search results',
     'D3_EXTSEARCH_NAVI_HIGHLIGHT_DESC'                => 'Sometimes the term you are looking for appears in the middle of descriptions. Use this option to visually highlight the term. <br> <br> To do so, set what the highlighting should look like in the template \'d3_ext_search_highlight.tpl\'. In \'inc/product.tpl\', replace all variables that should contain accents with the Smarty call \[\{d3_extsearch_highlight text=$variable name\}\], replacing $ variable-name with the actual text variable.',
     'D3_EXTSEARCH_NAVI_DONTSHOWFILTERARTICLECOUNT'    => 'Number of items found for the filter is <b>not</b> displayed',
-    'D3_EXTSEARCH_NAVI_DONTSHOWFILTERARTICLECOUNT_DESC'=> 'The number of matching items is shown on the offered item filters. If the display is not wanted, it can be deactivated here.',
+    'D3_EXTSEARCH_NAVI_DONTSHOWFILTERARTICLECOUNT_DESC' => 'The number of matching items is shown on the offered item filters. If the display is not wanted, it can be deactivated here.',
     'D3_EXTSEARCH_NAVI_INDEXFILTER'                   => 'Index Letters',
     'D3_EXTSEARCH_NAVI_SHOWINDEX'                     => 'show index letters',
     'D3_EXTSEARCH_NAVI_SHOWINDEX_DESC'                => 'This index is a small tab above the hit list, which allows your customers to select the articles by their first letter. The display of the letter index can be edited via CSS and the enclosed templates.',

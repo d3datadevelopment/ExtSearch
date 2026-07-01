@@ -1,18 +1,16 @@
 <?php
 
 /**
- * This Software is the property of Data Development and is protected
- * by copyright law - it is NOT Freeware.
+ * Copyright (c) D3 Data Development (Inh. Thomas Dartsch)
  *
- * Any unauthorized use of this software without a valid license
- * is a violation of the license agreement and will be prosecuted by
- * civil and criminal law.
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
  *
- * http://www.shopmodule.com
+ * https://www.d3data.de
  *
  * @copyright (C) D3 Data Development (Inh. Thomas Dartsch)
- * @author    D3 Data Development - Daniel Seifert <support@shopmodule.com>
- * @link      http://www.oxidmodule.com
+ * @author    D3 Data Development - Daniel Seifert <info@shopmodule.com>
+ * @link      https://www.oxidmodule.com
  */
 
 // @codeCoverageIgnoreStart
@@ -84,7 +82,7 @@ return [
     'D3_EXTSEARCH_MAIN_VARIANTUSAGE_SHOWPARENT'       => '... deren Elternartikel in der Trefferliste gezeigt',
     'D3_EXTSEARCH_MAIN_VARIANTUSAGE_SHOWVARIANT'      => '... die Variante selbst in der Trefferliste gezeigt',
     'D3_EXTSEARCH_MAIN_SHOWVARIANTSWITHOUTFILTERS'    => 'zeige Varianten auch ohne Filterung',
-    'D3_EXTSEARCH_MAIN_SHOWVARIANTSWITHOUTFILTERS_DESC'=> 'Die Anzeige von Variantenartikeln ist meist nur dann sinnvoll, wenn speziell danach gefiltert wird. Sollen die Variantenartikel auch ohne Filterung gezeigt werden, aktivieren Sie diese Option. Die Artikellisten können dann umfangreicher werden. Diese Option wirkt auf Suchergebnisse und (sofern aktiv) auch auf Kategorien.',
+    'D3_EXTSEARCH_MAIN_SHOWVARIANTSWITHOUTFILTERS_DESC' => 'Die Anzeige von Variantenartikeln ist meist nur dann sinnvoll, wenn speziell danach gefiltert wird. Sollen die Variantenartikel auch ohne Filterung gezeigt werden, aktivieren Sie diese Option. Die Artikellisten können dann umfangreicher werden. Diese Option wirkt auf Suchergebnisse und (sofern aktiv) auch auf Kategorien.',
     'D3_EXTSEARCH_MAIN_VARIANTINALIST'                => 'spezielle Variantenbehandlung wird auch in Artikellisten verwendet',
     'D3_EXTSEARCH_MAIN_VARIANTCHECKPARENTACTIVE'      => 'Aktivstatus des Elternartikel ausdrücklich prüfen',
     'D3_EXTSEARCH_MAIN_VARIANTUSAGE_DESC'             => '<p>Stellen Sie hier ein, ob bei einer gefundenen Variante diese Variante selbst oder deren Elternartikel in der Trefferliste gezeigt werden soll. Beachten Sie bei der Anzeige des Elternartikels anstatt der Variante bitte darauf, dass die Elternartikel auch aktiv und auswählbar sein müssen. Eine zusätzliche Prüfung darauf findet nur statt, wenn diese ausdrücklich konfiguriert wurde.</p><p>Bei der Anzeige der Elternartikel wird an den verwendbaren Filtern weiterhin die Anzahl der dazu passenden Varianten gezeigt, da diese weiterhin Basis für die Filter sind. Diese Abweichung kann den Shopbesucher verwirren. Deaktivieren Sie in diesem Fall die Darstellung der Anzahl zum Filter gefundener Artikel.</p>',
@@ -192,7 +190,7 @@ return [
     'D3_EXTSEARCH_NAVI_FILTER_DISPLAYTYPE_DESC'       => 'Stellen Sie ein, wie die Filter dem Shopbesucher gezeigt werden sollen.<br><br>Einfachauswahl stellt ein DropDown dar, welches den einzelnen Eintrag nach Auswählen sofort absendet. Ein weiterer Eintrag aus diesem Filter ist nicht wählbar.<br><br>Mehrfachauswahl stellt alle Einträge als Checkboxen dar. Der Kunde kann alle gewünschte Einträge auswählen und sendet diese gesamt ab.',
     'D3_EXTSEARCH_NAVI_FILTER_MORE_DESC'              => 'Weitere Einstellungen zu Attributsfiltern finden Sie direkt an den jeweiligen Attributen im Tab für die Sucheinstellungen.',
     'D3_EXTSEARCH_NAVI_CATLISTMAINCATEGORIESONLY'     => 'nur Hauptkategorien der Artikel anzeigen',
-    'D3_EXTSEARCH_NAVI_CATLISTMAINCATEGORIESONLY_DESC'=> 'Die Option verhindert das Auflisten zusätzlich zugeordneter Kategorien als Filter. Er werden ausschließlich die Hauptkategorien der gefundenen Artikel gezeigt.',
+    'D3_EXTSEARCH_NAVI_CATLISTMAINCATEGORIESONLY_DESC' => 'Die Option verhindert das Auflisten zusätzlich zugeordneter Kategorien als Filter. Er werden ausschließlich die Hauptkategorien der gefundenen Artikel gezeigt.',
     'D3_EXTSEARCH_NAVI_VENDORFILTER'                  => 'Lieferantenfilter',
     'D3_EXTSEARCH_NAVI_VENDORLIST'                    => 'zeige Lieferantenliste',
     'D3_EXTSEARCH_NAVI_VENDORLIST_DESC'               => 'Ebenso wie für die Kategorien gibt es auch die Möglichkeit, die Trefferliste noch einmal nach den Lieferanten zu filtern. Dies schalten Sie hier ein.',
@@ -264,7 +262,7 @@ return [
     'D3_EXTSEARCH_NAVI_HIGHLIGHT'                     => 'gefundene Textstellen werden in Suchergebnissen hervorgehoben',
     'D3_EXTSEARCH_NAVI_HIGHLIGHT_DESC'                => 'Manchmal taucht der gesuchte Begriff erst mitten in Beschreibungen auf. Mit dieser Option heben Sie den Begriff optisch hervor.<br><br>Stellen Sie dazu im Template \'d3_ext_search_highlight.tpl\' ein, wie die Hervorhebung aussehen soll. Ersetzen Sie dann in \'inc/product.tpl\' alle Variablen, die Hervorhebungen enthalten sollen, gegen den Smarty-Aufruf \[\{ d3_extsearch_highlight text=$variablenname \}\], wobei $variablenname gegen die tatsächliche Textvariable ersetzt wird.',
     'D3_EXTSEARCH_NAVI_DONTSHOWFILTERARTICLECOUNT'    => 'Anzahl zum Filter gefundener Artikel wird <b>nicht</b> angezeigt',
-    'D3_EXTSEARCH_NAVI_DONTSHOWFILTERARTICLECOUNT_DESC'=> 'An den angebotenen Artikelfiltern wird die Anzahl der dazu passenden Artikel gezeigt. Wenn die Anzeige nicht gewünscht ist, kann diese hier deaktiviert werden.',
+    'D3_EXTSEARCH_NAVI_DONTSHOWFILTERARTICLECOUNT_DESC' => 'An den angebotenen Artikelfiltern wird die Anzahl der dazu passenden Artikel gezeigt. Wenn die Anzeige nicht gewünscht ist, kann diese hier deaktiviert werden.',
     'D3_EXTSEARCH_NAVI_INDEXFILTER'                   => 'Buchstabenindex',
     'D3_EXTSEARCH_NAVI_SHOWINDEX'                     => 'zeige Buchstabenindex',
     'D3_EXTSEARCH_NAVI_SHOWINDEX_DESC'                => 'Dieser Index sind kleine Tabs oberhalb der Trefferliste, mit denen Ihren Kunden die Artikel nach deren Anfangsbuchstaben selektieren können. Die Anzeige des Buchstabenindex kann über CSS und den beiliegenden Templates bearbeitet werden.',
